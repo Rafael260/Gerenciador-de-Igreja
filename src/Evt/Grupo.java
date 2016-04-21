@@ -53,5 +53,4 @@ public class Grupo {
         this.dia_semana = dia_semana;
     }
     
-    
 }
