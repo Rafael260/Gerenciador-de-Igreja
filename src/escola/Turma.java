@@ -14,6 +14,13 @@ public class Turma {
     private Date data_fim;
     List<Membro> alunos;
 
+    public Turma(Date data_inicio, Date data_fim, List<Membro> alunos) {
+        this.data_inicio = data_inicio;
+        this.data_fim = data_fim;
+        this.alunos = alunos;
+    }
+    
+    /////////////////////// <GETS E SETS> ////////////////////////////////////
     public Date getData_inicio() {
         return data_inicio;
     }
@@ -36,5 +43,16 @@ public class Turma {
 
     public void setAlunos(List<Membro> alunos) {
         this.alunos = alunos;
-    }    
+    }
+    /////////////////////// </GETS E SETS> ////////////////////////////////////
+    
+    /////////////////////// <TRABALHANDO COM ALUNOS> ////////////////////////////////////
+    public void adicionarAluno(Membro aluno) throws Exception{
+        if (aluno == null){
+            throw new Exception("Objeto referente à aluno é nulo");
+        }
+        alunos.add(aluno);
+    }
+        
+    /////////////////////// </TRABALHANDO COM ALUNOS> ////////////////////////////////////
 }

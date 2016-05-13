@@ -19,6 +19,14 @@ public class Disciplina {
     protected Date data_fim;
     protected List<Membro> alunos;
     protected Membro professor;
+
+    public Disciplina(String nome, Date data_inicio, Date data_fim, List<Membro> alunos, Membro professor) {
+        this.nome = nome;
+        this.data_inicio = data_inicio;
+        this.data_fim = data_fim;
+        this.alunos = alunos;
+        this.professor = professor;
+    }
     
     public String getNome() {
         return nome;

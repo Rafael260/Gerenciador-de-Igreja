@@ -5,6 +5,7 @@
  */
 package escola;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +16,12 @@ public class PeriodoLetivo {
     private int ano;
     private List<Turma> listaTurmas;
 
+    public PeriodoLetivo(int ano) {
+        this.ano = ano;
+        listaTurmas = new ArrayList<>();
+    }
+    
+    /////////////////////// <GETS E SETS> ////////////////////////////////////
     public int getAno() {
         return ano;
     }
@@ -31,6 +38,17 @@ public class PeriodoLetivo {
         this.listaTurmas = listaTurmas;
     }
     
+    /////////////////////// </GETS E SETS> ////////////////////////////////////
     
+    /////////////////////// <TRABALHANDO COM TURMAS> ////////////////////////////////////
+    
+    public void adicionarTurma(Turma turma) throws Exception{
+        if(turma == null){
+            throw new Exception("Objeto referente à turma é nulo");
+        }
+        listaTurmas.add(turma);
+    }
+    
+    /////////////////////// </TRABALHANDO COM TURMAS> ////////////////////////////////////
     
 }

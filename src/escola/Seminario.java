@@ -27,9 +27,11 @@ public class Seminario {
         this.data_inicio = data_inicio;
         this.data_fim = data_fim;
         this.coordenador = coordenador;
+        disciplinas = new ArrayList<>();
         periodosLetivos = new ArrayList<>();
     }
     
+    /////////////////////// <GETS E SETS> ////////////////////////////////////
     public String getNome() {
         return nome;
     }
@@ -53,6 +55,62 @@ public class Seminario {
     public void setData_fim(Date data_fim) {
         this.data_fim = data_fim;
     }
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+
+    public List<PeriodoLetivo> getPeriodosLetivos() {
+        return periodosLetivos;
+    }
+
+    public void setPeriodosLetivos(List<PeriodoLetivo> periodosLetivos) {
+        this.periodosLetivos = periodosLetivos;
+    }
+
+    public Membro getCoordenador() {
+        return coordenador;
+    }
+
+    public void setCoordenador(Membro coordenador) {
+        this.coordenador = coordenador;
+    }
+    
+    /////////////////////// </GETS E SETS> ////////////////////////////////////
+    
+    
+    ////////// <TRABALHANDO COM OS PERÍODOS LETIVOS /////////////////////////
+    public void adicionarPeriodoLetivo(){
+        int anoAnterior = periodosLetivos.get(periodosLetivos.size() - 1).getAno();
+        periodosLetivos.add(new PeriodoLetivo(anoAnterior+1));
+    }
+    
+    public void adicionarPeriodoLetivo(int ano) throws Exception{
+        if (ano < 2016)
+            throw new Exception("Ano inválido");
+        pAdicionarPeriodoLetivo(ano);
+    }
+    
+    private void pAdicionarPeriodoLetivo(int ano){
+        periodosLetivos.add(new PeriodoLetivo(ano));
+    }
+    
+    ////////// </TRABALHANDO COM OS PERÍODOS LETIVOS /////////////////////////
+    
+    ////////// <TRABALHANDO COM AS DISCIPLINAS /////////////////////////
+    
+    public void adicionarDisciplina(Disciplina disciplina) throws Exception{
+        if (disciplina == null){
+            throw new Exception("Objeto referente à disciplina é nulo");
+        }
+        disciplinas.add(disciplina);
+    }
+    
+    ////////// </TRABALHANDO COM AS DISCIPLINAS /////////////////////////
     
     
 }
