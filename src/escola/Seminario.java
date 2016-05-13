@@ -19,6 +19,13 @@ public class Seminario {
     protected Date data_fim;
     protected List<Disciplina> disciplinas;
     protected Membro coordenador;
+
+    public Seminario(String nome, Date data_inicio, Date data_fim, Membro coordenador) {
+        this.nome = nome;
+        this.data_inicio = data_inicio;
+        this.data_fim = data_fim;
+        this.coordenador = coordenador;
+    }
     
     public String getNome() {
         return nome;

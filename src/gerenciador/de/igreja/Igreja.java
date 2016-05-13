@@ -8,6 +8,7 @@ package gerenciador.de.igreja;
 import Pessoas.Membro;
 import Pessoas.Visitante;
 import escola.Seminario;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -52,5 +53,11 @@ public class Igreja {
         this.visitantes = visitantes;
     }
     
-    
+    public void addSeminario(String nome, Date data_inicio, Date data_fim, Membro coordenador){
+        if (nome == null || data_inicio == null || data_fim == null || coordenador == null){
+            System.out.println("Erro em algum dos argumentos - NULL");
+            return;
+        }
+        seminarios.add(new Seminario(nome,data_inicio,data_fim,coordenador));
+    }
 }
