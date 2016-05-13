@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package escola;
 
 import Pessoas.Membro;
@@ -11,7 +6,7 @@ import java.util.List;
 
 /**
  *
- * @author Rafael
+ * @author Eliseu, Geraldo e Rafael
  */
 public class Turma {
     
@@ -41,6 +36,5 @@ public class Turma {
 
     public void setAlunos(List<Membro> alunos) {
         this.alunos = alunos;
-    }
-    
+    }    
 }
