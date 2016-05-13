@@ -6,11 +6,12 @@
 package escola;
 
 import Pessoas.Membro;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
- *
+ * Seminário da igreja - se refere à escola 
  * @author Rafael
  */
 public class Seminario {
@@ -18,6 +19,7 @@ public class Seminario {
     protected Date data_inicio;
     protected Date data_fim;
     protected List<Disciplina> disciplinas;
+    protected List<PeriodoLetivo> periodosLetivos;
     protected Membro coordenador;
 
     public Seminario(String nome, Date data_inicio, Date data_fim, Membro coordenador) {
@@ -25,6 +27,7 @@ public class Seminario {
         this.data_inicio = data_inicio;
         this.data_fim = data_fim;
         this.coordenador = coordenador;
+        periodosLetivos = new ArrayList<>();
     }
     
     public String getNome() {
