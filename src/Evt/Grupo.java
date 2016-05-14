@@ -5,6 +5,7 @@
  */
 package Evt;
 
+import Pessoas.Lider;
 import Pessoas.Membro;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -20,9 +21,9 @@ public class Grupo {
     protected Time hora;
     protected DiaSemana dia_semana;
     protected List<Membro> integrantes;
-    protected Membro lider;
+    protected Lider lider;
 
-    public Grupo(String tipo_grupo, Endereco endereco, Time hora, DiaSemana dia_semana, Membro lider) {
+    public Grupo(String tipo_grupo, Endereco endereco, Time hora, DiaSemana dia_semana, Lider lider) {
         this.tipo_grupo = tipo_grupo;
         this.endereco = endereco;
         this.hora = hora;
@@ -63,6 +64,22 @@ public class Grupo {
 
     public void setDia_semana(DiaSemana dia_semana) {
         this.dia_semana = dia_semana;
+    }
+
+    public List<Membro> getIntegrantes() {
+        return integrantes;
+    }
+
+    public void setIntegrantes(List<Membro> integrantes) {
+        this.integrantes = integrantes;
+    }
+
+    public Lider getLider() {
+        return lider;
+    }
+
+    public void setLider(Lider lider) {
+        this.lider = lider;
     }
     
     /////////////////////// </GETS E SETS> ////////////////////////////////////

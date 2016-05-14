@@ -1,6 +1,7 @@
 package escola;
 
 import Pessoas.Membro;
+import Pessoas.Professor;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,12 +16,14 @@ public class Turma {
     private Date data_fim;
     List<Membro> alunos;
     private Disciplina disciplina;
+    private Professor professor;
 
-    public Turma(Date data_inicio, Date data_fim, Disciplina disciplina) {
+    public Turma(Date data_inicio, Date data_fim, Disciplina disciplina, Professor professor) {
         this.data_inicio = data_inicio;
         this.data_fim = data_fim;
         this.alunos = new ArrayList<>();
         this.disciplina = disciplina;
+        this.professor = professor;
     }
     
     /////////////////////// <GETS E SETS> ////////////////////////////////////
@@ -54,6 +57,14 @@ public class Turma {
 
     public void setDisciplina(Disciplina disciplina) {
         this.disciplina = disciplina;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
     
     

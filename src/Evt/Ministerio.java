@@ -5,6 +5,7 @@
  */
 package Evt;
 
+import Pessoas.Lider;
 import Pessoas.Membro;
 import java.sql.Time;
 import java.util.List;
@@ -20,9 +21,9 @@ public class Ministerio {
     protected Time hora;
     protected DiaSemana dia_semana;
     protected List<Membro> integrantes;
-    protected Membro lider;
+    protected Lider lider;
 
-    public Ministerio(String nome, Text descricao, Time hora, DiaSemana dia_semana, Membro lider) {
+    public Ministerio(String nome, Text descricao, Time hora, DiaSemana dia_semana, Lider lider) {
         this.nome = nome;
         this.descricao = descricao;
         this.hora = hora;
@@ -63,6 +64,22 @@ public class Ministerio {
     public void setDia_semana(DiaSemana dia_semana) {
         this.dia_semana = dia_semana;
     }
+
+    public List<Membro> getIntegrantes() {
+        return integrantes;
+    }
+
+    public void setIntegrantes(List<Membro> integrantes) {
+        this.integrantes = integrantes;
+    }
+
+    public Lider getLider() {
+        return lider;
+    }
+
+    public void setLider(Lider lider) {
+        this.lider = lider;
+    }
     
     /////////////////////// </GETS E SETS> ////////////////////////////////////
     
@@ -71,6 +88,8 @@ public class Ministerio {
             throw new Exception("Objeto referente à membro é nulo");
         }
         integrantes.add(membro);
+        //INSERT INTO MEMBRO ID
+        //INSERT INTO MEMBRO
     }
     
 }
