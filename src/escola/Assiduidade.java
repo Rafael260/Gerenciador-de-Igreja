@@ -8,7 +8,7 @@ package escola;
 import java.util.Date;
 
 /**
- *
+ * Essa classe é necessária?
  * @author Rafael
  */
 public class Assiduidade {

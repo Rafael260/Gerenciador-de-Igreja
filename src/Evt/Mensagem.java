@@ -14,6 +14,19 @@ public class Mensagem {
     protected String base_biblica;
     protected String tema;
 
+    public Mensagem(String titulo, String base_biblica, String tema) {
+        this.titulo = titulo;
+        this.base_biblica = base_biblica;
+        this.tema = tema;
+    }
+
+    public Mensagem(String titulo, String tema) {
+        this.titulo = titulo;
+        this.tema = tema;
+    }
+    
+    /////////////////////// <GETS E SETS> ////////////////////////////////////
+    
     public String getTitulo() {
         return titulo;
     }
@@ -37,6 +50,8 @@ public class Mensagem {
     public void setTema(String tema) {
         this.tema = tema;
     }
+    
+    /////////////////////// </GETS E SETS> ////////////////////////////////////
     
     
 }

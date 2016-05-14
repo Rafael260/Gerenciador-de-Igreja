@@ -8,7 +8,7 @@ package escola;
 import Pessoas.Membro;
 
 /**
- *
+ * Essa classe tá certa?
  * @author Rafael
  */
 public class AlunoDe {

@@ -17,6 +17,14 @@ public class Ministracao {
     protected Evento evento;
     protected Mensagem mensagem;
 
+    public Ministracao(Pessoa palestrante, Evento evento, Mensagem mensagem) {
+        this.palestrante = palestrante;
+        this.evento = evento;
+        this.mensagem = mensagem;
+    }
+
+    /////////////////////// <GETS E SETS> ////////////////////////////////////
+    
     public Pessoa getPalestrante() {
         return palestrante;
     }
@@ -41,5 +49,5 @@ public class Ministracao {
         this.mensagem = mensagem;
     }
     
-    
+    /////////////////////// </GETS E SETS> ////////////////////////////////////
 }

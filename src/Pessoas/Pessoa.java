@@ -18,6 +18,32 @@ public class Pessoa {
     protected char estado_civil;
     protected String numero_telefone;
     protected Endereco endereco;
+
+    public Pessoa(int id, String nome, String sobrenome, char estado_civil, String numero_telefone, Endereco endereco) {
+        this.id = id;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.estado_civil = estado_civil;
+        this.numero_telefone = numero_telefone;
+        this.endereco = endereco;
+    }
+
+    public Pessoa(int id, String nome, String sobrenome, char estado_civil, String numero_telefone) {
+        this.id = id;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.estado_civil = estado_civil;
+        this.numero_telefone = numero_telefone;
+    }
+
+    public Pessoa(int id, String nome, String sobrenome, char estado_civil) {
+        this.id = id;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.estado_civil = estado_civil;
+    }
+    
+    /////////////////////// <GETS E SETS> ////////////////////////////////////
     
     public int getId() {
         return id;
@@ -67,4 +93,7 @@ public class Pessoa {
         this.endereco = endereco;
     }
 
+    /////////////////////// </GETS E SETS> ////////////////////////////////////
+    
+    
 }

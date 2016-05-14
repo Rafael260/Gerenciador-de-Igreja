@@ -19,6 +19,24 @@ public class Evento {
     protected String tipo;
     protected String palestrante;
 
+    public Evento(Date data, Time hora, String publico_alvo, String tipo, String palestrante) {
+        this.data = data;
+        this.hora = hora;
+        this.publico_alvo = publico_alvo;
+        this.tipo = tipo;
+        this.palestrante = palestrante;
+    }
+
+    public Evento(Date data, Time hora, String tipo, String palestrante) {
+        this.data = data;
+        this.hora = hora;
+        this.tipo = tipo;
+        this.palestrante = palestrante;
+        this.publico_alvo = "Todos";
+    }
+    
+    /////////////////////// <GETS E SETS> ////////////////////////////////////
+    
     public Date getData() {
         return data;
     }
@@ -59,5 +77,5 @@ public class Evento {
         this.palestrante = palestrante;
     }
     
-    
+    /////////////////////// </GETS E SETS> ////////////////////////////////////
 }

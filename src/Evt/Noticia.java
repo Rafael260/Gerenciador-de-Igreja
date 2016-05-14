@@ -16,6 +16,15 @@ public class Noticia {
     protected String manchete;
     protected Text texto;
     protected Membro autor;
+    //List<Midia> midias;
+
+    public Noticia(String manchete, Text texto, Membro autor) {
+        this.manchete = manchete;
+        this.texto = texto;
+        this.autor = autor;
+    }
+    
+    /////////////////////// <GETS E SETS> ////////////////////////////////////
     
     public String getManchete() {
         return manchete;
@@ -33,5 +42,5 @@ public class Noticia {
         this.texto = texto;
     }
     
-    
+    /////////////////////// </GETS E SETS> ////////////////////////////////////
 }

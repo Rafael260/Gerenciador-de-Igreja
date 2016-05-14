@@ -7,6 +7,7 @@ package Evt;
 
 import Pessoas.Membro;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +22,17 @@ public class Grupo {
     protected List<Membro> integrantes;
     protected Membro lider;
 
+    public Grupo(String tipo_grupo, Endereco endereco, Time hora, DiaSemana dia_semana, Membro lider) {
+        this.tipo_grupo = tipo_grupo;
+        this.endereco = endereco;
+        this.hora = hora;
+        this.dia_semana = dia_semana;
+        this.lider = lider;
+        integrantes = new ArrayList<>();
+    }
+
+    /////////////////////// <GETS E SETS> ////////////////////////////////////
+    
     public String getTipo_grupo() {
         return tipo_grupo;
     }
@@ -53,4 +65,12 @@ public class Grupo {
         this.dia_semana = dia_semana;
     }
     
+    /////////////////////// </GETS E SETS> ////////////////////////////////////
+    
+    public void adicionarMembro(Membro membro) throws Exception{
+        if (membro == null){
+            throw new Exception("Objeto referente à membro é nulo");
+        }
+        integrantes.add(membro);
+    }
 }

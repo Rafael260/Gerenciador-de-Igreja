@@ -21,6 +21,16 @@ public class Ministerio {
     protected DiaSemana dia_semana;
     protected List<Membro> integrantes;
     protected Membro lider;
+
+    public Ministerio(String nome, Text descricao, Time hora, DiaSemana dia_semana, Membro lider) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.hora = hora;
+        this.dia_semana = dia_semana;
+        this.lider = lider;
+    }
+    
+    /////////////////////// <GETS E SETS> ////////////////////////////////////
     
     public String getNome() {
         return nome;
@@ -54,6 +64,13 @@ public class Ministerio {
         this.dia_semana = dia_semana;
     }
     
+    /////////////////////// </GETS E SETS> ////////////////////////////////////
     
+    public void adicionarIntegrante(Membro membro) throws Exception{
+        if (membro == null){
+            throw new Exception("Objeto referente à membro é nulo");
+        }
+        integrantes.add(membro);
+    }
     
 }
