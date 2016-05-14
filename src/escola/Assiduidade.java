@@ -14,7 +14,6 @@ import java.util.Date;
 public class Assiduidade {
     protected Date data_aula;
     protected boolean presente;
-    protected AlunoDe aluno_de;
 
     public Date getData_aula() {
         return data_aula;
@@ -32,12 +31,5 @@ public class Assiduidade {
         this.presente = presente;
     }
 
-    public AlunoDe getAluno_de() {
-        return aluno_de;
-    }
-
-    public void setAluno_de(AlunoDe aluno_de) {
-        this.aluno_de = aluno_de;
-    }
     
 }

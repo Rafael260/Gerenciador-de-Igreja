@@ -73,4 +73,11 @@ public class Grupo {
         }
         integrantes.add(membro);
     }
+    
+    /*public boolean removerMembro(String nome){
+        Membro membro = resultadoConsultaSQL();
+        comando pra remover usando chave primária de membro
+        se removeu, return true
+        return false, caso contrário
+    }*/
 }
