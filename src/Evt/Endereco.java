@@ -11,13 +11,13 @@ package Evt;
  */
 public class Endereco {
     private String rua;
-    private String numero;
+    private int numero;
     private String complemento;
     private String bairro;
     private String cidade;
     private String estado;
 
-    public Endereco(String rua, String numero, String complemento, String bairro, String cidade, String estado) {
+    public Endereco(String rua, int numero, String complemento, String bairro, String cidade, String estado) {
         this.rua = rua;
         this.numero = numero;
         this.complemento = complemento;
@@ -26,7 +26,7 @@ public class Endereco {
         this.estado = estado;
     }
 
-    public Endereco(String rua, String numero, String complemento, String bairro, String cidade) {
+    public Endereco(String rua, int numero, String complemento, String bairro, String cidade) {
         this.rua = rua;
         this.numero = numero;
         this.complemento = complemento;
@@ -41,24 +41,24 @@ public class Endereco {
         return rua;
     }
 
-    public void setRua(String endereco_rua) {
-        this.rua = endereco_rua;
+    public void setRua(String rua) {
+        this.rua = rua;
     }
 
-    public String geNumero() {
+    public int geNumero() {
         return numero;
     }
 
-    public void setNumero(String endereco_numero) {
-        this.numero = endereco_numero;
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public String getComplemento() {
         return complemento;
     }
 
-    public void setComplemento(String endereco_complemento) {
-        this.complemento = endereco_complemento;
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
     public String getBairro() {

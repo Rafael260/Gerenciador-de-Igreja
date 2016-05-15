@@ -6,6 +6,9 @@
 package Pessoas;
 
 import Evt.Endereco;
+import Evt.Evento;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,33 +16,77 @@ import Evt.Endereco;
  */
 public class Visitante extends Pessoa{
     protected String igreja_origem;
+    protected List<Evento> eventosVisitados;
 
+    ///////////////////////// <CONSTRUTORES> /////////////////////////////////////////////
+    //Provavelmente não vamos usar todos os construtores. É apenas a garantia de que vai ter opção pra instanciar o visitante
     public Visitante(String igreja_origem, int id, String nome, String sobrenome, char estado_civil) {
         super(id, nome, sobrenome, estado_civil);
         this.igreja_origem = igreja_origem;
+        eventosVisitados = new ArrayList<>();
     }
 
     public Visitante(String igreja_origem, int id, String nome, String sobrenome, char estado_civil, String numero_telefone) {
         super(id, nome, sobrenome, estado_civil, numero_telefone);
         this.igreja_origem = igreja_origem;
+        eventosVisitados = new ArrayList<>();
     }
 
     public Visitante(String igreja_origem, int id, String nome, String sobrenome, char estado_civil, String numero_telefone, Endereco endereco) {
         super(id, nome, sobrenome, estado_civil, numero_telefone, endereco);
         this.igreja_origem = igreja_origem;
+        eventosVisitados = new ArrayList<>();
     }
 
     public Visitante(int id, String nome, String sobrenome, char estado_civil) {
         super(id, nome, sobrenome, estado_civil);
+        eventosVisitados = new ArrayList<>();
     }
 
     public Visitante(int id, String nome, String sobrenome, char estado_civil, String numero_telefone) {
         super(id, nome, sobrenome, estado_civil, numero_telefone);
+        eventosVisitados = new ArrayList<>();
     }
 
     public Visitante(int id, String nome, String sobrenome, char estado_civil, String numero_telefone, Endereco endereco) {
         super(id, nome, sobrenome, estado_civil, numero_telefone, endereco);
+        eventosVisitados = new ArrayList<>();
     }
+    
+    public Visitante(String igreja_origem, int id, String nome, String sobrenome, char estado_civil, List<Evento> eventosVisitados) {
+        super(id, nome, sobrenome, estado_civil);
+        this.igreja_origem = igreja_origem;
+        this.eventosVisitados = eventosVisitados;
+    }
+
+    public Visitante(String igreja_origem, int id, String nome, String sobrenome, char estado_civil, String numero_telefone, List<Evento> eventosVisitados) {
+        super(id, nome, sobrenome, estado_civil, numero_telefone);
+        this.igreja_origem = igreja_origem;
+        this.eventosVisitados = eventosVisitados;
+    }
+
+    public Visitante(String igreja_origem, int id, String nome, String sobrenome, char estado_civil, String numero_telefone, Endereco endereco, List<Evento> eventosVisitados) {
+        super(id, nome, sobrenome, estado_civil, numero_telefone, endereco);
+        this.igreja_origem = igreja_origem;
+        this.eventosVisitados = eventosVisitados;
+    }
+
+    public Visitante(int id, String nome, String sobrenome, char estado_civil, List<Evento> eventosVisitados) {
+        super(id, nome, sobrenome, estado_civil);
+        this.eventosVisitados = eventosVisitados;
+    }
+
+    public Visitante(int id, String nome, String sobrenome, char estado_civil, String numero_telefone, List<Evento> eventosVisitados) {
+        super(id, nome, sobrenome, estado_civil, numero_telefone);
+        this.eventosVisitados = eventosVisitados;
+    }
+
+    public Visitante(int id, String nome, String sobrenome, char estado_civil, String numero_telefone, Endereco endereco, List<Evento> eventosVisitados) {
+        super(id, nome, sobrenome, estado_civil, numero_telefone, endereco);
+        this.eventosVisitados = eventosVisitados;
+    }
+    
+    ///////////////////////// </CONSTRUTORES> /////////////////////////////////////////////
     
     /////////////////////// <GETS E SETS> ////////////////////////////////////
 
@@ -51,5 +98,14 @@ public class Visitante extends Pessoa{
         this.igreja_origem = igreja_origem;
     }
     
+    public List<Evento> getEventosVisitados() {
+        return eventosVisitados;
+    }
+
+    public void setEventosVisitados(List<Evento> eventosVisitados) {
+        this.eventosVisitados = eventosVisitados;
+    }
+    
     /////////////////////// </GETS E SETS> ////////////////////////////////////
+
 }
