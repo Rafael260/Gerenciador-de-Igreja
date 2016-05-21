@@ -25,38 +25,43 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jpanel_Logo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-          </Group>
+          <Component id="jpanel_Logo" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <Component id="jpanel_Logo" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jPanel1" max="32767" attributes="0"/>
-                  <Component id="jpanel_Logo" pref="0" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <Component id="jPanel1" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jpanel_Logo">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="66" green="66" red="0" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel_logo" pref="166" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
+                          <Component id="jLabel_logo" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -64,7 +69,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel_logo" min="-2" pref="174" max="-2" attributes="0"/>
+                  <Component id="jLabel_logo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -75,8 +82,20 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/Church-icon.png"/>
+              <Image iconType="3" name="/images/ConnectChurch.png"/>
             </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="66" red="0" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Gerencidor de Rotinas Eclesi&#xe1;sticas"/>
+            <Property name="opaque" type="boolean" value="true"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -86,7 +105,7 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Dados">
-              <Font PropertyName="font" name="Times New Roman" size="12" style="1"/>
+              <Font PropertyName="font" name="Arial" size="12" style="0"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -96,32 +115,31 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTextField_user" max="32767" attributes="0"/>
-                      <Component id="jPasswordField_passUser" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="154" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jPasswordField_passUser" max="32767" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <Component id="jlabel_senha" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextField_user" alignment="0" min="-2" pref="341" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="50" max="32767" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jTextField_user" min="-2" max="-2" attributes="0"/>
@@ -134,7 +152,7 @@
                       <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -143,7 +161,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="12" style="1"/>
+              <Font name="Gadugi" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nome do Usu&#xe1;rio:"/>
           </Properties>
@@ -156,7 +174,7 @@
         <Component class="javax.swing.JLabel" name="jlabel_senha">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Times New Roman" size="12" style="1"/>
+              <Font name="Gadugi" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Senha:"/>
           </Properties>
