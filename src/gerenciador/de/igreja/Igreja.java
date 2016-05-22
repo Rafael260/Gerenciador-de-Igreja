@@ -9,6 +9,7 @@ import Evt.Grupo;
 import Pessoas.Membro;
 import Pessoas.Visitante;
 import escola.Seminario;
+import escola.Turma;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -118,4 +119,57 @@ public class Igreja {
         }
         grupos.add(grupo);
     }
+    
+    public List<Grupo> getGruposPorBairro(String bairro){
+        List<Grupo> grupos = null;
+        //CONSULTA SQL
+        
+        return grupos;
+    }
+    
+    public List<Grupo> getGruposPorCidade(String cidade){
+        List<Grupo> grupos = null;
+        //consulta SQL
+        
+        return grupos;
+    }
+    
+    public List<Turma> getTurmasPorDisciplina(String codigoDisciplina){
+        List<Turma> turmas = null;
+        //consulta SQL
+        
+        return turmas;
+    }
+    
+    public List<Turma> getTurmasPorPeriodo(int periodo){
+        List<Turma> turmas = null;
+        //consulta SQL
+        
+        return turmas;
+    }
+    
+    public List<Turma> getTurmasPorPeriodo(int periodoInicial, int periodoFinal){
+        List<Turma> turmas = null;
+        //consulta SQL
+        
+        return turmas;
+    }
+    
+    public Membro getMembro(String cpfMembro){
+        Membro membro = null;
+        //consulta SQL
+        
+        return membro;
+    }
+    
+    public List<Turma> getTurmasMembro(String cpfMembro){
+        List<Turma> turmas = null;
+        Membro membro = getMembro(cpfMembro);
+        //consulta SQL
+        
+        return turmas;
+    }
+    
+    
+    
 }
