@@ -5,6 +5,7 @@
  */
 package gerenciador.de.igreja;
 
+import Evt.Endereco;
 import Evt.Grupo;
 import Pessoas.Membro;
 import Pessoas.Visitante;
@@ -24,6 +25,7 @@ public class Igreja {
     protected List<Membro> membros;
     protected List<Visitante> visitantes;
     protected List<Grupo> grupos;
+    protected Endereco endereco;
 
     public Igreja(String nome_igreja) {
         this.nome_igreja = nome_igreja;
@@ -31,6 +33,15 @@ public class Igreja {
         membros = new ArrayList<>();
         visitantes = new ArrayList<>();
         grupos = new ArrayList<>();
+    }
+    
+    public Igreja(String nome_igreja, Endereco endereco) {
+        this.nome_igreja = nome_igreja;
+        seminarios = new ArrayList<>();
+        membros = new ArrayList<>();
+        visitantes = new ArrayList<>();
+        grupos = new ArrayList<>();
+        this.endereco = endereco;
     }
 
     /////////////////////// <GETS E SETS> ////////////////////////////////////
@@ -74,7 +85,14 @@ public class Igreja {
     public void setGrupos(List<Grupo> grupos) {
         this.grupos = grupos;
     }
-    
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
     
     /////////////////////// </GETS E SETS> ////////////////////////////////////
     

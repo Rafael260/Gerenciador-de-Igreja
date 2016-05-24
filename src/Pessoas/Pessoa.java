@@ -16,7 +16,7 @@ public class Pessoa {
     protected String nome;
     protected String sobrenome;
     protected char estado_civil;
-    protected String numero_telefone;
+    protected String telefone;
     protected Endereco endereco;
 
     public Pessoa(int id, String nome, String sobrenome, char estado_civil, String numero_telefone, Endereco endereco) {
@@ -24,7 +24,7 @@ public class Pessoa {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.estado_civil = estado_civil;
-        this.numero_telefone = numero_telefone;
+        this.telefone = numero_telefone;
         this.endereco = endereco;
     }
 
@@ -33,7 +33,7 @@ public class Pessoa {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.estado_civil = estado_civil;
-        this.numero_telefone = numero_telefone;
+        this.telefone = numero_telefone;
     }
 
     public Pessoa(int id, String nome, String sobrenome, char estado_civil) {
@@ -78,11 +78,11 @@ public class Pessoa {
     }
 
     public String getNumero_telefone() {
-        return numero_telefone;
+        return telefone;
     }
 
     public void setNumero_telefone(String numero_telefone) {
-        this.numero_telefone = numero_telefone;
+        this.telefone = numero_telefone;
     }
 
     public Endereco getEndereco() {
