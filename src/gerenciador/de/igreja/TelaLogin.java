@@ -92,7 +92,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jButton1.setText("Entrar");
 
-        jButton2.setText("Cancelar");
+        jButton2.setText("Fechar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
