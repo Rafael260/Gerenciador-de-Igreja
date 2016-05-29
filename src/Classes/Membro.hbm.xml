@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/05/2016 22:16:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Classes.Membro" table="membro" catalog="connect_church" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="foreign">
+                <param name="property">pessoa</param>
+            </generator>
+        </id>
+        <many-to-one name="membro" class="Classes.Membro" fetch="select">
+            <column name="id_lider" not-null="true" />
+        </many-to-one>
+        <one-to-one name="pessoa" class="Classes.Pessoa" constrained="true"></one-to-one>
+        <property name="cpf" type="string">
+            <column name="cpf" length="11" not-null="true" />
+        </property>
+        <property name="dataNasc" type="date">
+            <column name="data_nasc" length="10" not-null="true" />
+        </property>
+        <property name="batismoApres" type="date">
+            <column name="batismo_apres" length="10" />
+        </property>
+        <property name="lider" type="boolean">
+            <column name="lider" not-null="true" />
+        </property>
+        <property name="professor" type="boolean">
+            <column name="professor" not-null="true" />
+        </property>
+        <property name="usuario" type="string">
+            <column name="usuario" length="45" not-null="true" />
+        </property>
+        <property name="senha" type="string">
+            <column name="senha" length="45" not-null="true" />
+        </property>
+        <set name="ministerios" table="ministerio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_lider" not-null="true" />
+            </key>
+            <one-to-many class="Classes.Ministerio" />
+        </set>
+        <set name="matriculas" table="matricula" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_aluno" not-null="true" />
+            </key>
+            <one-to-many class="Classes.Matricula" />
+        </set>
+        <set name="ministerios_1" table="participa_ministerio" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="id_membro" not-null="true" />
+            </key>
+            <many-to-many entity-name="Classes.Ministerio">
+                <column name="ministerio" length="45" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="turmas" table="turma" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_prof" not-null="true" />
+            </key>
+            <one-to-many class="Classes.Turma" />
+        </set>
+        <set name="membros" table="membro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_lider" not-null="true" />
+            </key>
+            <one-to-many class="Classes.Membro" />
+        </set>
+        <set name="noticias" table="noticia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_cadastrante" not-null="true" />
+            </key>
+            <one-to-many class="Classes.Noticia" />
+        </set>
+    </class>
+</hibernate-mapping>

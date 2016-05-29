@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/05/2016 22:16:50 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Classes.Mensagem" table="mensagem" catalog="connect_church" optimistic-lock="version">
+        <id name="titulo" type="string">
+            <column name="titulo" length="45" />
+            <generator class="assigned" />
+        </id>
+        <property name="baseBiblica" type="string">
+            <column name="base_biblica" length="20" />
+        </property>
+        <property name="tema" type="string">
+            <column name="tema" length="45" />
+        </property>
+        <set name="ministras" table="ministra" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="titulo_msg" length="45" not-null="true" />
+            </key>
+            <one-to-many class="Classes.Ministra" />
+        </set>
+    </class>
+</hibernate-mapping>
