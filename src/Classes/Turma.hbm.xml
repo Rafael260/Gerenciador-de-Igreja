@@ -1,42 +1,41 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 28/05/2016 22:16:50 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="Classes.Turma" table="turma" catalog="connect_church" optimistic-lock="version">
-        <composite-id name="id" class="Classes.TurmaId">
-            <key-property name="codigo" type="string">
-                <column name="codigo" length="10" />
-            </key-property>
-            <key-property name="dataInicio" type="date">
-                <column name="data_inicio" length="10" />
-            </key-property>
-        </composite-id>
-        <many-to-one name="disciplina" class="Classes.Disciplina" update="false" insert="false" fetch="select">
-            <column name="codigo" length="10" not-null="true" />
-        </many-to-one>
-        <many-to-one name="membro" class="Classes.Membro" fetch="select">
-            <column name="id_prof" not-null="true" />
-        </many-to-one>
-        <many-to-one name="periodoLetivo" class="Classes.PeriodoLetivo" fetch="select">
-            <column name="ano_let" not-null="true" />
-        </many-to-one>
-        <property name="dataFim" type="date">
-            <column name="data_fim" length="10" not-null="true" />
-        </property>
-        <set name="arquivoTurmas" table="arquivo_turma" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="cod_disc" length="10" not-null="true" />
-                <column name="data_inicio" length="10" not-null="true" />
-            </key>
-            <one-to-many class="Classes.ArquivoTurma" />
-        </set>
-        <set name="matriculas" table="matricula" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="cod_disc" length="10" not-null="true" />
-                <column name="data_inicio" length="10" not-null="true" />
-            </key>
-            <one-to-many class="Classes.Matricula" />
-        </set>
-    </class>
+  <class catalog="connect_church" name="Classes.Turma" optimistic-lock="version" table="turma">
+    <composite-id class="Classes.TurmaId" name="id">
+      <key-property name="codigo" type="string">
+        <column length="10" name="codigo"/>
+      </key-property>
+      <key-property name="dataInicio" type="date">
+        <column length="10" name="data_inicio"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="Classes.Disciplina" fetch="select" insert="false" name="disciplina" update="false">
+      <column length="10" name="codigo" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="Classes.Membro" fetch="select" name="professor">
+      <column name="id_prof" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="Classes.PeriodoLetivo" fetch="select" name="periodoLetivo">
+      <column name="ano_let" not-null="true"/>
+    </many-to-one>
+    <property name="dataFim" type="date">
+      <column length="10" name="data_fim" not-null="true"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="arquivoTurmas" table="arquivo_turma">
+      <key>
+        <column length="10" name="cod_disc" not-null="true"/>
+        <column length="10" name="data_inicio" not-null="true"/>
+      </key>
+      <one-to-many class="Classes.ArquivoTurma"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="matriculas" table="matricula">
+      <key>
+        <column length="10" name="cod_disc" not-null="true"/>
+        <column length="10" name="data_inicio" not-null="true"/>
+      </key>
+      <one-to-many class="Classes.Matricula"/>
+    </set>
+  </class>
 </hibernate-mapping>

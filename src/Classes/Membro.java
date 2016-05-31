@@ -22,9 +22,9 @@ public class Membro  implements java.io.Serializable {
      private boolean professor;
      private String usuario;
      private String senha;
-     private Set ministerios = new HashSet(0);
+     private Set ministerios_part = new HashSet(0);
      private Set matriculas = new HashSet(0);
-     private Set ministerios_1 = new HashSet(0);
+     private Set ministerios_lider = new HashSet(0);
      private Set turmas = new HashSet(0);
      private Set membros = new HashSet(0);
      private Set noticias = new HashSet(0);
@@ -54,10 +54,10 @@ public class Membro  implements java.io.Serializable {
        this.professor = professor;
        this.usuario = usuario;
        this.senha = senha;
-       this.ministerios = ministerios;
+       this.ministerios_part = ministerios;
        this.seminarios = seminarios;
        this.matriculas = matriculas;
-       this.ministerios_1 = ministerios_1;
+       this.ministerios_lider = ministerios_1;
        this.turmas = turmas;
        this.membros = membros;
        this.noticias = noticias;
@@ -133,12 +133,12 @@ public class Membro  implements java.io.Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    public Set getMinisterios() {
-        return this.ministerios;
+    public Set getMinisterios_part() {
+        return this.ministerios_part;
     }
     
-    public void setMinisterios(Set ministerios) {
-        this.ministerios = ministerios;
+    public void setMinisterios_part(Set ministerios_part) {
+        this.ministerios_part = ministerios_part;
     }
     
     public Set getSeminarios() {
@@ -156,12 +156,12 @@ public class Membro  implements java.io.Serializable {
     public void setMatriculas(Set matriculas) {
         this.matriculas = matriculas;
     }
-    public Set getMinisterios_1() {
-        return this.ministerios_1;
+    public Set getMinisterios_lider() {
+        return this.ministerios_lider;
     }
     
-    public void setMinisterios_1(Set ministerios_1) {
-        this.ministerios_1 = ministerios_1;
+    public void setMinisterios_lider(Set ministerios_lider) {
+        this.ministerios_lider = ministerios_lider;
     }
     public Set getTurmas() {
         return this.turmas;
@@ -184,7 +184,8 @@ public class Membro  implements java.io.Serializable {
     public void setNoticias(Set noticias) {
         this.noticias = noticias;
     }
-
+    
+    //
 
 
 

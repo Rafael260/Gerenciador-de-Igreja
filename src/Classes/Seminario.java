@@ -70,13 +70,16 @@ public class Seminario  implements java.io.Serializable {
      */
     public void adicionarPeriodoLetivo(int ano){
         PeriodoLetivo pLetivo = new PeriodoLetivo(ano, this);
-        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
-        s.beginTransaction();
-        s.save(pLetivo);
-        s.getTransaction().commit();
+        HibernateUtil.persistirObjeto(pLetivo);
     }
 
-
+    public void adicionarDisciplina(String codigo, String nome){
+        adicionarDisciplina(new Disciplina(codigo,this,nome));
+    }
+    
+    public void adicionarDisciplina(Disciplina disciplina){
+        HibernateUtil.persistirObjeto(disciplina);
+    }
 }
 
 
