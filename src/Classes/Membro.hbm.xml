@@ -9,7 +9,7 @@
         <param name="property">pessoa</param>
       </generator>
     </id>
-    <many-to-one class="Classes.Membro" fetch="select" name="membro">
+    <many-to-one class="Classes.Membro" fetch="select" name="lideranca">
       <column name="id_lider" not-null="true"/>
     </many-to-one>
     <one-to-one class="Classes.Pessoa" constrained="true" name="pessoa"/>

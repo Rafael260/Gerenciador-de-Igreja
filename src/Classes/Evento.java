@@ -2,7 +2,10 @@ package Classes;
 // Generated 28/05/2016 22:16:45 by Hibernate Tools 4.3.1
 
 
+import Util.HibernateUtil;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -76,8 +79,18 @@ public class Evento  implements java.io.Serializable {
         this.noticias = noticias;
     }
     
-    public void adicionarVisitante(){
-        
+    public void adicionarVisitante(Pessoa pessoa){
+        adicionarVisitante(new Visitante(pessoa));
+    }
+            
+    
+    public void adicionarVisitante(Visitante visitante){
+        List<String> parametros = new ArrayList<>();
+        parametros.add(""+visitante.getId());
+        //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
+        parametros.add("'"+this.id.getDia()+"'");
+        parametros.add("'"+this.id.getTema()+"'");
+        HibernateUtil.insertInto("visita_evento", parametros);
     }
 
 

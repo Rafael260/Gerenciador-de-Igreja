@@ -2,6 +2,7 @@ package Classes;
 // Generated 28/05/2016 22:16:45 by Hibernate Tools 4.3.1
 
 
+import java.sql.Time;
 import java.util.Date;
 
 /**
@@ -9,14 +10,15 @@ import java.util.Date;
  */
 public class EventoId  implements java.io.Serializable {
      private String tema;
-     private Date diaHora;
+     private Date dia;
+     private Time hora;
 
     public EventoId() {
     }
 
     public EventoId(String tema, Date diaHora) {
        this.tema = tema;
-       this.diaHora = diaHora;
+       this.dia = diaHora;
     }
    
     public String getTema() {
@@ -26,12 +28,12 @@ public class EventoId  implements java.io.Serializable {
     public void setTema(String tema) {
         this.tema = tema;
     }
-    public Date getDiaHora() {
-        return this.diaHora;
+    public Date getDia() {
+        return this.dia;
     }
     
-    public void setDiaHora(Date diaHora) {
-        this.diaHora = diaHora;
+    public void setDia(Date dia) {
+        this.dia = dia;
     }
 
 
@@ -42,14 +44,14 @@ public class EventoId  implements java.io.Serializable {
 		 EventoId castOther = ( EventoId ) other; 
          
 		 return ( (this.getTema()==castOther.getTema()) || ( this.getTema()!=null && castOther.getTema()!=null && this.getTema().equals(castOther.getTema()) ) )
- && ( (this.getDiaHora()==castOther.getDiaHora()) || ( this.getDiaHora()!=null && castOther.getDiaHora()!=null && this.getDiaHora().equals(castOther.getDiaHora()) ) );
+ && ( (this.getDia()==castOther.getDia()) || ( this.getDia()!=null && castOther.getDia()!=null && this.getDia().equals(castOther.getDia()) ) );
    }
    
    public int hashCode() {
          int result = 17;
          
          result = 37 * result + ( getTema() == null ? 0 : this.getTema().hashCode() );
-         result = 37 * result + ( getDiaHora() == null ? 0 : this.getDiaHora().hashCode() );
+         result = 37 * result + ( getDia() == null ? 0 : this.getDia().hashCode() );
          return result;
    }   
 

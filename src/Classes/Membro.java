@@ -2,8 +2,11 @@ package Classes;
 // Generated 28/05/2016 22:16:45 by Hibernate Tools 4.3.1
 
 
+import Util.HibernateUtil;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -11,7 +14,7 @@ import java.util.Set;
  */
 public class Membro  implements java.io.Serializable {
      private int id;
-     private Membro membro;
+     private Membro lideranca;
      private Pessoa pessoa;
      private String cpf;
      private Date dataNasc;
@@ -32,8 +35,8 @@ public class Membro  implements java.io.Serializable {
     }
 
 	
-    public Membro(Membro membro, Pessoa pessoa, String cpf, Date dataNasc, boolean lider, boolean professor, String usuario, String senha) {
-        this.membro = membro;
+    public Membro(Membro lideranca, Pessoa pessoa, String cpf, Date dataNasc, boolean lider, boolean professor, String usuario, String senha) {
+        this.lideranca = lideranca;
         this.pessoa = pessoa;
         this.cpf = cpf;
         this.dataNasc = dataNasc;
@@ -42,8 +45,8 @@ public class Membro  implements java.io.Serializable {
         this.usuario = usuario;
         this.senha = senha;
     }
-    public Membro(Membro membro, Pessoa pessoa, String cpf, Date dataNasc, Date batismoApres, boolean lider, boolean professor, String usuario, String senha, Set ministerios, Set seminarios, Set matriculas, Set ministerios_1, Set turmas, Set membros, Set noticias) {
-       this.membro = membro;
+    public Membro(Membro lideranca, Pessoa pessoa, String cpf, Date dataNasc, Date batismoApres, boolean lider, boolean professor, String usuario, String senha, Set ministerios, Set seminarios, Set matriculas, Set ministerios_1, Set turmas, Set membros, Set noticias) {
+       this.lideranca = lideranca;
        this.pessoa = pessoa;
        this.cpf = cpf;
        this.dataNasc = dataNasc;
@@ -68,12 +71,12 @@ public class Membro  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public Membro getMembro() {
-        return this.membro;
+    public Membro getLideranca() {
+        return this.lideranca;
     }
     
-    public void setMembro(Membro membro) {
-        this.membro = membro;
+    public void setLideranca(Membro lideranca) {
+        this.lideranca = lideranca;
     }
     public Pessoa getPessoa() {
         return this.pessoa;
@@ -183,7 +186,24 @@ public class Membro  implements java.io.Serializable {
         this.noticias = noticias;
     }
     
-    //
+    /////////////////////////////////////////////////////////////
+    
+    public void adicionarMinisterio(String nome, Date hora, String diaSemana){
+        adicionarMinisterio(new Ministerio(nome,this,hora,diaSemana));
+    }
+    
+    /**
+     * Adicionar ministério se resume à adicionar a tupla (membro, ministério) na tabela
+     * participa_ministerio
+     * @param ministerio 
+     */
+    public void adicionarMinisterio(Ministerio ministerio){
+        List<String> parametros = new ArrayList<>();
+        parametros.add(""+getId());
+        //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
+        parametros.add("'"+ministerio.getNome()+"'");
+        HibernateUtil.insertInto("participa_ministerio", parametros);
+    }
 
 
 
