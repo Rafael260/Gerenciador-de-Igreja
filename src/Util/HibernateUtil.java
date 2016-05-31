@@ -5,6 +5,7 @@
  */
 package Util;
 
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
@@ -38,6 +39,27 @@ public class HibernateUtil {
     public static void persistirObjeto(Object o){
         Session s = sessionFactory.getCurrentSession();
         s.save(o);
+        s.getTransaction().commit();
+    }
+    
+    /**
+     * Cria a Query SQL de insert into
+     * @param tabela tabela para inserção da tupla
+     * @param valores Parâmetros para o insert
+     */
+    public static void insertInto(String tabela, List<String> valores){
+        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+        String parametros = "";
+        
+        //Concatenando todos os valores da tupla
+        for (String str: valores){
+            parametros += str + ","; 
+        }
+        //Tirar a última vírgula
+        parametros = parametros.substring(0, parametros.length()-1);
+        
+        s.beginTransaction();
+        s.createSQLQuery("insert into "+ tabela +"values("+parametros+")");
         s.getTransaction().commit();
     }
 }
