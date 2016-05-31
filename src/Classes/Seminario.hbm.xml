@@ -8,7 +8,7 @@
             <column name="nome" length="45" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="pessoa" class="Classes.Pessoa" fetch="select">
+        <many-to-one name="membro" class="Classes.Membro" fetch="select">
             <column name="id_coordenador" not-null="true" />
         </many-to-one>
         <set name="disciplinas" table="disciplina" inverse="true" lazy="true" fetch="select">

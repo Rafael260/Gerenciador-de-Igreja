@@ -28,6 +28,7 @@ public class Membro  implements java.io.Serializable {
      private Set turmas = new HashSet(0);
      private Set membros = new HashSet(0);
      private Set noticias = new HashSet(0);
+     private Set seminarios = new HashSet(0);
 
     public Membro() {
     }
@@ -43,7 +44,7 @@ public class Membro  implements java.io.Serializable {
         this.usuario = usuario;
         this.senha = senha;
     }
-    public Membro(Membro membro, Pessoa pessoa, String cpf, Date dataNasc, Date batismoApres, boolean lider, boolean professor, String usuario, String senha, Set ministerios, Set matriculas, Set ministerios_1, Set turmas, Set membros, Set noticias) {
+    public Membro(Membro membro, Pessoa pessoa, String cpf, Date dataNasc, Date batismoApres, boolean lider, boolean professor, String usuario, String senha, Set ministerios, Set seminarios, Set matriculas, Set ministerios_1, Set turmas, Set membros, Set noticias) {
        this.membro = membro;
        this.pessoa = pessoa;
        this.cpf = cpf;
@@ -54,6 +55,7 @@ public class Membro  implements java.io.Serializable {
        this.usuario = usuario;
        this.senha = senha;
        this.ministerios = ministerios;
+       this.seminarios = seminarios;
        this.matriculas = matriculas;
        this.ministerios_1 = ministerios_1;
        this.turmas = turmas;
@@ -138,6 +140,15 @@ public class Membro  implements java.io.Serializable {
     public void setMinisterios(Set ministerios) {
         this.ministerios = ministerios;
     }
+    
+    public Set getSeminarios() {
+        return this.seminarios;
+    }
+    
+    public void setSeminarios(Set seminarios) {
+        this.seminarios = seminarios;
+    }
+    
     public Set getMatriculas() {
         return this.matriculas;
     }
