@@ -36,7 +36,15 @@ public class EventoId  implements java.io.Serializable {
         this.dia = dia;
     }
 
+    public Time getHora() {
+        return hora;
+    }
 
+    public void setHora(Time hora) {
+        this.hora = hora;
+    }
+    
+    
    public boolean equals(Object other) {
          if ( (this == other ) ) return true;
 		 if ( (other == null ) ) return false;
