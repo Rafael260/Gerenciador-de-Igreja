@@ -81,7 +81,15 @@ public class Ministerio  implements java.io.Serializable {
         this.membros = membros;
     }
 
-
+    /////////////////////////////////////////////////////////////////////
+    
+    /**
+     * Em ministério, considera-se que o membro já esteja cadastrado no sistema
+     * @param membro 
+     */
+    public void adicionarMembro(Membro membro){
+        
+    }
 
 
 }

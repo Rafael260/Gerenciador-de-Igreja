@@ -2,6 +2,8 @@ package Classes;
 // Generated 28/05/2016 22:16:45 by Hibernate Tools 4.3.1
 
 
+import Util.HibernateUtil;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -61,8 +63,15 @@ public class Disciplina  implements java.io.Serializable {
         this.turmas = turmas;
     }
 
+    //////////////////////////////////////////////////////////////
+    
+    public void adicionarTurma(Membro professor, PeriodoLetivo periodo, Date dataInicio, Date dataFim){
+        adicionarTurma( new Turma( new TurmaId(codigo,dataInicio), this, professor, periodo, dataFim));
+    }
 
-
+    public void adicionarTurma(Turma turma){
+        HibernateUtil.persistirObjeto(turma);
+    }
 
 }
 

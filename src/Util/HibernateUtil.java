@@ -5,6 +5,7 @@
  */
 package Util;
 
+import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
 
@@ -32,5 +33,11 @@ public class HibernateUtil {
     
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
+    }
+    
+    public static void persistirObjeto(Object o){
+        Session s = sessionFactory.getCurrentSession();
+        s.save(o);
+        s.getTransaction().commit();
     }
 }
