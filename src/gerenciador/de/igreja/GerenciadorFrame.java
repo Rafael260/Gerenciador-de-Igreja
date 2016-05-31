@@ -36,6 +36,16 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jList1 = new javax.swing.JList();
+        jPanel5 = new javax.swing.JPanel();
+        jList2 = new javax.swing.JList();
+        jLabel4 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,6 +53,7 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jPanel1.setDoubleBuffered(false);
         jPanel1.setInheritsPopupMenu(true);
         jPanel1.setOpaque(false);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setRequestFocusEnabled(false);
@@ -50,8 +61,7 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Yu Gothic", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/SimboloCC.png"))); // NOI18N
-        jLabel1.setText("Connect Church");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Connect Church3.2.png"))); // NOI18N
 
         jLabel2.setText("Usuário:");
 
@@ -60,20 +70,25 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(619, 619, 619)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(224, 224, 224))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel2))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(24, 24, 24))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1035, -1));
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 51, 51));
         jLabel3.setText("Bem Vindo!");
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
@@ -101,14 +116,14 @@ public class GerenciadorFrame extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jList1, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                .addComponent(jList1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jList1, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                .addComponent(jList1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(467, 467, 467))
         );
 
@@ -119,36 +134,89 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(52, 52, 52)
                 .addComponent(jLabel3)
-                .addContainerGap(691, Short.MAX_VALUE))
+                .addContainerGap(712, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(59, 59, 59)
                 .addComponent(jLabel3)
-                .addContainerGap(516, Short.MAX_VALUE))
+                .addContainerGap(987, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(jPanel4);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane2)
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 904, 535));
+
+        jPanel5.setBackground(new java.awt.Color(0, 102, 102));
+
+        jList2.setBackground(new java.awt.Color(0, 102, 102));
+        jList2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jList2.setForeground(new java.awt.Color(255, 255, 255));
+        jList2.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Início", "Seminários", "Alunos", "Eventos", "Cultos" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jList2.setAutoscrolls(false);
+        jList2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jList2.setDropMode(javax.swing.DropMode.INSERT);
+        jList2.setFocusable(false);
+        jList2.setInheritsPopupMenu(true);
+        jList2.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
+        jList2.setRequestFocusEnabled(false);
+        jList2.setVerifyInputWhenFocusTarget(false);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addComponent(jList2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane2))
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(jList2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(441, 441, 441))
         );
+
+        jList2.getAccessibleContext().setAccessibleName("");
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 130, 594));
+
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ITB.png"))); // NOI18N
+        jLabel4.setOpaque(true);
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 600, 880, -1));
+
+        jMenu1.setText("Alunos");
+
+        jMenuItem1.setText("cadastrar");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("remover");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("ver notas");
+        jMenu1.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Eventos");
+
+        jMenuItem4.setText("cadastrar");
+        jMenu2.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,7 +226,7 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -173,11 +241,21 @@ public class GerenciadorFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JList jList1;
+    private javax.swing.JList jList2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
