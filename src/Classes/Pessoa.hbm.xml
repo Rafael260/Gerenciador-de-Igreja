@@ -41,12 +41,7 @@
         <property name="estadoCivil" type="java.lang.Character">
             <column name="estado_civil" length="1" />
         </property>
-        <set name="seminarios" table="seminario" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_coordenador" not-null="true" />
-            </key>
-            <one-to-many class="Classes.Seminario" />
-        </set>
+        
         <set name="ministras" table="ministra" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="id_minist" not-null="true" />

@@ -6,11 +6,11 @@
 package gerenciador.de.igreja;
 
 import Evt.Endereco;
-import Evt.Grupo;
-import Pessoas.Membro;
-import Pessoas.Visitante;
-import escola.Seminario;
-import escola.Turma;
+import Evt.GrupoOld;
+import Pessoas.MembroOld;
+import Pessoas.VisitanteOld;
+import escola.SeminarioOld;
+import escola.TurmaOld;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,10 +21,10 @@ import java.util.List;
  */
 public class Igreja {
     protected String nome_igreja;
-    protected List<Seminario> seminarios;
-    protected List<Membro> membros;
-    protected List<Visitante> visitantes;
-    protected List<Grupo> grupos;
+    protected List<SeminarioOld> seminarios;
+    protected List<MembroOld> membros;
+    protected List<VisitanteOld> visitantes;
+    protected List<GrupoOld> grupos;
     protected Endereco endereco;
 
     public Igreja(String nome_igreja) {
@@ -54,35 +54,35 @@ public class Igreja {
         this.nome_igreja = nome_igreja;
     }
 
-    public List<Seminario> getSeminarios() {
+    public List<SeminarioOld> getSeminarios() {
         return seminarios;
     }
 
-    public void setSeminarios(List<Seminario> seminarios) {
+    public void setSeminarios(List<SeminarioOld> seminarios) {
         this.seminarios = seminarios;
     }
 
-    public List<Membro> getMembros() {
+    public List<MembroOld> getMembros() {
         return membros;
     }
 
-    public void setMembros(List<Membro> membros) {
+    public void setMembros(List<MembroOld> membros) {
         this.membros = membros;
     }
 
-    public List<Visitante> getVisitantes() {
+    public List<VisitanteOld> getVisitantes() {
         return visitantes;
     }
 
-    public void setVisitantes(List<Visitante> visitantes) {
+    public void setVisitantes(List<VisitanteOld> visitantes) {
         this.visitantes = visitantes;
     }
 
-    public List<Grupo> getGrupos() {
+    public List<GrupoOld> getGrupos() {
         return grupos;
     }
 
-    public void setGrupos(List<Grupo> grupos) {
+    public void setGrupos(List<GrupoOld> grupos) {
         this.grupos = grupos;
     }
 
@@ -96,7 +96,7 @@ public class Igreja {
     
     /////////////////////// </GETS E SETS> ////////////////////////////////////
     
-    public void adicionarSeminario(String nome, Date data_inicio, Date data_fim, Membro coordenador) throws Exception{
+    public void adicionarSeminario(String nome, Date data_inicio, Date data_fim, MembroOld coordenador) throws Exception{
         if (nome == null){
             throw new Exception("Objeto relacionado à nome é nulo");
         }
@@ -113,76 +113,76 @@ public class Igreja {
         pAdicionarSeminario(nome, data_inicio, data_fim, coordenador);
     }
     
-    private void pAdicionarSeminario(String nome, Date data_inicio, Date data_fim, Membro coordenador){
-        seminarios.add(new Seminario(nome,data_inicio,data_fim,coordenador));
+    private void pAdicionarSeminario(String nome, Date data_inicio, Date data_fim, MembroOld coordenador){
+        seminarios.add(new SeminarioOld(nome,data_inicio,data_fim,coordenador));
     }
     
-    public void adicionarMembro(Membro membro) throws Exception{
+    public void adicionarMembro(MembroOld membro) throws Exception{
         if (membro == null){
             throw new Exception("Objeto referente à membro é nulo");
         }
         membros.add(membro);
     }
     
-    public void adicionarVisitante(Visitante visitante) throws Exception{
+    public void adicionarVisitante(VisitanteOld visitante) throws Exception{
         if (visitante == null){
             throw new Exception("Objeto referente à visitante é nulo");
         }
         visitantes.add(visitante);
     }
     
-    public void adicionarGrupo(Grupo grupo) throws Exception{
+    public void adicionarGrupo(GrupoOld grupo) throws Exception{
         if (grupo == null){
             throw new Exception("Objeto referente à grupo é nulo");
         }
         grupos.add(grupo);
     }
     
-    public List<Grupo> getGruposPorBairro(String bairro){
-        List<Grupo> grupos = null;
+    public List<GrupoOld> getGruposPorBairro(String bairro){
+        List<GrupoOld> grupos = null;
         //CONSULTA SQL
         
         return grupos;
     }
     
-    public List<Grupo> getGruposPorCidade(String cidade){
-        List<Grupo> grupos = null;
+    public List<GrupoOld> getGruposPorCidade(String cidade){
+        List<GrupoOld> grupos = null;
         //consulta SQL
         
         return grupos;
     }
     
-    public List<Turma> getTurmasPorDisciplina(String codigoDisciplina){
-        List<Turma> turmas = null;
+    public List<TurmaOld> getTurmasPorDisciplina(String codigoDisciplina){
+        List<TurmaOld> turmas = null;
         //consulta SQL
         
         return turmas;
     }
     
-    public List<Turma> getTurmasPorPeriodo(int periodo){
-        List<Turma> turmas = null;
+    public List<TurmaOld> getTurmasPorPeriodo(int periodo){
+        List<TurmaOld> turmas = null;
         //consulta SQL
         
         return turmas;
     }
     
-    public List<Turma> getTurmasPorPeriodo(int periodoInicial, int periodoFinal){
-        List<Turma> turmas = null;
+    public List<TurmaOld> getTurmasPorPeriodo(int periodoInicial, int periodoFinal){
+        List<TurmaOld> turmas = null;
         //consulta SQL
         
         return turmas;
     }
     
-    public Membro getMembro(String cpfMembro){
-        Membro membro = null;
+    public MembroOld getMembro(String cpfMembro){
+        MembroOld membro = null;
         //consulta SQL
         
         return membro;
     }
     
-    public List<Turma> getTurmasMembro(String cpfMembro){
-        List<Turma> turmas = null;
-        Membro membro = getMembro(cpfMembro);
+    public List<TurmaOld> getTurmasMembro(String cpfMembro){
+        List<TurmaOld> turmas = null;
+        MembroOld membro = getMembro(cpfMembro);
         //consulta SQL
         
         return turmas;

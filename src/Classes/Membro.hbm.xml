@@ -41,6 +41,12 @@
             </key>
             <one-to-many class="Classes.Ministerio" />
         </set>
+        <set name="seminarios" table="seminario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_coordenador" not-null="true" />
+            </key>
+            <one-to-many class="Classes.Seminario" />
+        </set>
         <set name="matriculas" table="matricula" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="id_aluno" not-null="true" />

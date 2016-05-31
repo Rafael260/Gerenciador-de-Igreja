@@ -23,7 +23,7 @@ public class Pessoa  implements java.io.Serializable {
      private String endEstado;
      private String email;
      private Character estadoCivil;
-     private Set seminarios = new HashSet(0);
+     
      private Set ministras = new HashSet(0);
      private Visitante visitante;
      private Membro membro;
@@ -36,7 +36,7 @@ public class Pessoa  implements java.io.Serializable {
         this.nome = nome;
         this.sobrenome = sobrenome;
     }
-    public Pessoa(String nome, String sobrenome, String telefone, String endRua, Integer endNumero, String endComp, String endBairro, String endCidade, String endEstado, String email, Character estadoCivil, Set seminarios, Set ministras, Visitante visitante, Membro membro) {
+    public Pessoa(String nome, String sobrenome, String telefone, String endRua, Integer endNumero, String endComp, String endBairro, String endCidade, String endEstado, String email, Character estadoCivil, Set ministras, Visitante visitante, Membro membro) {
        this.nome = nome;
        this.sobrenome = sobrenome;
        this.telefone = telefone;
@@ -48,7 +48,6 @@ public class Pessoa  implements java.io.Serializable {
        this.endEstado = endEstado;
        this.email = email;
        this.estadoCivil = estadoCivil;
-       this.seminarios = seminarios;
        this.ministras = ministras;
        this.visitante = visitante;
        this.membro = membro;
@@ -138,13 +137,7 @@ public class Pessoa  implements java.io.Serializable {
     public void setEstadoCivil(Character estadoCivil) {
         this.estadoCivil = estadoCivil;
     }
-    public Set getSeminarios() {
-        return this.seminarios;
-    }
-    
-    public void setSeminarios(Set seminarios) {
-        this.seminarios = seminarios;
-    }
+   
     public Set getMinistras() {
         return this.ministras;
     }
