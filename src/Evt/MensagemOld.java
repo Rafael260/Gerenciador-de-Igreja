@@ -9,18 +9,18 @@ package Evt;
  *
  * @author Rafael
  */
-public class Mensagem {
+public class MensagemOld {
     protected String titulo;
     protected String base_biblica;
     protected String tema;
 
-    public Mensagem(String titulo, String base_biblica, String tema) {
+    public MensagemOld(String titulo, String base_biblica, String tema) {
         this.titulo = titulo;
         this.base_biblica = base_biblica;
         this.tema = tema;
     }
 
-    public Mensagem(String titulo, String tema) {
+    public MensagemOld(String titulo, String tema) {
         this.titulo = titulo;
         this.tema = tema;
     }

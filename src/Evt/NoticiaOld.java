@@ -5,27 +5,27 @@
  */
 package Evt;
 
-import Pessoas.Membro;
+import Pessoas.MembroOld;
 import javafx.scene.text.Text;
 
 /**
  *
  * @author Rafael
  */
-public class Noticia {
+public class NoticiaOld {
     protected String manchete;
     protected Text texto;
-    protected Membro autor;
-    protected Evento evento;
+    protected MembroOld autor;
+    protected EventoOld evento;
     //List<Midia> midias;
 
-    public Noticia(String manchete, Text texto, Membro autor) {
+    public NoticiaOld(String manchete, Text texto, MembroOld autor) {
         this.manchete = manchete;
         this.texto = texto;
         this.autor = autor;
     }
 
-    public Noticia(String manchete, Text texto, Membro autor, Evento evento) {
+    public NoticiaOld(String manchete, Text texto, MembroOld autor, EventoOld evento) {
         this.manchete = manchete;
         this.texto = texto;
         this.autor = autor;
@@ -50,19 +50,19 @@ public class Noticia {
         this.texto = texto;
     }
 
-    public Membro getAutor() {
+    public MembroOld getAutor() {
         return autor;
     }
 
-    public void setAutor(Membro autor) {
+    public void setAutor(MembroOld autor) {
         this.autor = autor;
     }
     
-    public Evento getEvento() {
+    public EventoOld getEvento() {
         return evento;
     }
 
-    public void setEvento(Evento evento) {
+    public void setEvento(EventoOld evento) {
         this.evento = evento;
     }
     

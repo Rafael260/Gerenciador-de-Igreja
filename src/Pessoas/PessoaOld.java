@@ -11,7 +11,7 @@ import Evt.Endereco;
  *
  * @author Rafael
  */
-public class Pessoa {
+public class PessoaOld {
     protected int id;
     protected String nome;
     protected String sobrenome;
@@ -19,7 +19,7 @@ public class Pessoa {
     protected String telefone;
     protected Endereco endereco;
 
-    public Pessoa(int id, String nome, String sobrenome, char estado_civil, String numero_telefone, Endereco endereco) {
+    public PessoaOld(int id, String nome, String sobrenome, char estado_civil, String numero_telefone, Endereco endereco) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -28,7 +28,7 @@ public class Pessoa {
         this.endereco = endereco;
     }
 
-    public Pessoa(int id, String nome, String sobrenome, char estado_civil, String numero_telefone) {
+    public PessoaOld(int id, String nome, String sobrenome, char estado_civil, String numero_telefone) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -36,7 +36,7 @@ public class Pessoa {
         this.telefone = numero_telefone;
     }
 
-    public Pessoa(int id, String nome, String sobrenome, char estado_civil) {
+    public PessoaOld(int id, String nome, String sobrenome, char estado_civil) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;

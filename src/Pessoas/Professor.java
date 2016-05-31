@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author Rafael
  */
-public class Professor extends Membro {
+public class Professor extends MembroOld {
     
     public Professor(String cpf, Date data_nascimento, Date data_batismo_apres, int id, String nome, String sobrenome, char estado_civil, String numero_telefone, Endereco endereco) {
         super(cpf, data_nascimento, data_batismo_apres, id, nome, sobrenome, estado_civil, numero_telefone, endereco);

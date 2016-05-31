@@ -12,11 +12,11 @@ import java.util.List;
  *
  * @author Rafael
  */
-public class PeriodoLetivo {
+public class PeriodoLetivoOld {
     private int ano;
-    private List<Turma> listaTurmas;
+    private List<TurmaOld> listaTurmas;
 
-    public PeriodoLetivo(int ano) {
+    public PeriodoLetivoOld(int ano) {
         this.ano = ano;
         listaTurmas = new ArrayList<>();
     }
@@ -30,11 +30,11 @@ public class PeriodoLetivo {
         this.ano = ano;
     }
 
-    public List<Turma> getListaTurmas() {
+    public List<TurmaOld> getListaTurmas() {
         return listaTurmas;
     }
 
-    public void setListaTurmas(List<Turma> listaTurmas) {
+    public void setListaTurmas(List<TurmaOld> listaTurmas) {
         this.listaTurmas = listaTurmas;
     }
     
@@ -42,7 +42,7 @@ public class PeriodoLetivo {
     
     /////////////////////// <TRABALHANDO COM TURMAS> ////////////////////////////////////
     
-    public void adicionarTurma(Turma turma) throws Exception{
+    public void adicionarTurma(TurmaOld turma) throws Exception{
         if(turma == null){
             throw new Exception("Objeto referente à turma é nulo");
         }

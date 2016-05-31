@@ -11,7 +11,7 @@ import java.util.Date;
  * Essa classe é necessária?
  * @author Rafael
  */
-public class Assiduidade {
+public class AssiduidadeOld {
     protected Date data_aula;
     protected boolean presente;
 

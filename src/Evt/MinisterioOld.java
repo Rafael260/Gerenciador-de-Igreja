@@ -6,7 +6,7 @@
 package Evt;
 
 import Pessoas.Lider;
-import Pessoas.Membro;
+import Pessoas.MembroOld;
 import java.sql.Time;
 import java.util.List;
 import javafx.scene.text.Text;
@@ -15,15 +15,15 @@ import javafx.scene.text.Text;
  *
  * @author Rafael
  */
-public class Ministerio {
+public class MinisterioOld {
     protected String nome;
     protected Text descricao;
     protected Time hora;
     protected DiaSemana dia_semana;
-    protected List<Membro> integrantes;
+    protected List<MembroOld> integrantes;
     protected Lider lider;
 
-    public Ministerio(String nome, Text descricao, Time hora, DiaSemana dia_semana, Lider lider) {
+    public MinisterioOld(String nome, Text descricao, Time hora, DiaSemana dia_semana, Lider lider) {
         this.nome = nome;
         this.descricao = descricao;
         this.hora = hora;
@@ -65,11 +65,11 @@ public class Ministerio {
         this.dia_semana = dia_semana;
     }
 
-    public List<Membro> getIntegrantes() {
+    public List<MembroOld> getIntegrantes() {
         return integrantes;
     }
 
-    public void setIntegrantes(List<Membro> integrantes) {
+    public void setIntegrantes(List<MembroOld> integrantes) {
         this.integrantes = integrantes;
     }
 
@@ -83,7 +83,7 @@ public class Ministerio {
     
     /////////////////////// </GETS E SETS> ////////////////////////////////////
     
-    public void adicionarIntegrante(Membro membro) throws Exception{
+    public void adicionarIntegrante(MembroOld membro) throws Exception{
         if (membro == null){
             throw new Exception("Objeto referente à membro é nulo");
         }

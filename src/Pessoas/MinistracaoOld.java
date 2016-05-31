@@ -5,19 +5,19 @@
  */
 package Pessoas;
 
-import Evt.Evento;
-import Evt.Mensagem;
+import Evt.EventoOld;
+import Evt.MensagemOld;
 
 /**
  *
  * @author Rafael
  */
-public class Ministracao {
-    protected Pessoa palestrante;
-    protected Evento evento;
-    protected Mensagem mensagem;
+public class MinistracaoOld {
+    protected PessoaOld palestrante;
+    protected EventoOld evento;
+    protected MensagemOld mensagem;
 
-    public Ministracao(Pessoa palestrante, Evento evento, Mensagem mensagem) {
+    public MinistracaoOld(PessoaOld palestrante, EventoOld evento, MensagemOld mensagem) {
         this.palestrante = palestrante;
         this.evento = evento;
         this.mensagem = mensagem;
@@ -25,27 +25,27 @@ public class Ministracao {
 
     /////////////////////// <GETS E SETS> ////////////////////////////////////
     
-    public Pessoa getPalestrante() {
+    public PessoaOld getPalestrante() {
         return palestrante;
     }
 
-    public void setPalestrante(Pessoa palestrante) {
+    public void setPalestrante(PessoaOld palestrante) {
         this.palestrante = palestrante;
     }
 
-    public Evento getEvento() {
+    public EventoOld getEvento() {
         return evento;
     }
 
-    public void setEvento(Evento evento) {
+    public void setEvento(EventoOld evento) {
         this.evento = evento;
     }
 
-    public Mensagem getMensagem() {
+    public MensagemOld getMensagem() {
         return mensagem;
     }
 
-    public void setMensagem(Mensagem mensagem) {
+    public void setMensagem(MensagemOld mensagem) {
         this.mensagem = mensagem;
     }
     

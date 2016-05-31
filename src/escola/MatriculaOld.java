@@ -5,7 +5,7 @@
  */
 package escola;
 
-import Pessoas.Membro;
+import Pessoas.MembroOld;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,13 +13,13 @@ import java.util.List;
  * Essa classe tá certa?
  * @author Rafael
  */
-public class Matricula {
-    protected Membro aluno;
-    protected Turma turma;
+public class MatriculaOld {
+    protected MembroOld aluno;
+    protected TurmaOld turma;
     protected float nota_final;
-    protected List<Assiduidade> presencas;
+    protected List<AssiduidadeOld> presencas;
 
-    public Matricula(Membro aluno, Turma turma) {
+    public MatriculaOld(MembroOld aluno, TurmaOld turma) {
         this.aluno = aluno;
         this.turma = turma;
         presencas = new ArrayList<>();
@@ -27,19 +27,19 @@ public class Matricula {
 
     /////////////////////// <GETS E SETS> ////////////////////////////////////
     
-    public Membro getAluno() {
+    public MembroOld getAluno() {
         return aluno;
     }
 
-    public void setAluno(Membro aluno) {
+    public void setAluno(MembroOld aluno) {
         this.aluno = aluno;
     }
 
-    public Turma getTurma() {
+    public TurmaOld getTurma() {
         return turma;
     }
 
-    public void setTurma(Turma turma) {
+    public void setTurma(TurmaOld turma) {
         this.turma = turma;
     }
 
@@ -51,17 +51,17 @@ public class Matricula {
         this.nota_final = nota_final;
     }
    
-    public List<Assiduidade> getPresencas() {
+    public List<AssiduidadeOld> getPresencas() {
         return presencas;
     }
 
-    public void setPresencas(List<Assiduidade> presencas) {
+    public void setPresencas(List<AssiduidadeOld> presencas) {
         this.presencas = presencas;
     }
     
     /////////////////////// </GETS E SETS> ////////////////////////////////////
 
-    public void adicionarFrequencia(Assiduidade assiduidade) throws Exception{
+    public void adicionarFrequencia(AssiduidadeOld assiduidade) throws Exception{
         if (assiduidade == null){
             throw new Exception("Objeto referente à assiduidade é nulo");
         }

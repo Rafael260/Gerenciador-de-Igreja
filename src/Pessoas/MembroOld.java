@@ -12,19 +12,19 @@ import java.util.Date;
  *
  * @author Rafael
  */
-public class Membro extends Pessoa {
+public class MembroOld extends PessoaOld {
     protected String cpf;
     protected Date nascimento;
     protected Date batismo_apres;
     
-    public Membro(String cpf, Date data_nascimento, Date data_batismo_apres, int id, String nome, String sobrenome, char estado_civil, String numero_telefone, Endereco endereco) {
+    public MembroOld(String cpf, Date data_nascimento, Date data_batismo_apres, int id, String nome, String sobrenome, char estado_civil, String numero_telefone, Endereco endereco) {
         super(id, nome, sobrenome, estado_civil, numero_telefone, endereco);
         this.cpf = cpf;
         this.nascimento = data_nascimento;
         this.batismo_apres = data_batismo_apres;
     }
 
-    public Membro(String cpf, Date data_nascimento, boolean lider, boolean professor, int id, String nome, String sobrenome, char estado_civil, String numero_telefone, Endereco endereco) {
+    public MembroOld(String cpf, Date data_nascimento, boolean lider, boolean professor, int id, String nome, String sobrenome, char estado_civil, String numero_telefone, Endereco endereco) {
         super(id, nome, sobrenome, estado_civil, numero_telefone, endereco);
         this.cpf = cpf;
         this.nascimento = data_nascimento;

@@ -5,7 +5,7 @@
  */
 package Evt;
 
-import Pessoas.Visitante;
+import Pessoas.VisitanteOld;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,15 +15,15 @@ import java.util.List;
  *
  * @author Rafael
  */
-public class Evento {
+public class EventoOld {
     protected Date data;
     protected Time hora;
     protected String publico_alvo;
     protected String tipo;
     protected String palestrante;
-    protected List<Visitante> visitantes;
+    protected List<VisitanteOld> visitantes;
 
-    public Evento(Date data, Time hora, String publico_alvo, String tipo, String palestrante) {
+    public EventoOld(Date data, Time hora, String publico_alvo, String tipo, String palestrante) {
         this.data = data;
         this.hora = hora;
         this.publico_alvo = publico_alvo;
@@ -32,7 +32,7 @@ public class Evento {
         this.visitantes = new ArrayList<>();
     }
     
-    public Evento(Date data, Time hora, String publico_alvo, String tipo, String palestrante, List<Visitante> visitantes) {
+    public EventoOld(Date data, Time hora, String publico_alvo, String tipo, String palestrante, List<VisitanteOld> visitantes) {
         this.data = data;
         this.hora = hora;
         this.publico_alvo = publico_alvo;
@@ -41,7 +41,7 @@ public class Evento {
         this.visitantes = visitantes;
     }
 
-    public Evento(Date data, Time hora, String tipo, String palestrante) {
+    public EventoOld(Date data, Time hora, String tipo, String palestrante) {
         this.data = data;
         this.hora = hora;
         this.tipo = tipo;
@@ -91,17 +91,17 @@ public class Evento {
         this.palestrante = palestrante;
     }
     
-    public List<Visitante> getVisitantes() {
+    public List<VisitanteOld> getVisitantes() {
         return visitantes;
     }
 
-    public void setVisitantes(List<Visitante> visitantes) {
+    public void setVisitantes(List<VisitanteOld> visitantes) {
         this.visitantes = visitantes;
     }
     
     /////////////////////// </GETS E SETS> ////////////////////////////////////
 
-    public void adicionarVisitante(Visitante visitante) throws Exception{
+    public void adicionarVisitante(VisitanteOld visitante) throws Exception{
         if (visitante == null){
             throw new Exception("Objeto referente à visitante é nulo");
         }

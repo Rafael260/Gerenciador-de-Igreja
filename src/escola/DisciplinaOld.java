@@ -9,11 +9,11 @@ package escola;
  *
  * @author Rafael
  */
-public class Disciplina {
+public class DisciplinaOld {
     protected String codigo;
     protected String nome;
     
-    public Disciplina(String codigo, String nome) {
+    public DisciplinaOld(String codigo, String nome) {
         this.codigo = codigo;
         this.nome = nome;
     }

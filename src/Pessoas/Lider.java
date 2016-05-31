@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author Rafael
  */
-public class Lider extends Membro {
+public class Lider extends MembroOld {
     
     public Lider(String cpf, Date data_nascimento, Date data_batismo_apres, int id, String nome, String sobrenome, char estado_civil, String numero_telefone, Endereco endereco) {
         super(cpf, data_nascimento, data_batismo_apres, id, nome, sobrenome, estado_civil, numero_telefone, endereco);

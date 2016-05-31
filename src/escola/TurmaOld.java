@@ -1,6 +1,6 @@
 package escola;
 
-import Pessoas.Membro;
+import Pessoas.MembroOld;
 import Pessoas.Professor;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,15 +10,15 @@ import java.util.List;
  *
  * @author Eliseu, Geraldo e Rafael
  */
-public class Turma {
+public class TurmaOld {
     
     private Date data_inicio;
     private Date data_fim;
-    List<Membro> alunos;
-    private Disciplina disciplina;
+    List<MembroOld> alunos;
+    private DisciplinaOld disciplina;
     private Professor professor;
 
-    public Turma(Date data_inicio, Date data_fim, Disciplina disciplina, Professor professor) {
+    public TurmaOld(Date data_inicio, Date data_fim, DisciplinaOld disciplina, Professor professor) {
         this.data_inicio = data_inicio;
         this.data_fim = data_fim;
         this.alunos = new ArrayList<>();
@@ -43,19 +43,19 @@ public class Turma {
         this.data_fim = data_fim;
     }
 
-    public List<Membro> getAlunos() {
+    public List<MembroOld> getAlunos() {
         return alunos;
     }
 
-    public void setAlunos(List<Membro> alunos) {
+    public void setAlunos(List<MembroOld> alunos) {
         this.alunos = alunos;
     }
 
-    public Disciplina getDisciplina() {
+    public DisciplinaOld getDisciplina() {
         return disciplina;
     }
 
-    public void setDisciplina(Disciplina disciplina) {
+    public void setDisciplina(DisciplinaOld disciplina) {
         this.disciplina = disciplina;
     }
 
@@ -71,7 +71,7 @@ public class Turma {
     /////////////////////// </GETS E SETS> ////////////////////////////////////
     
     /////////////////////// <TRABALHANDO COM ALUNOS> ////////////////////////////////////
-    public void adicionarAluno(Membro aluno) throws Exception{
+    public void adicionarAluno(MembroOld aluno) throws Exception{
         if (aluno == null){
             throw new Exception("Objeto referente à aluno é nulo");
         }

@@ -5,6 +5,11 @@
  */
 package gerenciador.de.igreja;
 
+import Classes.*;
+import Util.HibernateUtil;
+import java.util.List;
+import org.hibernate.Session;
+
 /**
  *
  * @author Rafael
@@ -41,6 +46,14 @@ public class GerenciadorDeIgreja {
                 new GerenciadorFrame().setVisible(true);
             }
         });
+        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+        s.beginTransaction();
+        List<Pessoa> p = (List<Pessoa>)s.createQuery("from Pessoa");
+        
+        for (Pessoa p1: p){
+            System.out.println(p1.getNome());
+        }
+        s.getTransaction().commit();
     }
     
 }
