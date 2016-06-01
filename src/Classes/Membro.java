@@ -86,6 +86,7 @@ public class Membro  implements java.io.Serializable {
     
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+        this.id = pessoa.getId();
     }
     public String getCpf() {
         return this.cpf;

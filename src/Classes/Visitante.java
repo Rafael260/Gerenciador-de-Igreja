@@ -41,13 +41,16 @@ public class Visitante  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
+    
     public Pessoa getPessoa() {
         return this.pessoa;
     }
     
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+        this.id = pessoa.getId();
     }
+    
     public String getIgrejaOrig() {
         return this.igrejaOrig;
     }
@@ -55,6 +58,7 @@ public class Visitante  implements java.io.Serializable {
     public void setIgrejaOrig(String igrejaOrig) {
         this.igrejaOrig = igrejaOrig;
     }
+    
     public Set getEventos() {
         return this.eventos;
     }

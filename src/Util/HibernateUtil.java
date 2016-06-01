@@ -48,7 +48,7 @@ public class HibernateUtil {
      * @param valores Parâmetros para o insert
      */
     public static void insertInto(String tabela, List<String> valores){
-        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session s = sessionFactory.getCurrentSession();
         String parametros = "";
         
         //Concatenando todos os valores da tupla
@@ -62,4 +62,13 @@ public class HibernateUtil {
         s.createSQLQuery("insert into "+ tabela +"values("+parametros+")");
         s.getTransaction().commit();
     }
+    
+    public static List<Object> getTuplasDaTabela(String tabela){
+        Session s = sessionFactory.getCurrentSession();
+        List<Object> tuplas;
+        tuplas = s.createQuery("from "+tabela).list();
+        s.getTransaction().commit();
+        return tuplas;
+    }
+    
 }
