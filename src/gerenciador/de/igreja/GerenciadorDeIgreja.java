@@ -50,7 +50,6 @@ public class GerenciadorDeIgreja {
         Session s = HibernateUtil.getSessionFactory().getCurrentSession();
         s.beginTransaction();
         List<Pessoa> p = (List<Pessoa>)s.createQuery("from Pessoa").list();
-        
         for (Pessoa p1: p){
             System.out.println(p1.getNome());
         }

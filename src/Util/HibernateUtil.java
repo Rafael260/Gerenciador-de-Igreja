@@ -38,7 +38,7 @@ public class HibernateUtil {
     
     public static void persistirObjeto(Object o){
         Session s = sessionFactory.getCurrentSession();
-        s.save(o);
+        s.saveOrUpdate(o);
         s.getTransaction().commit();
     }
     
