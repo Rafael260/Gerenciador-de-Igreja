@@ -6,6 +6,7 @@
 package Util;
 
 import Classes.Turma;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,14 +15,23 @@ import java.util.List;
  */
 public class TurmaDao implements Dao<Turma>{
 
+    public TurmaDao(){
+        
+    }
+    
     @Override
-    public List listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Turma> listarTodos() {
+        List<Object> objetos = HibernateUtil.getTuplasDaTabela("Turma");
+        List<Turma> turmas = new ArrayList<>();
+        for (Object obj: objetos){
+            turmas.add((Turma)obj);
+        }
+        return turmas;
     }
 
     @Override
     public void gravar(Turma obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HibernateUtil.persistirObjeto(obj);
     }
     
 }

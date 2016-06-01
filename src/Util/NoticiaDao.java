@@ -6,6 +6,7 @@
 package Util;
 
 import Classes.Noticia;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,14 +15,23 @@ import java.util.List;
  */
 public class NoticiaDao implements Dao<Noticia>{
 
+    public NoticiaDao(){
+        
+    }
+    
     @Override
     public List<Noticia> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Object> objetos = HibernateUtil.getTuplasDaTabela("Noticia");
+        List<Noticia> noticias = new ArrayList<>();
+        for (Object obj: objetos){
+            noticias.add((Noticia)obj);
+        }
+        return noticias;
     }
 
     @Override
     public void gravar(Noticia obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HibernateUtil.persistirObjeto(obj);
     }
     
 }

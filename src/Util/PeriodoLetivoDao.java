@@ -6,6 +6,7 @@
 package Util;
 
 import Classes.PeriodoLetivo;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,14 +15,23 @@ import java.util.List;
  */
 public class PeriodoLetivoDao implements Dao<PeriodoLetivo>{
 
+    public PeriodoLetivoDao(){
+        
+    }
+    
     @Override
-    public List listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<PeriodoLetivo> listarTodos() {
+        List<Object> objetos = HibernateUtil.getTuplasDaTabela("PeriodoLetivo");
+        List<PeriodoLetivo> periodosLetivos = new ArrayList<>();
+        for (Object obj: objetos){
+            periodosLetivos.add((PeriodoLetivo)obj);
+        }
+        return periodosLetivos;
     }
 
     @Override
     public void gravar(PeriodoLetivo obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HibernateUtil.persistirObjeto(obj);
     }
     
 }
