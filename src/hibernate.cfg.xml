@@ -13,8 +13,6 @@
     <mapping resource="Classes/Seminario.hbm.xml"/>
     <mapping resource="Classes/PeriodoLetivo.hbm.xml"/>
     <mapping resource="Classes/Assiduidade.hbm.xml"/>
-    <mapping resource="Classes/MidiaNoticia.hbm.xml"/>
-    <mapping resource="Classes/ArquivoTurma.hbm.xml"/>
     <mapping resource="Classes/Mensagem.hbm.xml"/>
     <mapping resource="Classes/Evento.hbm.xml"/>
     <mapping resource="Classes/Disciplina.hbm.xml"/>

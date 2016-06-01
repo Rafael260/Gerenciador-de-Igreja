@@ -34,23 +34,23 @@ public class NoticiaId  implements java.io.Serializable {
     }
 
 
-   public boolean equals(Object other) {
-         if ( (this == other ) ) return true;
-		 if ( (other == null ) ) return false;
-		 if ( !(other instanceof NoticiaId) ) return false;
-		 NoticiaId castOther = ( NoticiaId ) other; 
-         
-		 return ( (this.getManchete()==castOther.getManchete()) || ( this.getManchete()!=null && castOther.getManchete()!=null && this.getManchete().equals(castOther.getManchete()) ) )
- && (this.getIdCadastrante()==castOther.getIdCadastrante());
-   }
-   
-   public int hashCode() {
-         int result = 17;
-         
-         result = 37 * result + ( getManchete() == null ? 0 : this.getManchete().hashCode() );
-         result = 37 * result + this.getIdCadastrante();
-         return result;
-   }   
+//   public boolean equals(Object other) {
+//         if ( (this == other ) ) return true;
+//		 if ( (other == null ) ) return false;
+//		 if ( !(other instanceof NoticiaId) ) return false;
+//		 NoticiaId castOther = ( NoticiaId ) other; 
+//         
+//		 return ( (this.getManchete()==castOther.getManchete()) || ( this.getManchete()!=null && castOther.getManchete()!=null && this.getManchete().equals(castOther.getManchete()) ) )
+// && (this.getIdCadastrante()==castOther.getIdCadastrante());
+//   }
+//   
+//   public int hashCode() {
+//         int result = 17;
+//         
+//         result = 37 * result + ( getManchete() == null ? 0 : this.getManchete().hashCode() );
+//         result = 37 * result + this.getIdCadastrante();
+//         return result;
+//   }   
 
 
 }
