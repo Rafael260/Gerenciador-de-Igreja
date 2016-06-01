@@ -75,7 +75,7 @@ public class Visitante  implements java.io.Serializable {
         List<String> parametros = new ArrayList<>();
         parametros.add(""+id);
         //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
-        parametros.add("'"+evento.getId().getDia()+"'");
+        parametros.add("'"+evento.getId().getDiaHora()+"'");
         parametros.add("'"+evento.getId().getTema()+"'");
         HibernateUtil.insertInto("visita_evento", parametros);
     }
