@@ -22,12 +22,5 @@
         <property name="texto" type="string">
             <column name="texto" not-null="true" />
         </property>
-        <set name="midiaNoticias" table="midia_noticia" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="manchete" length="45" not-null="true" />
-                <column name="id_cadastrante" not-null="true" />
-            </key>
-            <one-to-many class="Classes.MidiaNoticia" />
-        </set>
     </class>
 </hibernate-mapping>

@@ -23,13 +23,6 @@
     <property name="dataFim" type="date">
       <column length="10" name="data_fim" not-null="true"/>
     </property>
-    <set fetch="select" inverse="true" lazy="true" name="arquivoTurmas" table="arquivo_turma">
-      <key>
-        <column length="10" name="cod_disc" not-null="true"/>
-        <column length="10" name="data_inicio" not-null="true"/>
-      </key>
-      <one-to-many class="Classes.ArquivoTurma"/>
-    </set>
     <set fetch="select" inverse="true" lazy="true" name="matriculas" table="matricula">
       <key>
         <column length="10" name="cod_disc" not-null="true"/>
