@@ -10,6 +10,7 @@ import java.util.List;
 /**
  *
  * @author Rafael
+ * @param <T>
  */
 public interface Dao<T> {
     public List<T> listarTodos();
