@@ -52,12 +52,12 @@ public class Turma  implements java.io.Serializable {
     public void setDisciplina(Disciplina disciplina) {
         this.disciplina = disciplina;
     }
-    public Membro getMembro() {
+    public Membro getProfessor() {
         return this.professor;
     }
     
-    public void setMembro(Membro membro) {
-        this.professor = membro;
+    public void setProfessor(Membro professor) {
+        this.professor = professor;
     }
     public PeriodoLetivo getPeriodoLetivo() {
         return this.periodoLetivo;

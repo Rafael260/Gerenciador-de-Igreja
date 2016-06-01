@@ -10,15 +10,14 @@ import java.util.Date;
  */
 public class EventoId  implements java.io.Serializable {
      private String tema;
-     private Date dia;
-     private Time hora;
+     private Date diaHora;
 
     public EventoId() {
     }
 
     public EventoId(String tema, Date diaHora) {
        this.tema = tema;
-       this.dia = diaHora;
+       this.diaHora = diaHora;
     }
    
     public String getTema() {
@@ -28,22 +27,13 @@ public class EventoId  implements java.io.Serializable {
     public void setTema(String tema) {
         this.tema = tema;
     }
-    public Date getDia() {
-        return this.dia;
+    public Date getDiaHora() {
+        return this.diaHora;
     }
     
-    public void setDia(Date dia) {
-        this.dia = dia;
+    public void setDiaHora(Date diaHora) {
+        this.diaHora = diaHora;
     }
-
-    public Time getHora() {
-        return hora;
-    }
-
-    public void setHora(Time hora) {
-        this.hora = hora;
-    }
-    
     
    public boolean equals(Object other) {
          if ( (this == other ) ) return true;
@@ -52,14 +42,14 @@ public class EventoId  implements java.io.Serializable {
 		 EventoId castOther = ( EventoId ) other; 
          
 		 return ( (this.getTema()==castOther.getTema()) || ( this.getTema()!=null && castOther.getTema()!=null && this.getTema().equals(castOther.getTema()) ) )
- && ( (this.getDia()==castOther.getDia()) || ( this.getDia()!=null && castOther.getDia()!=null && this.getDia().equals(castOther.getDia()) ) );
+ && ( (this.getDiaHora()==castOther.getDiaHora()) || ( this.getDiaHora()!=null && castOther.getDiaHora()!=null && this.getDiaHora().equals(castOther.getDiaHora()) ) );
    }
    
    public int hashCode() {
          int result = 17;
          
          result = 37 * result + ( getTema() == null ? 0 : this.getTema().hashCode() );
-         result = 37 * result + ( getDia() == null ? 0 : this.getDia().hashCode() );
+         result = 37 * result + ( getDiaHora() == null ? 0 : this.getDiaHora().hashCode() );
          return result;
    }   
 

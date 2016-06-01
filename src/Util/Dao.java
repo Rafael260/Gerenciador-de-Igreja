@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Evt;
+package Util;
+
+import java.util.List;
 
 /**
  *
  * @author Rafael
+ * @param <T>
  */
-public enum DiaSemana {
-    DOMINGO(1), SEGUNDA(2), TERCA(3), QUARTA(4), QUINTA(5), SEXTA(6), SABADO(7);
-    public int diaSemana; 
+public interface Dao<T> {
+    public List<T> listarTodos();
+    public void gravar(T obj);
     
-    DiaSemana(int valor) {
-        diaSemana = valor; 
-    }
 }
