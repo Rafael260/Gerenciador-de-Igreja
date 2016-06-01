@@ -16,7 +16,6 @@ public class Turma  implements java.io.Serializable {
      private Membro professor;
      private PeriodoLetivo periodoLetivo;
      private Date dataFim;
-     private Set arquivoTurmas = new HashSet(0);
      private Set matriculas = new HashSet(0);
 
     public Turma() {
@@ -30,13 +29,12 @@ public class Turma  implements java.io.Serializable {
         this.periodoLetivo = periodoLetivo;
         this.dataFim = dataFim;
     }
-    public Turma(TurmaId id, Disciplina disciplina, Membro membro, PeriodoLetivo periodoLetivo, Date dataFim, Set arquivoTurmas, Set matriculas) {
+    public Turma(TurmaId id, Disciplina disciplina, Membro membro, PeriodoLetivo periodoLetivo, Date dataFim, Set matriculas) {
        this.id = id;
        this.disciplina = disciplina;
        this.professor = membro;
        this.periodoLetivo = periodoLetivo;
        this.dataFim = dataFim;
-       this.arquivoTurmas = arquivoTurmas;
        this.matriculas = matriculas;
     }
    
@@ -75,13 +73,7 @@ public class Turma  implements java.io.Serializable {
     public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
     }
-    public Set getArquivoTurmas() {
-        return this.arquivoTurmas;
-    }
-    
-    public void setArquivoTurmas(Set arquivoTurmas) {
-        this.arquivoTurmas = arquivoTurmas;
-    }
+   
     public Set getMatriculas() {
         return this.matriculas;
     }

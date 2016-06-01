@@ -13,8 +13,7 @@ public class Noticia  implements java.io.Serializable {
      private Evento evento;
      private Membro membro;
      private String texto;
-     private Set midiaNoticias = new HashSet(0);
-
+    
     public Noticia() {
     }
 
@@ -24,12 +23,11 @@ public class Noticia  implements java.io.Serializable {
         this.membro = membro;
         this.texto = texto;
     }
-    public Noticia(NoticiaId id, Evento evento, Membro membro, String texto, Set midiaNoticias) {
+    public Noticia(NoticiaId id, Evento evento, Membro membro, String texto) {
        this.id = id;
        this.evento = evento;
        this.membro = membro;
        this.texto = texto;
-       this.midiaNoticias = midiaNoticias;
     }
    
     public NoticiaId getId() {
@@ -60,17 +58,6 @@ public class Noticia  implements java.io.Serializable {
     public void setTexto(String texto) {
         this.texto = texto;
     }
-    public Set getMidiaNoticias() {
-        return this.midiaNoticias;
-    }
-    
-    public void setMidiaNoticias(Set midiaNoticias) {
-        this.midiaNoticias = midiaNoticias;
-    }
-
-
-
-
 }
 
 

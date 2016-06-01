@@ -3,10 +3,8 @@
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="Connect_church"/>
   <table-filter match-name="pessoa"/>
-  <table-filter match-name="arquivo_turma"/>
   <table-filter match-name="participa_ministerio"/>
   <table-filter match-name="matricula"/>
-  <table-filter match-name="midia_noticia"/>
   <table-filter match-name="noticia"/>
   <table-filter match-name="membro"/>
   <table-filter match-name="turma"/>

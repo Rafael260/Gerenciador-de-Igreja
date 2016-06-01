@@ -27,7 +27,7 @@ public class Membro  implements java.io.Serializable {
      private Set matriculas = new HashSet(0);
      private Set ministerios_lider = new HashSet(0);
      private Set turmas = new HashSet(0);
-     private Set membros = new HashSet(0);
+     private Set membrosLiderados = new HashSet(0);
      private Set noticias = new HashSet(0);
      private Set seminarios = new HashSet(0);
 
@@ -36,6 +36,7 @@ public class Membro  implements java.io.Serializable {
 
 	
     public Membro(Membro lideranca, Pessoa pessoa, String cpf, Date dataNasc, boolean lider, boolean professor, String usuario, String senha) {
+        this.id = pessoa.getId();
         this.lideranca = lideranca;
         this.pessoa = pessoa;
         this.cpf = cpf;
@@ -46,6 +47,7 @@ public class Membro  implements java.io.Serializable {
         this.senha = senha;
     }
     public Membro(Membro lideranca, Pessoa pessoa, String cpf, Date dataNasc, Date batismoApres, boolean lider, boolean professor, String usuario, String senha, Set ministerios, Set seminarios, Set matriculas, Set ministerios_1, Set turmas, Set membros, Set noticias) {
+       this.id = pessoa.getId();
        this.lideranca = lideranca;
        this.pessoa = pessoa;
        this.cpf = cpf;
@@ -60,7 +62,7 @@ public class Membro  implements java.io.Serializable {
        this.matriculas = matriculas;
        this.ministerios_lider = ministerios_1;
        this.turmas = turmas;
-       this.membros = membros;
+       this.membrosLiderados = membros;
        this.noticias = noticias;
     }
    
@@ -171,12 +173,12 @@ public class Membro  implements java.io.Serializable {
     public void setTurmas(Set turmas) {
         this.turmas = turmas;
     }
-    public Set getMembros() {
-        return this.membros;
+    public Set getMembrosLiderados() {
+        return this.membrosLiderados;
     }
     
-    public void setMembros(Set membros) {
-        this.membros = membros;
+    public void setMembrosLiderados(Set membrosLiderados) {
+        this.membrosLiderados = membrosLiderados;
     }
     public Set getNoticias() {
         return this.noticias;
