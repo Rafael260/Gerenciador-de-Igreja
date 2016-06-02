@@ -6,6 +6,7 @@
 package Util;
 
 import Classes.Evento;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,14 +15,23 @@ import java.util.List;
  */
 public class EventoDao implements Dao<Evento> {
 
+    public EventoDao(){
+        
+    }
+    
     @Override
     public List<Evento> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Object> objetos = HibernateUtil.getTuplasDaTabela("Evento");
+        List<Evento> eventos = new ArrayList<>();
+        for (Object obj: objetos){
+            eventos.add((Evento)obj);
+        }
+        return eventos;
     }
 
     @Override
     public void gravar(Evento obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HibernateUtil.persistirObjeto(obj);
     }
     
 }

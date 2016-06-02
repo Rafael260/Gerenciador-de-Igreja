@@ -2,7 +2,6 @@ package Classes;
 // Generated 28/05/2016 22:16:45 by Hibernate Tools 4.3.1
 
 
-import java.sql.Time;
 import java.util.Date;
 
 /**

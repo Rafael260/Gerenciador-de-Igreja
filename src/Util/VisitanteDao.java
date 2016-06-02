@@ -6,6 +6,7 @@
 package Util;
 
 import Classes.Visitante;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,14 +15,25 @@ import java.util.List;
  */
 public class VisitanteDao implements Dao<Visitante> {
 
+    private PessoaDao pessoaDao;
+    
+    public VisitanteDao(){
+        pessoaDao = new PessoaDao();
+    }
+    
     @Override
-    public List listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Visitante> listarTodos() {
+        List<Object> objetos = HibernateUtil.getTuplasDaTabela("Visitante");
+        List<Visitante> visitantes = new ArrayList<>();
+        for (Object obj: objetos){
+            visitantes.add((Visitante)obj);
+        }
+        return visitantes;
     }
 
     @Override
     public void gravar(Visitante obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HibernateUtil.persistirObjeto(obj);
+        pessoaDao.gravar(obj.getPessoa());
     }
-    
 }

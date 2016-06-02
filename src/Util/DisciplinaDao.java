@@ -6,6 +6,7 @@
 package Util;
 
 import Classes.Disciplina;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,14 +15,23 @@ import java.util.List;
  */
 public class DisciplinaDao implements Dao<Disciplina>{
 
+    public DisciplinaDao(){
+        
+    }
+    
     @Override
-    public List listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Disciplina> listarTodos() {
+        List<Object> objetos = HibernateUtil.getTuplasDaTabela("Disciplina");
+        List<Disciplina> disciplinas = new ArrayList<>();
+        for (Object obj: objetos){
+            disciplinas.add((Disciplina)obj);
+        }
+        return disciplinas;
     }
 
     @Override
     public void gravar(Disciplina obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HibernateUtil.persistirObjeto(obj);
     }
     
 }

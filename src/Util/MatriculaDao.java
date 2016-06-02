@@ -6,6 +6,7 @@
 package Util;
 
 import Classes.Matricula;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,14 +15,23 @@ import java.util.List;
  */
 public class MatriculaDao implements Dao<Matricula> {
 
+    public MatriculaDao(){
+        
+    }
+    
     @Override
     public List<Matricula> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Object> objetos = HibernateUtil.getTuplasDaTabela("Matricula");
+        List<Matricula> matriculas = new ArrayList<>();
+        for (Object obj: objetos){
+            matriculas.add((Matricula)obj);
+        }
+        return matriculas;
     }
 
     @Override
     public void gravar(Matricula obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HibernateUtil.persistirObjeto(obj);
     }
     
 }

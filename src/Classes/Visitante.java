@@ -67,8 +67,8 @@ public class Visitante  implements java.io.Serializable {
         this.eventos = eventos;
     }
     
-    public void adicionarEvento(String tema, Date data, Time hora, String tipo){
-        //adicionarEvento(new Evento(new EventoId(tema,data)))
+    public void adicionarEvento(String tema, Date data,String tipo){
+        adicionarEvento(new Evento(new EventoId(tema,data),tipo));
     }
 
     public void adicionarEvento(Evento evento){

@@ -6,6 +6,7 @@
 package Util;
 
 import Classes.Ministra;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,14 +15,23 @@ import java.util.List;
  */
 public class MinistraDao implements Dao<Ministra> {
 
+    public MinistraDao(){
+        
+    }
+    
     @Override
     public List<Ministra> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Object> objetos = HibernateUtil.getTuplasDaTabela("Ministra");
+        List<Ministra> ministracoes = new ArrayList<>();
+        for (Object obj: objetos){
+            ministracoes.add((Ministra)obj);
+        }
+        return ministracoes;
     }
 
     @Override
     public void gravar(Ministra obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HibernateUtil.persistirObjeto(obj);
     }
     
 }
