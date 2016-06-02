@@ -16,7 +16,6 @@ public class Disciplina  implements java.io.Serializable {
      private String nome;
      private Set turmas = new HashSet(0);
      private TurmaDao turmaDao;
-     
     public Disciplina() {
         this.turmaDao = new TurmaDao();
     }

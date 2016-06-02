@@ -17,7 +17,6 @@ import org.hibernate.Session;
  * @author Rafael
  */
 public class Igreja {
-    
     private Set membros = new HashSet(0);
     private Set visitantes = new HashSet(0);
     private Set eventos = new HashSet(0);
