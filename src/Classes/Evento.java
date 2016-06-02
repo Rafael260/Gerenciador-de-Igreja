@@ -3,6 +3,7 @@ package Classes;
 
 
 import Util.HibernateUtil;
+import Util.MinistraDao;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -18,14 +19,17 @@ public class Evento  implements java.io.Serializable {
      private Set ministras = new HashSet(0);
      private Set visitantes = new HashSet(0);
      private Set noticias = new HashSet(0);
+     private MinistraDao ministraDao;
 
     public Evento() {
+        this.ministraDao = new MinistraDao();
     }
 
 	
     public Evento(EventoId id, String tipo) {
         this.id = id;
         this.tipo = tipo;
+        this.ministraDao = new MinistraDao();
     }
     public Evento(EventoId id, String publicoAlvo, String tipo, Set ministras, Set visitantes, Set noticias) {
        this.id = id;
@@ -34,6 +38,7 @@ public class Evento  implements java.io.Serializable {
        this.ministras = ministras;
        this.visitantes = visitantes;
        this.noticias = noticias;
+       this.ministraDao = new MinistraDao();
     }
    
     public EventoId getId() {
@@ -91,9 +96,15 @@ public class Evento  implements java.io.Serializable {
         //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
         parametros.add("'"+this.id.getDiaHora()+"'");
         parametros.add("'"+this.id.getTema()+"'");
-        HibernateUtil.insertInto("visita_evento", parametros);    
-        
-        
+        HibernateUtil.insertInto("visita_evento", parametros);
+    }
+    
+    public void cadastrarMinistracao(Pessoa pessoa, Mensagem mensagem){
+        cadastrarMinistracao(new Ministra(new MinistraId(this.getId().getTema(),this.getId().getDiaHora(),mensagem.getTitulo()),this,mensagem,pessoa));
+    }
+    
+    public void cadastrarMinistracao(Ministra ministracao){
+        ministraDao.gravar(ministracao);
     }
 
 

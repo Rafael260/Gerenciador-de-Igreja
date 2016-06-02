@@ -3,8 +3,10 @@ package Classes;
 
 
 import Util.MatriculaDao;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -94,6 +96,12 @@ public class Turma  implements java.io.Serializable {
     
     public void cadastrarMatricula(Matricula matricula){
         matriculaDao.gravar(matricula);
+    }
+    
+    public List<Membro> getListaDeAlunos(){
+        List<Membro> alunos = new ArrayList<>();
+        
+        return alunos;
     }
             
 

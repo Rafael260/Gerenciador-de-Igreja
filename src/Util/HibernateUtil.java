@@ -76,4 +76,5 @@ public class HibernateUtil {
         return criteria.list();
     }
     
+    
 }

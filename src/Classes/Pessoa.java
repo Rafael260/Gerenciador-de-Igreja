@@ -2,6 +2,7 @@ package Classes;
 // Generated 28/05/2016 22:16:45 by Hibernate Tools 4.3.1
 
 
+import Util.MinistraDao;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,14 +26,18 @@ public class Pessoa  implements java.io.Serializable {
      private Set ministras = new HashSet(0);
      private Visitante visitante;
      private Membro membro;
+     
+     private MinistraDao ministraDao;
 
     public Pessoa() {
+        this.ministraDao = new MinistraDao();
     }
 
 	
     public Pessoa(String nome, String sobrenome) {
         this.nome = nome;
         this.sobrenome = sobrenome;
+        this.ministraDao = new MinistraDao();
     }
     public Pessoa(String nome, String sobrenome, String telefone, String endRua, Integer endNumero, String endComp, String endBairro, String endCidade, String endEstado, String email, Character estadoCivil, Set ministras, Visitante visitante, Membro membro) {
        this.nome = nome;
@@ -49,6 +54,7 @@ public class Pessoa  implements java.io.Serializable {
        this.ministras = ministras;
        this.visitante = visitante;
        this.membro = membro;
+       this.ministraDao = new MinistraDao();
     }
    
     public Integer getId() {
@@ -158,7 +164,13 @@ public class Pessoa  implements java.io.Serializable {
         this.membro = membro;
     }
 
-
+    public void cadastrarMinistracao(Evento evento, Mensagem mensagem){
+        cadastrarMinistracao(new Ministra(new MinistraId(evento.getId().getTema(),evento.getId().getDiaHora(),mensagem.getTitulo()),evento,mensagem,this));
+    }
+    
+    public void cadastrarMinistracao(Ministra ministra){
+        ministraDao.gravar(ministra);
+    }
 
 
 }
