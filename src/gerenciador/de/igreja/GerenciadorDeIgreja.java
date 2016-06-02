@@ -7,6 +7,8 @@ package gerenciador.de.igreja;
 
 import Classes.*;
 import Util.HibernateUtil;
+import Util.MembroDao;
+import Util.PessoaDao;
 import java.util.List;
 import org.hibernate.Session;
 
@@ -47,14 +49,19 @@ public class GerenciadorDeIgreja {
             }
         });*/
         
-        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+        /*Session s = HibernateUtil.getSessionFactory().getCurrentSession();
         s.beginTransaction();
         List<Pessoa> p = (List<Pessoa>)s.createQuery("from Pessoa").list();
         for (Pessoa p1: p){
             System.out.println(p1.getNome());
         }
         s.getTransaction().commit();
-                
+          */      
+        
+        //Testando consulta pelo id da pessoa
+        PessoaDao pessoaDao = new PessoaDao();
+        Pessoa pessoa = pessoaDao.selectPessoaPk(1);
+        System.out.println(pessoa.getNome());
     }
     
 }

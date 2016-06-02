@@ -6,8 +6,12 @@
 package Util;
 
 import Classes.Membro;
+import Classes.Pessoa;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -36,4 +40,15 @@ public class MembroDao implements Dao<Membro> {
         pessoaDao.gravar(obj.getPessoa());
     }
     
+    public Membro selectMembroPk(int id){
+        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+        s.beginTransaction();
+        Criteria criteria = s.createCriteria(Membro.class);
+        criteria.add(Restrictions.eq("id",id));
+        Membro m = (Membro)HibernateUtil.select(criteria).get(0);
+        Pessoa p = pessoaDao.selectPessoaPk(id);
+        m.setPessoa(p);
+        s.getTransaction().commit();
+        return m;
+    }
 }

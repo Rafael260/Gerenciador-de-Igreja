@@ -6,6 +6,7 @@
 package Util;
 
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
@@ -69,6 +70,10 @@ public class HibernateUtil {
         tuplas = s.createQuery("from "+tabela).list();
         s.getTransaction().commit();
         return tuplas;
+    }
+    
+    public static List select(Criteria criteria){
+        return criteria.list();
     }
     
 }
