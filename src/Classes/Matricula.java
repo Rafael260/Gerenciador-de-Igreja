@@ -2,6 +2,8 @@ package Classes;
 // Generated 28/05/2016 22:16:45 by Hibernate Tools 4.3.1
 
 
+import Util.AssiduidadeDao;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,26 +12,30 @@ import java.util.Set;
  */
 public class Matricula  implements java.io.Serializable {
      private MatriculaId id;
-     private Membro membro;
+     private Membro aluno;
      private Turma turma;
      private Float notaFinal;
      private Set assiduidades = new HashSet(0);
+     private AssiduidadeDao assiduidadeDao;
 
     public Matricula() {
+        this.assiduidadeDao = new AssiduidadeDao();
     }
 
 	
     public Matricula(MatriculaId id, Membro membro, Turma turma) {
         this.id = id;
-        this.membro = membro;
+        this.aluno = membro;
         this.turma = turma;
+        this.assiduidadeDao = new AssiduidadeDao();
     }
     public Matricula(MatriculaId id, Membro membro, Turma turma, Float notaFinal, Set assiduidades) {
        this.id = id;
-       this.membro = membro;
+       this.aluno = membro;
        this.turma = turma;
        this.notaFinal = notaFinal;
        this.assiduidades = assiduidades;
+       assiduidadeDao = new AssiduidadeDao();
     }
    
     public MatriculaId getId() {
@@ -39,12 +45,12 @@ public class Matricula  implements java.io.Serializable {
     public void setId(MatriculaId id) {
         this.id = id;
     }
-    public Membro getMembro() {
-        return this.membro;
+    public Membro getAluno() {
+        return this.aluno;
     }
     
-    public void setMembro(Membro membro) {
-        this.membro = membro;
+    public void setAluno(Membro aluno) {
+        this.aluno = aluno;
     }
     public Turma getTurma() {
         return this.turma;
@@ -68,7 +74,15 @@ public class Matricula  implements java.io.Serializable {
         this.assiduidades = assiduidades;
     }
 
-
+    //////////////////////////////////////////////////////////
+    
+    public void cadastrarAssiduidade(Date data, boolean presenca){
+        cadastrarAssiduidade(new Assiduidade(new AssiduidadeId(data,aluno.getId(),turma.getDisciplina().getCodigo(),turma.getId().getDataInicio()),this,presenca));
+    }
+    
+    public void cadastrarAssiduidade(Assiduidade assiduidade){
+        assiduidadeDao.gravar(assiduidade);
+    }
 
 
 }

@@ -17,8 +17,10 @@ public class Turma  implements java.io.Serializable {
      private PeriodoLetivo periodoLetivo;
      private Date dataFim;
      private Set matriculas = new HashSet(0);
-
+     private MatriculaDao matriculaDao;
+    
     public Turma() {
+        this.matriculaDao = new MatriculaDao();
     }
 
 	
@@ -28,6 +30,7 @@ public class Turma  implements java.io.Serializable {
         this.professor = membro;
         this.periodoLetivo = periodoLetivo;
         this.dataFim = dataFim;
+        this.matriculaDao = new MatriculaDao();
     }
     public Turma(TurmaId id, Disciplina disciplina, Membro membro, PeriodoLetivo periodoLetivo, Date dataFim, Set matriculas) {
        this.id = id;
@@ -36,6 +39,7 @@ public class Turma  implements java.io.Serializable {
        this.periodoLetivo = periodoLetivo;
        this.dataFim = dataFim;
        this.matriculas = matriculas;
+       this.matriculaDao = new MatriculaDao();
     }
    
     public TurmaId getId() {
@@ -84,13 +88,11 @@ public class Turma  implements java.io.Serializable {
 
     /////////////////////////////////////////////////////////////
     
-    
-    public void adicionarMatricula(Membro aluno){
-        adicionarMatricula(new Matricula(new MatriculaId(aluno.getId(),disciplina.getCodigo(),id.getDataInicio()),aluno,this));
+    public void cadastrarMatricula(Membro aluno){
+        cadastrarMatricula(new Matricula(new MatriculaId(aluno.getId(),disciplina.getCodigo(),id.getDataInicio()),aluno,this));
     }
     
-    public void adicionarMatricula(Matricula matricula){
-        MatriculaDao matriculaDao = new MatriculaDao();
+    public void cadastrarMatricula(Matricula matricula){
         matriculaDao.gravar(matricula);
     }
             

@@ -2,7 +2,8 @@ package Classes;
 // Generated 28/05/2016 22:16:45 by Hibernate Tools 4.3.1
 
 
-import Util.HibernateUtil;
+import Util.DisciplinaDao;
+import Util.PeriodoLetivoDao;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,20 +15,29 @@ public class Seminario  implements java.io.Serializable {
      private Membro membro;
      private Set disciplinas = new HashSet(0);
      private Set periodoLetivos = new HashSet(0);
+     private PeriodoLetivoDao periodoLetivoDao;
+     private DisciplinaDao disciplinaDao;
 
     public Seminario() {
+        this.periodoLetivoDao = new PeriodoLetivoDao();
+        this.disciplinaDao = new DisciplinaDao();
     }
 
 	
     public Seminario(String nome, Membro membro) {
         this.nome = nome;
         this.membro = membro;
+        this.periodoLetivoDao = new PeriodoLetivoDao();
+        this.disciplinaDao = new DisciplinaDao();
     }
+    
     public Seminario(String nome, Membro membro, Set disciplinas, Set periodoLetivos) {
        this.nome = nome;
        this.membro = membro;
        this.disciplinas = disciplinas;
        this.periodoLetivos = periodoLetivos;
+       this.periodoLetivoDao = new PeriodoLetivoDao();
+       this.disciplinaDao = new DisciplinaDao();
     }
    
     public String getNome() {
@@ -64,18 +74,16 @@ public class Seminario  implements java.io.Serializable {
      * Usa a Session do Hibernate para realizar a transação em salvar o novo período
      * @param ano: ano do período letivo
      */
-    public void adicionarPeriodoLetivo(int ano){
+    public void cadastrarPeriodoLetivo(int ano){
         PeriodoLetivo pLetivo = new PeriodoLetivo(ano, this);
-        HibernateUtil.persistirObjeto(pLetivo);
+        periodoLetivoDao.gravar(pLetivo);
     }
 
-    public void adicionarDisciplina(String codigo, String nome){
-        adicionarDisciplina(new Disciplina(codigo,this,nome));
+    public void cadastrarDisciplina(String codigo, String nome){
+        cadastrarDisciplina(new Disciplina(codigo,this,nome));
     }
     
-    public void adicionarDisciplina(Disciplina disciplina){
-        HibernateUtil.persistirObjeto(disciplina);
+    public void cadastrarDisciplina(Disciplina disciplina){
+        disciplinaDao.gravar(disciplina);
     }
 }
-
-

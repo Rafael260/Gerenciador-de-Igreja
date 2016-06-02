@@ -2,6 +2,8 @@ package Classes;
 // Generated 28/05/2016 22:16:45 by Hibernate Tools 4.3.1
 
 
+import Util.TurmaDao;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -49,6 +51,16 @@ public class PeriodoLetivo  implements java.io.Serializable {
         this.turmas = turmas;
     }
 
+    ////////////////////////////////////////////////////////
+    
+    public void cadastrarTurma(Membro professor, Disciplina disciplina, Date dataInicio, Date dataFim){
+        cadastrarTurma( new Turma( new TurmaId(disciplina.getCodigo(),dataInicio), disciplina, professor, this, dataFim));
+    }
+
+    public void cadastrarTurma(Turma turma){
+        TurmaDao turmaDao = new TurmaDao();
+        turmaDao.gravar(turma);
+    }
 
 
 
