@@ -3,19 +3,20 @@
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="Connect_church"/>
   <table-filter match-name="pessoa"/>
-  <table-filter match-name="participa_ministerio"/>
-  <table-filter match-name="matricula"/>
-  <table-filter match-name="noticia"/>
-  <table-filter match-name="membro"/>
-  <table-filter match-name="turma"/>
-  <table-filter match-name="evento"/>
   <table-filter match-name="assiduidade"/>
-  <table-filter match-name="visitante"/>
-  <table-filter match-name="ministerio"/>
-  <table-filter match-name="ministra"/>
-  <table-filter match-name="visita_evento"/>
   <table-filter match-name="periodo_letivo"/>
-  <table-filter match-name="seminario"/>
   <table-filter match-name="disciplina"/>
+  <table-filter match-name="seminario"/>
+  <table-filter match-name="grupo"/>
+  <table-filter match-name="evento"/>
+  <table-filter match-name="visita_evento"/>
+  <table-filter match-name="membro"/>
+  <table-filter match-name="noticia"/>
+  <table-filter match-name="matricula"/>
   <table-filter match-name="mensagem"/>
+  <table-filter match-name="turma"/>
+  <table-filter match-name="ministracao"/>
+  <table-filter match-name="visitante"/>
+  <table-filter match-name="participa_ministerio"/>
+  <table-filter match-name="ministerio"/>
 </hibernate-reverse-engineering>

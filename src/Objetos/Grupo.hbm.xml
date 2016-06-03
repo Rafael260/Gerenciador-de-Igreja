@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 03/06/2016 10:35:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Objetos.Grupo" table="grupo" catalog="connect_church" optimistic-lock="version">
+        <composite-id name="id" class="Objetos.GrupoId">
+            <key-property name="idLider" type="int">
+                <column name="id_lider" />
+            </key-property>
+            <key-property name="hora" type="time">
+                <column name="hora" length="8" />
+            </key-property>
+            <key-property name="diaSemana" type="string">
+                <column name="dia_semana" length="10" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="membro" class="Objetos.Membro" update="false" insert="false" fetch="select">
+            <column name="id_lider" not-null="true" />
+        </many-to-one>
+        <property name="tipoGrupo" type="string">
+            <column name="tipo_grupo" length="45" />
+        </property>
+        <property name="endRua" type="string">
+            <column name="end_rua" length="45" not-null="true" />
+        </property>
+        <property name="endNumero" type="int">
+            <column name="end_numero" not-null="true" />
+        </property>
+        <property name="endCompl" type="string">
+            <column name="end_compl" length="45" />
+        </property>
+        <property name="endBairro" type="string">
+            <column name="end_bairro" length="45" not-null="true" />
+        </property>
+        <property name="endCidade" type="string">
+            <column name="end_cidade" length="45" not-null="true" />
+        </property>
+        <set name="membros" table="membro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_lider" />
+                <column name="hora_grupo" length="8" />
+                <column name="dia_sem_grupo" length="10" />
+            </key>
+            <one-to-many class="Objetos.Membro" />
+        </set>
+    </class>
+</hibernate-mapping>

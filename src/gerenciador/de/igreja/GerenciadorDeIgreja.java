@@ -5,10 +5,8 @@
  */
 package gerenciador.de.igreja;
 
-import Classes.*;
+import Objetos.*;
 import Util.HibernateUtil;
-import Util.MembroDao;
-import Util.PessoaDao;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
@@ -50,24 +48,14 @@ public class GerenciadorDeIgreja {
             }
         });*/
         
-        /*Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
         s.beginTransaction();
         List<Pessoa> p = (List<Pessoa>)s.createQuery("from Pessoa").list();
         for (Pessoa p1: p){
             System.out.println(p1.getNome());
         }
         s.getTransaction().commit();
-          */      
-        
-        //Testando consulta pelo id da pessoa
-        /*PessoaDao pessoaDao = new PessoaDao();
-        Pessoa pessoa = pessoaDao.selectPessoaPk(1);
-        System.out.println(pessoa.getNome());*/
-        Date date = new Date();
-        date.setDate(18);
-        date.setMonth(10);
-        date.setYear(1995 - 1900);
-        System.out.println(date.toString());
+              
     }
     
 }

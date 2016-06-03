@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 03/06/2016 10:35:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Objetos.PeriodoLetivo" table="periodo_letivo" catalog="connect_church" optimistic-lock="version">
+        <id name="anoLetivo" type="int">
+            <column name="ano_letivo" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="seminario" class="Objetos.Seminario" fetch="select">
+            <column name="nome_sem" length="45" not-null="true" />
+        </many-to-one>
+        <set name="turmas" table="turma" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ano_let" not-null="true" />
+            </key>
+            <one-to-many class="Objetos.Turma" />
+        </set>
+    </class>
+</hibernate-mapping>

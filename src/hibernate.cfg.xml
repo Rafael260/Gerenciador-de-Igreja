@@ -8,19 +8,20 @@
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">12345678</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <mapping resource="Classes/Noticia.hbm.xml"/>
-    <mapping resource="Classes/Matricula.hbm.xml"/>
-    <mapping resource="Classes/Seminario.hbm.xml"/>
-    <mapping resource="Classes/PeriodoLetivo.hbm.xml"/>
-    <mapping resource="Classes/Assiduidade.hbm.xml"/>
-    <mapping resource="Classes/Mensagem.hbm.xml"/>
-    <mapping resource="Classes/Evento.hbm.xml"/>
-    <mapping resource="Classes/Disciplina.hbm.xml"/>
-    <mapping resource="Classes/Ministerio.hbm.xml"/>
-    <mapping resource="Classes/Pessoa.hbm.xml"/>
-    <mapping resource="Classes/Turma.hbm.xml"/>
-    <mapping resource="Classes/Ministra.hbm.xml"/>
-    <mapping resource="Classes/Membro.hbm.xml"/>
-    <mapping resource="Classes/Visitante.hbm.xml"/>
+    <mapping resource="Objetos/Mensagem.hbm.xml"/>
+    <mapping resource="Objetos/Visitante.hbm.xml"/>
+    <mapping resource="Objetos/Disciplina.hbm.xml"/>
+    <mapping resource="Objetos/Ministerio.hbm.xml"/>
+    <mapping resource="Objetos/Evento.hbm.xml"/>
+    <mapping resource="Objetos/Grupo.hbm.xml"/>
+    <mapping resource="Objetos/Ministracao.hbm.xml"/>
+    <mapping resource="Objetos/Pessoa.hbm.xml"/>
+    <mapping resource="Objetos/Assiduidade.hbm.xml"/>
+    <mapping resource="Objetos/Turma.hbm.xml"/>
+    <mapping resource="Objetos/Matricula.hbm.xml"/>
+    <mapping resource="Objetos/PeriodoLetivo.hbm.xml"/>
+    <mapping resource="Objetos/Membro.hbm.xml"/>
+    <mapping resource="Objetos/Seminario.hbm.xml"/>
+    <mapping resource="Objetos/Noticia.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
