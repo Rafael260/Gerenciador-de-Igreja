@@ -39,6 +39,7 @@ public class HibernateUtil {
     
     public static void persistirObjeto(Object o){
         Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
         s.saveOrUpdate(o);
         s.getTransaction().commit();
     }
@@ -64,17 +65,31 @@ public class HibernateUtil {
         s.getTransaction().commit();
     }
     
-    public static List<Object> getTuplasDaTabela(String tabela){
+    public static void insertInto(String tabela, List<String> colunas, List<String> valores){
         Session s = sessionFactory.getCurrentSession();
-        List<Object> tuplas;
+        String parametros = "";
+        String columns = "";
+        //Concatenando todos os valores da tupla
+        for (String str: valores){
+            parametros += str + ",";
+        }
+        for (String str: colunas){
+            columns += str += ",";
+        }
+        //Tirar a última vírgula
+        parametros = parametros.substring(0, parametros.length()-1);
+        columns = columns.substring(0, columns.length()-1);
+        s.beginTransaction();
+        s.createSQLQuery("insert into "+ tabela+"(" +columns+ ") " +"values("+parametros+")");
+        s.getTransaction().commit();
+    }
+    
+    public static List getTuplasDaTabela(String tabela){
+        Session s = sessionFactory.getCurrentSession();
+        List tuplas;
         tuplas = s.createQuery("from "+tabela).list();
         s.getTransaction().commit();
         return tuplas;
     }
-    
-    public static List select(Criteria criteria){
-        return criteria.list();
-    }
-    
     
 }
