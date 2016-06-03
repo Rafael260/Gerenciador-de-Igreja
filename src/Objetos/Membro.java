@@ -30,7 +30,7 @@ public class Membro  implements java.io.Serializable {
      private Set seminarios = new HashSet(0);
      private Set grupos = new HashSet(0);
      private Set matriculas = new HashSet(0);
-     private Set ministerios_1 = new HashSet(0);
+     private Set ministerios_lidera = new HashSet(0);
      private Set turmas = new HashSet(0);
      private Set noticias = new HashSet(0);
 
@@ -60,7 +60,7 @@ public class Membro  implements java.io.Serializable {
        this.seminarios = seminarios;
        this.grupos = grupos;
        this.matriculas = matriculas;
-       this.ministerios_1 = ministerios_1;
+       this.ministerios_lidera = ministerios_1;
        this.turmas = turmas;
        this.noticias = noticias;
     }
@@ -163,12 +163,12 @@ public class Membro  implements java.io.Serializable {
     public void setMatriculas(Set matriculas) {
         this.matriculas = matriculas;
     }
-    public Set getMinisterios_1() {
-        return this.ministerios_1;
+    public Set getMinisterios_lidera() {
+        return this.ministerios_lidera;
     }
     
-    public void setMinisterios_1(Set ministerios_1) {
-        this.ministerios_1 = ministerios_1;
+    public void setMinisterios_lidera(Set ministerios_lidera) {
+        this.ministerios_lidera = ministerios_lidera;
     }
     public Set getTurmas() {
         return this.turmas;
@@ -198,7 +198,7 @@ public class Membro  implements java.io.Serializable {
 
     /**
      * Adicionar ministério se resume à adicionar a tupla (membro, ministério) na tabela
-     * participa_ministerio
+     * participa_ministerio e ao set de ministérios que membro participa.
      * @param ministerio 
      */
     public void adicionarMinisterio(Ministerio ministerio){
@@ -207,6 +207,7 @@ public class Membro  implements java.io.Serializable {
         //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
         parametros.add("'"+ministerio.getNome()+"'");
         HibernateUtil.insertInto("participa_ministerio", parametros);
+        ministerios.add(ministerio);
     }
 
     public static List<Membro> listarTodos(){
