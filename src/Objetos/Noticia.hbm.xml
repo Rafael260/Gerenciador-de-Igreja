@@ -4,14 +4,10 @@
 <!-- Generated 03/06/2016 10:35:39 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="Objetos.Noticia" table="noticia" catalog="connect_church" optimistic-lock="version">
-        <composite-id name="id" class="Objetos.NoticiaId">
-            <key-property name="manchete" type="string">
-                <column name="manchete" length="45" />
-            </key-property>
-            <key-property name="idCadastrante" type="int">
-                <column name="id_cadastrante" />
-            </key-property>
-        </composite-id>
+       <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
         <many-to-one name="evento" class="Objetos.Evento" fetch="select">
             <column name="tema_evt" length="45" />
             <column name="dia_hora_evt" length="19" />

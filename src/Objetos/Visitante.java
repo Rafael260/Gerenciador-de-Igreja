@@ -3,6 +3,7 @@ package Objetos;
 
 
 import Util.HibernateUtil;
+import Util.Returner;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -81,6 +82,11 @@ public class Visitante  implements java.io.Serializable {
         HibernateUtil.insertInto("visita_evento", parametros);
     }
 
+    public static List<Visitante> listarTodos(){
+        List objects = HibernateUtil.getTuplasDaTabela("visitante");
+        Returner<Visitante> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
 
 }
 

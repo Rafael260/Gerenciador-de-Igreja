@@ -3,6 +3,7 @@ package Objetos;
 
 
 import Util.HibernateUtil;
+import Util.Returner;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -79,6 +80,12 @@ public class Evento  implements java.io.Serializable {
     
     public void setNoticias(Set noticias) {
         this.noticias = noticias;
+    }
+    
+    public static List<Evento> listarTodos(){
+        List objects = HibernateUtil.getTuplasDaTabela("evento");
+        Returner<Evento> returner = new Returner();
+        return returner.getListaEspecifica(objects);
     }
 
     public void adicionarVisitante(Pessoa pessoa){

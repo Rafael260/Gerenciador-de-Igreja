@@ -1,6 +1,11 @@
 package Objetos;
 // Generated 03/06/2016 10:35:37 by Hibernate Tools 4.3.1
 
+import Util.HibernateUtil;
+import Util.Returner;
+import java.util.List;
+
+
 
 
 /**
@@ -8,35 +13,59 @@ package Objetos;
  */
 public class Noticia  implements java.io.Serializable {
 
-
-     private NoticiaId id;
+     private Integer id;
+     private String manchete;
      private Evento evento;
      private Membro membro;
      private String texto;
 
     public Noticia() {
     }
-
 	
-    public Noticia(NoticiaId id, Membro membro, String texto) {
+    public Noticia(Integer id, String manchete, Membro membro, String texto) {
         this.id = id;
+        this.manchete = manchete;
         this.membro = membro;
         this.texto = texto;
     }
-    public Noticia(NoticiaId id, Evento evento, Membro membro, String texto) {
+    
+    public Noticia(int id, String manchete, Evento evento, String texto) {
+        this.id = id;
+        this.manchete = manchete;
+        this.evento = evento;
+        this.texto = texto;
+    }
+    
+    public Noticia(int id, String manchete, String texto, Evento evento, Membro membro) {
        this.id = id;
+       this.manchete = manchete;
        this.evento = evento;
        this.membro = membro;
        this.texto = texto;
     }
+    
+    public Noticia(int id, String manchete, String texto){
+        this.id = id;
+        this.manchete = manchete;
+        this.texto = texto;
+    }
    
-    public NoticiaId getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(NoticiaId id) {
+    public void setId(int id) {
         this.id = id;
     }
+
+    public String getManchete() {
+        return manchete;
+    }
+
+    public void setManchete(String manchete) {
+        this.manchete = manchete;
+    }
+    
     public Evento getEvento() {
         return this.evento;
     }
@@ -59,8 +88,11 @@ public class Noticia  implements java.io.Serializable {
         this.texto = texto;
     }
 
-
-
+    public static List<Noticia> listarTodos(){
+        List objects = HibernateUtil.getTuplasDaTabela("noticias");
+        Returner<Noticia> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
 
 }
 

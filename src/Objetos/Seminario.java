@@ -3,7 +3,9 @@ package Objetos;
 
 
 import Util.HibernateUtil;
+import Util.Returner;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -59,6 +61,12 @@ public class Seminario  implements java.io.Serializable {
     
     public void setPeriodoLetivos(Set periodoLetivos) {
         this.periodoLetivos = periodoLetivos;
+    }
+    
+    public static List<Seminario> listarTodos(){
+        List objects = HibernateUtil.getTuplasDaTabela("seminario");
+        Returner<Seminario> returner = new Returner();
+        return returner.getListaEspecifica(objects);
     }
 
     /**

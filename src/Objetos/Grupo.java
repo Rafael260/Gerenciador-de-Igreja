@@ -2,7 +2,10 @@ package Objetos;
 // Generated 03/06/2016 10:35:37 by Hibernate Tools 4.3.1
 
 
+import Util.HibernateUtil;
+import Util.Returner;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -110,7 +113,11 @@ public class Grupo  implements java.io.Serializable {
     }
 
 
-
+    public static List<Grupo> listarTodos(){
+        List objects = HibernateUtil.getTuplasDaTabela("grupo");
+        Returner<Grupo> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
 
 }
 

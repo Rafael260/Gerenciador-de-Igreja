@@ -48,14 +48,15 @@ public class GerenciadorDeIgreja {
             }
         });*/
         
-        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+        /*Session s = HibernateUtil.getSessionFactory().getCurrentSession();
         s.beginTransaction();
         List<Pessoa> p = (List<Pessoa>)s.createQuery("from Pessoa").list();
         for (Pessoa p1: p){
             System.out.println(p1.getNome());
         }
-        s.getTransaction().commit();
-              
+        s.getTransaction().commit();*/
+        Mensagem mensagem = new Mensagem("Senhor em primeiro lugar","Mat 6:33-34","Intimidade com Deus");
+        HibernateUtil.persistirObjeto(mensagem);
     }
     
 }

@@ -3,6 +3,7 @@ package Objetos;
 
 
 import Util.HibernateUtil;
+import Util.Returner;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -86,6 +87,13 @@ public class Ministerio  implements java.io.Serializable {
 
     /////////////////////////////////////////////////////////////////////
 
+    public static List<Ministerio> listarTodos(){
+        List objects = HibernateUtil.getTuplasDaTabela("ministerio");
+        Returner<Ministerio> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
+    
+    
     /**
      * Em ministério, considera-se que o membro já esteja cadastrado no sistema
      * Verificar se usar o comando sql é a melhor solução

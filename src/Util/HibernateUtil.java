@@ -39,6 +39,7 @@ public class HibernateUtil {
     
     public static void persistirObjeto(Object o){
         Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
         s.saveOrUpdate(o);
         s.getTransaction().commit();
     }
@@ -83,9 +84,9 @@ public class HibernateUtil {
         s.getTransaction().commit();
     }
     
-    public static List<Object> getTuplasDaTabela(String tabela){
+    public static List getTuplasDaTabela(String tabela){
         Session s = sessionFactory.getCurrentSession();
-        List<Object> tuplas;
+        List tuplas;
         tuplas = s.createQuery("from "+tabela).list();
         s.getTransaction().commit();
         return tuplas;

@@ -3,6 +3,7 @@ package Objetos;
 
 
 import Util.HibernateUtil;
+import Util.Returner;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -208,7 +209,11 @@ public class Membro  implements java.io.Serializable {
         HibernateUtil.insertInto("participa_ministerio", parametros);
     }
 
-
+    public static List<Membro> listarTodos(){
+        List objects = HibernateUtil.getTuplasDaTabela("membro");
+        Returner<Membro> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
 }
 
 
