@@ -92,4 +92,12 @@ public class HibernateUtil {
         return tuplas;
     }
     
+    public static List getTuplasDaTabela(String tabela, String where){
+        Session s = sessionFactory.getCurrentSession();
+        List tuplas;
+        tuplas = s.createQuery("from "+tabela+ " where "+ where).list();
+        s.getTransaction().commit();
+        return tuplas;
+    }
+    
 }

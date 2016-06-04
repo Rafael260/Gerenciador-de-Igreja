@@ -118,6 +118,11 @@ public class Grupo  implements java.io.Serializable {
         Returner<Grupo> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }
+    
+    public void adicionarMembro(Membro membro){
+        membro.setGrupo(this);
+        HibernateUtil.persistirObjeto(membro);
+    }
 
 }
 

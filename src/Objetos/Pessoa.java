@@ -3,7 +3,9 @@ package Objetos;
 
 
 import Util.HibernateUtil;
+import Util.Returner;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -158,6 +160,19 @@ public class Pessoa  implements java.io.Serializable {
     public void setVisitante(Visitante visitante) {
         this.visitante = visitante;
     }
+    
+    ////////////////////////////////////////////////
+    
+    public static List<Pessoa> listarTodos(){
+        List objects = HibernateUtil.getTuplasDaTabela("pessoa");
+        Returner<Pessoa> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
+    
+    public static Pessoa selectPessoaPk(int id){
+        Returner<Pessoa> returner = new Returner();
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("pessoa", "id="+id)).get(0);
+    }
 
     public void cadastrarMinistracao(Evento evento, Mensagem mensagem){
         Ministracao ministracao = new Ministracao(new MinistracaoId(evento.getId().getTema(),evento.getId().getDiaHora(),mensagem.getTitulo()),evento,mensagem,this);
@@ -168,7 +183,7 @@ public class Pessoa  implements java.io.Serializable {
         HibernateUtil.persistirObjeto(ministracao);
     }
 
-
+    
 }
 
 

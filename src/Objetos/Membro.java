@@ -40,6 +40,7 @@ public class Membro  implements java.io.Serializable {
 	
     public Membro(Pessoa pessoa, String cpf, boolean lider, boolean professor, String usuario, String senha) {
         this.pessoa = pessoa;
+        this.id = pessoa.getId();
         this.cpf = cpf;
         this.lider = lider;
         this.professor = professor;
@@ -49,6 +50,7 @@ public class Membro  implements java.io.Serializable {
     public Membro(Grupo grupo, Pessoa pessoa, String cpf, Date dataNasc, Date batismoApres, boolean lider, boolean professor, String usuario, String senha, Set ministerios, Set seminarios, Set grupos, Set matriculas, Set ministerios_1, Set turmas, Set noticias) {
        this.grupo = grupo;
        this.pessoa = pessoa;
+       this.id = pessoa.getId();
        this.cpf = cpf;
        this.dataNasc = dataNasc;
        this.batismoApres = batismoApres;
@@ -85,6 +87,7 @@ public class Membro  implements java.io.Serializable {
     
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+        this.id = pessoa.getId();
     }
     public String getCpf() {
         return this.cpf;
@@ -187,6 +190,26 @@ public class Membro  implements java.io.Serializable {
 
     /////////////////////////////////////////////////////////////
 
+    public static List<Membro> listarTodos(){
+        List objects = HibernateUtil.getTuplasDaTabela("membro");
+        Returner<Membro> returner = new Returner();
+        List<Membro> membros = returner.getListaEspecifica(objects);
+        Pessoa pessoa;
+        for (Membro membro: membros){
+            pessoa = Pessoa.selectPessoaPk(membro.getId()); //talvez não seja eficiente
+            membro.setPessoa(pessoa);
+        }
+        return membros;
+    }
+    
+    public static Membro selectMembroPk(int id){
+        Returner<Membro> returner = new Returner();
+        Membro membro = returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("membro", "id="+id)).get(0);
+        Pessoa pessoa = Pessoa.selectPessoaPk(id);
+        membro.setPessoa(pessoa);
+        return membro;
+    }
+    
     public void adicionarMinisterio(String nome, Date hora, String diaSemana){
         Ministerio ministerio = new Ministerio(nome,this,hora,diaSemana);
         List<String> parametros = new ArrayList<>();
@@ -210,11 +233,7 @@ public class Membro  implements java.io.Serializable {
         ministerios.add(ministerio);
     }
 
-    public static List<Membro> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("membro");
-        Returner<Membro> returner = new Returner();
-        return returner.getListaEspecifica(objects);
-    }
+    
 }
 
 
