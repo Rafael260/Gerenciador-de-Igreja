@@ -22,10 +22,11 @@ public class Membro  implements java.io.Serializable {
      private String cpf;
      private Date dataNasc;
      private Date batismoApres;
-     private boolean lider;
-     private boolean professor;
      private String usuario;
      private String senha;
+     //CONSIDERAMOS OS BITS DA DIREITA PARA A ESQUERDA
+     //1º BIT: LÍDER, 2º BIT: PROFESSOR, 3º BIT: SECRETARIA, 4º BIT: ADMIN
+     private int permissoes;
      private Set ministerios = new HashSet(0);
      private Set seminarios = new HashSet(0);
      private Set grupos = new HashSet(0);
@@ -38,26 +39,59 @@ public class Membro  implements java.io.Serializable {
     }
 
 	
-    public Membro(Pessoa pessoa, String cpf, boolean lider, boolean professor, String usuario, String senha) {
+    public Membro(Pessoa pessoa, String cpf, String usuario, String senha, int permissoes) {
         this.pessoa = pessoa;
         this.id = pessoa.getId();
         this.cpf = cpf;
-        this.lider = lider;
-        this.professor = professor;
         this.usuario = usuario;
         this.senha = senha;
+        this.permissoes = permissoes;
     }
-    public Membro(Grupo grupo, Pessoa pessoa, String cpf, Date dataNasc, Date batismoApres, boolean lider, boolean professor, String usuario, String senha, Set ministerios, Set seminarios, Set grupos, Set matriculas, Set ministerios_1, Set turmas, Set noticias) {
+    
+    public Membro(Pessoa pessoa, String cpf, String usuario, String senha, boolean lider, boolean professor, boolean secretario, boolean admin) {
+        this.pessoa = pessoa;
+        this.id = pessoa.getId();
+        this.cpf = cpf;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.setLider(lider);
+        this.setProfessor(professor);
+        this.setSecretario(secretario);
+        this.setAdmin(admin);
+    }
+    
+    public Membro(Grupo grupo, Pessoa pessoa, String cpf, Date dataNasc, Date batismoApres, String usuario, String senha, int permissoes, Set ministerios, Set seminarios, Set grupos, Set matriculas, Set ministerios_1, Set turmas, Set noticias) {
        this.grupo = grupo;
        this.pessoa = pessoa;
        this.id = pessoa.getId();
        this.cpf = cpf;
        this.dataNasc = dataNasc;
        this.batismoApres = batismoApres;
-       this.lider = lider;
-       this.professor = professor;
        this.usuario = usuario;
        this.senha = senha;
+       this.permissoes = permissoes;
+       this.ministerios = ministerios;
+       this.seminarios = seminarios;
+       this.grupos = grupos;
+       this.matriculas = matriculas;
+       this.ministerios_lidera = ministerios_1;
+       this.turmas = turmas;
+       this.noticias = noticias;
+    }
+    
+    public Membro(Grupo grupo, Pessoa pessoa, String cpf, Date dataNasc, Date batismoApres, String usuario, String senha, boolean lider, boolean professor, boolean secretario, boolean admin, Set ministerios, Set seminarios, Set grupos, Set matriculas, Set ministerios_1, Set turmas, Set noticias) {
+       this.grupo = grupo;
+       this.pessoa = pessoa;
+       this.id = pessoa.getId();
+       this.cpf = cpf;
+       this.dataNasc = dataNasc;
+       this.batismoApres = batismoApres;
+       this.usuario = usuario;
+       this.senha = senha;
+       this.setLider(lider);
+       this.setProfessor(professor);
+       this.setSecretario(secretario);
+       this.setAdmin(admin);
        this.ministerios = ministerios;
        this.seminarios = seminarios;
        this.grupos = grupos;
@@ -110,20 +144,69 @@ public class Membro  implements java.io.Serializable {
     public void setBatismoApres(Date batismoApres) {
         this.batismoApres = batismoApres;
     }
+    public int getPermissoes(){
+        return this.permissoes;
+    }
+    
+    public void setPermissoes(int permissoes){
+        this.permissoes = permissoes;
+    }
+    
     public boolean isLider() {
-        return this.lider;
+        //Checa se o 1º bit é 1
+        return (this.permissoes & 1) == 1;
     }
     
-    public void setLider(boolean lider) {
-        this.lider = lider;
+    public final void setLider(boolean lider) {
+        //Se quiser setar como líder, o 1º bit deve ser 1
+        if (lider){
+            this.permissoes = this.permissoes | 1;
+        }
+        //Senão, faz a operação de and para zerar o 1º bit e preservar os outros 3
+        else{
+            this.permissoes = this.permissoes & 14;
+        }
     }
+    //Os outros são semelhantes aos métodos sobre líder
     public boolean isProfessor() {
-        return this.professor;
+        return (this.permissoes & 2) == 2;
     }
     
-    public void setProfessor(boolean professor) {
-        this.professor = professor;
+    public final void setProfessor(boolean professor) {
+        if (professor){
+            this.permissoes = this.permissoes | 2;
+        }
+        else{
+            this.permissoes = this.permissoes & 13;
+        }
     }
+    
+    public boolean isSecretario(){
+        return (this.permissoes & 4) == 4;
+    }
+    
+    public final void setSecretario(boolean secretario) {
+        if (secretario){
+            this.permissoes = this.permissoes | 4;
+        }
+        else{
+            this.permissoes = this.permissoes & 11;
+        }
+    }
+    
+    public boolean isAdmin(){
+        return (this.permissoes & 8) == 8;
+    }
+    
+    public final void setAdmin(boolean admin){
+        if (admin){
+            this.permissoes = this.permissoes | 8;
+        }
+        else{
+            this.permissoes = this.permissoes & 7;
+        }
+    }
+    
     public String getUsuario() {
         return this.usuario;
     }
@@ -190,6 +273,14 @@ public class Membro  implements java.io.Serializable {
 
     /////////////////////////////////////////////////////////////
 
+     public static Membro selectMembroPk(int id){
+        Returner<Membro> returner = new Returner();
+        Membro membro = returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("membro", "id="+id)).get(0);
+        Pessoa pessoa = Pessoa.selectPessoaPk(id);
+        membro.setPessoa(pessoa);
+        return membro;
+    }
+    
     public static List<Membro> listarTodos(){
         List objects = HibernateUtil.getTuplasDaTabela("membro");
         Returner<Membro> returner = new Returner();
@@ -200,14 +291,6 @@ public class Membro  implements java.io.Serializable {
             membro.setPessoa(pessoa);
         }
         return membros;
-    }
-    
-    public static Membro selectMembroPk(int id){
-        Returner<Membro> returner = new Returner();
-        Membro membro = returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("membro", "id="+id)).get(0);
-        Pessoa pessoa = Pessoa.selectPessoaPk(id);
-        membro.setPessoa(pessoa);
-        return membro;
     }
     
     public void adicionarMinisterio(String nome, Date hora, String diaSemana){

@@ -24,17 +24,14 @@
     <property name="batismoApres" type="date">
       <column length="10" name="batismo_apres"/>
     </property>
-    <property name="lider" type="boolean">
-      <column name="lider" not-null="true"/>
-    </property>
-    <property name="professor" type="boolean">
-      <column name="professor" not-null="true"/>
-    </property>
     <property name="usuario" type="string">
       <column length="45" name="usuario" not-null="true" unique="true"/>
     </property>
     <property name="senha" type="string">
       <column length="45" name="senha" not-null="true"/>
+    </property>
+    <property name="permissoes" type="int">
+      <column name="permissoes" not-null="true"/>
     </property>
     <set fetch="select" inverse="true" lazy="true" name="ministerios" table="ministerio">
       <key>

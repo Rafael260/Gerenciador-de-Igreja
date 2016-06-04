@@ -4,6 +4,7 @@ package Objetos;
 
 import Util.HibernateUtil;
 import Util.Returner;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -112,6 +113,19 @@ public class Grupo  implements java.io.Serializable {
         this.membros = membros;
     }
 
+    ///////////////////////////////////////////////////////////
+    
+    public static Grupo selectGrupoPk(GrupoId id){
+        Returner<Grupo> returner = new Returner();
+        //CONFERRIR STRING DE DIA_HORA!!!
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("grupo", "id_lider="+id.getIdLider() + " and hora="+id.getHora()+ " and dia_semana="+id.getDiaSemana())).get(0);
+    }
+    
+    public static Grupo selectGrupoPk(int id_lider, Date hora, String dia_semana){
+        Returner<Grupo> returner = new Returner();
+        //CONFERIR STRING DE HORA
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("evento", "id_lider="+id_lider + " and hora="+hora+ " and dia_semana="+dia_semana)).get(0);
+    }
 
     public static List<Grupo> listarTodos(){
         List objects = HibernateUtil.getTuplasDaTabela("grupo");

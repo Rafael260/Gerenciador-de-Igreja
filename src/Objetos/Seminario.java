@@ -13,7 +13,6 @@ import java.util.Set;
  */
 public class Seminario  implements java.io.Serializable {
 
-
      private String nome;
      private Membro membro;
      private Set disciplinas = new HashSet(0);
@@ -61,6 +60,13 @@ public class Seminario  implements java.io.Serializable {
     
     public void setPeriodoLetivos(Set periodoLetivos) {
         this.periodoLetivos = periodoLetivos;
+    }
+
+    ////////////////////////////////////////////////////
+
+    public static Seminario selectSeminarioPk(String nome){
+        Returner<Seminario> returner = new Returner();
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("seminario", "nome="+nome)).get(0);
     }
     
     public static List<Seminario> listarTodos(){

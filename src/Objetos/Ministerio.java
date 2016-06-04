@@ -87,6 +87,11 @@ public class Ministerio  implements java.io.Serializable {
 
     /////////////////////////////////////////////////////////////////////
 
+    public static Ministerio selectMinisterioPk(String nome){
+        Returner<Ministerio> returner = new Returner();
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("ministerio", "nome="+nome)).get(0);   
+    }
+    
     public static List<Ministerio> listarTodos(){
         List objects = HibernateUtil.getTuplasDaTabela("ministerio");
         Returner<Ministerio> returner = new Returner();

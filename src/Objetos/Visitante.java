@@ -62,7 +62,20 @@ public class Visitante  implements java.io.Serializable {
     public void setEventos(Set eventos) {
         this.eventos = eventos;
     }
+    
+    //////////////////////////////////////////
+    
+    public static Visitante selectVisitantePk(int id){
+        Returner<Visitante> returner = new Returner();
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("visitante", "id="+id)).get(0);
+    }
 
+    public static List<Visitante> listarTodos(){
+        List objects = HibernateUtil.getTuplasDaTabela("visitante");
+        Returner<Visitante> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
+    
     public void adicionarEvento(String tema, Date data,String tipo){
         Evento evento = new Evento(new EventoId(tema,data),tipo);
         List<String> parametros = new ArrayList<>();
@@ -80,12 +93,6 @@ public class Visitante  implements java.io.Serializable {
         parametros.add("'"+evento.getId().getDiaHora()+"'");
         parametros.add("'"+evento.getId().getTema()+"'");
         HibernateUtil.insertInto("visita_evento", parametros);
-    }
-
-    public static List<Visitante> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("visitante");
-        Returner<Visitante> returner = new Returner();
-        return returner.getListaEspecifica(objects);
     }
 
 }

@@ -66,6 +66,13 @@ public class Mensagem  implements java.io.Serializable {
     public void setMinistracaos(Set ministracaos) {
         this.ministracaos = ministracaos;
     }
+    
+    //////////////////////////////////////////////////////
+    
+    public static Mensagem selectMensagemPk(String titulo){
+        Returner<Mensagem> returner = new Returner();
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("mensagem", "titulo="+titulo)).get(0);
+    }
 
     public static List<Mensagem> listarTodos(){
         List objects = HibernateUtil.getTuplasDaTabela("mensagem");

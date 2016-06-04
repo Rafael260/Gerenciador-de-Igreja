@@ -87,6 +87,13 @@ public class Noticia  implements java.io.Serializable {
     public void setTexto(String texto) {
         this.texto = texto;
     }
+    
+    /////////////////////////////////////////////
+    
+    public static Noticia selectNoticiaPk(int id){
+        Returner<Noticia> returner = new Returner();
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("noticia", "id="+id)).get(0);
+    }
 
     public static List<Noticia> listarTodos(){
         List objects = HibernateUtil.getTuplasDaTabela("noticias");

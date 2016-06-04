@@ -5,6 +5,7 @@ package Objetos;
 import Util.HibernateUtil;
 import Util.Returner;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -80,6 +81,20 @@ public class Evento  implements java.io.Serializable {
     
     public void setNoticias(Set noticias) {
         this.noticias = noticias;
+    }
+    
+    ////////////////////////////////////////////////////////////
+    
+    public static Evento selectEventoPk(EventoId id){
+        Returner<Evento> returner = new Returner();
+        //CONFERRIR STRING DE DIA_HORA!!!
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("evento", "tema="+id.getTema() + " and dia_hora="+id.getDiaHora())).get(0);
+    }
+    
+    public static Evento selectEventoPk(String tema, Date dia_hora){
+        Returner<Evento> returner = new Returner();
+        //CONFERRIR STRING DE DIA_HORA!!!
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("evento", "tema="+tema + " and dia_hora="+dia_hora)).get(0);
     }
     
     public static List<Evento> listarTodos(){

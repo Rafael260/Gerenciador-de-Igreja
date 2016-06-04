@@ -3,8 +3,10 @@ package Objetos;
 
 
 import Util.HibernateUtil;
+import Util.Returner;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -61,6 +63,19 @@ public class Disciplina  implements java.io.Serializable {
     
     public void setTurmas(Set turmas) {
         this.turmas = turmas;
+    }
+    
+    //////////////////////////////////////////////
+    
+    public static Disciplina selectDisciplinaPk(String codigo){
+        Returner<Disciplina> returner = new Returner();
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("disciplina", "codigo="+codigo)).get(0);
+    }
+    
+    public static List<Disciplina> listarTodos(){
+        List objects = HibernateUtil.getTuplasDaTabela("disciplina");
+        Returner<Disciplina> returner = new Returner();
+        return returner.getListaEspecifica(objects);
     }
 
     public void cadastrarTurma(Membro professor, PeriodoLetivo periodo, Date dataInicio, Date dataFim){
