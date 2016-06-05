@@ -96,9 +96,17 @@ public class Turma  implements java.io.Serializable {
         HibernateUtil.persistirObjeto(matricula);
     }
 
+    //Tentar substituir método de select para HQL, Criteria ou algo semelhante
+    //Se a List<Membro> alunos receber corretamente as tuplas do SQL, a classe Returner não é mais necessária
+    //VERIFICAR STRING DATA
     public List<Membro> getListaDeAlunos(){
-        List<Membro> alunos = new ArrayList<>();
-        
+        List<Membro> alunos = HibernateUtil.rodarSql("SELECT * \n" +
+"	FROM membro\n" +
+"    WHERE id IN (\n" +
+"    SELECT id \n" +
+"		FROM matricula join membro on id = id_aluno\n" +
+"        WHERE cod_disc = '"+this.getId().getCodigo()+"' and data_inicio = '"+this.getId().getDataInicio()+"'\n" +
+"    )");
         return alunos;
     }
 

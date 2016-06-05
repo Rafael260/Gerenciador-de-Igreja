@@ -88,21 +88,45 @@ public class Evento  implements java.io.Serializable {
     public static Evento selectEventoPk(EventoId id){
         Returner<Evento> returner = new Returner();
         //CONFERRIR STRING DE DIA_HORA!!!
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("evento", "tema="+id.getTema() + " and dia_hora="+id.getDiaHora())).get(0);
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Evento", "tema="+id.getTema() + " and dia_hora="+id.getDiaHora())).get(0);
     }
     
     public static Evento selectEventoPk(String tema, Date dia_hora){
         Returner<Evento> returner = new Returner();
         //CONFERRIR STRING DE DIA_HORA!!!
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("evento", "tema="+tema + " and dia_hora="+dia_hora)).get(0);
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Evento", "tema="+tema + " and dia_hora="+dia_hora)).get(0);
     }
     
     public static List<Evento> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("evento");
+        List objects = HibernateUtil.getTuplasDaTabela("Evento");
         Returner<Evento> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }
-
+    
+    public static List<Evento> listarTodos(Ordem ordem){
+        List objects = HibernateUtil.getTuplasDaTabela("Evento","true order by dia_hora "+ ordem.getSqlOrder());
+        Returner<Evento> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
+    
+    public static List<Evento> listarTodos(Ordem ordem, int numMaxResultados){
+        List objects = HibernateUtil.getTuplasDaTabela("Evento","true order by dia_hora "+ ordem.getSqlOrder(),numMaxResultados);
+        Returner<Evento> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
+    
+    public static List<Evento> selectEventoPorTema(String tema){
+        List objects = HibernateUtil.getTuplasDaTabela("Evento","tema="+tema);
+        Returner<Evento> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
+    
+    public static List<Evento> selectEventoPorTema(String tema, Ordem ordem){
+        List objects = HibernateUtil.getTuplasDaTabela("Evento","tema="+tema+ " order by dia_hora"+ ordem.getSqlOrder());
+        Returner<Evento> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
+    
     public void adicionarVisitante(Pessoa pessoa){
         Visitante visitante = new Visitante(pessoa);
         List<String> parametros = new ArrayList<>();

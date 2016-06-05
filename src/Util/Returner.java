@@ -12,6 +12,7 @@ import java.util.List;
  *
  * @author Rafael
  * @param <T> Classe para retorno de objetos e listas
+ * Se o retorno List for o bastante para setar uma lista específica, apagar essa classe
  */
 public class Returner<T> {
     

@@ -15,7 +15,6 @@ import java.util.Set;
  */
 public class Ministerio  implements java.io.Serializable {
 
-
      private String nome;
      private Membro membro;
      private String descricao;

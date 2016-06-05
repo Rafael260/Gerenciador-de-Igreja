@@ -174,6 +174,18 @@ public class Pessoa  implements java.io.Serializable {
         return returner.getListaEspecifica(objects);
     }
     
+    public static List<Pessoa> selectPessoaPorNome(String nome){
+        List objects = HibernateUtil.getTuplasDaTabela("pessoa","nome='"+nome+"'");
+        Returner<Pessoa> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
+    
+    public static List<Pessoa> selectPessoaPorNome(String nome, String sobrenome){
+        List objects = HibernateUtil.getTuplasDaTabela("pessoa","nome='"+nome+"' and sobrenome='"+sobrenome+"'");
+        Returner<Pessoa> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
+    
     public void cadastrarMinistracao(Evento evento, Mensagem mensagem){
         Ministracao ministracao = new Ministracao(new MinistracaoId(evento.getId().getTema(),evento.getId().getDiaHora(),mensagem.getTitulo()),evento,mensagem,this);
         HibernateUtil.persistirObjeto(ministracao);

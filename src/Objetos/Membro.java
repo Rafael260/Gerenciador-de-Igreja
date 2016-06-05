@@ -276,26 +276,93 @@ public class Membro  implements java.io.Serializable {
      public static Membro selectMembroPk(int id){
         Returner<Membro> returner = new Returner();
         Membro membro = returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("membro", "id="+id)).get(0);
-        Pessoa pessoa = Pessoa.selectPessoaPk(id);
-        membro.setPessoa(pessoa);
+        membro = completarInfoPessoa(membro);
         return membro;
+    }
+     
+    public static Membro completarInfoPessoa(Membro membro){
+        Pessoa p = Pessoa.selectPessoaPk(membro.getId()); //talvez não seja eficiente
+        membro.setPessoa(p);
+        return membro;
+    }
+     
+    public static List<Membro> completarInfoPessoa(List<Membro> membros){
+        for (Membro membro : membros) {
+            membro = completarInfoPessoa(membro);
+        }
+        return membros;
     }
     
     public static List<Membro> listarTodos(){
         List objects = HibernateUtil.getTuplasDaTabela("membro");
         Returner<Membro> returner = new Returner();
         List<Membro> membros = returner.getListaEspecifica(objects);
-        Pessoa pessoa;
-        for (Membro membro: membros){
-            pessoa = Pessoa.selectPessoaPk(membro.getId()); //talvez não seja eficiente
-            membro.setPessoa(pessoa);
-        }
+        membros = completarInfoPessoa(membros);
         return membros;
+    }
+    
+    public Membro selectMembroPorUsuario(String usuario){
+        Returner<Membro> returner = new Returner();
+        Membro membro = returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("membro", "usuario='"+usuario+"'")).get(0);
+        membro = completarInfoPessoa(membro);
+        return membro;
+    }
+    
+    /*public List<Membro> selectMembroPorNome(String nome, String sobrenome){
+        
+    }*/
+    
+    public List<Membro> selectLideres(){
+       List<Membro> todosMembros = listarTodos();
+       List<Membro> lideres = new ArrayList();
+        for (Membro membro : todosMembros) {
+            if (membro.isLider()){
+                lideres.add(membro);
+            }
+        }
+        lideres = completarInfoPessoa(lideres);
+        return lideres;
+    }
+    
+    public List<Membro> selectProfessores(){
+       List<Membro> todosMembros = listarTodos();
+       List<Membro> professores = new ArrayList();
+        for (Membro membro : todosMembros) {
+            if (membro.isProfessor()){
+                professores.add(membro);
+            }
+        }
+        professores = completarInfoPessoa(professores);
+        return professores;
+    }
+    
+    public List<Membro> selectSecretarios(){
+       List<Membro> todosMembros = listarTodos();
+       List<Membro> secretarios = new ArrayList();
+        for (Membro membro : todosMembros) {
+            if (membro.isSecretario()){
+                secretarios.add(membro);
+            }
+        }
+        secretarios = completarInfoPessoa(secretarios);
+        return secretarios;
+    }
+    
+    public List<Membro> selectAdmins(){
+       List<Membro> todosMembros = listarTodos();
+       List<Membro> admins = new ArrayList();
+        for (Membro membro : todosMembros) {
+            if (membro.isAdmin()){
+                admins.add(membro);
+            }
+        }
+        admins = completarInfoPessoa(admins);
+        return admins;
     }
     
     public void adicionarMinisterio(String nome, Date hora, String diaSemana){
         Ministerio ministerio = new Ministerio(nome,this,hora,diaSemana);
-        List<String> parametros = new ArrayList<>();
+        List<String> parametros = new ArrayList();
         parametros.add(""+getId());
         //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
         parametros.add("'"+ministerio.getNome()+"'");

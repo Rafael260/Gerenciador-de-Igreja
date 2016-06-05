@@ -69,9 +69,16 @@ public class Seminario  implements java.io.Serializable {
         return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("seminario", "nome="+nome)).get(0);
     }
     
+    //Geralmente só vai ter um
     public static List<Seminario> listarTodos(){
         List objects = HibernateUtil.getTuplasDaTabela("seminario");
         Returner<Seminario> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
+    
+    public List<Disciplina> selectDisciplinas(){
+        Returner<Disciplina> returner = new Returner();
+        List objects = HibernateUtil.getTuplasDaTabela("disciplina", "nome_seminario='"+this.nome+"'");
         return returner.getListaEspecifica(objects);
     }
 

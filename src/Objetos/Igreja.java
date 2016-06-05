@@ -47,6 +47,80 @@ public class Igreja {
         this.mensagens = new ArrayList<>();
         //Preencher o objeto usuarioAtual buscando pelo parâmetro usuario
     }
+
+    public List<Membro> getMembros() {
+        return membros;
+    }
+
+    public void setMembros(List<Membro> membros) {
+        this.membros = membros;
+    }
+
+    public List<Visitante> getVisitantes() {
+        return visitantes;
+    }
+
+    public void setVisitantes(List<Visitante> visitantes) {
+        this.visitantes = visitantes;
+    }
+
+    public List<Grupo> getGrupos() {
+        return grupos;
+    }
+
+    public void setGrupos(List<Grupo> grupos) {
+        this.grupos = grupos;
+    }
+
+    public List<Ministerio> getMinisterios() {
+        return ministerios;
+    }
+
+    public void setMinisterios(List<Ministerio> ministerios) {
+        this.ministerios = ministerios;
+    }
+
+    public List<Seminario> getSeminarios() {
+        return seminarios;
+    }
+
+    public void setSeminarios(List<Seminario> seminarios) {
+        this.seminarios = seminarios;
+    }
+
+    public List<Noticia> getNoticias() {
+        return noticias;
+    }
+
+    public void setNoticias(List<Noticia> noticias) {
+        this.noticias = noticias;
+    }
+
+    public List<Evento> getEventos() {
+        return eventos;
+    }
+
+    public void setEventos(List<Evento> eventos) {
+        this.eventos = eventos;
+    }
+
+    public List<Mensagem> getMensagens() {
+        return mensagens;
+    }
+
+    public void setMensagens(List<Mensagem> mensagens) {
+        this.mensagens = mensagens;
+    }
+
+    public Membro getUsuarioAtual() {
+        return usuarioAtual;
+    }
+
+    public void setUsuarioAtual(Membro usuarioAtual) {
+        this.usuarioAtual = usuarioAtual;
+    }
+    
+    //////////////////////////////////////////////////////////////
     
     public void carregarMembros(){
         membros = Membro.listarTodos();
@@ -74,6 +148,14 @@ public class Igreja {
     
     public void carregarEventos(){
         eventos = Evento.listarTodos();
+    }
+    
+    public void carregarEventos(Ordem ordem){
+        eventos = Evento.listarTodos(ordem);
+    }
+    
+    public void carregarEventos(Ordem ordem, int maxResults){
+        eventos = Evento.listarTodos(ordem,maxResults);
     }
     
     public void carregarMensagens(){

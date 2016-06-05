@@ -86,6 +86,7 @@ public class HibernateUtil {
     
     public static List getTuplasDaTabela(String tabela){
         Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
         List tuplas;
         tuplas = s.createQuery("from "+tabela).list();
         s.getTransaction().commit();
@@ -94,8 +95,27 @@ public class HibernateUtil {
     
     public static List getTuplasDaTabela(String tabela, String where){
         Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
         List tuplas;
         tuplas = s.createQuery("from "+tabela+ " where "+ where).list();
+        s.getTransaction().commit();
+        return tuplas;
+    }
+    
+    public static List getTuplasDaTabela(String tabela, String where, int numMaxResultados){
+        Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        List tuplas;
+        tuplas = s.createQuery("from "+tabela+ " where "+ where).setMaxResults(numMaxResultados).list();
+        s.getTransaction().commit();
+        return tuplas;
+    }
+    
+    public static List rodarSql(String sql){
+        Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        List tuplas;
+        tuplas = s.createSQLQuery(sql).list();
         s.getTransaction().commit();
         return tuplas;
     }

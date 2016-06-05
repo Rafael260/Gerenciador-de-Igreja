@@ -5,6 +5,11 @@
  */
 package gerenciador.de.igreja;
 
+import Objetos.*;
+import Util.FormatoDataHora;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Rafael
@@ -18,6 +23,9 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         initComponents();
         //jPanelInicio.setVisible(false);
         jPanelSecretaria.setVisible(false);
+        igreja = new Igreja();
+        igreja.carregarEventos();
+        preencherEventos();
     }
 
     /**
@@ -53,7 +61,7 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jTable3 = new javax.swing.JTable();
         jPanelEventos = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tabelaEventos = new javax.swing.JTable();
         jToolBar2 = new javax.swing.JToolBar();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
@@ -331,8 +339,8 @@ public class GerenciadorFrame extends javax.swing.JFrame {
 
         jScrollPane5.setBorder(null);
 
-        jTable4.setBackground(new java.awt.Color(255, 226, 226));
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaEventos.setBackground(new java.awt.Color(255, 226, 226));
+        tabelaEventos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -357,10 +365,10 @@ public class GerenciadorFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable4.setGridColor(new java.awt.Color(0, 102, 102));
-        jTable4.setSelectionBackground(new java.awt.Color(155, 126, 126));
-        jTable4.setShowHorizontalLines(false);
-        jScrollPane5.setViewportView(jTable4);
+        tabelaEventos.setGridColor(new java.awt.Color(0, 102, 102));
+        tabelaEventos.setSelectionBackground(new java.awt.Color(155, 126, 126));
+        tabelaEventos.setShowHorizontalLines(false);
+        jScrollPane5.setViewportView(tabelaEventos);
 
         javax.swing.GroupLayout jPanelEventosLayout = new javax.swing.GroupLayout(jPanelEventos);
         jPanelEventos.setLayout(jPanelEventosLayout);
@@ -722,11 +730,25 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    private void preencherEventos(){
+        DefaultTableModel model = (DefaultTableModel) tabelaEventos.getModel();
+        model.setNumRows(0);
+        List<Evento> eventos = igreja.getEventos();
+        Object[] objs = new Object[3];
+        for (Evento evento : eventos){
+            objs[0] = evento.getId().getTema();
+            objs[1] = FormatoDataHora.userData(evento.getId().getDiaHora());
+            objs[2] = FormatoDataHora.userHora(evento.getId().getDiaHora());
+            model.addRow(objs);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
     
-
+    Igreja igreja;
+    private static final int MAX_EVENTOS = 20;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -782,8 +804,8 @@ public class GerenciadorFrame extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JTable tabelaEventos;
     // End of variables declaration//GEN-END:variables
 }

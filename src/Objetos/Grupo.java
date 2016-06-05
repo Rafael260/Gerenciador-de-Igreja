@@ -117,25 +117,62 @@ public class Grupo  implements java.io.Serializable {
     
     public static Grupo selectGrupoPk(GrupoId id){
         Returner<Grupo> returner = new Returner();
-        //CONFERRIR STRING DE DIA_HORA!!!
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("grupo", "id_lider="+id.getIdLider() + " and hora="+id.getHora()+ " and dia_semana="+id.getDiaSemana())).get(0);
+        //CONFERRIR STRING DE HORA!!!
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("grupo", "id_lider="+id.getIdLider() + " and hora='"+id.getHora()+ "' and dia_semana='"+id.getDiaSemana()+"'")).get(0);
     }
     
     public static Grupo selectGrupoPk(int id_lider, Date hora, String dia_semana){
         Returner<Grupo> returner = new Returner();
         //CONFERIR STRING DE HORA
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("evento", "id_lider="+id_lider + " and hora="+hora+ " and dia_semana="+dia_semana)).get(0);
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("evento", "id_lider="+id_lider + " and hora='"+hora+ "' and dia_semana='"+dia_semana+"'")).get(0);
     }
-
+    
     public static List<Grupo> listarTodos(){
         List objects = HibernateUtil.getTuplasDaTabela("grupo");
         Returner<Grupo> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }
     
+    public static List<Grupo> selectGrupoPorTipo(String tipo){
+         List objects = HibernateUtil.getTuplasDaTabela("grupo","tipo_grupo='"+tipo+"'");
+        Returner<Grupo> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
+    
+    public static List<Grupo> selectGrupoPorDiaSemana(String diaSemana){
+         List objects = HibernateUtil.getTuplasDaTabela("grupo","dia_semana='"+diaSemana+"'");
+        Returner<Grupo> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
+    
+    /**
+     * Seleciona os grupos que possuem horário de início entre horaInicio e horaFinal
+     * VERIFICAR TIPO DATE E O SEU FORMATO STRING PARA O COMANDO SQL
+     * @param horaInicio
+     * @param horaFinal
+     * @return 
+     */
+    public static List<Grupo> selectGrupoPorDiaHorario(Date horaInicio, Date horaFinal){
+        List objects = HibernateUtil.getTuplasDaTabela("grupo","hora between '"+horaInicio+"' and '"+horaFinal+"'");
+        Returner<Grupo> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
+    
+    public static List<Grupo> selectGrupoPorBairro(String bairro){
+        List objects = HibernateUtil.getTuplasDaTabela("grupo","end_bairro='"+bairro+"'");
+        Returner<Grupo> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
+    
+    public static List<Grupo> selectGrupoPorCidade(String cidade){
+        List objects = HibernateUtil.getTuplasDaTabela("grupo","end_cidade='"+cidade+"'");
+        Returner<Grupo> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
+    
     public void adicionarMembro(Membro membro){
         membro.setGrupo(this);
-        HibernateUtil.persistirObjeto(membro);
+        HibernateUtil.persistirObjeto(membro); //Atualizar membro com os dados de Grupo
     }
 
 }

@@ -71,7 +71,7 @@ public class Mensagem  implements java.io.Serializable {
     
     public static Mensagem selectMensagemPk(String titulo){
         Returner<Mensagem> returner = new Returner();
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("mensagem", "titulo="+titulo)).get(0);
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("mensagem", "titulo='"+titulo+"'")).get(0);
     }
 
     public static List<Mensagem> listarTodos(){

@@ -42,19 +42,19 @@ public class GerenciadorDeIgreja {
         //</editor-fold>
 
         /* Create and display the form */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GerenciadorFrame().setVisible(true);
             }
-        });*/
+        });
         
-        Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+        /*Session s = HibernateUtil.getSessionFactory().getCurrentSession();
         s.beginTransaction();
         List<Pessoa> p = (List<Pessoa>)s.createQuery("from Pessoa").list();
         for (Pessoa p1: p){
             System.out.println(p1.getNome());
         }
-        s.getTransaction().commit();
+        s.getTransaction().commit();*/
     }
     
 }
