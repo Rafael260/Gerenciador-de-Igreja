@@ -77,6 +77,11 @@ public class Disciplina  implements java.io.Serializable {
         Returner<Disciplina> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }
+    
+    public List<Turma> getTodasTurmas(){
+        Returner<Turma> returner = new Returner();
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("turma", "codigo="+this.codigo));
+    }
 
     public void cadastrarTurma(Membro professor, PeriodoLetivo periodo, Date dataInicio, Date dataFim){
         Turma turma = new Turma( new TurmaId(codigo,dataInicio), this, professor, periodo, dataFim);
