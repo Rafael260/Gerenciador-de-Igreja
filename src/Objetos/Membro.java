@@ -274,134 +274,85 @@ public class Membro  implements java.io.Serializable {
     } 
     
     public static Membro selectMembroPk(int id){
-        //Returner<Membro> returner = new Returner();
         List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "id="+id,"");
-        Object[] objectMembro = objects.get(0);
-        Pessoa p = new Pessoa();
-        p.setNome((String)objectMembro[0]);
-        p.setSobrenome((String)objectMembro[1]);
-        p.setTelefone((String)objectMembro[2]);
-        p.setEndRua((String)objectMembro[3]);
-        p.setEndNumero((Integer)objectMembro[4]);
-        p.setEndComp((String)objectMembro[5]);
-        p.setEndBairro((String)objectMembro[6]);
-        p.setEndCidade((String)objectMembro[7]);
-        p.setEndEstado((String)objectMembro[8]);
-        p.setEmail((String)objectMembro[9]);
-        p.setEstadoCivil((Character)objectMembro[10]);
+        return Membro.preencherDadosMembro(objects.get(0));
+    }
+     
+    public static Membro preencherDadosMembro(Object[] object){
+        Pessoa p = Pessoa.preencherDadosPessoa(object);
         Membro membro = new Membro();
         membro.setPessoa(p);
-        membro.setCpf((String)objectMembro[11]);
-        membro.setDataNasc((Date)objectMembro[12]);
-        membro.setBatismoApres((Date)objectMembro[13]);
-        membro.setUsuario((String)objectMembro[14]);
-        membro.setSenha((String)objectMembro[15]);
-        membro.setPermissoes((Integer)objectMembro[16]);
-        membro.setGrupo(Grupo.selectGrupoPk(new GrupoId((Integer)objectMembro[17],(Date)objectMembro[18],(String)objectMembro[19])));
+        membro.setCpf((String)object[12]);
+        membro.setDataNasc((Date)object[13]);
+        membro.setBatismoApres((Date)object[14]);
+        membro.setUsuario((String)object[15]);
+        membro.setSenha((String)object[16]);
+        membro.setPermissoes((Integer)object[17]);
+        membro.setGrupo(Grupo.selectGrupoPk(new GrupoId((Integer)object[18],(Date)object[19],(String)object[20])));
         return membro;
     }
      
-    public static Membro completarInfoPessoa(Membro membro){
-        Pessoa p = Pessoa.selectPessoaPk(membro.getId()); //talvez não seja eficiente
-        membro.setPessoa(p);
-        return membro;
-    }
-     
-    public static List<Membro> completarInfoPessoa(List<Membro> membros){
-        for (Membro membro : membros) {
-            membro = completarInfoPessoa(membro);
+    public static List<Membro> preencherDadosMembro(List<Object[]> objsList){
+        List<Membro> membros = new ArrayList();
+        for (Object[] objs : objsList) {
+           membros.add(Membro.preencherDadosMembro(objs));
         }
         return membros;
     }
     
     public static List<Membro> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("Membro");
-        //Returner<Membro> returner = new Returner();
-        List<Membro> membros = objects;
-        membros = completarInfoPessoa(membros);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "","");
+        List<Membro> membros = preencherDadosMembro(objects);
         return membros;
     }
     
     public static List<Membro> listarTodos(Ordem ordem){
-        List objects = HibernateUtil.getTuplasDaTabela("Membro", "","data_nasc "+ ordem.getSqlOrder());
-        //Returner<Membro> returner = new Returner();
-        List<Membro> membros = objects;
-        membros = completarInfoPessoa(membros);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "","data_nasc "+ordem.getSqlOrder());
+        List<Membro> membros = preencherDadosMembro(objects);
         return membros;
     }
     
     public static Membro selectMembroPorUsuario(String usuario){
-        //Returner<Membro> returner = new Returner();
-        Membro membro = (Membro)HibernateUtil.getTuplasDaTabela("Membro", "usuario='"+usuario+"'","").get(0);
-        membro = completarInfoPessoa(membro);
-        return membro;
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "usuario='"+usuario+"'","");
+        return Membro.preencherDadosMembro(objects.get(0));
     }
     
     public static Membro selectMembroAutenticado(String usuario, String senha){
-        //Returner<Membro> returner = new Returner();
-        Membro membro = (Membro)HibernateUtil.getTuplasDaTabela("Membro", "usuario='"+usuario+"' and senha='"+senha+"'","").get(0);
-        membro = completarInfoPessoa(membro);
-        return membro;
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "usuario='"+usuario+"' and senha='"+senha+"'","");
+        return Membro.preencherDadosMembro(objects.get(0));
     }
     
-    /*public List<Membro> selectMembroPorNome(String nome, String sobrenome){
-        
-    }*/
+    public static List<Membro> selectMembroPorNome(String nome, String sobrenome){
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "nome='"+nome+"' and sobrenome='"+sobrenome+"'","");
+        return preencherDadosMembro(objects);
+    }
+    
+    public static List<Membro> selectMembrosComPermissao(int permissao){
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "(permissoes & "+permissao+") = "+permissao,"");
+        return preencherDadosMembro(objects);
+    }
     
     public static List<Membro> selectLideres(){
-       List<Membro> todosMembros = listarTodos();
-       List<Membro> lideres = new ArrayList();
-        for (Membro membro : todosMembros) {
-            if (membro.isLider()){
-                lideres.add(membro);
-            }
-        }
-        lideres = completarInfoPessoa(lideres);
-        return lideres;
+        return selectMembrosComPermissao(1);
     }
     
     public static List<Membro> selectProfessores(){
-       List<Membro> todosMembros = listarTodos();
-       List<Membro> professores = new ArrayList();
-        for (Membro membro : todosMembros) {
-            if (membro.isProfessor()){
-                professores.add(membro);
-            }
-        }
-        professores = completarInfoPessoa(professores);
-        return professores;
+       return selectMembrosComPermissao(2);
     }
     
     public static List<Membro> selectSecretarios(){
-       List<Membro> todosMembros = listarTodos();
-       List<Membro> secretarios = new ArrayList();
-        for (Membro membro : todosMembros) {
-            if (membro.isSecretario()){
-                secretarios.add(membro);
-            }
-        }
-        secretarios = completarInfoPessoa(secretarios);
-        return secretarios;
+       return selectMembrosComPermissao(4);
     }
     
     public static List<Membro> selectAdmins(){
-       List<Membro> todosMembros = listarTodos();
-       List<Membro> admins = new ArrayList();
-        for (Membro membro : todosMembros) {
-            if (membro.isAdmin()){
-                admins.add(membro);
-            }
-        }
-        admins = completarInfoPessoa(admins);
-        return admins;
+       return selectMembrosComPermissao(8);
     }
     
     public static List<Membro> selectAniversariantesDoMes(Ordem ordem){
         Date dataAtual = FormatoDataHora.getDataHoraAtual();
         int mesAtual = FormatoDataHora.getMes(dataAtual);
-        List<Membro> aniversariantes = HibernateUtil.getTuplasDaTabela("Membro", "data_nasc like '____-"+FormatoDataHora.getCampoCompleto(mesAtual)+"-__'","data_nasc "+ordem.getSqlOrder());
-        aniversariantes = completarInfoPessoa(aniversariantes);
-        return aniversariantes;
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "data_nasc like '____-"+FormatoDataHora.getCampoCompleto(mesAtual)+"-__'","data_nasc "+ordem.getSqlOrder());
+        return preencherDadosMembro(objects);
     }
     
     public void adicionarMinisterio(String nome, Date hora, String diaSemana){

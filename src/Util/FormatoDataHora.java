@@ -51,7 +51,7 @@ public class FormatoDataHora {
     
     //Ex: 20:00:00
     public static String userHora(Date date){
-        return ""+date.getHours()+":"+date.getMinutes();
+        return ""+getCampoCompleto(date.getHours())+":"+getCampoCompleto(date.getMinutes());
     }
     
     public static int getMes(Date date){
