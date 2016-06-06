@@ -715,9 +715,9 @@
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jToolBar1" min="-2" pref="649" max="-2" attributes="0"/>
+                                          <Component id="jToolBar1" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="181" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="516" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -746,6 +746,7 @@
                     </Component>
                     <Container class="javax.swing.JToolBar" name="jToolBar1">
                       <Properties>
+                        <Property name="floatable" type="boolean" value="false"/>
                         <Property name="rollover" type="boolean" value="true"/>
                       </Properties>
 
@@ -764,7 +765,7 @@
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton2">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="jButton2"/>
+                            <Property name="text" type="java.lang.String" value="Exibir Notas"/>
                             <Property name="focusable" type="boolean" value="false"/>
                             <Property name="horizontalTextPosition" type="int" value="0"/>
                             <Property name="verticalTextPosition" type="int" value="3"/>
@@ -772,23 +773,18 @@
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton3">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="jButton3"/>
+                            <Property name="text" type="java.lang.String" value="Exibir Disciplinas"/>
                             <Property name="focusable" type="boolean" value="false"/>
                             <Property name="horizontalTextPosition" type="int" value="0"/>
                             <Property name="verticalTextPosition" type="int" value="3"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton4">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="jButton4"/>
-                            <Property name="focusable" type="boolean" value="false"/>
-                            <Property name="horizontalTextPosition" type="int" value="0"/>
-                            <Property name="verticalTextPosition" type="int" value="3"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JButton" name="jButton5">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="jButton5"/>
+                            <Property name="text" type="java.lang.String" value="Exibir Turmas"/>
                             <Property name="focusable" type="boolean" value="false"/>
                             <Property name="horizontalTextPosition" type="int" value="0"/>
                             <Property name="verticalTextPosition" type="int" value="3"/>
