@@ -24,8 +24,8 @@ public class GerenciadorFrame extends javax.swing.JFrame {
      */
     public GerenciadorFrame() {
         initComponents();
-        //jPanelInicio.setVisible(false);
-        jPanelSecretaria.setVisible(false);
+        setAllInvisible(); //tornando todas os paineis principais invisíveis
+        jPanelInicio.setVisible(true);
         igreja = new Igreja();
         igreja.carregarEventos(Ordem.DECRESCENTE,MAX_EVENTOS);
         preencherEventos();
@@ -36,7 +36,15 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         igreja.carregarSeminarios();
         preencherDisciplinasAtivas();
     }
-    
+    /**
+     * torna todas os principais paineis invisíveis.
+    */
+    public void setAllInvisible(){
+        jPanelInicio.setVisible(false);
+        jPanelEventos.setVisible(false);
+        jPanelDisciplina.setVisible(false);
+        jPanelSecretaria.setVisible(false);
+    }
     public GerenciadorFrame(Membro membro) {
         initComponents();
         //jPanelInicio.setVisible(false);
