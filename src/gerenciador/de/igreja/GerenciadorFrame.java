@@ -6,6 +6,7 @@
 package gerenciador.de.igreja;
 
 import Objetos.*;
+import Objetos.Igreja;
 import Util.FormatoDataHora;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -222,10 +223,14 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jPanel4.setMaximumSize(new java.awt.Dimension(849, 533));
         jPanel4.setLayout(null);
 
+        jPanelInicio.setPreferredSize(new java.awt.Dimension(850, 530));
+        jPanelInicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Bem Vindo!");
+        jPanelInicio.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 24, 874, -1));
 
         jPanelAniversariante.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Aniversariantes do mês", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(96, 155, 125))); // NOI18N
 
@@ -275,6 +280,8 @@ public class GerenciadorFrame extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
         );
 
+        jPanelInicio.add(jPanelAniversariante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 159, -1, -1));
+
         jPanelNoticias.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Notícias", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(109, 114, 130))); // NOI18N
 
         tabelaNoticias.setBackground(new java.awt.Color(209, 214, 230));
@@ -320,6 +327,8 @@ public class GerenciadorFrame extends javax.swing.JFrame {
             jPanelNoticiasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
+
+        jPanelInicio.add(jPanelNoticias, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 159, -1, 163));
 
         jPanelDiscAtivas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Disciplinas Ativas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(101, 155, 106))); // NOI18N
 
@@ -367,6 +376,8 @@ public class GerenciadorFrame extends javax.swing.JFrame {
             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
+        jPanelInicio.add(jPanelDiscAtivas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 328, -1, 191));
+
         jPanelEventos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Eventos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(155, 126, 126))); // NOI18N
 
         tabelaEventos.setBackground(new java.awt.Color(255, 226, 226));
@@ -411,6 +422,8 @@ public class GerenciadorFrame extends javax.swing.JFrame {
             .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
         );
 
+        jPanelInicio.add(jPanelEventos, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 328, -1, -1));
+
         jToolBar2.setFloatable(false);
         jToolBar2.setRollover(true);
 
@@ -431,47 +444,10 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar2.add(jButton10);
 
-        javax.swing.GroupLayout jPanelInicioLayout = new javax.swing.GroupLayout(jPanelInicio);
-        jPanelInicio.setLayout(jPanelInicioLayout);
-        jPanelInicioLayout.setHorizontalGroup(
-            jPanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelInicioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelInicioLayout.createSequentialGroup()
-                        .addComponent(jPanelDiscAtivas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelEventos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelInicioLayout.createSequentialGroup()
-                        .addComponent(jPanelAniversariante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelNoticias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(71, Short.MAX_VALUE))
-            .addGroup(jPanelInicioLayout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(90, 90, 90))
-        );
-        jPanelInicioLayout.setVerticalGroup(
-            jPanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelInicioLayout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanelNoticias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelAniversariante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanelEventos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelDiscAtivas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        jPanelInicio.add(jToolBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 83, -1, 65));
 
         jPanel4.add(jPanelInicio);
-        jPanelInicio.setBounds(0, 0, 935, 530);
+        jPanelInicio.setBounds(0, 0, 850, 530);
 
         jLabel12.setText("jLabel12");
 
@@ -647,7 +623,7 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jListOpcaoMenu.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jListOpcaoMenu.setForeground(new java.awt.Color(255, 255, 255));
         jListOpcaoMenu.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "   Início   ", "   Disciplinas   ", "   Ministérios   ", "   Secretaria   ", " " };
+            String[] strings = { "Início", "Disciplinas", "Ministérios", "Secretaria", "" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -660,6 +636,11 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jListOpcaoMenu.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
         jListOpcaoMenu.setRequestFocusEnabled(false);
         jListOpcaoMenu.setVerifyInputWhenFocusTarget(false);
+        jListOpcaoMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListOpcaoMenuMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -759,6 +740,21 @@ public class GerenciadorFrame extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jListOpcaoMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListOpcaoMenuMouseClicked
+        // TODO add your handling code here:
+        String opcao = (String) jListOpcaoMenu.getSelectedValue();
+        setAllInvisible();
+        if(opcao.equals("Início")){
+            jPanelInicio.setVisible(true);
+        } else if(opcao.equals("Disciplinas")){
+            jPanelDisciplina.setVisible(true);
+        } else if(opcao.equals("Ministérios")){
+            jPanelMinisterios.setVisible(true);
+        } else if(opcao.equals("Secretaria")){
+            jPanelSecretaria.setVisible(true);
+        }
+    }//GEN-LAST:event_jListOpcaoMenuMouseClicked
 
     private void preencherEventos(){
         DefaultTableModel model = (DefaultTableModel) tabelaEventos.getModel();
