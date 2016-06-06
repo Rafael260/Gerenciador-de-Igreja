@@ -2,6 +2,7 @@ package Objetos;
 // Generated 03/06/2016 10:35:37 by Hibernate Tools 4.3.1
 
 
+import Util.FormatoDataHora;
 import Util.HibernateUtil;
 import java.util.ArrayList;
 import java.util.Date;
@@ -108,18 +109,9 @@ public class Turma  implements java.io.Serializable {
         HibernateUtil.persistirObjeto(matricula);
     }
 
-    //Tentar substituir método de select para HQL, Criteria ou algo semelhante
-    //Se a List<Membro> alunos receber corretamente as tuplas do SQL, a classe Returner não é mais necessária
-    //VERIFICAR STRING DATA
     public List<Membro> getListaDeAlunos(){
-        List<Membro> alunos = HibernateUtil.rodarSql("SELECT * \n" +
-"	FROM membro\n" +
-"    WHERE id IN (\n" +
-"    SELECT id \n" +
-"		FROM matricula join membro on id = id_aluno\n" +
-"        WHERE cod_disc = '"+this.getId().getCodigo()+"' and data_inicio = '"+this.getId().getDataInicio()+"'\n" +
-"    )");
-        return alunos;
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("(Pessoa natural join Membro) join Matricula on id=id_aluno", "cod_disc='"+this.getId().getCodigo()+"' and data_inicio='"+FormatoDataHora.sqlData(this.getId().getDataInicio())+"'", "nome, sobrenome");
+        return Membro.preencherDadosMembro(objects);
     }
     
     

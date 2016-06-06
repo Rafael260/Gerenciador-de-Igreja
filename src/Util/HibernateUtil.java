@@ -5,6 +5,8 @@
  */
 package Util;
 
+import Objetos.Evento;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -149,6 +151,23 @@ public class HibernateUtil {
         tuplas = s.createSQLQuery(sql).list();
         s.getTransaction().commit();
         return tuplas;
+    }
+    
+    public static List rodarSql2(String sql){
+        Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        List<Object[]> tuplas;
+        tuplas = s.createSQLQuery(sql).list();
+        List<Evento> resultadoFinal = new ArrayList<>();
+        for (Object[] obj : tuplas) {
+            int i = 0;
+            Evento evento = new Evento();
+            evento.setPublicoAlvo((String) obj[i++]);
+            resultadoFinal.add(evento);
+        }
+        
+        s.getTransaction().commit();
+        return resultadoFinal;
     }
     
 }

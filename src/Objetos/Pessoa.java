@@ -162,6 +162,23 @@ public class Pessoa  implements java.io.Serializable {
     
     ////////////////////////////////////////////////
     
+     public static Pessoa preencherDadosPessoa(Object[] object){
+        Pessoa p = new Pessoa();
+        p.setId((Integer)object[0]);
+        p.setNome((String)object[1]);
+        p.setSobrenome((String)object[2]);
+        p.setTelefone((String)object[3]);
+        p.setEndRua((String)object[4]);
+        p.setEndNumero((Integer)object[5]);
+        p.setEndComp((String)object[6]);
+        p.setEndBairro((String)object[7]);
+        p.setEndCidade((String)object[8]);
+        p.setEndEstado((String)object[9]);
+        p.setEmail((String)object[10]);
+        p.setEstadoCivil((Character)object[11]);
+        return p;
+    }
+    
     public static Pessoa selectPessoaPk(int id){
         return (Pessoa)HibernateUtil.getTuplasDaTabela("Pessoa", "id="+id,"").get(0);
     }

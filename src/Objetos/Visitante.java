@@ -62,22 +62,30 @@ public class Visitante  implements java.io.Serializable {
     
     //////////////////////////////////////////
     
-    public static Visitante selectVisitantePk(int id){
-        Visitante visitante = (Visitante)HibernateUtil.getTuplasDaTabela("Visitante", "id="+id,"").get(0);
-        Pessoa pessoa = Pessoa.selectPessoaPk(visitante.getId());
-        visitante.setPessoa(pessoa);
+    public static Visitante preencherDadosVisitante(Object[] object){
+        Pessoa p = Pessoa.preencherDadosPessoa(object);
+        Visitante visitante = new Visitante();
+        visitante.setPessoa(p);
+        visitante.setIgrejaOrig((String)object[12]);
         return visitante;
+    }
+     
+    public static List<Visitante> preencherDadosVisitante(List<Object[]> objsList){
+        List<Visitante> visitante = new ArrayList();
+        for (Object[] objs : objsList) {
+           visitante.add(preencherDadosVisitante(objs));
+        }
+        return visitante;
+    }
+    
+    public static Visitante selectVisitantePk(int id){
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Visitante", "id="+id,"");
+        return preencherDadosVisitante(objects.get(0));
     }
 
     public static List<Visitante> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("Visitante");
-        List<Visitante> visitantes = objects;
-        Pessoa pessoa;
-        for (Visitante visitante: visitantes){
-            pessoa = Pessoa.selectPessoaPk(visitante.getId()); //talvez não seja eficiente
-            visitante.setPessoa(pessoa);
-        }
-        return visitantes;
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Visitante","","");
+        return preencherDadosVisitante(objects);
     }
     
     public void adicionarEvento(String tema, Date data,String tipo){

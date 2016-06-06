@@ -99,7 +99,7 @@ public class Evento  implements java.io.Serializable {
     }
     
     public static List<Evento> listarTodos(Ordem ordem){
-        //                                          gambiarra para true!
+        //                                          
         return HibernateUtil.getTuplasDaTabela("Evento","","dia_hora "+ ordem.getSqlOrder());
     }
     
