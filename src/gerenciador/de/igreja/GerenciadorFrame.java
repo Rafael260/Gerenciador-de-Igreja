@@ -42,14 +42,13 @@ public class GerenciadorFrame extends javax.swing.JFrame {
     */
     public void setAllInvisible(){
         jPanelInicio.setVisible(false);
-        jPanelEventos.setVisible(false);
         jPanelDisciplina.setVisible(false);
         jPanelSecretaria.setVisible(false);
     }
     public GerenciadorFrame(Membro membro) {
         initComponents();
-        //jPanelInicio.setVisible(false);
-        jPanelSecretaria.setVisible(false);
+        setAllInvisible(); //tornando todas os paineis principais invisíveis
+        jPanelInicio.setVisible(true);
         igreja = new Igreja();
         igreja.setUsuarioAtual(membro);
         igreja.carregarEventos(Ordem.DECRESCENTE,MAX_EVENTOS);
@@ -373,10 +372,10 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         );
         jPanelDiscAtivasLayout.setVerticalGroup(
             jPanelDiscAtivasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
         );
 
-        jPanelInicio.add(jPanelDiscAtivas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 328, -1, 191));
+        jPanelInicio.add(jPanelDiscAtivas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 329, -1, 190));
 
         jPanelEventos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Eventos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(155, 126, 126))); // NOI18N
 
@@ -419,10 +418,10 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         );
         jPanelEventosLayout.setVerticalGroup(
             jPanelEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
         );
 
-        jPanelInicio.add(jPanelEventos, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 328, -1, -1));
+        jPanelInicio.add(jPanelEventos, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 329, -1, 190));
 
         jToolBar2.setFloatable(false);
         jToolBar2.setRollover(true);
