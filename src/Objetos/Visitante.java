@@ -3,7 +3,6 @@ package Objetos;
 
 
 import Util.HibernateUtil;
-import Util.Returner;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -64,8 +63,7 @@ public class Visitante  implements java.io.Serializable {
     //////////////////////////////////////////
     
     public static Visitante selectVisitantePk(int id){
-        Returner<Visitante> returner = new Returner();
-        Visitante visitante = returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Visitante", "id="+id)).get(0);
+        Visitante visitante = (Visitante)HibernateUtil.getTuplasDaTabela("Visitante", "id="+id).get(0);
         Pessoa pessoa = Pessoa.selectPessoaPk(visitante.getId());
         visitante.setPessoa(pessoa);
         return visitante;
@@ -73,8 +71,7 @@ public class Visitante  implements java.io.Serializable {
 
     public static List<Visitante> listarTodos(){
         List objects = HibernateUtil.getTuplasDaTabela("Visitante");
-        Returner<Visitante> returner = new Returner();
-        List<Visitante> visitantes = returner.getListaEspecifica(objects);
+        List<Visitante> visitantes = objects;
         Pessoa pessoa;
         for (Visitante visitante: visitantes){
             pessoa = Pessoa.selectPessoaPk(visitante.getId()); //talvez não seja eficiente

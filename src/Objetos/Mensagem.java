@@ -3,7 +3,6 @@ package Objetos;
 
 
 import Util.HibernateUtil;
-import Util.Returner;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -70,14 +69,11 @@ public class Mensagem  implements java.io.Serializable {
     //////////////////////////////////////////////////////
     
     public static Mensagem selectMensagemPk(String titulo){
-        Returner<Mensagem> returner = new Returner();
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Mensagem", "titulo='"+titulo+"'")).get(0);
+        return (Mensagem)HibernateUtil.getTuplasDaTabela("Mensagem", "titulo='"+titulo+"'").get(0);
     }
 
     public static List<Mensagem> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("Mensagem");
-        Returner<Mensagem> returner = new Returner();
-        return returner.getListaEspecifica(objects);
+        return HibernateUtil.getTuplasDaTabela("Mensagem");
     }
 
 

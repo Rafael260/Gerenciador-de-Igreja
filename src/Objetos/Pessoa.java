@@ -3,7 +3,6 @@ package Objetos;
 
 
 import Util.HibernateUtil;
-import Util.Returner;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -164,26 +163,19 @@ public class Pessoa  implements java.io.Serializable {
     ////////////////////////////////////////////////
     
     public static Pessoa selectPessoaPk(int id){
-        Returner<Pessoa> returner = new Returner();
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Pessoa", "id="+id)).get(0);
+        return (Pessoa)HibernateUtil.getTuplasDaTabela("Pessoa", "id="+id).get(0);
     }
     
     public static List<Pessoa> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("Pessoa");
-        Returner<Pessoa> returner = new Returner();
-        return returner.getListaEspecifica(objects);
+        return HibernateUtil.getTuplasDaTabela("Pessoa");
     }
     
     public static List<Pessoa> selectPessoaPorNome(String nome){
-        List objects = HibernateUtil.getTuplasDaTabela("Pessoa","nome='"+nome+"'");
-        Returner<Pessoa> returner = new Returner();
-        return returner.getListaEspecifica(objects);
+        return HibernateUtil.getTuplasDaTabela("Pessoa","nome='"+nome+"'");
     }
     
     public static List<Pessoa> selectPessoaPorNome(String nome, String sobrenome){
-        List objects = HibernateUtil.getTuplasDaTabela("Pessoa","nome='"+nome+"' and sobrenome='"+sobrenome+"'");
-        Returner<Pessoa> returner = new Returner();
-        return returner.getListaEspecifica(objects);
+        return HibernateUtil.getTuplasDaTabela("Pessoa","nome='"+nome+"' and sobrenome='"+sobrenome+"'");
     }
     
     public void cadastrarMinistracao(Evento evento, Mensagem mensagem){

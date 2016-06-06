@@ -4,7 +4,6 @@ package Objetos;
 
 import Util.FormatoDataHora;
 import Util.HibernateUtil;
-import Util.Returner;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -68,21 +67,16 @@ public class Seminario  implements java.io.Serializable {
     ////////////////////////////////////////////////////
 
     public static Seminario selectSeminarioPk(String nome){
-        Returner<Seminario> returner = new Returner();
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Seminario", "nome="+nome)).get(0);
+        return (Seminario)HibernateUtil.getTuplasDaTabela("Seminario", "nome="+nome).get(0);
     }
     
     //Geralmente só vai ter um
     public static List<Seminario> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("Seminario");
-        Returner<Seminario> returner = new Returner();
-        return returner.getListaEspecifica(objects);
+        return HibernateUtil.getTuplasDaTabela("Seminario");
     }
     
     public List<Disciplina> selectDisciplinas(){
-        Returner<Disciplina> returner = new Returner();
-        List objects = HibernateUtil.getTuplasDaTabela("Disciplina", "nome_seminario='"+this.nome+"'");
-        return returner.getListaEspecifica(objects);
+        return HibernateUtil.getTuplasDaTabela("Disciplina", "nome_seminario='"+this.nome+"'");
     }
     
     public List<Turma> selectDisciplinasAtivas(){

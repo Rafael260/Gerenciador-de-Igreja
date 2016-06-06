@@ -42,7 +42,7 @@ public class FormatoDataHora {
     
     //Ex: 2016-01-30
     public static String userData(Date date){
-        return ""+date.getDate()+"/"+(date.getMonth()+1)+"/"+(date.getYear()+1900);
+        return ""+getCampoCompleto(date.getDate())+"/"+getCampoCompleto(date.getMonth()+1)+"/"+(date.getYear()+1900);
     }
     
     public static String userDataDiaMes(Date date){
@@ -60,6 +60,14 @@ public class FormatoDataHora {
     
     public static int getAno(Date date){
         return date.getYear()+1900;
+    }
+    
+    public static String getCampoCompleto(int campo){
+        String str = ""+campo;
+        if (campo<10){
+            str = "0"+str;
+        }
+        return str;
     }
     
     //////////////////////////CALENDAR/////////////////////////////////////////////////

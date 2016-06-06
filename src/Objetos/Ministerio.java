@@ -3,7 +3,6 @@ package Objetos;
 
 
 import Util.HibernateUtil;
-import Util.Returner;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -87,14 +86,11 @@ public class Ministerio  implements java.io.Serializable {
     /////////////////////////////////////////////////////////////////////
 
     public static Ministerio selectMinisterioPk(String nome){
-        Returner<Ministerio> returner = new Returner();
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Ministerio", "nome="+nome)).get(0);   
+        return (Ministerio)HibernateUtil.getTuplasDaTabela("Ministerio", "nome="+nome).get(0);   
     }
     
     public static List<Ministerio> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("Ministerio");
-        Returner<Ministerio> returner = new Returner();
-        return returner.getListaEspecifica(objects);
+        return HibernateUtil.getTuplasDaTabela("Ministerio");
     }
     
     

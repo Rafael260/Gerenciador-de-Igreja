@@ -4,7 +4,6 @@ package Objetos;
 
 import Util.FormatoDataHora;
 import Util.HibernateUtil;
-import Util.Returner;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -153,61 +152,6 @@ public class Membro  implements java.io.Serializable {
         this.permissoes = permissoes;
     }
     
-    public boolean isLider() {
-        //Checa se o 1º bit é 1
-        return (this.permissoes & 1) == 1;
-    }
-    
-    public final void setLider(boolean lider) {
-        //Se quiser setar como líder, o 1º bit deve ser 1
-        if (lider){
-            this.permissoes = this.permissoes | 1;
-        }
-        //Senão, faz a operação de and para zerar o 1º bit e preservar os outros 3
-        else{
-            this.permissoes = this.permissoes & 14;
-        }
-    }
-    //Os outros são semelhantes aos métodos sobre líder
-    public boolean isProfessor() {
-        return (this.permissoes & 2) == 2;
-    }
-    
-    public final void setProfessor(boolean professor) {
-        if (professor){
-            this.permissoes = this.permissoes | 2;
-        }
-        else{
-            this.permissoes = this.permissoes & 13;
-        }
-    }
-    
-    public boolean isSecretario(){
-        return (this.permissoes & 4) == 4;
-    }
-    
-    public final void setSecretario(boolean secretario) {
-        if (secretario){
-            this.permissoes = this.permissoes | 4;
-        }
-        else{
-            this.permissoes = this.permissoes & 11;
-        }
-    }
-    
-    public boolean isAdmin(){
-        return (this.permissoes & 8) == 8;
-    }
-    
-    public final void setAdmin(boolean admin){
-        if (admin){
-            this.permissoes = this.permissoes | 8;
-        }
-        else{
-            this.permissoes = this.permissoes & 7;
-        }
-    }
-    
     public String getUsuario() {
         return this.usuario;
     }
@@ -274,9 +218,64 @@ public class Membro  implements java.io.Serializable {
 
     /////////////////////////////////////////////////////////////
 
-     public static Membro selectMembroPk(int id){
-        Returner<Membro> returner = new Returner();
-        Membro membro = returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("membro", "id="+id)).get(0);
+    public boolean isLider() {
+        //Checa se o 1º bit é 1
+        return (this.permissoes & 1) == 1;
+    }
+    
+    public final void setLider(boolean lider) {
+        //Se quiser setar como líder, o 1º bit deve ser 1
+        if (lider){
+            this.permissoes = this.permissoes | 1;
+        }
+        //Senão, faz a operação de and para zerar o 1º bit e preservar os outros 3
+        else{
+            this.permissoes = this.permissoes & 14;
+        }
+    }
+    //Os outros são semelhantes aos métodos sobre líder
+    public boolean isProfessor() {
+        return (this.permissoes & 2) == 2;
+    }
+    
+    public final void setProfessor(boolean professor) {
+        if (professor){
+            this.permissoes = this.permissoes | 2;
+        }
+        else{
+            this.permissoes = this.permissoes & 13;
+        }
+    }
+    
+    public boolean isSecretario(){
+        return (this.permissoes & 4) == 4;
+    }
+    
+    public final void setSecretario(boolean secretario) {
+        if (secretario){
+            this.permissoes = this.permissoes | 4;
+        }
+        else{
+            this.permissoes = this.permissoes & 11;
+        }
+    }
+    
+    public boolean isAdmin(){
+        return (this.permissoes & 8) == 8;
+    }
+    
+    public final void setAdmin(boolean admin){
+        if (admin){
+            this.permissoes = this.permissoes | 8;
+        }
+        else{
+            this.permissoes = this.permissoes & 7;
+        }
+    } 
+    
+    public static Membro selectMembroPk(int id){
+        //Returner<Membro> returner = new Returner();
+        Membro membro = (Membro)HibernateUtil.getTuplasDaTabela("membro", "id="+id).get(0);
         membro = completarInfoPessoa(membro);
         return membro;
     }
@@ -296,23 +295,30 @@ public class Membro  implements java.io.Serializable {
     
     public static List<Membro> listarTodos(){
         List objects = HibernateUtil.getTuplasDaTabela("Membro");
-        Returner<Membro> returner = new Returner();
-        List<Membro> membros = returner.getListaEspecifica(objects);
+        //Returner<Membro> returner = new Returner();
+        List<Membro> membros = objects;
         membros = completarInfoPessoa(membros);
         return membros;
     }
     
     public static List<Membro> listarTodos(Ordem ordem){
         List objects = HibernateUtil.getTuplasDaTabela("Membro", "1=1 order by data_nasc "+ ordem.getSqlOrder());
-        Returner<Membro> returner = new Returner();
-        List<Membro> membros = returner.getListaEspecifica(objects);
+        //Returner<Membro> returner = new Returner();
+        List<Membro> membros = objects;
         membros = completarInfoPessoa(membros);
         return membros;
     }
     
     public static Membro selectMembroPorUsuario(String usuario){
-        Returner<Membro> returner = new Returner();
-        Membro membro = returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Membro", "usuario='"+usuario+"'")).get(0);
+        //Returner<Membro> returner = new Returner();
+        Membro membro = (Membro)HibernateUtil.getTuplasDaTabela("Membro", "usuario='"+usuario+"'").get(0);
+        membro = completarInfoPessoa(membro);
+        return membro;
+    }
+    
+    public static Membro selectMembroAutenticado(String usuario, String senha){
+        //Returner<Membro> returner = new Returner();
+        Membro membro = (Membro)HibernateUtil.getTuplasDaTabela("Membro", "usuario='"+usuario+"' and senha='"+senha+"'").get(0);
         membro = completarInfoPessoa(membro);
         return membro;
     }
@@ -370,19 +376,10 @@ public class Membro  implements java.io.Serializable {
     }
     
     public static List<Membro> selectAniversariantesDoMes(){
-        List<Membro> todos = listarTodos(Ordem.CRESCENTE);
-        List<Membro> aniversariantes = new ArrayList();
         Date dataAtual = FormatoDataHora.getDataHoraAtual();
         int mesAtual = FormatoDataHora.getMes(dataAtual);
-        Date dataNascMembro;
-        int mesNiverMembro;
-        for (Membro membro : todos) {
-            dataNascMembro = membro.getDataNasc();
-            mesNiverMembro = FormatoDataHora.getMes(dataNascMembro);
-            if (mesAtual == mesNiverMembro){
-                aniversariantes.add(membro);
-            }
-        }
+        List<Membro> aniversariantes = HibernateUtil.getTuplasDaTabela("Membro", "data_nasc like '____-"+FormatoDataHora.getCampoCompleto(mesAtual)+"-__'");
+        aniversariantes = completarInfoPessoa(aniversariantes);
         return aniversariantes;
     }
     

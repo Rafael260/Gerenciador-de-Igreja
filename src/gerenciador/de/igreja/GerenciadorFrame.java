@@ -36,6 +36,23 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         igreja.carregarSeminarios();
         preencherDisciplinasAtivas();
     }
+    
+    public GerenciadorFrame(Membro membro) {
+        initComponents();
+        //jPanelInicio.setVisible(false);
+        jPanelSecretaria.setVisible(false);
+        igreja = new Igreja();
+        igreja.setUsuarioAtual(membro);
+        igreja.carregarEventos(Ordem.DECRESCENTE,MAX_EVENTOS);
+        preencherEventos();
+        igreja.carregarNoticias(Ordem.DECRESCENTE);
+        preencherNoticias();
+        preencherAniversariantes();
+        nomeUsuarioAtual.setText(igreja.getUsuarioAtual().getPessoa().getNome());
+        dataAtual.setText(FormatoDataHora.userData(FormatoDataHora.getDataHoraAtual()));
+        igreja.carregarSeminarios();
+        preencherDisciplinasAtivas();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,7 +69,7 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        nomeUsuarioAtual = new javax.swing.JLabel();
         dataAtual = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -128,8 +145,8 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 102, 102));
         jLabel2.setText("Usuário:");
 
-        jLabel11.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel11.setText("Nome_usuario");
+        nomeUsuarioAtual.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        nomeUsuarioAtual.setText("Nome_usuario");
 
         dataAtual.setText("00/00/0000");
 
@@ -147,7 +164,7 @@ public class GerenciadorFrame extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel11))
+                        .addComponent(nomeUsuarioAtual))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -160,7 +177,7 @@ public class GerenciadorFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel11))
+                    .addComponent(nomeUsuarioAtual))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
@@ -805,7 +822,6 @@ public class GerenciadorFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
@@ -847,6 +863,7 @@ public class GerenciadorFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JLabel nomeUsuarioAtual;
     private javax.swing.JTable tabelaAniversariantes;
     private javax.swing.JTable tabelaDisciplinasAtivas;
     private javax.swing.JTable tabelaEventos;

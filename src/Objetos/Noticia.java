@@ -2,7 +2,6 @@ package Objetos;
 // Generated 03/06/2016 10:35:37 by Hibernate Tools 4.3.1
 
 import Util.HibernateUtil;
-import Util.Returner;
 import java.util.List;
 
 
@@ -91,20 +90,15 @@ public class Noticia  implements java.io.Serializable {
     /////////////////////////////////////////////
     
     public static Noticia selectNoticiaPk(int id){
-        Returner<Noticia> returner = new Returner();
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Noticia", "id="+id)).get(0);
+        return (Noticia)HibernateUtil.getTuplasDaTabela("Noticia", "id="+id).get(0);
     }
 
-    public static List<Noticia> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("Noticia");
-        Returner<Noticia> returner = new Returner();
-        return returner.getListaEspecifica(objects);
+    public static List<Noticia> listarTodos(){ 
+        return HibernateUtil.getTuplasDaTabela("Noticia");
     }
     
     public static List<Noticia> listarTodos(Ordem ordem){
-        List objects = HibernateUtil.getTuplasDaTabela("Noticia","1=1 \norder by id "+ordem.getSqlOrder());
-        Returner<Noticia> returner = new Returner();
-        return returner.getListaEspecifica(objects);
+        return HibernateUtil.getTuplasDaTabela("Noticia","1=1 \norder by id "+ordem.getSqlOrder());
     }
 
 }
