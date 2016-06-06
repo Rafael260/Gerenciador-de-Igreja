@@ -165,23 +165,23 @@ public class Pessoa  implements java.io.Serializable {
     
     public static Pessoa selectPessoaPk(int id){
         Returner<Pessoa> returner = new Returner();
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("pessoa", "id="+id)).get(0);
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Pessoa", "id="+id)).get(0);
     }
     
     public static List<Pessoa> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("pessoa");
+        List objects = HibernateUtil.getTuplasDaTabela("Pessoa");
         Returner<Pessoa> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }
     
     public static List<Pessoa> selectPessoaPorNome(String nome){
-        List objects = HibernateUtil.getTuplasDaTabela("pessoa","nome='"+nome+"'");
+        List objects = HibernateUtil.getTuplasDaTabela("Pessoa","nome='"+nome+"'");
         Returner<Pessoa> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }
     
     public static List<Pessoa> selectPessoaPorNome(String nome, String sobrenome){
-        List objects = HibernateUtil.getTuplasDaTabela("pessoa","nome='"+nome+"' and sobrenome='"+sobrenome+"'");
+        List objects = HibernateUtil.getTuplasDaTabela("Pessoa","nome='"+nome+"' and sobrenome='"+sobrenome+"'");
         Returner<Pessoa> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }

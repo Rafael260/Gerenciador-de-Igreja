@@ -146,6 +146,10 @@ public class Igreja {
         noticias = Noticia.listarTodos();
     }
     
+    public void carregarNoticias(Ordem ordem){
+        noticias = Noticia.listarTodos(ordem);
+    }
+    
     public void carregarEventos(){
         eventos = Evento.listarTodos();
     }

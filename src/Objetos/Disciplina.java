@@ -2,6 +2,7 @@ package Objetos;
 // Generated 03/06/2016 10:35:37 by Hibernate Tools 4.3.1
 
 
+import Util.FormatoDataHora;
 import Util.HibernateUtil;
 import Util.Returner;
 import java.util.Date;
@@ -67,18 +68,27 @@ public class Disciplina  implements java.io.Serializable {
     
     public static Disciplina selectDisciplinaPk(String codigo){
         Returner<Disciplina> returner = new Returner();
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("disciplina", "codigo="+codigo)).get(0);
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Disciplina", "codigo='"+codigo+"'")).get(0);
     }
     
     public static List<Disciplina> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("disciplina");
+        List objects = HibernateUtil.getTuplasDaTabela("Disciplina");
         Returner<Disciplina> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }
     
     public List<Turma> getTodasTurmas(){
         Returner<Turma> returner = new Returner();
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("turma", "codigo="+this.codigo));
+        List<Turma> turmasDaDisciplina = returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Turma", "codigo='"+this.codigo+"'"));
+        turmasDaDisciplina = Turma.completarInfoDisciplina(turmasDaDisciplina);
+        return turmasDaDisciplina;
+    }
+    
+    public List<Turma> getTurmasAtivas(Date dataAtual){
+        Returner<Turma> returner = new Returner();
+        List<Turma> turmasAtivas = returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Turma", "codigo='"+this.codigo+"' and '"+FormatoDataHora.sqlData(dataAtual)+"' between data_inicio and data_fim"));
+        turmasAtivas = Turma.completarInfoDisciplina(turmasAtivas);
+        return turmasAtivas;
     }
 
     public void cadastrarTurma(Membro professor, PeriodoLetivo periodo, Date dataInicio, Date dataFim){

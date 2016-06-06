@@ -104,13 +104,14 @@ public class Evento  implements java.io.Serializable {
     }
     
     public static List<Evento> listarTodos(Ordem ordem){
-        List objects = HibernateUtil.getTuplasDaTabela("Evento","true order by dia_hora "+ ordem.getSqlOrder());
+        //                                                      gambiarra para true!
+        List objects = HibernateUtil.getTuplasDaTabela("Evento"," 1=1 \norder by dia_hora "+ ordem.getSqlOrder());
         Returner<Evento> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }
     
     public static List<Evento> listarTodos(Ordem ordem, int numMaxResultados){
-        List objects = HibernateUtil.getTuplasDaTabela("Evento","true order by dia_hora "+ ordem.getSqlOrder(),numMaxResultados);
+        List objects = HibernateUtil.getTuplasDaTabela("Evento"," 1=1 \norder by dia_hora "+ ordem.getSqlOrder(),numMaxResultados);
         Returner<Evento> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }
@@ -134,7 +135,7 @@ public class Evento  implements java.io.Serializable {
         //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
         parametros.add("'"+this.id.getDiaHora()+"'");
         parametros.add("'"+this.id.getTema()+"'");
-        HibernateUtil.insertInto("visita_evento", parametros);
+        HibernateUtil.insertInto("Visita_Evento", parametros);
     }
 
     //Criado por Rafael em 01/06
@@ -145,7 +146,7 @@ public class Evento  implements java.io.Serializable {
         //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
         parametros.add("'"+this.id.getDiaHora()+"'");
         parametros.add("'"+this.id.getTema()+"'");
-        HibernateUtil.insertInto("visita_evento", parametros);
+        HibernateUtil.insertInto("Visita_Evento", parametros);
     }
 
     public void cadastrarMinistracao(Pessoa pessoa, Mensagem mensagem){

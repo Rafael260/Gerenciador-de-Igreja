@@ -118,29 +118,29 @@ public class Grupo  implements java.io.Serializable {
     public static Grupo selectGrupoPk(GrupoId id){
         Returner<Grupo> returner = new Returner();
         //CONFERRIR STRING DE HORA!!!
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("grupo", "id_lider="+id.getIdLider() + " and hora='"+id.getHora()+ "' and dia_semana='"+id.getDiaSemana()+"'")).get(0);
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Grupo", "id_lider="+id.getIdLider() + " and hora='"+id.getHora()+ "' and dia_semana='"+id.getDiaSemana()+"'")).get(0);
     }
     
     public static Grupo selectGrupoPk(int id_lider, Date hora, String dia_semana){
         Returner<Grupo> returner = new Returner();
         //CONFERIR STRING DE HORA
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("evento", "id_lider="+id_lider + " and hora='"+hora+ "' and dia_semana='"+dia_semana+"'")).get(0);
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Grupo", "id_lider="+id_lider + " and hora='"+hora+ "' and dia_semana='"+dia_semana+"'")).get(0);
     }
     
     public static List<Grupo> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("grupo");
+        List objects = HibernateUtil.getTuplasDaTabela("Grupo");
         Returner<Grupo> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }
     
     public static List<Grupo> selectGrupoPorTipo(String tipo){
-         List objects = HibernateUtil.getTuplasDaTabela("grupo","tipo_grupo='"+tipo+"'");
+         List objects = HibernateUtil.getTuplasDaTabela("Grupo","tipo_grupo='"+tipo+"'");
         Returner<Grupo> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }
     
     public static List<Grupo> selectGrupoPorDiaSemana(String diaSemana){
-         List objects = HibernateUtil.getTuplasDaTabela("grupo","dia_semana='"+diaSemana+"'");
+         List objects = HibernateUtil.getTuplasDaTabela("Grupo","dia_semana='"+diaSemana+"'");
         Returner<Grupo> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }
@@ -153,19 +153,19 @@ public class Grupo  implements java.io.Serializable {
      * @return 
      */
     public static List<Grupo> selectGrupoPorDiaHorario(Date horaInicio, Date horaFinal){
-        List objects = HibernateUtil.getTuplasDaTabela("grupo","hora between '"+horaInicio+"' and '"+horaFinal+"'");
+        List objects = HibernateUtil.getTuplasDaTabela("Grupo","hora between '"+horaInicio+"' and '"+horaFinal+"'");
         Returner<Grupo> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }
     
     public static List<Grupo> selectGrupoPorBairro(String bairro){
-        List objects = HibernateUtil.getTuplasDaTabela("grupo","end_bairro='"+bairro+"'");
+        List objects = HibernateUtil.getTuplasDaTabela("Grupo","end_bairro='"+bairro+"'");
         Returner<Grupo> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }
     
     public static List<Grupo> selectGrupoPorCidade(String cidade){
-        List objects = HibernateUtil.getTuplasDaTabela("grupo","end_cidade='"+cidade+"'");
+        List objects = HibernateUtil.getTuplasDaTabela("Grupo","end_cidade='"+cidade+"'");
         Returner<Grupo> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }

@@ -92,11 +92,17 @@ public class Noticia  implements java.io.Serializable {
     
     public static Noticia selectNoticiaPk(int id){
         Returner<Noticia> returner = new Returner();
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("noticia", "id="+id)).get(0);
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Noticia", "id="+id)).get(0);
     }
 
     public static List<Noticia> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("noticias");
+        List objects = HibernateUtil.getTuplasDaTabela("Noticia");
+        Returner<Noticia> returner = new Returner();
+        return returner.getListaEspecifica(objects);
+    }
+    
+    public static List<Noticia> listarTodos(Ordem ordem){
+        List objects = HibernateUtil.getTuplasDaTabela("Noticia","1=1 \norder by id "+ordem.getSqlOrder());
         Returner<Noticia> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }

@@ -65,14 +65,14 @@ public class Visitante  implements java.io.Serializable {
     
     public static Visitante selectVisitantePk(int id){
         Returner<Visitante> returner = new Returner();
-        Visitante visitante = returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("visitante", "id="+id)).get(0);
+        Visitante visitante = returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Visitante", "id="+id)).get(0);
         Pessoa pessoa = Pessoa.selectPessoaPk(visitante.getId());
         visitante.setPessoa(pessoa);
         return visitante;
     }
 
     public static List<Visitante> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("visitante");
+        List objects = HibernateUtil.getTuplasDaTabela("Visitante");
         Returner<Visitante> returner = new Returner();
         List<Visitante> visitantes = returner.getListaEspecifica(objects);
         Pessoa pessoa;
@@ -90,7 +90,7 @@ public class Visitante  implements java.io.Serializable {
         //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
         parametros.add("'"+evento.getId().getDiaHora()+"'");
         parametros.add("'"+evento.getId().getTema()+"'");
-        HibernateUtil.insertInto("visita_evento", parametros);
+        HibernateUtil.insertInto("Visita_Evento", parametros);
     }
 
     public void adicionarEvento(Evento evento){
@@ -99,7 +99,7 @@ public class Visitante  implements java.io.Serializable {
         //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
         parametros.add("'"+evento.getId().getDiaHora()+"'");
         parametros.add("'"+evento.getId().getTema()+"'");
-        HibernateUtil.insertInto("visita_evento", parametros);
+        HibernateUtil.insertInto("Visita_Evento", parametros);
     }
 
 }

@@ -88,11 +88,11 @@ public class Ministerio  implements java.io.Serializable {
 
     public static Ministerio selectMinisterioPk(String nome){
         Returner<Ministerio> returner = new Returner();
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("ministerio", "nome="+nome)).get(0);   
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Ministerio", "nome="+nome)).get(0);   
     }
     
     public static List<Ministerio> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("ministerio");
+        List objects = HibernateUtil.getTuplasDaTabela("Ministerio");
         Returner<Ministerio> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }
@@ -108,7 +108,7 @@ public class Ministerio  implements java.io.Serializable {
         parametros.add(""+membro.getId());
         //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
         parametros.add("'"+getNome()+"'");
-        HibernateUtil.insertInto("participa_ministerio", parametros);
+        HibernateUtil.insertInto("Participa_Ministerio", parametros);
     }
 
 

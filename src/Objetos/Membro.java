@@ -2,6 +2,7 @@ package Objetos;
 // Generated 03/06/2016 10:35:37 by Hibernate Tools 4.3.1
 
 
+import Util.FormatoDataHora;
 import Util.HibernateUtil;
 import Util.Returner;
 import java.util.ArrayList;
@@ -294,16 +295,24 @@ public class Membro  implements java.io.Serializable {
     }
     
     public static List<Membro> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("membro");
+        List objects = HibernateUtil.getTuplasDaTabela("Membro");
         Returner<Membro> returner = new Returner();
         List<Membro> membros = returner.getListaEspecifica(objects);
         membros = completarInfoPessoa(membros);
         return membros;
     }
     
-    public Membro selectMembroPorUsuario(String usuario){
+    public static List<Membro> listarTodos(Ordem ordem){
+        List objects = HibernateUtil.getTuplasDaTabela("Membro", "1=1 order by data_nasc "+ ordem.getSqlOrder());
         Returner<Membro> returner = new Returner();
-        Membro membro = returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("membro", "usuario='"+usuario+"'")).get(0);
+        List<Membro> membros = returner.getListaEspecifica(objects);
+        membros = completarInfoPessoa(membros);
+        return membros;
+    }
+    
+    public static Membro selectMembroPorUsuario(String usuario){
+        Returner<Membro> returner = new Returner();
+        Membro membro = returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Membro", "usuario='"+usuario+"'")).get(0);
         membro = completarInfoPessoa(membro);
         return membro;
     }
@@ -312,7 +321,7 @@ public class Membro  implements java.io.Serializable {
         
     }*/
     
-    public List<Membro> selectLideres(){
+    public static List<Membro> selectLideres(){
        List<Membro> todosMembros = listarTodos();
        List<Membro> lideres = new ArrayList();
         for (Membro membro : todosMembros) {
@@ -324,7 +333,7 @@ public class Membro  implements java.io.Serializable {
         return lideres;
     }
     
-    public List<Membro> selectProfessores(){
+    public static List<Membro> selectProfessores(){
        List<Membro> todosMembros = listarTodos();
        List<Membro> professores = new ArrayList();
         for (Membro membro : todosMembros) {
@@ -336,7 +345,7 @@ public class Membro  implements java.io.Serializable {
         return professores;
     }
     
-    public List<Membro> selectSecretarios(){
+    public static List<Membro> selectSecretarios(){
        List<Membro> todosMembros = listarTodos();
        List<Membro> secretarios = new ArrayList();
         for (Membro membro : todosMembros) {
@@ -348,7 +357,7 @@ public class Membro  implements java.io.Serializable {
         return secretarios;
     }
     
-    public List<Membro> selectAdmins(){
+    public static List<Membro> selectAdmins(){
        List<Membro> todosMembros = listarTodos();
        List<Membro> admins = new ArrayList();
         for (Membro membro : todosMembros) {
@@ -360,13 +369,30 @@ public class Membro  implements java.io.Serializable {
         return admins;
     }
     
+    public static List<Membro> selectAniversariantesDoMes(){
+        List<Membro> todos = listarTodos(Ordem.CRESCENTE);
+        List<Membro> aniversariantes = new ArrayList();
+        Date dataAtual = FormatoDataHora.getDataHoraAtual();
+        int mesAtual = FormatoDataHora.getMes(dataAtual);
+        Date dataNascMembro;
+        int mesNiverMembro;
+        for (Membro membro : todos) {
+            dataNascMembro = membro.getDataNasc();
+            mesNiverMembro = FormatoDataHora.getMes(dataNascMembro);
+            if (mesAtual == mesNiverMembro){
+                aniversariantes.add(membro);
+            }
+        }
+        return aniversariantes;
+    }
+    
     public void adicionarMinisterio(String nome, Date hora, String diaSemana){
         Ministerio ministerio = new Ministerio(nome,this,hora,diaSemana);
         List<String> parametros = new ArrayList();
         parametros.add(""+getId());
         //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
         parametros.add("'"+ministerio.getNome()+"'");
-        HibernateUtil.insertInto("participa_ministerio", parametros);
+        HibernateUtil.insertInto("Participa_Ministerio", parametros);
     }
 
     /**
@@ -379,7 +405,7 @@ public class Membro  implements java.io.Serializable {
         parametros.add(""+getId());
         //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
         parametros.add("'"+ministerio.getNome()+"'");
-        HibernateUtil.insertInto("participa_ministerio", parametros);
+        HibernateUtil.insertInto("Participa_Ministerio", parametros);
         ministerios.add(ministerio);
     }
 

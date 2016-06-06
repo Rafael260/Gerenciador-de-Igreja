@@ -16,6 +16,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class GerenciadorFrame extends javax.swing.JFrame {
 
+    Igreja igreja;
+    private static final int MAX_EVENTOS = 20;
+    
     /**
      * Creates new form GerenciadorFrame
      */
@@ -24,8 +27,14 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         //jPanelInicio.setVisible(false);
         jPanelSecretaria.setVisible(false);
         igreja = new Igreja();
-        igreja.carregarEventos();
+        igreja.carregarEventos(Ordem.DECRESCENTE,MAX_EVENTOS);
         preencherEventos();
+        igreja.carregarNoticias(Ordem.DECRESCENTE);
+        preencherNoticias();
+        preencherAniversariantes();
+        dataAtual.setText(FormatoDataHora.userData(FormatoDataHora.getDataHoraAtual()));
+        igreja.carregarSeminarios();
+        preencherDisciplinasAtivas();
     }
 
     /**
@@ -44,7 +53,7 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        dataAtual = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
@@ -52,13 +61,13 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanelAniversariante = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaAniversariantes = new javax.swing.JTable();
         jPanelNoticias = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaNoticias = new javax.swing.JTable();
         jPanelDiscAtivas = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tabelaDisciplinasAtivas = new javax.swing.JTable();
         jPanelEventos = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tabelaEventos = new javax.swing.JTable();
@@ -122,7 +131,7 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel11.setText("Nome_usuario");
 
-        jLabel14.setText("00/00/0000");
+        dataAtual.setText("00/00/0000");
 
         jLabel13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 102, 102));
@@ -142,7 +151,7 @@ public class GerenciadorFrame extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel14)))
+                        .addComponent(dataAtual)))
                 .addContainerGap(106, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -155,7 +164,7 @@ public class GerenciadorFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel14))
+                    .addComponent(dataAtual))
                 .addContainerGap())
         );
 
@@ -198,8 +207,8 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(null);
 
-        jTable1.setBackground(new java.awt.Color(196, 255, 225));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaAniversariantes.setBackground(new java.awt.Color(196, 255, 225));
+        tabelaAniversariantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"João", "10/10"},
                 {"Maria", "11/10"},
@@ -224,11 +233,11 @@ public class GerenciadorFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setGridColor(new java.awt.Color(0, 102, 102));
-        jTable1.setSelectionBackground(new java.awt.Color(96, 155, 125));
-        jTable1.setShowHorizontalLines(false);
-        jTable1.setUpdateSelectionOnSort(false);
-        jScrollPane1.setViewportView(jTable1);
+        tabelaAniversariantes.setGridColor(new java.awt.Color(0, 102, 102));
+        tabelaAniversariantes.setSelectionBackground(new java.awt.Color(96, 155, 125));
+        tabelaAniversariantes.setShowHorizontalLines(false);
+        tabelaAniversariantes.setUpdateSelectionOnSort(false);
+        jScrollPane1.setViewportView(tabelaAniversariantes);
 
         javax.swing.GroupLayout jPanelAniversarianteLayout = new javax.swing.GroupLayout(jPanelAniversariante);
         jPanelAniversariante.setLayout(jPanelAniversarianteLayout);
@@ -243,10 +252,8 @@ public class GerenciadorFrame extends javax.swing.JFrame {
 
         jPanelNoticias.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Notícias", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(109, 114, 130))); // NOI18N
 
-        jScrollPane3.setBorder(null);
-
-        jTable2.setBackground(new java.awt.Color(209, 214, 230));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaNoticias.setBackground(new java.awt.Color(209, 214, 230));
+        tabelaNoticias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Os ensaios do grupo \"alguma coisa\" serão cancelados esta semana", "10/10"},
                 {null, null},
@@ -271,10 +278,10 @@ public class GerenciadorFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable2.setGridColor(new java.awt.Color(0, 102, 102));
-        jTable2.setSelectionBackground(new java.awt.Color(109, 114, 130));
-        jTable2.setShowHorizontalLines(false);
-        jScrollPane3.setViewportView(jTable2);
+        tabelaNoticias.setGridColor(new java.awt.Color(0, 102, 102));
+        tabelaNoticias.setSelectionBackground(new java.awt.Color(109, 114, 130));
+        tabelaNoticias.setShowHorizontalLines(false);
+        jScrollPane3.setViewportView(tabelaNoticias);
 
         javax.swing.GroupLayout jPanelNoticiasLayout = new javax.swing.GroupLayout(jPanelNoticias);
         jPanelNoticias.setLayout(jPanelNoticiasLayout);
@@ -293,8 +300,8 @@ public class GerenciadorFrame extends javax.swing.JFrame {
 
         jScrollPane4.setBorder(null);
 
-        jTable3.setBackground(new java.awt.Color(201, 255, 206));
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaDisciplinasAtivas.setBackground(new java.awt.Color(201, 255, 206));
+        tabelaDisciplinasAtivas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Aprender a ser Gente", "15/06/0000", "10/11/0000"},
                 {null, null, null},
@@ -319,10 +326,10 @@ public class GerenciadorFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable3.setGridColor(new java.awt.Color(0, 102, 102));
-        jTable3.setSelectionBackground(new java.awt.Color(101, 155, 106));
-        jTable3.setShowHorizontalLines(false);
-        jScrollPane4.setViewportView(jTable3);
+        tabelaDisciplinasAtivas.setGridColor(new java.awt.Color(0, 102, 102));
+        tabelaDisciplinasAtivas.setSelectionBackground(new java.awt.Color(101, 155, 106));
+        tabelaDisciplinasAtivas.setShowHorizontalLines(false);
+        jScrollPane4.setViewportView(tabelaDisciplinasAtivas);
 
         javax.swing.GroupLayout jPanelDiscAtivasLayout = new javax.swing.GroupLayout(jPanelDiscAtivas);
         jPanelDiscAtivas.setLayout(jPanelDiscAtivasLayout);
@@ -336,8 +343,6 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         );
 
         jPanelEventos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Eventos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(155, 126, 126))); // NOI18N
-
-        jScrollPane5.setBorder(null);
 
         tabelaEventos.setBackground(new java.awt.Color(255, 226, 226));
         tabelaEventos.setModel(new javax.swing.table.DefaultTableModel(
@@ -425,7 +430,7 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jPanelInicioLayout.setVerticalGroup(
             jPanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInicioLayout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -739,6 +744,46 @@ public class GerenciadorFrame extends javax.swing.JFrame {
             objs[0] = evento.getId().getTema();
             objs[1] = FormatoDataHora.userData(evento.getId().getDiaHora());
             objs[2] = FormatoDataHora.userHora(evento.getId().getDiaHora());
+           
+            model.addRow(objs);
+        }
+    }
+    
+    private void preencherNoticias(){
+        DefaultTableModel model = (DefaultTableModel) tabelaNoticias.getModel();
+        model.setNumRows(0);
+        List<Noticia> noticias = igreja.getNoticias();
+        Object[] objs = new Object[2];
+        for (Noticia not : noticias) {
+            objs[0] = not.getManchete();
+            objs[1] = "";
+            
+            model.addRow(objs);
+        }
+    }
+    
+    private void preencherAniversariantes(){
+        DefaultTableModel model = (DefaultTableModel) tabelaAniversariantes.getModel();
+        model.setNumRows(0);
+        List<Membro> aniversariantes = Membro.selectAniversariantesDoMes();
+        Object[] objs = new Object[2];
+        for (Membro membro : aniversariantes){
+            objs[0] = membro.getPessoa().getNome();
+            objs[1] = FormatoDataHora.userDataDiaMes(membro.getDataNasc());
+            model.addRow(objs);
+        }
+    }
+    
+    private void preencherDisciplinasAtivas() {
+        DefaultTableModel model = (DefaultTableModel) tabelaDisciplinasAtivas.getModel();
+        model.setNumRows(0);
+        //get(0) pelo fato de por padrão só existir um seminário
+        List<Turma> disciplinasAtivas = igreja.getSeminarios().get(0).selectDisciplinasAtivas();
+        Object[] objs = new Object[3];
+        for (Turma turma : disciplinasAtivas){
+            objs[0] = turma.getDisciplina().getNome();
+            objs[1] = FormatoDataHora.userData(turma.getId().getDataInicio());
+            objs[2] = FormatoDataHora.userData(turma.getDataFim());
             model.addRow(objs);
         }
     }
@@ -747,9 +792,9 @@ public class GerenciadorFrame extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
-    Igreja igreja;
-    private static final int MAX_EVENTOS = 20;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel dataAtual;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -763,7 +808,6 @@ public class GerenciadorFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -801,11 +845,13 @@ public class GerenciadorFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JTable tabelaAniversariantes;
+    private javax.swing.JTable tabelaDisciplinasAtivas;
     private javax.swing.JTable tabelaEventos;
+    private javax.swing.JTable tabelaNoticias;
     // End of variables declaration//GEN-END:variables
+
+    
 }

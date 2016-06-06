@@ -2,8 +2,11 @@ package Objetos;
 // Generated 03/06/2016 10:35:37 by Hibernate Tools 4.3.1
 
 
+import Util.FormatoDataHora;
 import Util.HibernateUtil;
 import Util.Returner;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -66,20 +69,30 @@ public class Seminario  implements java.io.Serializable {
 
     public static Seminario selectSeminarioPk(String nome){
         Returner<Seminario> returner = new Returner();
-        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("seminario", "nome="+nome)).get(0);
+        return returner.getListaEspecifica(HibernateUtil.getTuplasDaTabela("Seminario", "nome="+nome)).get(0);
     }
     
     //Geralmente só vai ter um
     public static List<Seminario> listarTodos(){
-        List objects = HibernateUtil.getTuplasDaTabela("seminario");
+        List objects = HibernateUtil.getTuplasDaTabela("Seminario");
         Returner<Seminario> returner = new Returner();
         return returner.getListaEspecifica(objects);
     }
     
     public List<Disciplina> selectDisciplinas(){
         Returner<Disciplina> returner = new Returner();
-        List objects = HibernateUtil.getTuplasDaTabela("disciplina", "nome_seminario='"+this.nome+"'");
+        List objects = HibernateUtil.getTuplasDaTabela("Disciplina", "nome_seminario='"+this.nome+"'");
         return returner.getListaEspecifica(objects);
+    }
+    
+    public List<Turma> selectDisciplinasAtivas(){
+        Date dataAtual = FormatoDataHora.getDataHoraAtual();
+        List<Disciplina> allDisciplinas = selectDisciplinas();
+        List<Turma> disciplinasAtivas = new ArrayList();
+        for (Disciplina disciplina : allDisciplinas) {
+            disciplinasAtivas.addAll(disciplina.getTurmasAtivas(dataAtual));
+        }
+        return disciplinasAtivas;
     }
 
     /**

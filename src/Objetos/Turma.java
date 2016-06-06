@@ -87,6 +87,18 @@ public class Turma  implements java.io.Serializable {
 
     /////////////////////////////////////////////////////////////
 
+    //método NÃO eficiente
+    public static List<Turma> completarInfoDisciplina(List<Turma> turmas){
+        for (Turma turma : turmas) {
+            turma.completarInfoDisciplina();
+        }
+        return turmas;
+    }
+    
+    public void completarInfoDisciplina(){
+        disciplina = Disciplina.selectDisciplinaPk(id.getCodigo());
+    }
+    
     public void cadastrarMatricula(Membro aluno){
         Matricula matricula = new Matricula(new MatriculaId(aluno.getId(),disciplina.getCodigo(),id.getDataInicio()),aluno,this);
         HibernateUtil.persistirObjeto(matricula);

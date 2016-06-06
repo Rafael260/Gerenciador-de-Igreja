@@ -15,6 +15,9 @@
         <many-to-one name="membro" class="Objetos.Membro" update="false" insert="false" fetch="select">
             <column name="id_cadastrante" not-null="true" />
         </many-to-one>
+        <property name="manchete" type="string">
+            <column name="manchete" not-null="true" />
+        </property>
         <property name="texto" type="string">
             <column name="texto" not-null="true" />
         </property>
