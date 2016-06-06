@@ -95,6 +95,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setText("Nome do Usuário:");
 
+        usuario.setText("joaojcl");
         usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usuarioActionPerformed(evt);
@@ -104,6 +105,13 @@ public class TelaLogin extends javax.swing.JFrame {
         jlabel_senha.setFont(new java.awt.Font("Gadugi", 1, 12)); // NOI18N
         jlabel_senha.setForeground(new java.awt.Color(0, 102, 102));
         jlabel_senha.setText("Senha:");
+
+        senha.setText("123456");
+        senha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                senhaActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Entrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -209,6 +217,10 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_senhaActionPerformed
 
     
 

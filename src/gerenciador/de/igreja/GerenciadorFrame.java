@@ -230,7 +230,7 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Bem Vindo!");
-        jPanelInicio.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 24, 874, -1));
+        jPanelInicio.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 24, 850, -1));
 
         jPanelAniversariante.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Aniversariantes do mês", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(96, 155, 125))); // NOI18N
 
