@@ -93,20 +93,51 @@ public class HibernateUtil {
         return tuplas;
     }
     
-    public static List getTuplasDaTabela(String tabela, String where){
+    public static List getTuplasDaTabela(String tabela, String where, String ordenadoPor){
         Session s = sessionFactory.getCurrentSession();
         s.beginTransaction();
         List tuplas;
-        tuplas = s.createQuery("from "+tabela+ " where "+ where).list();
+        String onde;
+        String ordem;
+        if (where.isEmpty()){
+            onde = "";
+        }
+        else{
+            onde = " where "+where;
+        }
+        if (ordenadoPor.isEmpty()){
+            ordem = "";
+        }
+        else{
+            ordem = " order by "+ordenadoPor;
+        }
+            
+        tuplas = s.createQuery("from "+tabela+ onde + ordem).list();
         s.getTransaction().commit();
         return tuplas;
     }
     
-    public static List getTuplasDaTabela(String tabela, String where, int numMaxResultados){
+    public static List getTuplasDaTabela(String tabela, String where, String ordenadoPor, int numMaxResultados){
         Session s = sessionFactory.getCurrentSession();
         s.beginTransaction();
         List tuplas;
-        tuplas = s.createQuery("from "+tabela+ " where "+ where).setMaxResults(numMaxResultados).list();
+        
+        String onde;
+        String ordem;
+        if (where.isEmpty()){
+            onde = "";
+        }
+        else{
+            onde = " where "+where;
+        }
+        if (ordenadoPor.isEmpty()){
+            ordem = "";
+        }
+        else{
+            ordem = " order by "+ordenadoPor;
+        }
+            
+        tuplas = s.createQuery("from "+tabela+ onde + ordem).setMaxResults(numMaxResultados).list();
         s.getTransaction().commit();
         return tuplas;
     }

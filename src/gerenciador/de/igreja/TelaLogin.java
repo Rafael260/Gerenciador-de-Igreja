@@ -187,7 +187,7 @@ public class TelaLogin extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(423, 402));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

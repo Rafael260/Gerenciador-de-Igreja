@@ -782,7 +782,7 @@ public class GerenciadorFrame extends javax.swing.JFrame {
     private void preencherAniversariantes(){
         DefaultTableModel model = (DefaultTableModel) tabelaAniversariantes.getModel();
         model.setNumRows(0);
-        List<Membro> aniversariantes = Membro.selectAniversariantesDoMes();
+        List<Membro> aniversariantes = Membro.selectAniversariantesDoMes(Ordem.CRESCENTE);
         Object[] objs = new Object[2];
         for (Membro membro : aniversariantes){
             objs[0] = membro.getPessoa().getNome();

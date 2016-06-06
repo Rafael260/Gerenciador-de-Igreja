@@ -275,7 +275,7 @@ public class Membro  implements java.io.Serializable {
     
     public static Membro selectMembroPk(int id){
         //Returner<Membro> returner = new Returner();
-        Membro membro = (Membro)HibernateUtil.getTuplasDaTabela("membro", "id="+id).get(0);
+        Membro membro = (Membro)HibernateUtil.getTuplasDaTabela("membro", "id="+id,"").get(0);
         membro = completarInfoPessoa(membro);
         return membro;
     }
@@ -302,7 +302,7 @@ public class Membro  implements java.io.Serializable {
     }
     
     public static List<Membro> listarTodos(Ordem ordem){
-        List objects = HibernateUtil.getTuplasDaTabela("Membro", "1=1 order by data_nasc "+ ordem.getSqlOrder());
+        List objects = HibernateUtil.getTuplasDaTabela("Membro", "","data_nasc "+ ordem.getSqlOrder());
         //Returner<Membro> returner = new Returner();
         List<Membro> membros = objects;
         membros = completarInfoPessoa(membros);
@@ -311,14 +311,14 @@ public class Membro  implements java.io.Serializable {
     
     public static Membro selectMembroPorUsuario(String usuario){
         //Returner<Membro> returner = new Returner();
-        Membro membro = (Membro)HibernateUtil.getTuplasDaTabela("Membro", "usuario='"+usuario+"'").get(0);
+        Membro membro = (Membro)HibernateUtil.getTuplasDaTabela("Membro", "usuario='"+usuario+"'","").get(0);
         membro = completarInfoPessoa(membro);
         return membro;
     }
     
     public static Membro selectMembroAutenticado(String usuario, String senha){
         //Returner<Membro> returner = new Returner();
-        Membro membro = (Membro)HibernateUtil.getTuplasDaTabela("Membro", "usuario='"+usuario+"' and senha='"+senha+"'").get(0);
+        Membro membro = (Membro)HibernateUtil.getTuplasDaTabela("Membro", "usuario='"+usuario+"' and senha='"+senha+"'","").get(0);
         membro = completarInfoPessoa(membro);
         return membro;
     }
@@ -375,10 +375,10 @@ public class Membro  implements java.io.Serializable {
         return admins;
     }
     
-    public static List<Membro> selectAniversariantesDoMes(){
+    public static List<Membro> selectAniversariantesDoMes(Ordem ordem){
         Date dataAtual = FormatoDataHora.getDataHoraAtual();
         int mesAtual = FormatoDataHora.getMes(dataAtual);
-        List<Membro> aniversariantes = HibernateUtil.getTuplasDaTabela("Membro", "data_nasc like '____-"+FormatoDataHora.getCampoCompleto(mesAtual)+"-__'");
+        List<Membro> aniversariantes = HibernateUtil.getTuplasDaTabela("Membro", "data_nasc like '____-"+FormatoDataHora.getCampoCompleto(mesAtual)+"-__'","data_nasc "+ordem.getSqlOrder());
         aniversariantes = completarInfoPessoa(aniversariantes);
         return aniversariantes;
     }
