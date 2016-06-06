@@ -66,7 +66,7 @@ public class Disciplina  implements java.io.Serializable {
     //////////////////////////////////////////////
     
     public static Disciplina selectDisciplinaPk(String codigo){
-        return (Disciplina)HibernateUtil.getTuplasDaTabela("Disciplina", "codigo='"+codigo+"'").get(0);
+        return (Disciplina)HibernateUtil.getTuplasDaTabela("Disciplina", "codigo='"+codigo+"'","").get(0);
     }
     
     public static List<Disciplina> listarTodos(){
@@ -74,13 +74,13 @@ public class Disciplina  implements java.io.Serializable {
     }
     
     public List<Turma> getTodasTurmas(){
-        List<Turma> turmasDaDisciplina = HibernateUtil.getTuplasDaTabela("Turma", "codigo='"+this.codigo+"'");
+        List<Turma> turmasDaDisciplina = HibernateUtil.getTuplasDaTabela("Turma", "codigo='"+this.codigo+"'","");
         turmasDaDisciplina = Turma.completarInfoDisciplina(turmasDaDisciplina); //Falta um select mais eficiente
         return turmasDaDisciplina;
     }
     
     public List<Turma> getTurmasAtivas(Date dataAtual){
-        List<Turma> turmasAtivas = HibernateUtil.getTuplasDaTabela("Turma", "codigo='"+this.codigo+"' and '"+FormatoDataHora.sqlData(dataAtual)+"' between data_inicio and data_fim");
+        List<Turma> turmasAtivas = HibernateUtil.getTuplasDaTabela("Turma", "codigo='"+this.codigo+"' and '"+FormatoDataHora.sqlData(dataAtual)+"' between data_inicio and data_fim","");
         turmasAtivas = Turma.completarInfoDisciplina(turmasAtivas);
         return turmasAtivas;
     }

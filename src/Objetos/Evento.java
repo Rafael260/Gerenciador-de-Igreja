@@ -86,12 +86,12 @@ public class Evento  implements java.io.Serializable {
     
     public static Evento selectEventoPk(EventoId id){
         //CONFERRIR STRING DE DIA_HORA!!!
-        return (Evento)HibernateUtil.getTuplasDaTabela("Evento", "tema="+id.getTema() + " and dia_hora="+id.getDiaHora()).get(0);
+        return (Evento)HibernateUtil.getTuplasDaTabela("Evento", "tema="+id.getTema() + " and dia_hora="+id.getDiaHora(),"").get(0);
     }
     
     public static Evento selectEventoPk(String tema, Date dia_hora){
         //CONFERRIR STRING DE DIA_HORA!!!
-        return (Evento)HibernateUtil.getTuplasDaTabela("Evento", "tema="+tema + " and dia_hora="+dia_hora).get(0);
+        return (Evento)HibernateUtil.getTuplasDaTabela("Evento", "tema='"+tema+"'" + " and dia_hora="+dia_hora,"").get(0);
     }
     
     public static List<Evento> listarTodos(){
@@ -100,19 +100,19 @@ public class Evento  implements java.io.Serializable {
     
     public static List<Evento> listarTodos(Ordem ordem){
         //                                          gambiarra para true!
-        return HibernateUtil.getTuplasDaTabela("Evento"," 1=1 \norder by dia_hora "+ ordem.getSqlOrder());
+        return HibernateUtil.getTuplasDaTabela("Evento","","dia_hora "+ ordem.getSqlOrder());
     }
     
     public static List<Evento> listarTodos(Ordem ordem, int numMaxResultados){
-        return HibernateUtil.getTuplasDaTabela("Evento"," 1=1 \norder by dia_hora "+ ordem.getSqlOrder(),numMaxResultados);
+        return HibernateUtil.getTuplasDaTabela("Evento","","dia_hora "+ ordem.getSqlOrder(),numMaxResultados);
     }
     
     public static List<Evento> selectEventoPorTema(String tema){
-        return HibernateUtil.getTuplasDaTabela("Evento","tema="+tema);
+        return HibernateUtil.getTuplasDaTabela("Evento","tema="+tema,"");
     }
     
     public static List<Evento> selectEventoPorTema(String tema, Ordem ordem){
-        return HibernateUtil.getTuplasDaTabela("Evento","tema="+tema+ " order by dia_hora"+ ordem.getSqlOrder());
+        return HibernateUtil.getTuplasDaTabela("Evento","tema='"+tema+"'"," order by dia_hora"+ ordem.getSqlOrder());
     }
     
     public void adicionarVisitante(Pessoa pessoa){

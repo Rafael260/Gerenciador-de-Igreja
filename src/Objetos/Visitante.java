@@ -63,7 +63,7 @@ public class Visitante  implements java.io.Serializable {
     //////////////////////////////////////////
     
     public static Visitante selectVisitantePk(int id){
-        Visitante visitante = (Visitante)HibernateUtil.getTuplasDaTabela("Visitante", "id="+id).get(0);
+        Visitante visitante = (Visitante)HibernateUtil.getTuplasDaTabela("Visitante", "id="+id,"").get(0);
         Pessoa pessoa = Pessoa.selectPessoaPk(visitante.getId());
         visitante.setPessoa(pessoa);
         return visitante;

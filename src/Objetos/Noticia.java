@@ -90,7 +90,7 @@ public class Noticia  implements java.io.Serializable {
     /////////////////////////////////////////////
     
     public static Noticia selectNoticiaPk(int id){
-        return (Noticia)HibernateUtil.getTuplasDaTabela("Noticia", "id="+id).get(0);
+        return (Noticia)HibernateUtil.getTuplasDaTabela("Noticia", "id="+id,"").get(0);
     }
 
     public static List<Noticia> listarTodos(){ 
@@ -98,7 +98,7 @@ public class Noticia  implements java.io.Serializable {
     }
     
     public static List<Noticia> listarTodos(Ordem ordem){
-        return HibernateUtil.getTuplasDaTabela("Noticia","1=1 \norder by id "+ordem.getSqlOrder());
+        return HibernateUtil.getTuplasDaTabela("Noticia","","id "+ordem.getSqlOrder());
     }
 
 }

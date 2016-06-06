@@ -115,12 +115,12 @@ public class Grupo  implements java.io.Serializable {
     ///////////////////////////////////////////////////////////
     
     public static Grupo selectGrupoPk(GrupoId id){
-        return (Grupo)HibernateUtil.getTuplasDaTabela("Grupo", "id_lider="+id.getIdLider() + " and hora='"+id.getHora()+ "' and dia_semana='"+id.getDiaSemana()+"'").get(0);
+        return (Grupo)HibernateUtil.getTuplasDaTabela("Grupo", "id_lider="+id.getIdLider() + " and hora='"+id.getHora()+ "' and dia_semana='"+id.getDiaSemana()+"'","").get(0);
     }
     
     public static Grupo selectGrupoPk(int id_lider, Date hora, String dia_semana){
         //CONFERIR STRING DE HORA
-        return (Grupo)HibernateUtil.getTuplasDaTabela("Grupo", "id_lider="+id_lider + " and hora='"+hora+ "' and dia_semana='"+dia_semana+"'").get(0);
+        return (Grupo)HibernateUtil.getTuplasDaTabela("Grupo", "id_lider="+id_lider + " and hora='"+hora+ "' and dia_semana='"+dia_semana+"'","").get(0);
     }
     
     public static List<Grupo> listarTodos(){
@@ -128,11 +128,11 @@ public class Grupo  implements java.io.Serializable {
     }
     
     public static List<Grupo> selectGrupoPorTipo(String tipo){
-        return HibernateUtil.getTuplasDaTabela("Grupo","tipo_grupo='"+tipo+"'");
+        return HibernateUtil.getTuplasDaTabela("Grupo","tipo_grupo='"+tipo+"'","");
     }
     
     public static List<Grupo> selectGrupoPorDiaSemana(String diaSemana){
-        return HibernateUtil.getTuplasDaTabela("Grupo","dia_semana='"+diaSemana+"'");
+        return HibernateUtil.getTuplasDaTabela("Grupo","dia_semana='"+diaSemana+"'","");
     }
     
     /**
@@ -143,15 +143,15 @@ public class Grupo  implements java.io.Serializable {
      * @return 
      */
     public static List<Grupo> selectGrupoPorDiaHorario(Date horaInicio, Date horaFinal){
-        return HibernateUtil.getTuplasDaTabela("Grupo","hora between '"+horaInicio+"' and '"+horaFinal+"'");
+        return HibernateUtil.getTuplasDaTabela("Grupo","hora between '"+horaInicio+"' and '"+horaFinal+"'","");
     }
     
     public static List<Grupo> selectGrupoPorBairro(String bairro){
-        return HibernateUtil.getTuplasDaTabela("Grupo","end_bairro='"+bairro+"'");
+        return HibernateUtil.getTuplasDaTabela("Grupo","end_bairro='"+bairro+"'","");
     }
     
     public static List<Grupo> selectGrupoPorCidade(String cidade){
-        return HibernateUtil.getTuplasDaTabela("Grupo","end_cidade='"+cidade+"'");
+        return HibernateUtil.getTuplasDaTabela("Grupo","end_cidade='"+cidade+"'","");
     }
     
     public void adicionarMembro(Membro membro){
