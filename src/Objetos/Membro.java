@@ -275,8 +275,29 @@ public class Membro  implements java.io.Serializable {
     
     public static Membro selectMembroPk(int id){
         //Returner<Membro> returner = new Returner();
-        Membro membro = (Membro)HibernateUtil.getTuplasDaTabela("membro", "id="+id,"").get(0);
-        membro = completarInfoPessoa(membro);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "id="+id,"");
+        Object[] objectMembro = objects.get(0);
+        Pessoa p = new Pessoa();
+        p.setNome((String)objectMembro[0]);
+        p.setSobrenome((String)objectMembro[1]);
+        p.setTelefone((String)objectMembro[2]);
+        p.setEndRua((String)objectMembro[3]);
+        p.setEndNumero((Integer)objectMembro[4]);
+        p.setEndComp((String)objectMembro[5]);
+        p.setEndBairro((String)objectMembro[6]);
+        p.setEndCidade((String)objectMembro[7]);
+        p.setEndEstado((String)objectMembro[8]);
+        p.setEmail((String)objectMembro[9]);
+        p.setEstadoCivil((Character)objectMembro[10]);
+        Membro membro = new Membro();
+        membro.setPessoa(p);
+        membro.setCpf((String)objectMembro[11]);
+        membro.setDataNasc((Date)objectMembro[12]);
+        membro.setBatismoApres((Date)objectMembro[13]);
+        membro.setUsuario((String)objectMembro[14]);
+        membro.setSenha((String)objectMembro[15]);
+        membro.setPermissoes((Integer)objectMembro[16]);
+        membro.setGrupo(Grupo.selectGrupoPk(new GrupoId((Integer)objectMembro[17],(Date)objectMembro[18],(String)objectMembro[19])));
         return membro;
     }
      
