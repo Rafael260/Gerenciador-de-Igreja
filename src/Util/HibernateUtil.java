@@ -169,5 +169,4 @@ public class HibernateUtil {
         s.getTransaction().commit();
         return resultadoFinal;
     }
-    
 }

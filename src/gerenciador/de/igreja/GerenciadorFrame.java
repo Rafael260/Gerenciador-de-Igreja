@@ -58,8 +58,8 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         preencherAniversariantes();
         nomeUsuarioAtual.setText(igreja.getUsuarioAtual().getPessoa().getNome());
         dataAtual.setText(FormatoDataHora.userData(FormatoDataHora.getDataHoraAtual()));
-        igreja.carregarSeminarios();
-        preencherDisciplinasAtivas();
+        //igreja.carregarSeminarios();
+        //preencherDisciplinasAtivas();
     }
 
     /**

@@ -66,6 +66,12 @@ public class Seminario  implements java.io.Serializable {
 
     ////////////////////////////////////////////////////
 
+    public static Seminario preencherDadosSeminario(Object[] object, int index){
+        Seminario seminario = new Seminario();
+        seminario.setNome((String)object[index]);
+        return seminario;
+    }
+    
     public static Seminario selectSeminarioPk(String nome){
         return (Seminario)HibernateUtil.getTuplasDaTabela("Seminario", "nome="+nome,"").get(0);
     }

@@ -126,7 +126,7 @@ public class Noticia  implements java.io.Serializable {
         List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Noticia","","id "+ordem.getSqlOrder());
         return preencherDadosNoticia(objects, 0);
     }
-
+    
 }
 
 

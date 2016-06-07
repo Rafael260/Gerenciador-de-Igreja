@@ -90,7 +90,9 @@ public class Turma  implements java.io.Serializable {
 
     public static Turma preencherDadosTurma(Object[] object, int index){
         Turma turma = new Turma();
-        //INCOMPLETO
+        turma.setId(new TurmaId((String)object[index],(Date)object[index+1]));
+        turma.setDataFim((Date)object[index+2]);
+        turma.setPeriodoLetivo(new PeriodoLetivo());
         return turma;
     }
     
