@@ -4,6 +4,7 @@ package Objetos;
 
 import Util.FormatoDataHora;
 import Util.HibernateUtil;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -65,12 +66,32 @@ public class Disciplina  implements java.io.Serializable {
     
     //////////////////////////////////////////////
     
+    public static Disciplina preencherDadosDisciplina(Object[] object, int index){
+        Disciplina disciplina = new Disciplina();
+        disciplina.setCodigo((String)object[index]);
+        disciplina.setNome((String)object[index+1]);
+        if (object[index+2] != null)
+            disciplina.setSeminario(Seminario.selectSeminarioPk((String)object[index+2]));
+        return disciplina;
+    }
+    
+    public static List<Disciplina> preencherDadosDisciplina(List<Object[]> objects, int index){
+        List<Disciplina> disciplinas = new ArrayList();
+        for(Object[] object: objects){
+            disciplinas.add(preencherDadosDisciplina(object, index));
+        }
+        return disciplinas;
+    }
+            
+    
     public static Disciplina selectDisciplinaPk(String codigo){
-        return (Disciplina)HibernateUtil.getTuplasDaTabela("Disciplina", "codigo='"+codigo+"'","").get(0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Disciplina", "codigo='"+codigo+"'","");
+        return preencherDadosDisciplina(objects.get(0), 0);
     }
     
     public static List<Disciplina> listarTodos(){
-        return HibernateUtil.getTuplasDaTabela("Disciplina");
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Disciplina");
+        return preencherDadosDisciplina(objects, 0);
     }
     
     public List<Turma> getTodasTurmas(){

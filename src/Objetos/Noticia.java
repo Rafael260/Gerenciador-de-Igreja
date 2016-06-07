@@ -2,6 +2,8 @@ package Objetos;
 // Generated 03/06/2016 10:35:37 by Hibernate Tools 4.3.1
 
 import Util.HibernateUtil;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -89,16 +91,40 @@ public class Noticia  implements java.io.Serializable {
     
     /////////////////////////////////////////////
     
+    public static Noticia preencherDadosNoticia(Object[] object, int index){
+        Noticia noticia = new Noticia();
+        noticia.setId((Integer)object[index]);
+        noticia.setManchete((String)object[index+1]);
+        noticia.setTexto((String)object[index+2]);
+        if (object[index+3] != null)
+            noticia.setMembro(Membro.selectMembroPk((Integer)object[index+3]));
+        if (object[index+4] != null)
+            noticia.setEvento(Evento.selectEventoPk((String)object[index+4], (Date)object[index+5]));
+        
+        return noticia;
+    }
+    
+    public static List<Noticia> preencherDadosNoticia(List<Object[]> objects, int index){
+        List<Noticia> noticias = new ArrayList();
+        for (Object[] obj: objects){
+            noticias.add(preencherDadosNoticia(obj, index));
+        }
+        return noticias;
+    }
+    
     public static Noticia selectNoticiaPk(int id){
-        return (Noticia)HibernateUtil.getTuplasDaTabela("Noticia", "id="+id,"").get(0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Noticia", "id="+id,"");
+        return preencherDadosNoticia(objects.get(0), 0);
     }
 
-    public static List<Noticia> listarTodos(){ 
-        return HibernateUtil.getTuplasDaTabela("Noticia");
+    public static List<Noticia> listarTodos(){
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Noticia");
+        return preencherDadosNoticia(objects, 0);
     }
     
     public static List<Noticia> listarTodos(Ordem ordem){
-        return HibernateUtil.getTuplasDaTabela("Noticia","","id "+ordem.getSqlOrder());
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Noticia","","id "+ordem.getSqlOrder());
+        return preencherDadosNoticia(objects, 0);
     }
 
 }

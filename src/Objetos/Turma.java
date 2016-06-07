@@ -88,6 +88,12 @@ public class Turma  implements java.io.Serializable {
 
     /////////////////////////////////////////////////////////////
 
+    public static Turma preencherDadosTurma(Object[] object, int index){
+        Turma turma = new Turma();
+        //INCOMPLETO
+        return turma;
+    }
+    
     //método NÃO eficiente
     public static List<Turma> completarInfoDisciplina(List<Turma> turmas){
         for (Turma turma : turmas) {
