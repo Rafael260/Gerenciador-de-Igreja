@@ -6,6 +6,7 @@
 package gerenciador.de.igreja;
 
 import Objetos.Membro;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -121,6 +122,11 @@ public class TelaLogin extends javax.swing.JFrame {
         });
 
         jButton2.setText("Fechar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -208,19 +214,28 @@ public class TelaLogin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String user = usuario.getText();
         String pass = new String(senha.getPassword());
-        Membro usuarioAtual = Membro.selectMembroAutenticado(user, pass);
-        
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GerenciadorFrame(usuarioAtual).setVisible(true);
-            }
-        });
+        try{
+            Membro usuarioAtual = Membro.selectMembroAutenticado(user, pass);
+
+            /* Create and display the form */
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new GerenciadorFrame(usuarioAtual).setVisible(true);
+                }
+            });
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(rootPane, "Ocorreu algum Problama ao concectar com o servidor.");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_senhaActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     
 

@@ -130,8 +130,6 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setAutoscrolls(true);
         jPanel1.setDoubleBuffered(false);
         jPanel1.setInheritsPopupMenu(true);
