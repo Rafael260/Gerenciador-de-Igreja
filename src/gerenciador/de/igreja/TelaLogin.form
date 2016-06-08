@@ -274,10 +274,13 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblStatus">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/gerenciador/de/igreja/dberro.png"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/images/dberro.png&quot;))" type="code"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="TelaLogin_lblStatus"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

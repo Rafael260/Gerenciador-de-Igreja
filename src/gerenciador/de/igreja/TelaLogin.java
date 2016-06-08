@@ -8,7 +8,6 @@ package gerenciador.de.igreja;
 import Objetos.Membro;
 import java.sql.*;
 import Util.ModuloDeConexao;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,14 +22,14 @@ public class TelaLogin extends javax.swing.JFrame {
     /**
      * Creates new form TelaLogin
      */
-    public TelaLogin() {
+    public TelaLogin(){
         initComponents();
         //O código  abaixo testa se a aplicação está conectada ao banco
         conexao = ModuloDeConexao.conector();
         if (conexao !=  null){
-            lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gerenciador/de/igreja/dbok.png")));
+            lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dbok.png")));
         }  else {
-            lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gerenciador/de/igreja/dberro.png")));
+            lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dberro.png")));
         }
     }
 
@@ -137,7 +136,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jButton2.setText("Fechar");
 
-        lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gerenciador/de/igreja/dberro.png"))); // NOI18N
+        lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dberro.png")));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
