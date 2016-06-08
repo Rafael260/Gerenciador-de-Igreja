@@ -79,12 +79,12 @@ public class Visitante  implements java.io.Serializable {
     }
     
     public static Visitante selectVisitantePk(int id){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Visitante", "id="+id,"");
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Visitante", "id="+id,"",0);
         return preencherDadosVisitante(objects.get(0));
     }
 
     public static List<Visitante> listarTodos(){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Visitante","","");
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Visitante","","",0);
         return preencherDadosVisitante(objects);
     }
     

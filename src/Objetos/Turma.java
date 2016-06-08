@@ -118,7 +118,7 @@ public class Turma  implements java.io.Serializable {
     }
 
     public List<Membro> getListaDeAlunos(){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("(Pessoa natural join Membro) join Matricula on id=id_aluno", "cod_disc='"+this.getId().getCodigo()+"' and data_inicio='"+FormatoDataHora.sqlData(this.getId().getDataInicio())+"'", "nome, sobrenome");
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("(Pessoa natural join Membro) join Matricula on id=id_aluno", "cod_disc='"+this.getId().getCodigo()+"' and data_inicio='"+FormatoDataHora.sqlData(this.getId().getDataInicio())+"'", "nome, sobrenome",0);
         return Membro.preencherDadosMembro(objects);
     }
     

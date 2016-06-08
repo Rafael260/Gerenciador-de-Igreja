@@ -113,7 +113,7 @@ public class Noticia  implements java.io.Serializable {
     }
     
     public static Noticia selectNoticiaPk(int id){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Noticia", "id="+id,"");
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Noticia", "id="+id,"",0);
         return preencherDadosNoticia(objects.get(0), 0);
     }
 
@@ -123,7 +123,7 @@ public class Noticia  implements java.io.Serializable {
     }
     
     public static List<Noticia> listarTodos(Ordem ordem){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Noticia","","id "+ordem.getSqlOrder());
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Noticia","","id "+ordem.getSqlOrder(),0);
         return preencherDadosNoticia(objects, 0);
     }
     

@@ -232,7 +232,6 @@ public class TelaLogin extends javax.swing.JFrame {
         String user = usuario.getText();
         String pass = new String(senha.getPassword());
         Membro usuarioAtual = Membro.selectMembroAutenticado(user, pass);
-        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

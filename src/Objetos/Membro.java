@@ -4,6 +4,7 @@ package Objetos;
 
 import Util.FormatoDataHora;
 import Util.HibernateUtil;
+import Util.ParametroQuery;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -273,8 +274,15 @@ public class Membro  implements java.io.Serializable {
         }
     } 
     
+    public static Membro testeMembro(int id){
+        List<ParametroQuery> parametros = new ArrayList();
+        parametros.add(new ParametroQuery("id",id));
+        List objects = HibernateUtil.getTuplasDaTabela("Membro", "id = :id","", 0, parametros);
+        return (Membro)objects.get(0);
+    }
+    
     public static Membro selectMembroPk(int id){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "id="+id,"");
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "id="+id,"",0);
         return Membro.preencherDadosMembro(objects.get(0));
     }
      
@@ -302,34 +310,34 @@ public class Membro  implements java.io.Serializable {
     }
     
     public static List<Membro> listarTodos(){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "","");
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "","",0);
         List<Membro> membros = preencherDadosMembro(objects);
         return membros;
     }
     
     public static List<Membro> listarTodos(Ordem ordem){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "","data_nasc "+ordem.getSqlOrder());
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "","data_nasc "+ordem.getSqlOrder(),0);
         List<Membro> membros = preencherDadosMembro(objects);
         return membros;
     }
     
     public static Membro selectMembroPorUsuario(String usuario){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "usuario='"+usuario+"'","");
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "usuario='"+usuario+"'","",0);
         return Membro.preencherDadosMembro(objects.get(0));
     }
     
     public static Membro selectMembroAutenticado(String usuario, String senha){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "usuario='"+usuario+"' and senha='"+senha+"'","");
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "usuario='"+usuario+"' and senha='"+senha+"'","",0);
         return Membro.preencherDadosMembro(objects.get(0));
     }
     
     public static List<Membro> selectMembroPorNome(String nome, String sobrenome){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "nome='"+nome+"' and sobrenome='"+sobrenome+"'","");
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "nome='"+nome+"' and sobrenome='"+sobrenome+"'","",0);
         return preencherDadosMembro(objects);
     }
     
     public static List<Membro> selectMembrosComPermissao(int permissao){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "(permissoes & "+permissao+") = "+permissao,"");
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "(permissoes & "+permissao+") = "+permissao,"",0);
         return preencherDadosMembro(objects);
     }
     
@@ -352,7 +360,7 @@ public class Membro  implements java.io.Serializable {
     public static List<Membro> selectAniversariantesDoMes(Ordem ordem){
         Date dataAtual = FormatoDataHora.getDataHoraAtual();
         int mesAtual = FormatoDataHora.getMes(dataAtual);
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "data_nasc like '____-"+FormatoDataHora.getCampoCompleto(mesAtual)+"-__'","data_nasc "+ordem.getSqlOrder());
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "data_nasc like '____-"+FormatoDataHora.getCampoCompleto(mesAtual)+"-__'","data_nasc "+ordem.getSqlOrder(),0);
         return preencherDadosMembro(objects);
     }
     

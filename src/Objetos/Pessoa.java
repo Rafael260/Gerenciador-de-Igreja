@@ -180,7 +180,7 @@ public class Pessoa  implements java.io.Serializable {
     }
     
     public static Pessoa selectPessoaPk(int id){
-        return (Pessoa)HibernateUtil.getTuplasDaTabela("Pessoa", "id="+id,"").get(0);
+        return (Pessoa)HibernateUtil.getTuplasDaTabela("Pessoa", "id="+id,"",0).get(0);
     }
     
     public static List<Pessoa> listarTodos(){
@@ -188,11 +188,11 @@ public class Pessoa  implements java.io.Serializable {
     }
     
     public static List<Pessoa> selectPessoaPorNome(String nome){
-        return HibernateUtil.getTuplasDaTabela("Pessoa","nome='"+nome+"'","");
+        return HibernateUtil.getTuplasDaTabela("Pessoa","nome='"+nome+"'","",0);
     }
     
     public static List<Pessoa> selectPessoaPorNome(String nome, String sobrenome){
-        return HibernateUtil.getTuplasDaTabela("Pessoa","nome='"+nome+"' and sobrenome='"+sobrenome+"'","");
+        return HibernateUtil.getTuplasDaTabela("Pessoa","nome='"+nome+"' and sobrenome='"+sobrenome+"'","",0);
     }
     
     public void cadastrarMinistracao(Evento evento, Mensagem mensagem){

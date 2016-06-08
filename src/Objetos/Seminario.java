@@ -73,7 +73,7 @@ public class Seminario  implements java.io.Serializable {
     }
     
     public static Seminario selectSeminarioPk(String nome){
-        return (Seminario)HibernateUtil.getTuplasDaTabela("Seminario", "nome="+nome,"").get(0);
+        return (Seminario)HibernateUtil.getTuplasDaTabela("Seminario", "nome="+nome,"",0).get(0);
     }
     
     //Geralmente só vai ter um
@@ -82,7 +82,9 @@ public class Seminario  implements java.io.Serializable {
     }
     
     public List<Disciplina> selectDisciplinas(){
-        return HibernateUtil.getTuplasDaTabela("Disciplina", "nome_seminario='"+this.nome+"'","");
+        Disciplina disciplina = new Disciplina();
+        disciplina.setSeminario(this);
+        return HibernateUtil.getTuplasPorExemplo(disciplina, Disciplina.class);
     }
     
     public List<Turma> selectDisciplinasAtivas(){
