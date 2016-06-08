@@ -5,6 +5,7 @@ package Objetos;
 import Util.HibernateUtil;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -55,6 +56,18 @@ public class PeriodoLetivo  implements java.io.Serializable {
 
     ////////////////////////////////////////////////////////
 
+    public static PeriodoLetivo preencherDadosPeriodoLetivo(Object[] object, int index){
+        PeriodoLetivo periodoLetivo = new PeriodoLetivo();
+        periodoLetivo.setSeminario(Seminario.selectSeminarioPk((String)object[index]));
+        periodoLetivo.setAnoLetivo((Integer)object[index+1]);
+        return periodoLetivo;
+    }
+    
+    public static PeriodoLetivo selectPeriodoLetivoPk(String nomeSeminario, int ano){
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Periodo_Letivo", "ano_letivo="+ano+" and nome_sem='"+nomeSeminario+"'", "");
+        return preencherDadosPeriodoLetivo(objects.get(0), 0);
+    }
+    
     public void cadastrarTurma(Membro professor, Disciplina disciplina, Date dataInicio, Date dataFim){
         Turma turma = new Turma( new TurmaId(disciplina.getCodigo(),dataInicio), disciplina, professor, this, dataFim);
         HibernateUtil.persistirObjeto(turma);

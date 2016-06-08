@@ -9,6 +9,8 @@ import Objetos.*;
 import Objetos.Igreja;
 import Util.FormatoDataHora;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -58,8 +60,8 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         preencherAniversariantes();
         nomeUsuarioAtual.setText(igreja.getUsuarioAtual().getPessoa().getNome());
         dataAtual.setText(FormatoDataHora.userData(FormatoDataHora.getDataHoraAtual()));
-        igreja.carregarSeminarios();
-        preencherDisciplinasAtivas();
+        //igreja.carregarSeminarios();
+        //preencherDisciplinasAtivas();
     }
 
     /**
@@ -145,6 +147,11 @@ public class GerenciadorFrame extends javax.swing.JFrame {
 
         jButton11.setBackground(new java.awt.Color(255, 255, 255));
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sair.png"))); // NOI18N
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -836,6 +843,15 @@ public class GerenciadorFrame extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        try {
+            // TODO add your handling code here:
+            this.dispose();
+        } catch (Throwable ex) {
+            Logger.getLogger(GerenciadorFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     private void preencherEventos(){
         DefaultTableModel model = (DefaultTableModel) tabelaEventos.getModel();

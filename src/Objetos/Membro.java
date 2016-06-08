@@ -288,7 +288,8 @@ public class Membro  implements java.io.Serializable {
         membro.setUsuario((String)object[15]);
         membro.setSenha((String)object[16]);
         membro.setPermissoes((Integer)object[17]);
-        membro.setGrupo(Grupo.selectGrupoPk(new GrupoId((Integer)object[18],(Date)object[19],(String)object[20])));
+        //Testando se o problema está no null de id_lider
+        membro.setGrupo(Grupo.selectGrupoPk(new GrupoId(2,(Date)object[19],(String)object[20])));
         return membro;
     }
      

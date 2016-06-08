@@ -113,8 +113,8 @@ public class HibernateUtil {
         else{
             ordem = " order by "+ordenadoPor;
         }
-            
-        tuplas = s.createQuery("from "+tabela+ onde + ordem).list();
+        System.out.println("select * from "+tabela+ onde + ordem);    
+        tuplas = s.createSQLQuery("select * from "+tabela+ onde + ordem).list();
         s.getTransaction().commit();
         return tuplas;
     }
@@ -138,8 +138,8 @@ public class HibernateUtil {
         else{
             ordem = " order by "+ordenadoPor;
         }
-            
-        tuplas = s.createQuery("from "+tabela+ onde + ordem).setMaxResults(numMaxResultados).list();
+        System.out.println("select * from "+tabela+ onde + ordem);    
+        tuplas = s.createSQLQuery("select * from "+tabela+ onde + ordem).setMaxResults(numMaxResultados).list();
         s.getTransaction().commit();
         return tuplas;
     }
@@ -169,5 +169,4 @@ public class HibernateUtil {
         s.getTransaction().commit();
         return resultadoFinal;
     }
-    
 }

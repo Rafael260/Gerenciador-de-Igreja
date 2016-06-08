@@ -114,8 +114,21 @@ public class Grupo  implements java.io.Serializable {
 
     ///////////////////////////////////////////////////////////
     
+    public static Grupo preencherDadosGrupo(Object[] object, int index){
+        Grupo grupo = new Grupo();
+        grupo.setId(new GrupoId((Integer)object[index],(Date)object[index+1],(String)object[index+2]));
+        grupo.setTipoGrupo((String)object[index+3]);
+        grupo.setEndRua((String)object[index+4]);
+        grupo.setEndNumero((Integer)object[index+5]);
+        grupo.setEndCompl((String)object[index+6]);
+        grupo.setEndBairro((String)object[index+7]);
+        grupo.setEndCidade((String)object[index+8]);
+        return grupo;
+    }
+    
     public static Grupo selectGrupoPk(GrupoId id){
-        return (Grupo)HibernateUtil.getTuplasDaTabela("Grupo", "id_lider="+id.getIdLider() + " and hora='"+id.getHora()+ "' and dia_semana='"+id.getDiaSemana()+"'","").get(0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Grupo", "id_lider="+id.getIdLider() + " and hora='"+id.getHora()+ "' and dia_semana='"+id.getDiaSemana()+"'","");
+        return preencherDadosGrupo(objects.get(0),0);
     }
     
     public static Grupo selectGrupoPk(int id_lider, Date hora, String dia_semana){
