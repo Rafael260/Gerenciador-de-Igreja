@@ -291,8 +291,10 @@ public class Membro  implements java.io.Serializable {
         Membro membro = new Membro();
         membro.setPessoa(p);
         membro.setCpf((String)object[index+12]);
-        membro.setDataNasc((Date)object[index+13]);
-        membro.setBatismoApres((Date)object[index+14]);
+        if (object[index+13] != null)
+            membro.setDataNasc((Date)object[index+13]);
+        if (object[index+14] != null)
+            membro.setBatismoApres((Date)object[index+14]);
         membro.setUsuario((String)object[index+15]);
         membro.setSenha((String)object[index+16]);
         membro.setPermissoes((Integer)object[index+17]);

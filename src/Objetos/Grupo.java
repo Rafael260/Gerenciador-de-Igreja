@@ -117,10 +117,12 @@ public class Grupo  implements java.io.Serializable {
     public static Grupo preencherDadosGrupo(Object[] object, int index){
         Grupo grupo = new Grupo();
         grupo.setId(new GrupoId((Integer)object[index],(Date)object[index+1],(String)object[index+2]));
-        grupo.setTipoGrupo((String)object[index+3]);
+        if (object[index+3] != null)
+            grupo.setTipoGrupo((String)object[index+3]);
         grupo.setEndRua((String)object[index+4]);
         grupo.setEndNumero((Integer)object[index+5]);
-        grupo.setEndCompl((String)object[index+6]);
+        if (object[index+6] != null)
+            grupo.setEndCompl((String)object[index+6]);
         grupo.setEndBairro((String)object[index+7]);
         grupo.setEndCidade((String)object[index+8]);
         return grupo;

@@ -66,14 +66,15 @@ public class Visitante  implements java.io.Serializable {
         Pessoa p = Pessoa.preencherDadosPessoa(object,index);
         Visitante visitante = new Visitante();
         visitante.setPessoa(p);
-        visitante.setIgrejaOrig((String)object[index+12]);
+        if (object[index+12] != null)
+            visitante.setIgrejaOrig((String)object[index+12]);
         return visitante;
     }
      
-    public static List<Visitante> preencherDadosVisitante(List<Object[]> objsList){
+    public static List<Visitante> preencherDadosVisitante(List<Object[]> objsList, int index){
         List<Visitante> visitante = new ArrayList();
         for (Object[] objs : objsList) {
-           visitante.add(preencherDadosVisitante(objs,0));
+           visitante.add(preencherDadosVisitante(objs,index));
         }
         return visitante;
     }
@@ -85,7 +86,7 @@ public class Visitante  implements java.io.Serializable {
 
     public static List<Visitante> listarTodos(){
         List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Visitante","","",0);
-        return preencherDadosVisitante(objects);
+        return preencherDadosVisitante(objects,0);
     }
     
     public void adicionarEvento(String tema, Date data,String tipo){

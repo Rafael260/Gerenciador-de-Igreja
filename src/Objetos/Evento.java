@@ -88,7 +88,8 @@ public class Evento  implements java.io.Serializable {
     public static Evento preencherDadosEvento(Object[] object, int index){
         Evento evento = new Evento();
         evento.setId(new EventoId((String)object[index],(Date)object[index+1]));
-        evento.setPublicoAlvo((String)object[index+2]);
+        if (object[index+2] != null)
+            evento.setPublicoAlvo((String)object[index+2]);
         evento.setTipo((String)object[index+3]);
         return evento;
     }
@@ -102,7 +103,7 @@ public class Evento  implements java.io.Serializable {
     }
     
     public static Evento selectEventoPk(EventoId id){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Evento", "tema="+id.getTema() + " and dia_hora='"+FormatoDataHora.sqlDataHora(id.getDiaHora())+"'","",0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Evento", "tema='"+id.getTema() + "' and dia_hora='"+FormatoDataHora.sqlDataHora(id.getDiaHora())+"'","",0);
         return preencherDadosEvento(objects.get(0),0);
     }
     

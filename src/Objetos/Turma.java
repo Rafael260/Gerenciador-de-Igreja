@@ -95,8 +95,16 @@ public class Turma  implements java.io.Serializable {
         Turma turma = new Turma();
         turma.setId(new TurmaId((String)object[index],(Date)object[index+1]));
         turma.setDataFim((Date)object[index+2]);
-        turma.setPeriodoLetivo(new PeriodoLetivo());
+        //turma.setPeriodoLetivo(new PeriodoLetivo());
         return turma;
+    }
+    
+    public List<Turma> preencherDadosTurma(List<Object[]> objects, int index){
+        List<Turma> turmas = new ArrayList();
+        for(Object[] obj: objects){
+            turmas.add(preencherDadosTurma(obj, index));
+        }
+        return turmas;
     }
         
     public void cadastrarMatricula(Membro aluno){

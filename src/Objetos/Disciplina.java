@@ -2,7 +2,6 @@ package Objetos;
 // Generated 03/06/2016 10:35:37 by Hibernate Tools 4.3.1
 
 
-import Util.FormatoDataHora;
 import Util.HibernateUtil;
 import java.util.ArrayList;
 import java.util.Date;

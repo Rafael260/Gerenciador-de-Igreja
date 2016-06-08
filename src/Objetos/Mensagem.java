@@ -3,6 +3,7 @@ package Objetos;
 
 
 import Util.HibernateUtil;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -67,6 +68,26 @@ public class Mensagem  implements java.io.Serializable {
     }
     
     //////////////////////////////////////////////////////
+    
+    public static Mensagem preencherDadosMensagem(Object[] object, int index){
+        Mensagem mensagem = new Mensagem();
+        mensagem.setTitulo((String)object[index]);
+        if (object[index+1] != null){
+            mensagem.setBaseBiblica((String)object[index+1]);
+        }
+        if (object[index+2] != null){
+            mensagem.setTema((String)object[index+2]);
+        }
+        return mensagem;
+    }
+    
+    public List<Mensagem> preencherDadosMensagem(List<Object[]> objects, int index){
+        List<Mensagem> mensagens = new ArrayList();
+        for(Object[] obj: objects){
+            mensagens.add(preencherDadosMensagem(obj, index));
+        }
+        return mensagens;
+    }
     
     public static Mensagem selectMensagemPk(String titulo){
         return (Mensagem)HibernateUtil.getTuplasDaTabela("Mensagem", "titulo='"+titulo+"'","",0).get(0);

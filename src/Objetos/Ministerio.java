@@ -85,8 +85,30 @@ public class Ministerio  implements java.io.Serializable {
 
     /////////////////////////////////////////////////////////////////////
 
+    public static Ministerio preencherDadosMinisterio(Object[] object, int index){
+        Ministerio ministerio = new Ministerio();
+        ministerio.setNome((String)object[index]);
+        if (object[index+1] != null){
+            ministerio.setDescricao((String)object[index+1]);
+        }
+        ministerio.setHora((Date)object[index+2]);
+        ministerio.setDiaSemana((String)object[index+3]);
+        return ministerio;
+    }
+    
+    public static List<Ministerio> preencherDadosMinisterio(List<Object[]> objects, int index){
+        List<Ministerio> ministerios = new ArrayList();
+        for (Object[] obj: objects){
+            ministerios.add(preencherDadosMinisterio(obj, index));
+        }
+        return ministerios;
+    }
+    
     public static Ministerio selectMinisterioPk(String nome){
-        return (Ministerio)HibernateUtil.getTuplasDaTabela("Ministerio", "nome="+nome,"",0).get(0);   
+        Ministerio ministerio = new Ministerio();
+        ministerio.setNome(nome);
+        //return (Ministerio)HibernateUtil.getTuplasDaTabela("Ministerio", "nome='"+nome+"'","",0).get(0);
+        return (Ministerio)HibernateUtil.getTuplasPorExemplo(ministerio, Ministerio.class).get(0);
     }
     
     public static List<Ministerio> listarTodos(){

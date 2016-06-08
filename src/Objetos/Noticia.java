@@ -96,10 +96,10 @@ public class Noticia  implements java.io.Serializable {
         noticia.setId((Integer)object[index]);
         noticia.setManchete((String)object[index+1]);
         noticia.setTexto((String)object[index+2]);
-        if (object[index+3] != null)
-            noticia.setMembro(Membro.selectMembroPk((Integer)object[index+3]));
-        if (object[index+4] != null)
-            noticia.setEvento(Evento.selectEventoPk((String)object[index+4], (Date)object[index+5]));
+        //if (object[index+3] != null)
+        //    noticia.setMembro(Membro.selectMembroPk((Integer)object[index+3]));
+        //if (object[index+4] != null)
+        //    noticia.setEvento(Evento.selectEventoPk((String)object[index+4], (Date)object[index+5]));
         
         return noticia;
     }
