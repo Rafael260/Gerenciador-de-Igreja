@@ -162,20 +162,20 @@ public class Pessoa  implements java.io.Serializable {
     
     ////////////////////////////////////////////////
     
-     public static Pessoa preencherDadosPessoa(Object[] object){
+     public static Pessoa preencherDadosPessoa(Object[] object, int index){
         Pessoa p = new Pessoa();
-        p.setId((Integer)object[0]);
-        p.setNome((String)object[1]);
-        p.setSobrenome((String)object[2]);
-        p.setTelefone((String)object[3]);
-        p.setEndRua((String)object[4]);
-        p.setEndNumero((Integer)object[5]);
-        p.setEndComp((String)object[6]);
-        p.setEndBairro((String)object[7]);
-        p.setEndCidade((String)object[8]);
-        p.setEndEstado((String)object[9]);
-        p.setEmail((String)object[10]);
-        p.setEstadoCivil((Character)object[11]);
+        p.setId((Integer)object[index]);
+        p.setNome((String)object[index+1]);
+        p.setSobrenome((String)object[index+2]);
+        p.setTelefone((String)object[index+3]);
+        p.setEndRua((String)object[index+4]);
+        p.setEndNumero((Integer)object[index+5]);
+        p.setEndComp((String)object[index+6]);
+        p.setEndBairro((String)object[index+7]);
+        p.setEndCidade((String)object[index+8]);
+        p.setEndEstado((String)object[index+9]);
+        p.setEmail((String)object[index+10]);
+        p.setEstadoCivil((Character)object[index+11]);
         return p;
     }
     

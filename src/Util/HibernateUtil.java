@@ -12,6 +12,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Restrictions;
 
@@ -164,23 +165,14 @@ public class HibernateUtil {
         return query;
     }
     
-    public static Criteria inserirParametros(Criteria criteria, List<ParametroQuery> parametros){
-        for (ParametroQuery parametro: parametros){
-            switch(parametro.getOperacao()){
-                case "eq":
-                    criteria.add(Restrictions.eq(parametro.getNomeParametro(), parametro.getValorParametro()));
-                    break;
-                case "between":
-                    criteria.add(Restrictions.between(parametro.getNomeParametro(), parametro.getValorParametro(), parametro.getValorParametro2()));
-                    break;
-                case "isNull":
-                    break;
-            }
+    public static Criteria inserirParametros(Criteria criteria, List<Criterion> restricoes){
+        for (Criterion restricao: restricoes){
+            criteria.add(restricao);
         }
         return criteria;
     }
     
-    public static List getTuplasPorExemplo(Object exemplo, Class classe, List<ParametroQuery> parametros){
+    public static List getTuplasPorExemplo(Object exemplo, Class classe){
         Session s = sessionFactory.getCurrentSession();
         s.beginTransaction();
         Example exemp = Example.create(exemplo);
@@ -188,5 +180,32 @@ public class HibernateUtil {
         List objetos = criteria.list();
         s.getTransaction().commit();
         return objetos;
+    }
+    
+    public static List getTuplasPorExemplo(Object exemplo, Class classe, List<Criterion> parametros){
+        Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        Example exemp = Example.create(exemplo);
+        Criteria criteria = s.createCriteria(classe).add(exemp);
+        criteria = inserirParametros(criteria, parametros);
+        List objetos = criteria.list();
+        s.getTransaction().commit();
+        return objetos;
+    }
+    
+    public static List criarQuery(String query){
+        Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        List objects = s.createQuery(query).list();
+        s.getTransaction().commit();
+        return objects;
+    }
+    
+    public static List rodarSQL(String sql){
+        Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        List objects = s.createSQLQuery(sql).list();
+        s.getTransaction().commit();
+        return objects;
     }
 }

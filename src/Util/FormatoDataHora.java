@@ -46,7 +46,7 @@ public class FormatoDataHora {
     }
     
     public static String userDataDiaMes(Date date){
-        return ""+date.getDate()+"/"+(date.getMonth()+1);
+        return ""+getCampoCompleto(date.getDate())+"/"+getCampoCompleto(date.getMonth()+1);
     }
     
     //Ex: 20:00:00

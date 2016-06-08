@@ -93,19 +93,7 @@ public class Disciplina  implements java.io.Serializable {
         List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Disciplina");
         return preencherDadosDisciplina(objects, 0);
     }
-    
-    public List<Turma> getTodasTurmas(){
-        List<Turma> turmasDaDisciplina = HibernateUtil.getTuplasDaTabela("Turma", "codigo='"+this.codigo+"'","",0);
-        turmasDaDisciplina = Turma.completarInfoDisciplina(turmasDaDisciplina); //Falta um select mais eficiente
-        return turmasDaDisciplina;
-    }
-    
-    public List<Turma> getTurmasAtivas(Date dataAtual){
-        List<Turma> turmasAtivas = HibernateUtil.getTuplasDaTabela("Turma", "codigo='"+this.codigo+"' and '"+FormatoDataHora.sqlData(dataAtual)+"' between data_inicio and data_fim","",0);
-        turmasAtivas = Turma.completarInfoDisciplina(turmasAtivas);
-        return turmasAtivas;
-    }
-
+   
     public void cadastrarTurma(Membro professor, PeriodoLetivo periodo, Date dataInicio, Date dataFim){
         Turma turma = new Turma( new TurmaId(codigo,dataInicio), this, professor, periodo, dataFim);
         HibernateUtil.persistirObjeto(turma);
