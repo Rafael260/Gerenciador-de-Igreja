@@ -15,7 +15,7 @@ import java.util.Set;
 public class Ministerio  implements java.io.Serializable {
 
      private String nome;
-     private Membro membro;
+     private Membro lider;
      private String descricao;
      private Date hora;
      private String diaSemana;
@@ -25,15 +25,25 @@ public class Ministerio  implements java.io.Serializable {
     }
 
 	
-    public Ministerio(String nome, Membro membro, Date hora, String diaSemana) {
+    public Ministerio(String nome, Membro lider, Date hora, String diaSemana) {
         this.nome = nome;
-        this.membro = membro;
+        this.lider = lider;
         this.hora = hora;
         this.diaSemana = diaSemana;
     }
-    public Ministerio(String nome, Membro membro, String descricao, Date hora, String diaSemana, Set membros) {
+    
+    public Ministerio(String nome, Membro lider, String descricao, Date hora, String diaSemana) {
+        this.nome = nome;
+        this.lider = lider;
+        this.descricao = descricao;
+        this.hora = hora;
+        this.diaSemana = diaSemana;
+    }
+    
+    
+    public Ministerio(String nome, Membro lider, String descricao, Date hora, String diaSemana, Set membros) {
        this.nome = nome;
-       this.membro = membro;
+       this.lider = lider;
        this.descricao = descricao;
        this.hora = hora;
        this.diaSemana = diaSemana;
@@ -47,12 +57,12 @@ public class Ministerio  implements java.io.Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public Membro getMembro() {
-        return this.membro;
+    public Membro getLider() {
+        return this.lider;
     }
     
-    public void setMembro(Membro membro) {
-        this.membro = membro;
+    public void setLider(Membro lider) {
+        this.lider = lider;
     }
     public String getDescricao() {
         return this.descricao;
@@ -104,6 +114,15 @@ public class Ministerio  implements java.io.Serializable {
         return ministerios;
     }
     
+    public static void cadastrarOuAtualizarMinisterio(Ministerio ministerio){
+        HibernateUtil.persistirObjeto(ministerio);
+    }
+    
+    public static void cadastrarOuAtualizarMinisterio(String nome, Membro lider, String descricao, Date hora, String diaSemana){
+        Ministerio ministerio = new Ministerio(nome,lider,descricao,hora,diaSemana);
+        HibernateUtil.persistirObjeto(ministerio);
+    }
+    
     public static Ministerio selectMinisterioPk(String nome){
         Ministerio ministerio = new Ministerio();
         ministerio.setNome(nome);
@@ -117,8 +136,8 @@ public class Ministerio  implements java.io.Serializable {
     
     
     /**
-     * Em ministério, considera-se que o membro já esteja cadastrado no sistema
-     * Verificar se usar o comando sql é a melhor solução
+     * Em ministério, considera-se que o lider já esteja cadastrado no sistema
+ Verificar se usar o comando sql é a melhor solução
      * @param membro 
      */
     public void adicionarMembro(Membro membro){

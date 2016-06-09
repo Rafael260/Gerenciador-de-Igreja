@@ -64,8 +64,8 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         nomeUsuarioAtual.setText(igreja.getUsuarioAtual().getPessoa().getNome());
         dataAtual.setText(FormatoDataHora.userData(FormatoDataHora.getDataHoraAtual()));
         jListOpcaoMenu.setSelectedIndex(0);
-        //igreja.carregarSeminarios();
-        //preencherDisciplinasAtivas();
+        igreja.carregarSeminarios();
+        preencherDisciplinasAtivas();
     }
 
     /**
@@ -921,7 +921,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         CadFrameMembro cadmembro=new CadFrameMembro();
-            cadmembro.setVisible(true);
+        cadmembro.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed

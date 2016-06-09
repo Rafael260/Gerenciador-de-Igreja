@@ -93,12 +93,12 @@ public class Disciplina  implements java.io.Serializable {
         return preencherDadosDisciplina(objects, 0);
     }
    
-    public void cadastrarTurma(Membro professor, PeriodoLetivo periodo, Date dataInicio, Date dataFim){
+    public void cadastrarOuAtualizarTurma(Membro professor, PeriodoLetivo periodo, Date dataInicio, Date dataFim){
         Turma turma = new Turma( new TurmaId(codigo,dataInicio), this, professor, periodo, dataFim);
         HibernateUtil.persistirObjeto(turma);
     }
 
-    public void cadastrarTurma(Turma turma){
+    public void cadastrarOuAtualizarTurma(Turma turma){
         HibernateUtil.persistirObjeto(turma);
     }
 

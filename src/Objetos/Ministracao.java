@@ -1,6 +1,9 @@
 package Objetos;
 // Generated 03/06/2016 10:35:37 by Hibernate Tools 4.3.1
 
+import Util.HibernateUtil;
+
+
 
 
 /**
@@ -53,8 +56,17 @@ public class Ministracao  implements java.io.Serializable {
         this.pessoa = pessoa;
     }
 
+    //Ver necessidade de retornar objeto cadastrado no banco
+    public static Ministracao cadastrarOuAtualizarMinistracao(Evento evento,Pessoa pessoa, Mensagem mensagem){
+        Ministracao ministracao = new Ministracao(new MinistracaoId(evento.getId().getTema(),evento.getId().getDiaHora(),mensagem.getTitulo()),evento,mensagem,pessoa);
+        HibernateUtil.persistirObjeto(ministracao);
+        return ministracao;
+    }
 
-
+    public static void cadastrarOuAtualizarMinistracao(Ministracao ministracao){
+        HibernateUtil.persistirObjeto(ministracao);
+    }
+    
 
 }
 

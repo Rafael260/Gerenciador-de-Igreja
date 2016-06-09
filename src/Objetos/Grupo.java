@@ -15,7 +15,7 @@ public class Grupo  implements java.io.Serializable {
 
 
      private GrupoId id;
-     private Membro membro;
+     private Membro lider;
      private String tipoGrupo;
      private String endRua;
      private int endNumero;
@@ -28,9 +28,9 @@ public class Grupo  implements java.io.Serializable {
     }
 
 	
-    public Grupo(GrupoId id, Membro membro, String endRua, int endNumero, String endBairro, String endCidade) {
+    public Grupo(GrupoId id, Membro lider, String endRua, int endNumero, String endBairro, String endCidade) {
         this.id = id;
-        this.membro = membro;
+        this.lider = lider;
         this.endRua = endRua;
         this.endNumero = endNumero;
         this.endBairro = endBairro;
@@ -38,7 +38,7 @@ public class Grupo  implements java.io.Serializable {
     }
     public Grupo(GrupoId id, Membro membro, String tipoGrupo, String endRua, int endNumero, String endCompl, String endBairro, String endCidade, Set membros) {
        this.id = id;
-       this.membro = membro;
+       this.lider = membro;
        this.tipoGrupo = tipoGrupo;
        this.endRua = endRua;
        this.endNumero = endNumero;
@@ -55,12 +55,12 @@ public class Grupo  implements java.io.Serializable {
     public void setId(GrupoId id) {
         this.id = id;
     }
-    public Membro getMembro() {
-        return this.membro;
+    public Membro getLider() {
+        return this.lider;
     }
     
-    public void setMembro(Membro membro) {
-        this.membro = membro;
+    public void setLider(Membro lider) {
+        this.lider = lider;
     }
     public String getTipoGrupo() {
         return this.tipoGrupo;
@@ -128,6 +128,15 @@ public class Grupo  implements java.io.Serializable {
         return grupo;
     }
     
+    public static void cadastrarOuAtualizarGrupo(Membro lider,Date hora, String diaSemana, String tipoGrupo, String endRua, Integer endNumero, String endComp, String endBairro, String endCidade){
+        Grupo grupo = new Grupo(new GrupoId(lider.getId(),hora,diaSemana),lider,endRua,endNumero,endBairro,endCidade);
+        HibernateUtil.persistirObjeto(grupo);
+    }
+    
+    public static void cadastrarOuAtualizarGrupo(Grupo grupo){
+        HibernateUtil.persistirObjeto(grupo);
+    }
+    
     public static Grupo selectGrupoPk(GrupoId id){
         List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Grupo", "id_lider="+id.getIdLider() + " and hora='"+id.getHora()+ "' and dia_semana='"+id.getDiaSemana()+"'","",0);
         return preencherDadosGrupo(objects.get(0),0);
@@ -171,7 +180,7 @@ public class Grupo  implements java.io.Serializable {
     
     public void adicionarMembro(Membro membro){
         membro.setGrupo(this);
-        HibernateUtil.persistirObjeto(membro); //Atualizar membro com os dados de Grupo
+        Membro.cadastrarOuAtualizarMembro(membro);
     }
 
 }

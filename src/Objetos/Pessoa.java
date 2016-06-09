@@ -2,6 +2,7 @@ package Objetos;
 // Generated 03/06/2016 10:35:37 by Hibernate Tools 4.3.1
 
 
+import Util.AtributoValor;
 import Util.HibernateUtil;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -211,6 +212,51 @@ public class Pessoa  implements java.io.Serializable {
     
     public static List<Pessoa> selectPessoaPorNome(String nome, String sobrenome){
         return HibernateUtil.getTuplasDaTabela("Pessoa","nome='"+nome+"' and sobrenome='"+sobrenome+"'","",0);
+    }
+    
+    public static void updatePessoa(Pessoa pessoa){
+        HibernateUtil.persistirObjeto(pessoa);
+    }
+    
+    public static Pessoa updatePessoa(Pessoa pessoa, List<AtributoValor> atualizacoes){
+        for (AtributoValor atrVal: atualizacoes){
+            switch(atrVal.getAtributo()){
+                case "nome":
+                    pessoa.setNome((String)atrVal.getValor());
+                    break;
+                case "sobrenome":
+                    pessoa.setSobrenome((String)atrVal.getValor());
+                    break;
+                case "telefone":
+                    pessoa.setTelefone((String)atrVal.getValor());
+                    break;
+                case "endRua":
+                    pessoa.setEndRua((String)atrVal.getValor());
+                    break;
+                case "endNum":
+                    pessoa.setEndNumero((Integer)atrVal.getValor());
+                    break;
+                case "endComp":
+                    pessoa.setEndRua((String)atrVal.getValor());
+                    break;
+                case "endBairro":
+                    pessoa.setEndBairro((String)atrVal.getValor());
+                    break;
+                case "endCidade":
+                    pessoa.setEndCidade((String)atrVal.getValor());
+                    break;
+                case "endEstado":
+                    pessoa.setEndEstado((String)atrVal.getValor());
+                    break;
+                case "email":
+                    pessoa.setEmail((String)atrVal.getValor());
+                    break;
+                case "estadoCivil":
+                    pessoa.setEstadoCivil((Character)atrVal.getValor());
+            }
+        }
+        HibernateUtil.persistirObjeto(pessoa);
+        return pessoa;
     }
     
     public void cadastrarMinistracao(Evento evento, Mensagem mensagem){

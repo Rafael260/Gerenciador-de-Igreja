@@ -285,7 +285,13 @@ public class Membro  implements java.io.Serializable {
         List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "id="+id,"",0);
         return Membro.preencherDadosMembro(objects.get(0),0);
     }
-     
+    
+    public static void cadastrarOuAtualizarMembro(Membro membro){
+        HibernateUtil.persistirObjeto(membro);
+        //Precisa?
+        HibernateUtil.persistirObjeto(membro.getPessoa());
+    }
+    
     public static Membro preencherDadosMembro(Object[] object, int index){
         Pessoa p = Pessoa.preencherDadosPessoa(object,index);
         Membro membro = new Membro();
@@ -299,7 +305,8 @@ public class Membro  implements java.io.Serializable {
         membro.setSenha((String)object[index+16]);
         membro.setPermissoes((Integer)object[index+17]);
         //Testando se o problema está no null de id_lider
-        membro.setGrupo(Grupo.selectGrupoPk(new GrupoId(2,(Date)object[index+19],(String)object[index+20])));
+        if (object[index+18] != null && object[index+19]!= null && object[index+20]!= null)
+            membro.setGrupo(Grupo.selectGrupoPk(new GrupoId((Integer)object[index+18],(Date)object[index+19],(String)object[index+20])));
         return membro;
     }
      
@@ -389,6 +396,7 @@ public class Membro  implements java.io.Serializable {
         ministerios.add(ministerio);
     }
     
+    //incompleto e talvez desnecessário
     public void adicionarTurma(Turma turma){
         turmas.add(turma);
     }

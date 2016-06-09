@@ -50,6 +50,11 @@ public class Noticia  implements java.io.Serializable {
         this.manchete = manchete;
         this.texto = texto;
     }
+    
+    public Noticia(String manchete, String texto){
+        this.manchete = manchete;
+        this.texto = texto;
+    }
    
     public Integer getId() {
         return this.id;
@@ -110,6 +115,15 @@ public class Noticia  implements java.io.Serializable {
             noticias.add(preencherDadosNoticia(obj, index));
         }
         return noticias;
+    }
+    
+    public static void cadastrarOuAtualizarNoticia(Noticia noticia){
+        HibernateUtil.persistirObjeto(noticia);
+    }
+    
+    public static void cadastrarOuAtualizarNoticia(String manchete, String texto){
+        Noticia noticia = new Noticia(manchete,texto);
+        HibernateUtil.persistirObjeto(noticia);
     }
     
     public static Noticia selectNoticiaPk(int id){

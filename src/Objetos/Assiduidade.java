@@ -1,6 +1,9 @@
 package Objetos;
 // Generated 03/06/2016 10:35:37 by Hibernate Tools 4.3.1
 
+import Util.HibernateUtil;
+
+
 
 
 /**
@@ -44,6 +47,9 @@ public class Assiduidade  implements java.io.Serializable {
         this.presenca = presenca;
     }
 
+    public static void cadastrarOuAtualizarAssiduidade(Assiduidade assiduidade){
+        HibernateUtil.persistirObjeto(assiduidade);
+    }
 
 
 

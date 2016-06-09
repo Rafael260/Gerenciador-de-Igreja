@@ -74,11 +74,11 @@ public class Matricula  implements java.io.Serializable {
 
     public void cadastrarAssiduidade(Date data, boolean presenca){
         Assiduidade assiduidade = new Assiduidade(new AssiduidadeId(data,aluno.getId(),turma.getDisciplina().getCodigo(),turma.getId().getDataInicio()),this,presenca);
-        HibernateUtil.persistirObjeto(assiduidade);
+        Assiduidade.cadastrarOuAtualizarAssiduidade(assiduidade);
     }
 
     public void cadastrarAssiduidade(Assiduidade assiduidade){
-        HibernateUtil.persistirObjeto(assiduidade);
+        Assiduidade.cadastrarOuAtualizarAssiduidade(assiduidade);
     }
 
 
