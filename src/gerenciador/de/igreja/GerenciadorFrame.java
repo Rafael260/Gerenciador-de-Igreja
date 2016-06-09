@@ -754,7 +754,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jListOpcaoMenu.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jListOpcaoMenu.setForeground(new java.awt.Color(255, 255, 255));
         jListOpcaoMenu.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Início", "Disciplinas", "Ministérios", "Secretaria", "" };
+            String[] strings = { "Início", "Disciplinas", "Ministérios", "Secretaria" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
