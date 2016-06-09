@@ -340,9 +340,19 @@ public class Membro  implements java.io.Serializable {
         return Membro.preencherDadosMembro(objects.get(0),0);
     }
     
+    //O método de preencherDadosMembro garante que retornará dados de pessoa
     public static List<Membro> selectMembroPorNome(String nome, String sobrenome){
         List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "nome='"+nome+"' and sobrenome='"+sobrenome+"'","",0);
         return preencherDadosMembro(objects,0);
+    }
+    
+    //Testar pra ver se esse método retorna os dados de pessoa tbm.
+    public static List<Membro> selectMembroPorNome(String nome){
+        Membro membro = new Membro();
+        Pessoa pessoa = new Pessoa();
+        pessoa.setNome(nome);
+        membro.setPessoa(pessoa);
+        return HibernateUtil.getTuplasPorExemplo(membro, Membro.class);
     }
     
     public static List<Membro> selectMembrosComPermissao(int permissao){
