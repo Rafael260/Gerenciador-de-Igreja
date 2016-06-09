@@ -64,7 +64,7 @@ public class PeriodoLetivo  implements java.io.Serializable {
     }
     
     public static PeriodoLetivo selectPeriodoLetivoPk(String nomeSeminario, int ano){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Periodo_Letivo", "ano_letivo="+ano+" and nome_sem='"+nomeSeminario+"'", "");
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Periodo_Letivo", "ano_letivo="+ano+" and nome_sem='"+nomeSeminario+"'", "",0);
         return preencherDadosPeriodoLetivo(objects.get(0), 0);
     }
     

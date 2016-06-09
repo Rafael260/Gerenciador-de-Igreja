@@ -5,13 +5,16 @@
  */
 package Util;
 
-import Objetos.Evento;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * Hibernate Utility class with a convenient method to get Session Factory
@@ -95,35 +98,10 @@ public class HibernateUtil {
         return tuplas;
     }
     
-    public static List getTuplasDaTabela(String tabela, String where, String ordenadoPor){
-        Session s = sessionFactory.getCurrentSession();
-        s.beginTransaction();
-        List tuplas;
-        String onde;
-        String ordem;
-        if (where.isEmpty()){
-            onde = "";
-        }
-        else{
-            onde = " where "+where;
-        }
-        if (ordenadoPor.isEmpty()){
-            ordem = "";
-        }
-        else{
-            ordem = " order by "+ordenadoPor;
-        }
-        System.out.println("select * from "+tabela+ onde + ordem);    
-        tuplas = s.createSQLQuery("select * from "+tabela+ onde + ordem).list();
-        s.getTransaction().commit();
-        return tuplas;
-    }
-    
     public static List getTuplasDaTabela(String tabela, String where, String ordenadoPor, int numMaxResultados){
         Session s = sessionFactory.getCurrentSession();
         s.beginTransaction();
         List tuplas;
-        
         String onde;
         String ordem;
         if (where.isEmpty()){
@@ -138,35 +116,96 @@ public class HibernateUtil {
         else{
             ordem = " order by "+ordenadoPor;
         }
-        System.out.println("select * from "+tabela+ onde + ordem);    
-        tuplas = s.createSQLQuery("select * from "+tabela+ onde + ordem).setMaxResults(numMaxResultados).list();
+        System.out.println("select * from "+tabela+ "where "+ onde + ordem);
+        if (numMaxResultados > 0){
+            tuplas = s.createSQLQuery("select * from "+tabela+ onde + ordem).setMaxResults(numMaxResultados).list();
+        }
+        else{
+            tuplas = s.createSQLQuery("select * from "+tabela+ onde + ordem).list();
+        }
         s.getTransaction().commit();
         return tuplas;
     }
-    
-    public static List rodarSql(String sql){
+ 
+    public static List getTuplasDaTabela(String tabela, String where, String ordenadoPor, int numMaxResultados, List<ParametroQuery> parametros){
         Session s = sessionFactory.getCurrentSession();
         s.beginTransaction();
         List tuplas;
-        tuplas = s.createSQLQuery(sql).list();
+        String onde;
+        String ordem;
+        if (where.isEmpty()){
+            onde = "";
+        }
+        else{
+            onde = " where "+where;
+        }
+        if (ordenadoPor.isEmpty()){
+            ordem = "";
+        }
+        else{
+            ordem = " order by "+ordenadoPor;
+        }
+        System.out.println("from "+tabela + onde + ordem);
+        Query query = s.createQuery("from "+tabela+ onde + ordem);
+        query = inserirParametros(query, parametros);
+        if (numMaxResultados > 0){
+            tuplas = query.setMaxResults(numMaxResultados).list();
+        }
+        else{
+            tuplas = query.list();
+        }
         s.getTransaction().commit();
         return tuplas;
     }
     
-    public static List rodarSql2(String sql){
+    public static Query inserirParametros(Query query, List<ParametroQuery> parametros){
+        for (ParametroQuery parametro: parametros){
+            query.setParameter(parametro.getNomeParametro(), parametro.getValorParametro());
+        }
+        return query;
+    }
+    
+    public static Criteria inserirParametros(Criteria criteria, List<Criterion> restricoes){
+        for (Criterion restricao: restricoes){
+            criteria.add(restricao);
+        }
+        return criteria;
+    }
+    
+    public static List getTuplasPorExemplo(Object exemplo, Class classe){
         Session s = sessionFactory.getCurrentSession();
         s.beginTransaction();
-        List<Object[]> tuplas;
-        tuplas = s.createSQLQuery(sql).list();
-        List<Evento> resultadoFinal = new ArrayList<>();
-        for (Object[] obj : tuplas) {
-            int i = 0;
-            Evento evento = new Evento();
-            evento.setPublicoAlvo((String) obj[i++]);
-            resultadoFinal.add(evento);
-        }
-        
+        Example exemp = Example.create(exemplo);
+        Criteria criteria = s.createCriteria(classe).add(exemp);
+        List objetos = criteria.list();
         s.getTransaction().commit();
-        return resultadoFinal;
+        return objetos;
+    }
+    
+    public static List getTuplasPorExemplo(Object exemplo, Class classe, List<Criterion> parametros){
+        Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        Example exemp = Example.create(exemplo);
+        Criteria criteria = s.createCriteria(classe).add(exemp);
+        criteria = inserirParametros(criteria, parametros);
+        List objetos = criteria.list();
+        s.getTransaction().commit();
+        return objetos;
+    }
+    
+    public static List criarQuery(String query){
+        Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        List objects = s.createQuery(query).list();
+        s.getTransaction().commit();
+        return objects;
+    }
+    
+    public static List rodarSQL(String sql){
+        Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        List objects = s.createSQLQuery(sql).list();
+        s.getTransaction().commit();
+        return objects;
     }
 }

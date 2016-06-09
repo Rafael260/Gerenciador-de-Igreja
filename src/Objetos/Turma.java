@@ -28,6 +28,7 @@ public class Turma  implements java.io.Serializable {
 
 	
     public Turma(TurmaId id, Disciplina disciplina, Membro membro, PeriodoLetivo periodoLetivo, Date dataFim) {
+        id.setCodigo(disciplina.getCodigo());
         this.id = id;
         this.disciplina = disciplina;
         this.membro = membro;
@@ -35,6 +36,7 @@ public class Turma  implements java.io.Serializable {
         this.dataFim = dataFim;
     }
     public Turma(TurmaId id, Disciplina disciplina, Membro membro, PeriodoLetivo periodoLetivo, Date dataFim, Set matriculas) {
+       id.setCodigo(disciplina.getCodigo());
        this.id = id;
        this.disciplina = disciplina;
        this.membro = membro;
@@ -56,6 +58,7 @@ public class Turma  implements java.io.Serializable {
     
     public void setDisciplina(Disciplina disciplina) {
         this.disciplina = disciplina;
+        this.id.setCodigo(disciplina.getCodigo());
     }
     public Membro getMembro() {
         return this.membro;
@@ -92,22 +95,18 @@ public class Turma  implements java.io.Serializable {
         Turma turma = new Turma();
         turma.setId(new TurmaId((String)object[index],(Date)object[index+1]));
         turma.setDataFim((Date)object[index+2]);
-        turma.setPeriodoLetivo(new PeriodoLetivo());
+        //turma.setPeriodoLetivo(new PeriodoLetivo());
         return turma;
     }
     
-    //método NÃO eficiente
-    public static List<Turma> completarInfoDisciplina(List<Turma> turmas){
-        for (Turma turma : turmas) {
-            turma.completarInfoDisciplina();
+    public List<Turma> preencherDadosTurma(List<Object[]> objects, int index){
+        List<Turma> turmas = new ArrayList();
+        for(Object[] obj: objects){
+            turmas.add(preencherDadosTurma(obj, index));
         }
         return turmas;
     }
-    
-    public void completarInfoDisciplina(){
-        disciplina = Disciplina.selectDisciplinaPk(id.getCodigo());
-    }
-    
+        
     public void cadastrarMatricula(Membro aluno){
         Matricula matricula = new Matricula(new MatriculaId(aluno.getId(),disciplina.getCodigo(),id.getDataInicio()),aluno,this);
         HibernateUtil.persistirObjeto(matricula);
@@ -117,13 +116,23 @@ public class Turma  implements java.io.Serializable {
         HibernateUtil.persistirObjeto(matricula);
     }
 
-    public List<Membro> getListaDeAlunos(){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("(Pessoa natural join Membro) join Matricula on id=id_aluno", "cod_disc='"+this.getId().getCodigo()+"' and data_inicio='"+FormatoDataHora.sqlData(this.getId().getDataInicio())+"'", "nome, sobrenome");
+    /*public List<Membro> getListaDeAlunos(){
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("(Pessoa natural join Membro) join Matricula on id=id_aluno", "cod_disc='"+this.getId().getCodigo()+"' and data_inicio='"+FormatoDataHora.sqlData(this.getId().getDataInicio())+"'", "nome, sobrenome",0);
         return Membro.preencherDadosMembro(objects);
+    }*/
+    
+    public List<Membro> getListaDeAlunos(){
+        String codigo = this.id.getCodigo();
+        String dataInicio = FormatoDataHora.sqlData(this.id.getDataInicio());
+        List<Object[]> objects = HibernateUtil.rodarSQL("SELECT *\n" +
+"	FROM pessoa natural join membro\n" +
+"    WHERE id IN (\n" +
+"    SELECT id \n" +
+"		FROM matricula join membro on id = id_aluno\n" +
+"        WHERE cod_disc = '"+codigo+"' and data_inicio = '"+dataInicio+"'\n" +
+"    )");
+        return Membro.preencherDadosMembro(objects, 0);
     }
-    
-    
-
 }
 
 

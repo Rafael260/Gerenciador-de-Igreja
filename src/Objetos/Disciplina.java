@@ -2,7 +2,6 @@ package Objetos;
 // Generated 03/06/2016 10:35:37 by Hibernate Tools 4.3.1
 
 
-import Util.FormatoDataHora;
 import Util.HibernateUtil;
 import java.util.ArrayList;
 import java.util.Date;
@@ -85,7 +84,7 @@ public class Disciplina  implements java.io.Serializable {
             
     
     public static Disciplina selectDisciplinaPk(String codigo){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Disciplina", "codigo='"+codigo+"'","");
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Disciplina", "codigo='"+codigo+"'","",0);
         return preencherDadosDisciplina(objects.get(0), 0);
     }
     
@@ -93,19 +92,7 @@ public class Disciplina  implements java.io.Serializable {
         List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Disciplina");
         return preencherDadosDisciplina(objects, 0);
     }
-    
-    public List<Turma> getTodasTurmas(){
-        List<Turma> turmasDaDisciplina = HibernateUtil.getTuplasDaTabela("Turma", "codigo='"+this.codigo+"'","");
-        turmasDaDisciplina = Turma.completarInfoDisciplina(turmasDaDisciplina); //Falta um select mais eficiente
-        return turmasDaDisciplina;
-    }
-    
-    public List<Turma> getTurmasAtivas(Date dataAtual){
-        List<Turma> turmasAtivas = HibernateUtil.getTuplasDaTabela("Turma", "codigo='"+this.codigo+"' and '"+FormatoDataHora.sqlData(dataAtual)+"' between data_inicio and data_fim","");
-        turmasAtivas = Turma.completarInfoDisciplina(turmasAtivas);
-        return turmasAtivas;
-    }
-
+   
     public void cadastrarTurma(Membro professor, PeriodoLetivo periodo, Date dataInicio, Date dataFim){
         Turma turma = new Turma( new TurmaId(codigo,dataInicio), this, professor, periodo, dataFim);
         HibernateUtil.persistirObjeto(turma);

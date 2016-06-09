@@ -12,12 +12,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import CadastroFrames.CadFrameNoticia;
 
 /**
  *
  * @author Rafael
  */
-public class GerenciadorFrame extends javax.swing.JFrame {
+public final class GerenciadorFrame extends javax.swing.JFrame {
 
     Igreja igreja;
     private static final int MAX_EVENTOS = 20;
@@ -60,6 +61,7 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         preencherAniversariantes();
         nomeUsuarioAtual.setText(igreja.getUsuarioAtual().getPessoa().getNome());
         dataAtual.setText(FormatoDataHora.userData(FormatoDataHora.getDataHoraAtual()));
+        jListOpcaoMenu.setSelectedIndex(0);
         //igreja.carregarSeminarios();
         //preencherDisciplinasAtivas();
     }
@@ -145,8 +147,8 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Connect Church3.2.png"))); // NOI18N
 
-        jButton11.setBackground(new java.awt.Color(255, 255, 255));
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sair.png"))); // NOI18N
+        jButton11.setBorderPainted(false);
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
@@ -436,6 +438,11 @@ public class GerenciadorFrame extends javax.swing.JFrame {
         jButton10.setFocusable(false);
         jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
         jToolBar2.add(jButton10);
 
         javax.swing.GroupLayout jPanelInicioLayout = new javax.swing.GroupLayout(jPanelInicio);
@@ -852,6 +859,14 @@ public class GerenciadorFrame extends javax.swing.JFrame {
             Logger.getLogger(GerenciadorFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+         /* Create and display the form */
+            CadFrameNoticia cadnoticia=new CadFrameNoticia();
+            cadnoticia.setVisible(true);
+
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     private void preencherEventos(){
         DefaultTableModel model = (DefaultTableModel) tabelaEventos.getModel();

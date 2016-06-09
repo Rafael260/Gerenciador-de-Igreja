@@ -73,7 +73,10 @@ public class Seminario  implements java.io.Serializable {
     }
     
     public static Seminario selectSeminarioPk(String nome){
-        return (Seminario)HibernateUtil.getTuplasDaTabela("Seminario", "nome="+nome,"").get(0);
+        Seminario seminario = new Seminario();
+        seminario.setNome(nome);
+        List objects = HibernateUtil.getTuplasPorExemplo(seminario, Seminario.class);
+        return (Seminario)objects.get(0);
     }
     
     //Geralmente só vai ter um
@@ -82,18 +85,40 @@ public class Seminario  implements java.io.Serializable {
     }
     
     public List<Disciplina> selectDisciplinas(){
-        return HibernateUtil.getTuplasDaTabela("Disciplina", "nome_seminario='"+this.nome+"'","");
+        Disciplina disciplina = new Disciplina();
+        disciplina.setSeminario(this);
+        return HibernateUtil.getTuplasPorExemplo(disciplina, Disciplina.class);
     }
     
     public List<Turma> selectDisciplinasAtivas(){
         Date dataAtual = FormatoDataHora.getDataHoraAtual();
-        List<Disciplina> allDisciplinas = selectDisciplinas();
-        List<Turma> disciplinasAtivas = new ArrayList();
-        for (Disciplina disciplina : allDisciplinas) {
-            disciplinasAtivas.addAll(disciplina.getTurmasAtivas(dataAtual));
+        List<Turma> turmas = new ArrayList();
+        Disciplina disciplina;
+        Turma turma;
+        List<Object[]> objects = HibernateUtil.rodarSQL("select *\n" +
+"	from disciplina d join turma t on d.codigo=t.cod_disc\n" +
+"    where '"+FormatoDataHora.sqlData(dataAtual)+"+' between t.data_inicio and t.data_fim");
+        for (Object[] object : objects) {
+            disciplina = Disciplina.preencherDadosDisciplina(object, 0);
+            turma = Turma.preencherDadosTurma(object, 3);
+            turma.setDisciplina(disciplina);
+            turmas.add(turma);
         }
-        return disciplinasAtivas;
+        return turmas;
     }
+    
+    //Ele funciona?
+    /*public List<Turma> selectDisciplinasAtivas(){
+        Turma turma = new Turma();
+        Disciplina disciplina = new Disciplina();
+        disciplina.setSeminario(this);
+        turma.setDisciplina(disciplina);
+        Date dataAtual = FormatoDataHora.getDataHoraAtual();
+        List<Criterion> criterios = new ArrayList();
+        criterios.add(Restrictions.ge("data_inicio", dataAtual));
+        criterios.add(Restrictions.le("data_fim", dataAtual));
+        return HibernateUtil.getTuplasPorExemplo(turma, Turma.class, criterios);
+    }*/
 
     /**
      * Adiciona mais um período letivo - poderia ser feito automaticamente

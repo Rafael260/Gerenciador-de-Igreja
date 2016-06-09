@@ -62,30 +62,31 @@ public class Visitante  implements java.io.Serializable {
     
     //////////////////////////////////////////
     
-    public static Visitante preencherDadosVisitante(Object[] object){
-        Pessoa p = Pessoa.preencherDadosPessoa(object);
+    public static Visitante preencherDadosVisitante(Object[] object, int index){
+        Pessoa p = Pessoa.preencherDadosPessoa(object,index);
         Visitante visitante = new Visitante();
         visitante.setPessoa(p);
-        visitante.setIgrejaOrig((String)object[12]);
+        if (object[index+12] != null)
+            visitante.setIgrejaOrig((String)object[index+12]);
         return visitante;
     }
      
-    public static List<Visitante> preencherDadosVisitante(List<Object[]> objsList){
+    public static List<Visitante> preencherDadosVisitante(List<Object[]> objsList, int index){
         List<Visitante> visitante = new ArrayList();
         for (Object[] objs : objsList) {
-           visitante.add(preencherDadosVisitante(objs));
+           visitante.add(preencherDadosVisitante(objs,index));
         }
         return visitante;
     }
     
     public static Visitante selectVisitantePk(int id){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Visitante", "id="+id,"");
-        return preencherDadosVisitante(objects.get(0));
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Visitante", "id="+id,"",0);
+        return preencherDadosVisitante(objects.get(0),0);
     }
 
     public static List<Visitante> listarTodos(){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Visitante","","");
-        return preencherDadosVisitante(objects);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Visitante","","",0);
+        return preencherDadosVisitante(objects,0);
     }
     
     public void adicionarEvento(String tema, Date data,String tipo){

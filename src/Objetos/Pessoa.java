@@ -3,6 +3,7 @@ package Objetos;
 
 
 import Util.HibernateUtil;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -162,25 +163,42 @@ public class Pessoa  implements java.io.Serializable {
     
     ////////////////////////////////////////////////
     
-     public static Pessoa preencherDadosPessoa(Object[] object){
+     public static Pessoa preencherDadosPessoa(Object[] object, int index){
         Pessoa p = new Pessoa();
-        p.setId((Integer)object[0]);
-        p.setNome((String)object[1]);
-        p.setSobrenome((String)object[2]);
-        p.setTelefone((String)object[3]);
-        p.setEndRua((String)object[4]);
-        p.setEndNumero((Integer)object[5]);
-        p.setEndComp((String)object[6]);
-        p.setEndBairro((String)object[7]);
-        p.setEndCidade((String)object[8]);
-        p.setEndEstado((String)object[9]);
-        p.setEmail((String)object[10]);
-        p.setEstadoCivil((Character)object[11]);
+        p.setId((Integer)object[index]);
+        p.setNome((String)object[index+1]);
+        p.setSobrenome((String)object[index+2]);
+        if (object[index+3] != null)
+            p.setTelefone((String)object[index+3]);
+        if (object[index+4] != null)
+            p.setEndRua((String)object[index+4]);
+        if (object[index+5] != null)
+            p.setEndNumero((Integer)object[index+5]);
+        if (object[index+6] != null)    
+            p.setEndComp((String)object[index+6]);
+        if (object[index+7] != null)
+            p.setEndBairro((String)object[index+7]);
+        if (object[index+8] != null)
+            p.setEndCidade((String)object[index+8]);
+        if (object[index+9] != null)
+            p.setEndEstado((String)object[index+9]);
+        if (object[index+10] != null)
+            p.setEmail((String)object[index+10]);
+        if (object[index+11] != null)
+            p.setEstadoCivil((Character)object[index+11]);
         return p;
+    }
+     
+    public static List<Pessoa> preencherDadosPessoa(List<Object[]> objects, int index){
+        List<Pessoa> pessoas = new ArrayList();
+        for(Object[] obj: objects){
+            pessoas.add(preencherDadosPessoa(obj, index));
+        }
+        return pessoas;
     }
     
     public static Pessoa selectPessoaPk(int id){
-        return (Pessoa)HibernateUtil.getTuplasDaTabela("Pessoa", "id="+id,"").get(0);
+        return (Pessoa)HibernateUtil.getTuplasDaTabela("Pessoa", "id="+id,"",0).get(0);
     }
     
     public static List<Pessoa> listarTodos(){
@@ -188,11 +206,11 @@ public class Pessoa  implements java.io.Serializable {
     }
     
     public static List<Pessoa> selectPessoaPorNome(String nome){
-        return HibernateUtil.getTuplasDaTabela("Pessoa","nome='"+nome+"'","");
+        return HibernateUtil.getTuplasDaTabela("Pessoa","nome='"+nome+"'","",0);
     }
     
     public static List<Pessoa> selectPessoaPorNome(String nome, String sobrenome){
-        return HibernateUtil.getTuplasDaTabela("Pessoa","nome='"+nome+"' and sobrenome='"+sobrenome+"'","");
+        return HibernateUtil.getTuplasDaTabela("Pessoa","nome='"+nome+"' and sobrenome='"+sobrenome+"'","",0);
     }
     
     public void cadastrarMinistracao(Evento evento, Mensagem mensagem){
