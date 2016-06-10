@@ -54,7 +54,7 @@ public class TelaLogin extends javax.swing.JFrame {
         usuario = new javax.swing.JTextField();
         jlabel_senha = new javax.swing.JLabel();
         senha = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         lblStatus = new javax.swing.JLabel();
 
@@ -129,15 +129,15 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Entrar");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnLogin.setText("Entrar");
+        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton1MousePressed(evt);
+                btnLoginMousePressed(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
 
@@ -162,7 +162,7 @@ public class TelaLogin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnLogin)
                         .addGap(8, 8, 8))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -188,7 +188,7 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addComponent(lblStatus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton2)
-                        .addComponent(jButton1)))
+                        .addComponent(btnLogin)))
                 .addContainerGap())
         );
 
@@ -235,7 +235,7 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_usuarioActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String user = usuario.getText();
         String pass = new String(senha.getPassword());
         try{
@@ -247,10 +247,12 @@ public class TelaLogin extends javax.swing.JFrame {
                     new GerenciadorFrame(usuarioAtual).setVisible(true);
                 }
             });
+            //Adicionado o dispose da tela de login quando acessa a tela principal
+            this.dispose();
         }catch(Exception e){
             JOptionPane.showMessageDialog(rootPane, "Ocorreu algum Problama ao concectar com o servidor.");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     private void senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaActionPerformed
         // TODO add your handling code here:
@@ -262,9 +264,9 @@ public class TelaLogin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
+    private void btnLoginMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MousePressed
+    }//GEN-LAST:event_btnLoginMousePressed
 
     /**
      * @param args the command line arguments
@@ -302,7 +304,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -317,6 +319,6 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 
- 
+
 
 }
