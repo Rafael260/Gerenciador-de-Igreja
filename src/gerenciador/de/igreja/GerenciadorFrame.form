@@ -880,22 +880,41 @@
                                 </Property>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="3" rowCount="3">
-                                    <Column editable="false" title="Nome" type="java.lang.String">
+                                    <Column editable="false" title="NOME" type="java.lang.String">
                                       <Data value="Aprender a ser Gente"/>
                                       <Data value="null"/>
                                       <Data value="null"/>
                                     </Column>
-                                    <Column editable="false" title="in&#xed;cio" type="java.lang.String">
+                                    <Column editable="false" title="IN&#xcd;CIO" type="java.lang.String">
                                       <Data value="15/06/0000"/>
                                       <Data value="null"/>
                                       <Data value="null"/>
                                     </Column>
-                                    <Column editable="true" title="t&#xe9;rmino" type="java.lang.String">
+                                    <Column editable="true" title="T&#xc9;RMINO" type="java.lang.String">
                                       <Data value="10/11/0000"/>
                                       <Data value="null"/>
                                       <Data value="null"/>
                                     </Column>
                                   </Table>
+                                </Property>
+                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                  <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                  </TableColumnModel>
                                 </Property>
                                 <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="0" type="rgb"/>
@@ -904,6 +923,9 @@
                                   <Color blue="6a" green="9b" red="65" type="rgb"/>
                                 </Property>
                                 <Property name="showHorizontalLines" type="boolean" value="false"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                             </Component>
                           </SubComponents>

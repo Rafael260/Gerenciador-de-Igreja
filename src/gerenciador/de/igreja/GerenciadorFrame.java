@@ -557,7 +557,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Nome", "início", "término"
+                "NOME", "INÍCIO", "TÉRMINO"
             }
         ) {
             Class[] types = new Class [] {
