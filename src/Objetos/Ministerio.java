@@ -19,7 +19,7 @@ public class Ministerio  implements java.io.Serializable {
      private String descricao;
      private Date hora;
      private String diaSemana;
-     private Set membros = new HashSet(0);
+     private Set membrosParticipantes = new HashSet(0);
 
     public Ministerio() {
     }
@@ -47,7 +47,7 @@ public class Ministerio  implements java.io.Serializable {
        this.descricao = descricao;
        this.hora = hora;
        this.diaSemana = diaSemana;
-       this.membros = membros;
+       this.membrosParticipantes = membros;
     }
    
     public String getNome() {
@@ -85,12 +85,12 @@ public class Ministerio  implements java.io.Serializable {
     public void setDiaSemana(String diaSemana) {
         this.diaSemana = diaSemana;
     }
-    public Set getMembros() {
-        return this.membros;
+    public Set getMembrosParticipantes() {
+        return this.membrosParticipantes;
     }
     
-    public void setMembros(Set membros) {
-        this.membros = membros;
+    public void setMembrosParticipantes(Set membrosParticipantes) {
+        this.membrosParticipantes = membrosParticipantes;
     }
 
     /////////////////////////////////////////////////////////////////////
@@ -121,6 +121,10 @@ public class Ministerio  implements java.io.Serializable {
     public static void cadastrarOuAtualizarMinisterio(String nome, Membro lider, String descricao, Date hora, String diaSemana){
         Ministerio ministerio = new Ministerio(nome,lider,descricao,hora,diaSemana);
         HibernateUtil.persistirObjeto(ministerio);
+    }
+    
+    public static void deletarMinisterio(Ministerio ministerio){
+        HibernateUtil.deletarObjeto(ministerio);
     }
     
     public static Ministerio selectMinisterioPk(String nome){

@@ -19,7 +19,6 @@
     <mapping resource="Objetos/Assiduidade.hbm.xml"/>
     <mapping resource="Objetos/Turma.hbm.xml"/>
     <mapping resource="Objetos/Matricula.hbm.xml"/>
-    <mapping resource="Objetos/PeriodoLetivo.hbm.xml"/>
     <mapping resource="Objetos/Membro.hbm.xml"/>
     <mapping resource="Objetos/Seminario.hbm.xml"/>
     <mapping resource="Objetos/Noticia.hbm.xml"/>

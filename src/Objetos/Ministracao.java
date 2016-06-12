@@ -18,12 +18,13 @@ public class Ministracao  implements java.io.Serializable {
      private Pessoa pessoa;
 
     public Ministracao() {
+        this.id = new MinistracaoId();
     }
 
-    public Ministracao(MinistracaoId id, Evento evento, Mensagem mensagem, Pessoa pessoa) {
-       this.id = id;
-       this.evento = evento;
-       this.mensagem = mensagem;
+    public Ministracao(Evento evento, Mensagem mensagem, Pessoa pessoa) {
+       this.id = new MinistracaoId();
+       setEvento(evento);
+       setMensagem(mensagem);
        this.pessoa = pessoa;
     }
    
@@ -38,15 +39,18 @@ public class Ministracao  implements java.io.Serializable {
         return this.evento;
     }
     
-    public void setEvento(Evento evento) {
+    public final void setEvento(Evento evento) {
         this.evento = evento;
+        this.id.setDiaHoraEvt(evento.getId().getDiaHora());
+        this.id.setTemaEvt(evento.getId().getTema());
     }
     public Mensagem getMensagem() {
         return this.mensagem;
     }
     
-    public void setMensagem(Mensagem mensagem) {
+    public final void setMensagem(Mensagem mensagem) {
         this.mensagem = mensagem;
+        this.id.setTituloMsg(mensagem.getTitulo());
     }
     public Pessoa getPessoa() {
         return this.pessoa;
@@ -58,13 +62,17 @@ public class Ministracao  implements java.io.Serializable {
 
     //Ver necessidade de retornar objeto cadastrado no banco
     public static Ministracao cadastrarOuAtualizarMinistracao(Evento evento,Pessoa pessoa, Mensagem mensagem){
-        Ministracao ministracao = new Ministracao(new MinistracaoId(evento.getId().getTema(),evento.getId().getDiaHora(),mensagem.getTitulo()),evento,mensagem,pessoa);
+        Ministracao ministracao = new Ministracao(evento,mensagem,pessoa);
         HibernateUtil.persistirObjeto(ministracao);
         return ministracao;
     }
 
     public static void cadastrarOuAtualizarMinistracao(Ministracao ministracao){
         HibernateUtil.persistirObjeto(ministracao);
+    }
+    
+    public static void deletarMinistracao(Ministracao ministracao){
+        HibernateUtil.deletarObjeto(ministracao);
     }
     
 

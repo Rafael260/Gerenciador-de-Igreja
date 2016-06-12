@@ -97,6 +97,10 @@ public class Mensagem  implements java.io.Serializable {
         Mensagem mensagem = new Mensagem(titulo,baseBiblica,tema);
         HibernateUtil.persistirObjeto(mensagem);
     }
+    
+    public static void deletarMensagem(Mensagem mensagem){
+        HibernateUtil.deletarObjeto(mensagem);
+    }
             
     public static Mensagem selectMensagemPk(String titulo){
         return (Mensagem)HibernateUtil.getTuplasDaTabela("Mensagem", "titulo='"+titulo+"'","",0).get(0);

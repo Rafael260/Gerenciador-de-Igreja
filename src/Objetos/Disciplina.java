@@ -88,21 +88,27 @@ public class Disciplina  implements java.io.Serializable {
         return preencherDadosDisciplina(objects.get(0), 0);
     }
     
+    public static void cadastrarOuAtualizarDisciplina(Seminario seminario, String codigo, String nome){
+        Disciplina disciplina = new Disciplina(codigo,seminario,nome);
+        HibernateUtil.persistirObjeto(disciplina);
+    }
+    
+    public static void cadastrarOuAtualizarDisciplina(Disciplina disciplina){
+        HibernateUtil.persistirObjeto(disciplina);
+    }
+    
+    public static void deletarDisciplina(Disciplina disciplina){
+        HibernateUtil.deletarObjeto(disciplina);
+    }
+    
     public static List<Disciplina> listarTodos(){
         List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Disciplina");
         return preencherDadosDisciplina(objects, 0);
     }
    
-    public void cadastrarOuAtualizarTurma(Membro professor, PeriodoLetivo periodo, Date dataInicio, Date dataFim){
-        Turma turma = new Turma( new TurmaId(codigo,dataInicio), this, professor, periodo, dataFim);
-        HibernateUtil.persistirObjeto(turma);
+    public void cadastrarOuAtualizarTurma(Membro professor, Date dataInicio, Date dataFim){
+       Turma.cadastrarOuAtualizarTurma(this, professor, dataInicio, dataFim);
     }
-
-    public void cadastrarOuAtualizarTurma(Turma turma){
-        HibernateUtil.persistirObjeto(turma);
-    }
-
-
 }
 
 

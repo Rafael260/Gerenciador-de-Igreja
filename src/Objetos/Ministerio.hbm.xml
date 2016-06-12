@@ -19,7 +19,7 @@
     <property name="diaSemana" type="string">
       <column length="10" name="dia_semana" not-null="true"/>
     </property>
-    <set fetch="select" inverse="false" lazy="true" name="membros" table="participa_ministerio">
+    <set fetch="select" inverse="false" lazy="true" name="membrosParticipantes" table="participa_ministerio">
       <key>
         <column length="45" name="ministerio" not-null="true"/>
       </key>

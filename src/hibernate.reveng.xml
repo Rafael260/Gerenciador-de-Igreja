@@ -4,7 +4,6 @@
   <schema-selection match-catalog="Connect_church"/>
   <table-filter match-name="pessoa"/>
   <table-filter match-name="assiduidade"/>
-  <table-filter match-name="periodo_letivo"/>
   <table-filter match-name="disciplina"/>
   <table-filter match-name="seminario"/>
   <table-filter match-name="grupo"/>

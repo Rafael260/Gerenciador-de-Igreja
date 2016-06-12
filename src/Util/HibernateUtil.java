@@ -49,6 +49,13 @@ public class HibernateUtil {
         s.getTransaction().commit();
     }
     
+    public static void deletarObjeto(Object o){
+         Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        s.delete(o);
+        s.getTransaction().commit();
+    }
+    
     /**
      * Cria a Query SQL de insert into
      * @param tabela tabela para inserção da tupla
@@ -119,7 +126,6 @@ public class HibernateUtil {
         else{
             ordem = " order by "+ordenadoPor;
         }
-        System.out.println("select * from "+tabela+ "where "+ onde + ordem);
         if (numMaxResultados > 0){
             tuplas = s.createSQLQuery("select * from "+tabela+ onde + ordem).setMaxResults(numMaxResultados).list();
         }

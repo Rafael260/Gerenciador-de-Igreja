@@ -17,11 +17,5 @@
             </key>
             <one-to-many class="Objetos.Disciplina" />
         </set>
-        <set name="periodoLetivos" table="periodo_letivo" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="nome_sem" length="45" not-null="true" />
-            </key>
-            <one-to-many class="Objetos.PeriodoLetivo" />
-        </set>
     </class>
 </hibernate-mapping>

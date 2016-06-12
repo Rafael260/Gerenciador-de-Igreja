@@ -2,6 +2,7 @@ package Objetos;
 // Generated 03/06/2016 10:35:37 by Hibernate Tools 4.3.1
 
 
+import Util.FormatoDataHora;
 import Util.HibernateUtil;
 import java.util.Date;
 import java.util.HashSet;
@@ -25,20 +26,25 @@ public class Grupo  implements java.io.Serializable {
      private Set membros = new HashSet(0);
 
     public Grupo() {
+        this.id = new GrupoId();
     }
 
 	
-    public Grupo(GrupoId id, Membro lider, String endRua, int endNumero, String endBairro, String endCidade) {
-        this.id = id;
-        this.lider = lider;
+    public Grupo(Date hora, String diaSemana, Membro lider, String endRua, int endNumero, String endBairro, String endCidade) {
+        this.id = new GrupoId();
+        this.id.setHora(hora);
+        this.id.setDiaSemana(diaSemana);
+        setLider(lider);
         this.endRua = endRua;
         this.endNumero = endNumero;
         this.endBairro = endBairro;
         this.endCidade = endCidade;
     }
-    public Grupo(GrupoId id, Membro membro, String tipoGrupo, String endRua, int endNumero, String endCompl, String endBairro, String endCidade, Set membros) {
-       this.id = id;
-       this.lider = membro;
+    public Grupo(Date hora, String diaSemana, Membro lider, String tipoGrupo, String endRua, int endNumero, String endCompl, String endBairro, String endCidade, Set membros) {
+       this.id = new GrupoId();
+       this.id.setHora(hora);
+       this.id.setDiaSemana(diaSemana);
+       setLider(lider);
        this.tipoGrupo = tipoGrupo;
        this.endRua = endRua;
        this.endNumero = endNumero;
@@ -59,8 +65,9 @@ public class Grupo  implements java.io.Serializable {
         return this.lider;
     }
     
-    public void setLider(Membro lider) {
+    public final void setLider(Membro lider) {
         this.lider = lider;
+        this.id.setIdLider(lider.getId());
     }
     public String getTipoGrupo() {
         return this.tipoGrupo;
@@ -129,7 +136,7 @@ public class Grupo  implements java.io.Serializable {
     }
     
     public static void cadastrarOuAtualizarGrupo(Membro lider,Date hora, String diaSemana, String tipoGrupo, String endRua, Integer endNumero, String endComp, String endBairro, String endCidade){
-        Grupo grupo = new Grupo(new GrupoId(lider.getId(),hora,diaSemana),lider,endRua,endNumero,endBairro,endCidade);
+        Grupo grupo = new Grupo(hora,diaSemana,lider,endRua,endNumero,endBairro,endCidade);
         HibernateUtil.persistirObjeto(grupo);
     }
     
@@ -137,14 +144,18 @@ public class Grupo  implements java.io.Serializable {
         HibernateUtil.persistirObjeto(grupo);
     }
     
+    public static void deletarGrupo(Grupo grupo){
+        HibernateUtil.deletarObjeto(grupo);
+    }
+    
     public static Grupo selectGrupoPk(GrupoId id){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Grupo", "id_lider="+id.getIdLider() + " and hora='"+id.getHora()+ "' and dia_semana='"+id.getDiaSemana()+"'","",0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Grupo", "id_lider="+id.getIdLider() + " and hora='"+FormatoDataHora.sqlHora(id.getHora())+ "' and dia_semana='"+id.getDiaSemana()+"'","",0);
         return preencherDadosGrupo(objects.get(0),0);
     }
     
     public static Grupo selectGrupoPk(int id_lider, Date hora, String dia_semana){
         //CONFERIR STRING DE HORA
-        return (Grupo)HibernateUtil.getTuplasDaTabela("Grupo", "id_lider="+id_lider + " and hora='"+hora+ "' and dia_semana='"+dia_semana+"'","",0).get(0);
+        return (Grupo)HibernateUtil.getTuplasDaTabela("Grupo", "id_lider="+id_lider + " and hora='"+FormatoDataHora.sqlHora(hora)+ "' and dia_semana='"+dia_semana+"'","",0).get(0);
     }
     
     public static List<Grupo> listarTodos(){
@@ -167,7 +178,7 @@ public class Grupo  implements java.io.Serializable {
      * @return 
      */
     public static List<Grupo> selectGrupoPorDiaHorario(Date horaInicio, Date horaFinal){
-        return HibernateUtil.getTuplasDaTabela("Grupo","hora between '"+horaInicio+"' and '"+horaFinal+"'","",0);
+        return HibernateUtil.getTuplasDaTabela("Grupo","hora between '"+FormatoDataHora.sqlHora(horaInicio)+"' and '"+FormatoDataHora.sqlHora(horaFinal)+"'","",0);
     }
     
     public static List<Grupo> selectGrupoPorBairro(String bairro){

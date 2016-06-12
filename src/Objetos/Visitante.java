@@ -79,6 +79,14 @@ public class Visitante  implements java.io.Serializable {
         return visitante;
     }
     
+    public static void cadastrarOuAtualizarVisitante(Visitante visitante){
+        HibernateUtil.persistirObjeto(visitante);
+    }
+    
+    public static void deletarVisitante(Visitante visitante){
+        HibernateUtil.deletarObjeto(visitante);
+    }
+    
     public static Visitante selectVisitantePk(int id){
         List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Visitante", "id="+id,"",0);
         return preencherDadosVisitante(objects.get(0),0);
