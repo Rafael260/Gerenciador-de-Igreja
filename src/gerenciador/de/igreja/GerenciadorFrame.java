@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import CadastroFrames.CadFrameNoticia;
+import CadastroFrames.*;
 
 /**
  *
@@ -143,6 +143,8 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setAutoscrolls(true);
         jPanel1.setDoubleBuffered(false);
@@ -694,6 +696,11 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jPanel9.add(jButton5);
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CVisitante.png"))); // NOI18N
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
         jPanel9.add(jButton6);
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CDisciplina.png"))); // NOI18N
@@ -943,6 +950,12 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // TODO add your handling code here:
+        CadFrameVisitante cadvisitante= new CadFrameVisitante();
+        cadvisitante.setVisible(true);
+    }//GEN-LAST:event_jButton6MouseClicked
 
     private void preencherEventos(){
         DefaultTableModel model = (DefaultTableModel) tabelaEventos.getModel();

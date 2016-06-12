@@ -41,6 +41,9 @@
       </SubComponents>
     </Menu>
   </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -1159,6 +1162,9 @@
                               <Image iconType="3" name="/images/CVisitante.png"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton6MouseClicked"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton7">
                           <Properties>
