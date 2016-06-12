@@ -409,12 +409,12 @@
                                 </Property>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="2" rowCount="3">
-                                    <Column editable="false" title="Nome" type="java.lang.String">
+                                    <Column editable="false" title="NOME" type="java.lang.String">
                                       <Data value="Jo&#xe3;o"/>
                                       <Data value="Maria"/>
                                       <Data value="Emanuel"/>
                                     </Column>
-                                    <Column editable="false" title="Data" type="java.lang.String">
+                                    <Column editable="false" title="DATA" type="java.lang.String">
                                       <Data value="10/10"/>
                                       <Data value="11/10"/>
                                       <Data value="20/10"/>
@@ -490,12 +490,12 @@
                                 </Property>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="2" rowCount="3">
-                                    <Column editable="false" title="Assunto" type="java.lang.String">
+                                    <Column editable="false" title="ASSUNTO" type="java.lang.String">
                                       <Data value="Os ensaios do grupo &quot;alguma coisa&quot; ser&#xe3;o cancelados esta semana"/>
                                       <Data value="null"/>
                                       <Data value="null"/>
                                     </Column>
-                                    <Column editable="false" title="Data" type="java.lang.String">
+                                    <Column editable="false" title="DATA" type="java.lang.String">
                                       <Data value="10/10"/>
                                       <Data value="null"/>
                                       <Data value="null"/>
@@ -575,22 +575,41 @@
                                 </Property>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="3" rowCount="3">
-                                    <Column editable="false" title="Nome" type="java.lang.String">
+                                    <Column editable="false" title="NOME" type="java.lang.String">
                                       <Data value="Aprender a ser Gente"/>
                                       <Data value="null"/>
                                       <Data value="null"/>
                                     </Column>
-                                    <Column editable="false" title="in&#xed;cio" type="java.lang.String">
+                                    <Column editable="false" title="IN&#xcd;CIO" type="java.lang.String">
                                       <Data value="15/06/0000"/>
                                       <Data value="null"/>
                                       <Data value="null"/>
                                     </Column>
-                                    <Column editable="true" title="t&#xe9;rmino" type="java.lang.String">
+                                    <Column editable="true" title="T&#xc9;RMINO" type="java.lang.String">
                                       <Data value="10/11/0000"/>
                                       <Data value="null"/>
                                       <Data value="null"/>
                                     </Column>
                                   </Table>
+                                </Property>
+                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                  <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                  </TableColumnModel>
                                 </Property>
                                 <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="0" type="rgb"/>
@@ -599,6 +618,9 @@
                                   <Color blue="6a" green="9b" red="65" type="rgb"/>
                                 </Property>
                                 <Property name="showHorizontalLines" type="boolean" value="false"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -643,10 +665,29 @@
                                 </Property>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="3" rowCount="3">
-                                    <Column editable="false" title="Nome" type="java.lang.String"/>
-                                    <Column editable="false" title="Data" type="java.lang.String"/>
-                                    <Column editable="true" title="Hora" type="java.lang.Object"/>
+                                    <Column editable="false" title="NOME" type="java.lang.String"/>
+                                    <Column editable="false" title="DATA" type="java.lang.String"/>
+                                    <Column editable="true" title="HORA" type="java.lang.Object"/>
                                   </Table>
+                                </Property>
+                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                  <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                  </TableColumnModel>
                                 </Property>
                                 <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="0" type="rgb"/>
@@ -655,6 +696,9 @@
                                   <Color blue="7e" green="7e" red="9b" type="rgb"/>
                                 </Property>
                                 <Property name="showHorizontalLines" type="boolean" value="false"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                </Property>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -892,8 +936,15 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel18" alignment="1" pref="850" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-                              <Component id="jScrollPane7" min="-2" pref="591" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jButton14" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jButton11" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jScrollPane7" min="-2" pref="654" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -903,9 +954,14 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                               <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="72" max="32767" attributes="0"/>
-                              <Component id="jScrollPane7" min="-2" pref="368" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <EmptySpace pref="66" max="32767" attributes="0"/>
+                              <Component id="jScrollPane7" min="-2" pref="337" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButton11" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="jButton14" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -932,18 +988,72 @@
                       <SubComponents>
                         <Component class="javax.swing.JTable" name="jTable1">
                           <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="e6" green="d6" red="d1" type="rgb"/>
+                            </Property>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                              <Table columnCount="4" rowCount="4">
-                                <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                                <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                                <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                                <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                              <Table columnCount="4" rowCount="1">
+                                <Column editable="true" title="NOME" type="java.lang.Object">
+                                  <Data value="Louvor"/>
+                                </Column>
+                                <Column editable="true" title="L&#xcd;DER" type="java.lang.Object">
+                                  <Data value="Marcos"/>
+                                </Column>
+                                <Column editable="true" title="DIA" type="java.lang.Object">
+                                  <Data value="seg/quar"/>
+                                </Column>
+                                <Column editable="true" title="HORA" type="java.lang.Object">
+                                  <Data value="18:30 - 21:00"/>
+                                </Column>
                               </Table>
+                            </Property>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                              </TableColumnModel>
+                            </Property>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                             </Property>
                           </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
+                    <Component class="javax.swing.JButton" name="jButton11">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/images/visualizar.png"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Visualizar"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="jButton14">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/images/add.png"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Adicionar"/>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="jPanelSecretaria">
