@@ -67,6 +67,19 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         igreja.carregarSeminarios();
         preencherDisciplinasAtivas();
     }
+    
+    private void refresh(){
+        igreja.carregarEventos(Ordem.DECRESCENTE,MAX_EVENTOS);
+        preencherEventos();
+        igreja.carregarNoticias(Ordem.DECRESCENTE);
+        preencherNoticias();
+        preencherAniversariantes();
+        nomeUsuarioAtual.setText(igreja.getUsuarioAtual().getPessoa().getNome());
+        dataAtual.setText(FormatoDataHora.userData(FormatoDataHora.getDataHoraAtual()));
+        jListOpcaoMenu.setSelectedIndex(0);
+        igreja.carregarSeminarios();
+        preencherDisciplinasAtivas();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -931,6 +944,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
          /* Create and display the form */
             CadFrameNoticia cadnoticia=new CadFrameNoticia();
             cadnoticia.setVisible(true);
+            refresh();
 
     }//GEN-LAST:event_jButton10ActionPerformed
 

@@ -17,7 +17,7 @@ public class Noticia  implements java.io.Serializable {
      private Integer id;
      private String manchete;
      private Evento evento;
-     private Membro membro;
+     private Membro cadastrante;
      private String texto;
 
     public Noticia() {
@@ -26,7 +26,7 @@ public class Noticia  implements java.io.Serializable {
     public Noticia(Integer id, String manchete, Membro membro, String texto) {
         this.id = id;
         this.manchete = manchete;
-        this.membro = membro;
+        this.cadastrante = membro;
         this.texto = texto;
     }
     
@@ -41,19 +41,19 @@ public class Noticia  implements java.io.Serializable {
        this.id = id;
        this.manchete = manchete;
        this.evento = evento;
-       this.membro = membro;
+       this.cadastrante = membro;
        this.texto = texto;
-    }
-    
-    public Noticia(int id, String manchete, String texto){
-        this.id = id;
-        this.manchete = manchete;
-        this.texto = texto;
     }
     
     public Noticia(String manchete, String texto){
         this.manchete = manchete;
         this.texto = texto;
+    }
+    
+    public Noticia (String manchete, String texto, Membro cadastrante){
+        this.manchete = manchete;
+        this.texto = texto;
+        this.cadastrante = cadastrante;
     }
    
     public Integer getId() {
@@ -79,12 +79,12 @@ public class Noticia  implements java.io.Serializable {
     public void setEvento(Evento evento) {
         this.evento = evento;
     }
-    public Membro getMembro() {
-        return this.membro;
+    public Membro getCadastrante() {
+        return this.cadastrante;
     }
     
-    public void setMembro(Membro membro) {
-        this.membro = membro;
+    public void setCadastrante(Membro cadastrante) {
+        this.cadastrante = cadastrante;
     }
     public String getTexto() {
         return this.texto;
@@ -123,6 +123,11 @@ public class Noticia  implements java.io.Serializable {
     
     public static void cadastrarOuAtualizarNoticia(String manchete, String texto){
         Noticia noticia = new Noticia(manchete,texto);
+        HibernateUtil.persistirObjeto(noticia);
+    }
+    
+    public static void cadastrarOuAtualizarNoticia(String manchete, String texto, Membro cadastrante){
+        Noticia noticia = new Noticia(manchete,texto,cadastrante);
         HibernateUtil.persistirObjeto(noticia);
     }
     
