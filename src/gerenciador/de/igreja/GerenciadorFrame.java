@@ -119,6 +119,8 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton11 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
         jPanelSecretaria = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
@@ -258,7 +260,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                 {"Emanuel", "20/10"}
             },
             new String [] {
-                "Nome", "Data"
+                "NOME", "DATA"
             }
         ) {
             Class[] types = new Class [] {
@@ -303,7 +305,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Assunto", "Data"
+                "ASSUNTO", "DATA"
             }
         ) {
             Class[] types = new Class [] {
@@ -349,7 +351,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Nome", "início", "término"
+                "NOME", "INÍCIO", "TÉRMINO"
             }
         ) {
             Class[] types = new Class [] {
@@ -393,7 +395,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Nome", "Data", "Hora"
+                "NOME", "DATA", "HORA"
             }
         ) {
             Class[] types = new Class [] {
@@ -555,7 +557,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Nome", "início", "término"
+                "NOME", "INÍCIO", "TÉRMINO"
             }
         ) {
             Class[] types = new Class [] {
@@ -628,18 +630,22 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("Departamentos e Ministérios");
 
+        jTable1.setBackground(new java.awt.Color(209, 214, 230));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"Louvor", "Marcos", "seg/quar", "18:30 - 21:00"}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "NOME", "LÍDER", "DIA", "HORA"
             }
         ));
         jScrollPane7.setViewportView(jTable1);
+
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/visualizar.png"))); // NOI18N
+        jButton11.setText("Visualizar");
+
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        jButton14.setText("Adicionar");
 
         javax.swing.GroupLayout jPanelMinisteriosLayout = new javax.swing.GroupLayout(jPanelMinisterios);
         jPanelMinisterios.setLayout(jPanelMinisteriosLayout);
@@ -647,8 +653,13 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
             jPanelMinisteriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
             .addGroup(jPanelMinisteriosLayout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100)
+                .addGroup(jPanelMinisteriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelMinisteriosLayout.createSequentialGroup()
+                        .addComponent(jButton14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton11))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelMinisteriosLayout.setVerticalGroup(
@@ -656,9 +667,13 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
             .addGroup(jPanelMinisteriosLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelMinisteriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
         );
 
         jPanel4.add(jPanelMinisterios);
@@ -754,7 +769,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jListOpcaoMenu.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jListOpcaoMenu.setForeground(new java.awt.Color(255, 255, 255));
         jListOpcaoMenu.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Início", "Disciplinas", "Ministérios", "Secretaria", "" };
+            String[] strings = { "Início", "Disciplinas", "Ministérios", "Secretaria" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -992,8 +1007,10 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
     private javax.swing.JLabel dataAtual;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
