@@ -20,5 +20,8 @@
     <property name="texto" type="string">
       <column name="texto" not-null="true"/>
     </property>
+    <property name="data" type="date">
+      <column name="data_noticia" length="10" not-null="true"/>
+    </property>
   </class>
 </hibernate-mapping>

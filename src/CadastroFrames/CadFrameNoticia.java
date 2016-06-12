@@ -7,6 +7,7 @@ package CadastroFrames;
 
 import Objetos.Membro;
 import Objetos.Noticia;
+import Util.FormatoDataHora;
 import gerenciador.de.igreja.GerenciadorFrame;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,15 +20,18 @@ import javax.swing.JOptionPane;
 public class CadFrameNoticia extends javax.swing.JFrame {
 
     private Membro cadastrante;
+    private GerenciadorFrame gerenciador;
     /**
      * Creates new form CadFrameNoticia
      */
-    public CadFrameNoticia() {
+    public CadFrameNoticia(GerenciadorFrame gerenciador) {
         initComponents();
+        this.gerenciador = gerenciador;
     }
     
-    public CadFrameNoticia(Membro usuarioAtual) {
+    public CadFrameNoticia(GerenciadorFrame gerenciador, Membro usuarioAtual) {
         initComponents();
+        this.gerenciador = gerenciador;
         cadastrante = usuarioAtual;
     }
 
@@ -169,6 +173,8 @@ public class CadFrameNoticia extends javax.swing.JFrame {
         String assuntoNoticia = assunto.getText();
         Noticia.cadastrarOuAtualizarNoticia(temaNoticia, assuntoNoticia);
         JOptionPane.showMessageDialog(null, "Notícia cadastrada com successo");
+        gerenciador.refresh();
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

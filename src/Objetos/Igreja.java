@@ -35,18 +35,6 @@ public class Igreja {
         this.eventos = new ArrayList<>();
         this.mensagens = new ArrayList<>();
     }
-    
-    public Igreja(String usuario){
-        this.membros = new ArrayList<>();
-        this.visitantes = new ArrayList<>();
-        this.grupos = new ArrayList<>();
-        this.ministerios = new ArrayList<>();
-        this.seminarios = new ArrayList<>();
-        this.noticias = new ArrayList<>();
-        this.eventos = new ArrayList<>();
-        this.mensagens = new ArrayList<>();
-        //Preencher o objeto usuarioAtual buscando pelo parâmetro usuario
-    }
 
     public List<Membro> getMembros() {
         return membros;

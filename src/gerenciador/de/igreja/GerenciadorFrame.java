@@ -40,6 +40,8 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         dataAtual.setText(FormatoDataHora.userData(FormatoDataHora.getDataHoraAtual()));
         igreja.carregarSeminarios();
         preencherDisciplinasAtivas();
+        igreja.carregarMinisterios();
+        preencherMinisterios();
     }
     /**
      * torna todas os principais paineis invisíveis.
@@ -66,9 +68,11 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jListOpcaoMenu.setSelectedIndex(0);
         igreja.carregarSeminarios();
         preencherDisciplinasAtivas();
+        igreja.carregarMinisterios();
+        preencherMinisterios();
     }
     
-    private void refresh(){
+    public void refresh(){
         igreja.carregarEventos(Ordem.DECRESCENTE,MAX_EVENTOS);
         preencherEventos();
         igreja.carregarNoticias(Ordem.DECRESCENTE);
@@ -79,6 +83,8 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jListOpcaoMenu.setSelectedIndex(0);
         igreja.carregarSeminarios();
         preencherDisciplinasAtivas();
+        igreja.carregarMinisterios();
+        preencherMinisterios();
     }
 
     /**
@@ -131,7 +137,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jPanelMinisterios = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        ministerios = new javax.swing.JTable();
         jButton11 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         jPanelSecretaria = new javax.swing.JPanel();
@@ -643,8 +649,8 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("Departamentos e Ministérios");
 
-        jTable1.setBackground(new java.awt.Color(209, 214, 230));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        ministerios.setBackground(new java.awt.Color(209, 214, 230));
+        ministerios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Louvor", "Marcos", "seg/quar", "18:30 - 21:00"}
             },
@@ -652,7 +658,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                 "NOME", "LÍDER", "DIA", "HORA"
             }
         ));
-        jScrollPane7.setViewportView(jTable1);
+        jScrollPane7.setViewportView(ministerios);
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/visualizar.png"))); // NOI18N
         jButton11.setText("Visualizar");
@@ -935,7 +941,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
          /* Create and display the form */
-            CadFrameNoticia cadnoticia=new CadFrameNoticia();
+            CadFrameNoticia cadnoticia=new CadFrameNoticia(this,igreja.getUsuarioAtual());
             cadnoticia.setVisible(true);
             refresh();
 
@@ -978,7 +984,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         Object[] objs = new Object[2];
         for (Noticia not : noticias) {
             objs[0] = not.getManchete();
-            objs[1] = "";
+            objs[1] = FormatoDataHora.userData(not.getData());
             
             model.addRow(objs);
         }
@@ -1006,6 +1012,19 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
             objs[0] = turma.getDisciplina().getNome();
             objs[1] = FormatoDataHora.userData(turma.getId().getDataInicio());
             objs[2] = FormatoDataHora.userData(turma.getDataFim());
+            model.addRow(objs);
+        }
+    }
+    
+    private void preencherMinisterios(){
+        DefaultTableModel model = (DefaultTableModel) ministerios.getModel();
+        model.setNumRows(0);
+        Object[] objs = new Object[4];
+        for (Ministerio ministerio : igreja.getMinisterios()) {
+            objs[0] = ministerio.getNome();
+            objs[1] = ministerio.getLider().getPessoa().getNome();
+            objs[2] = ministerio.getDiaSemana();
+            objs[3] = FormatoDataHora.userHora(ministerio.getHora());
             model.addRow(objs);
         }
     }
@@ -1071,9 +1090,9 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTable jTable1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JTable ministerios;
     private javax.swing.JLabel nomeUsuarioAtual;
     private javax.swing.JTable tabelaAniversariantes;
     private javax.swing.JTable tabelaDisciplinasAtivas;

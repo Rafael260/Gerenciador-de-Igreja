@@ -135,7 +135,20 @@ public class Ministerio  implements java.io.Serializable {
     }
     
     public static List<Ministerio> listarTodos(){
-        return HibernateUtil.getTuplasDaTabela("Ministerio");
+        List<Object[]> objects = HibernateUtil.rodarSQL("select p.id, p.nome, p.sobrenome, p.telefone, p.end_rua, p.end_numero, p.end_comp, p.end_bairro, p.end_cidade, p.end_estado, p.email, p.estado_civil, m.cpf, m.data_nasc, m.batismo_apres, m.usuario, m.senha, m.permissoes, m.id_lider, m.hora_grupo, m.dia_sem_grupo, k.nome AS nome_ministerio, k.descricao, k.hora AS hora_ministerio, k.dia_semana, k.id_lider AS lider_ministerio\n" +
+"from pessoa p, membro m, ministerio k\n" +
+"where p.id = m.id and m.id = k.id_lider\n" +
+"order by k.nome");
+        List<Ministerio> ministerios = new ArrayList();
+        Membro lider;
+        Ministerio ministerio;
+        for (Object[] obj : objects) {
+            lider = Membro.preencherDadosMembro(obj, 0);
+            ministerio = preencherDadosMinisterio(obj, 21);
+            ministerio.setLider(lider);
+            ministerios.add(ministerio);
+        }
+        return ministerios;
     }
     
     
