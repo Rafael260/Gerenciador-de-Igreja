@@ -49,6 +49,8 @@ public class Seminario  implements java.io.Serializable {
     public void setMembro(Membro membro) {
         this.membro = membro;
     }
+    
+ //   @OneToMany(fetch = FetchType.EAGER) 
     public Set getDisciplinas() {
         return this.disciplinas;
     }
@@ -56,6 +58,8 @@ public class Seminario  implements java.io.Serializable {
     public void setDisciplinas(Set disciplinas) {
         this.disciplinas = disciplinas;
     }
+    
+   // @OneToMany(fetch = FetchType.EAGER) 
     public Set getPeriodoLetivos() {
         return this.periodoLetivos;
     }
@@ -72,10 +76,27 @@ public class Seminario  implements java.io.Serializable {
         return seminario;
     }
     
-    public static Seminario selectSeminarioPk(String nome){
+    /*public static Seminario selectSeminarioPk(String nome){
         Seminario seminario = new Seminario();
         seminario.setNome(nome);
         List objects = HibernateUtil.getTuplasPorExemplo(seminario, Seminario.class);
+        return (Seminario)objects.get(0);
+    }*/
+    
+    /*public static Seminario selectSeminarioPk(String nome){
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("(pessoa natural join membro) join seminario s on id = id_coordenador", "s.nome = '"+nome+"'", "", 0);
+        Membro coordenador = Membro.preencherDadosMembro(objects.get(0), 0);
+        Seminario seminario = preencherDadosSeminario(objects.get(0), 21);
+        seminario.setMembro(coordenador);
+        return seminario;
+    }*/
+    
+    public static Seminario selectSeminarioPk(String nome){
+        List objects = HibernateUtil.rodarSQL("select p.id, p.nome, p.sobrenome, p.telefone, p.end_rua, p.end_numero, p.end_comp, p.end_bairro, p.end_cidade, p.end_estado, p.email, p.estado_civil, m.cpf, m.data_nasc, m.batismo_apres, m.usuario, m.senha, m.permissoes, m.id_lider, m.hora_grupo, m.dia_sem_grupo, s.nome as nome_sem, s.id_coordenador\n" +
+"	from pessoa p, membro m, seminario s\n" +
+"    where p.id = m.id and s.nome = '"+nome+"' and p.id=s.id_coordenador;\n" +
+"select *\n" +
+"	from (pessoa natural join membro) join seminario on p.id = s.id_coordenador");
         return (Seminario)objects.get(0);
     }
     

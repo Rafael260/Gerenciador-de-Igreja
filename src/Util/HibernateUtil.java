@@ -93,7 +93,10 @@ public class HibernateUtil {
         Session s = sessionFactory.getCurrentSession();
         s.beginTransaction();
         List tuplas;
-        tuplas = s.createQuery("from "+tabela).list();
+        //tuplas = s.createQuery("from "+tabela).list();
+        //Query query = s.createSQLQuery("select * from "+ tabela);
+        Query query = s.createQuery("from "+tabela);
+        tuplas = query.list();
         s.getTransaction().commit();
         return tuplas;
     }

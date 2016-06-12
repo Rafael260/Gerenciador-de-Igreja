@@ -155,9 +155,9 @@ public class Grupo  implements java.io.Serializable {
         return HibernateUtil.getTuplasDaTabela("Grupo","tipo_grupo='"+tipo+"'","",0);
     }
     
-    public static List<Grupo> selectGrupoPorDiaSemana(String diaSemana){
+    /*public static List<Grupo> selectGrupoPorDiaSemana(String diaSemana){
         return HibernateUtil.getTuplasDaTabela("Grupo","dia_semana='"+diaSemana+"'","",0);
-    }
+    }*/
     
     /**
      * Seleciona os grupos que possuem horário de início entre horaInicio e horaFinal
