@@ -700,11 +700,11 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
 
         jPanelSecretaria.setPreferredSize(new java.awt.Dimension(849, 533));
 
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastrar"));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastrar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 102))); // NOI18N
         jPanel9.setOpaque(false);
         jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CMembro.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CMembro1.png"))); // NOI18N
         jButton5.setToolTipText("");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -724,7 +724,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CDisciplina.png"))); // NOI18N
         jPanel9.add(jButton7);
 
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder("Alterar / Remover"));
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alterar / Remover", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 0))); // NOI18N
         jPanel11.setLayout(new javax.swing.BoxLayout(jPanel11, javax.swing.BoxLayout.LINE_AXIS));
 
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/RMembro1.png"))); // NOI18N
@@ -754,7 +754,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
             .addGroup(jPanelSecretariaLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
         );
