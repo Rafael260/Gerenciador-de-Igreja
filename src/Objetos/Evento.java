@@ -102,38 +102,46 @@ public class Evento  implements java.io.Serializable {
         return eventos;
     }
     
+    public static void cadastrarOuAtualizarEvento(Evento evento){
+        HibernateUtil.persistirObjeto(evento);
+    }
+    
+    public static void deletarEvento(Evento evento){
+        HibernateUtil.deletarObjeto(evento);
+    }
+    
     public static Evento selectEventoPk(EventoId id){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Evento", "tema='"+id.getTema() + "' and dia_hora='"+FormatoDataHora.sqlDataHora(id.getDiaHora())+"'","",0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento", "tema='"+id.getTema() + "' and dia_hora='"+FormatoDataHora.sqlDataHora(id.getDiaHora())+"'","",0);
         return preencherDadosEvento(objects.get(0),0);
     }
     
     public static Evento selectEventoPk(String tema, Date dia_hora){
         //CONFERRIR STRING DE DIA_HORA!!!
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Evento", "tema='"+tema+"'" + " and dia_hora='"+dia_hora+"'","",0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento", "tema='"+tema+"'" + " and dia_hora='"+dia_hora+"'","",0);
         return preencherDadosEvento(objects.get(0),0);
     }
        
     public static List<Evento> listarTodos(){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Evento");
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento");
         return preencherDadosEvento(objects,0);
     }
     
     public static List<Evento> listarTodos(Ordem ordem){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Evento","","dia_hora "+ ordem.getSqlOrder(),0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento","","dia_hora "+ ordem.getSqlOrder(),0);
         return preencherDadosEvento(objects, 0);
     }
     
     public static List<Evento> listarTodos(Ordem ordem, int numMaxResultados){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Evento","","dia_hora "+ ordem.getSqlOrder(),numMaxResultados);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento","","dia_hora "+ ordem.getSqlOrder(),numMaxResultados);
         return preencherDadosEvento(objects, 0);
     }
     
     public static List<Evento> selectEventoPorTema(String tema){
-        return HibernateUtil.getTuplasDaTabela("Evento","tema="+tema,"",0);
+        return HibernateUtil.getTuplasDaTabela("evento","tema="+tema,"",0);
     }
     
     public static List<Evento> selectEventoPorTema(String tema, Ordem ordem){
-        return HibernateUtil.getTuplasDaTabela("Evento","tema='"+tema+"'"," order by dia_hora"+ ordem.getSqlOrder(),0);
+        return HibernateUtil.getTuplasDaTabela("evento","tema='"+tema+"'"," order by dia_hora"+ ordem.getSqlOrder(),0);
     }
     
     public void adicionarVisitante(Pessoa pessoa){
@@ -143,7 +151,7 @@ public class Evento  implements java.io.Serializable {
         //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
         parametros.add("'"+this.id.getDiaHora()+"'");
         parametros.add("'"+this.id.getTema()+"'");
-        HibernateUtil.insertInto("Visita_Evento", parametros);
+        HibernateUtil.insertInto("visita_evento", parametros);
     }
 
     //Criado por Rafael em 01/06
@@ -154,7 +162,7 @@ public class Evento  implements java.io.Serializable {
         //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
         parametros.add("'"+this.id.getDiaHora()+"'");
         parametros.add("'"+this.id.getTema()+"'");
-        HibernateUtil.insertInto("Visita_Evento", parametros);
+        HibernateUtil.insertInto("visita_evento", parametros);
     }
 
 }

@@ -2,6 +2,7 @@ package Objetos;
 // Generated 03/06/2016 10:35:37 by Hibernate Tools 4.3.1
 
 import Util.HibernateUtil;
+import java.util.Date;
 
 
 
@@ -17,11 +18,13 @@ public class Assiduidade  implements java.io.Serializable {
      private boolean presenca;
 
     public Assiduidade() {
+        this.id = new AssiduidadeId();
     }
 
-    public Assiduidade(AssiduidadeId id, Matricula matricula, boolean presenca) {
-       this.id = id;
-       this.matricula = matricula;
+    public Assiduidade(Date dataAula, Matricula matricula, boolean presenca) {
+       this.id = new AssiduidadeId();
+       this.id.setDataAula(dataAula);
+       setMatricula(matricula);
        this.presenca = presenca;
     }
    
@@ -36,9 +39,13 @@ public class Assiduidade  implements java.io.Serializable {
         return this.matricula;
     }
     
-    public void setMatricula(Matricula matricula) {
+    public final void setMatricula(Matricula matricula) {
         this.matricula = matricula;
+        this.id.setCodigo(matricula.getId().getCodDisc());
+        this.id.setIdAluno(matricula.getAluno().getId());
+        this.id.setDataInicio(matricula.getId().getDataInicio());
     }
+    
     public boolean isPresenca() {
         return this.presenca;
     }
@@ -50,9 +57,10 @@ public class Assiduidade  implements java.io.Serializable {
     public static void cadastrarOuAtualizarAssiduidade(Assiduidade assiduidade){
         HibernateUtil.persistirObjeto(assiduidade);
     }
-
-
-
+    
+    public static void deletarAssiduidade(Assiduidade assiduidade){
+        HibernateUtil.deletarObjeto(assiduidade);
+    }
 }
 
 

@@ -6,20 +6,17 @@
     <class name="Objetos.Turma" table="turma" catalog="connect_church" optimistic-lock="version">
         <composite-id name="id" class="Objetos.TurmaId">
             <key-property name="codigo" type="string">
-                <column name="codigo" length="10" />
+                <column name="cod_disc" length="10" />
             </key-property>
             <key-property name="dataInicio" type="date">
                 <column name="data_inicio" length="10" />
             </key-property>
         </composite-id>
         <many-to-one name="disciplina" class="Objetos.Disciplina" update="false" insert="false" fetch="select">
-            <column name="codigo" length="10" not-null="true" />
+            <column name="cod_disc" length="10" not-null="true" />
         </many-to-one>
         <many-to-one name="membro" class="Objetos.Membro" fetch="select">
             <column name="id_prof" not-null="true" />
-        </many-to-one>
-        <many-to-one name="periodoLetivo" class="Objetos.PeriodoLetivo" fetch="select">
-            <column name="ano_let" not-null="true" />
         </many-to-one>
         <property name="dataFim" type="date">
             <column name="data_fim" length="10" not-null="true" />

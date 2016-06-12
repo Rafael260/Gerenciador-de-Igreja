@@ -198,6 +198,17 @@ public class Pessoa  implements java.io.Serializable {
         return pessoas;
     }
     
+    public static Pessoa cadastrarOuAtualizarPessoa(Pessoa pessoa){
+        HibernateUtil.persistirObjeto(pessoa);
+        List<Object[]> objects =HibernateUtil.getTuplasDaTabela("pessoa","", "id desc", 1);
+        Pessoa p = (Pessoa) preencherDadosPessoa(objects.get(0), 0);
+        return p;
+    }
+    
+    public static void deletarPessoa(Pessoa pessoa){
+        HibernateUtil.deletarObjeto(pessoa);
+    }
+    
     public static Pessoa selectPessoaPk(int id){
         return (Pessoa)HibernateUtil.getTuplasDaTabela("Pessoa", "id="+id,"",0).get(0);
     }
@@ -214,11 +225,7 @@ public class Pessoa  implements java.io.Serializable {
         return HibernateUtil.getTuplasDaTabela("Pessoa","nome='"+nome+"' and sobrenome='"+sobrenome+"'","",0);
     }
     
-    public static void updatePessoa(Pessoa pessoa){
-        HibernateUtil.persistirObjeto(pessoa);
-    }
-    
-    public static Pessoa updatePessoa(Pessoa pessoa, List<AtributoValor> atualizacoes){
+    /*public static Pessoa updatePessoa(Pessoa pessoa, List<AtributoValor> atualizacoes){
         for (AtributoValor atrVal: atualizacoes){
             switch(atrVal.getAtributo()){
                 case "nome":
@@ -257,10 +264,10 @@ public class Pessoa  implements java.io.Serializable {
         }
         HibernateUtil.persistirObjeto(pessoa);
         return pessoa;
-    }
+    }*/
     
     public void cadastrarMinistracao(Evento evento, Mensagem mensagem){
-        Ministracao ministracao = new Ministracao(new MinistracaoId(evento.getId().getTema(),evento.getId().getDiaHora(),mensagem.getTitulo()),evento,mensagem,this);
+        Ministracao ministracao = new Ministracao(evento,mensagem,this);
         HibernateUtil.persistirObjeto(ministracao);
     }
 
