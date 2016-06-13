@@ -84,5 +84,16 @@ public class FormatoDataHora {
         return ""+date.get(Calendar.HOUR)+":"+date.get(Calendar.MINUTE)+":"+date.get(Calendar.SECOND);
     }
     
+    ////////////////ENTRADAS DE DATAS///////////////////////////////////////
+    
+    
+    public static Date getData(String data){
+        String[] valores = data.split("/");
+        int dia = Integer.parseInt(valores[0]);
+        int mes = Integer.parseInt(valores[1]);
+        int ano = Integer.parseInt(valores[2]);
+        return new Date(ano-1900,mes-1,dia);
+    }
+    
 }
 
