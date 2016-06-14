@@ -122,9 +122,9 @@ public class Evento  implements java.io.Serializable {
         return preencherDadosEvento(objects.get(0),0);
     }
     
-    public static Evento selectEventoPk(String tema, Date dia_hora){
+    public static Evento selectEventoPk(String tema, Date diaHora){
         //CONFERRIR STRING DE DIA_HORA!!!
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento", "tema='"+tema+"'" + " and dia_hora='"+dia_hora+"'","",0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento", "tema='"+tema+"'" + " and dia_hora='"+diaHora+"'","",0);
         return preencherDadosEvento(objects.get(0),0);
     }
        
@@ -144,11 +144,30 @@ public class Evento  implements java.io.Serializable {
     }
     
     public static List<Evento> selectEventoPorTema(String tema){
-        return HibernateUtil.getTuplasDaTabela("evento","tema="+tema,"",0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento","tema="+tema,"",0);
+        return preencherDadosEvento(objects, 0);
     }
     
     public static List<Evento> selectEventoPorTema(String tema, Ordem ordem){
-        return HibernateUtil.getTuplasDaTabela("evento","tema='"+tema+"'"," order by dia_hora"+ ordem.getSqlOrder(),0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento","tema='"+tema+"'"," dia_hora DESC",0);
+        return preencherDadosEvento(objects, 0);
+    }
+    
+    public static List<Evento> selectEventoPorData(Date data, boolean buscarHora){
+        List<Object[]> objects;
+        if (buscarHora){
+            objects = HibernateUtil.getTuplasDaTabela("evento", "dia_hora='"+FormatoDataHora.sqlDataHora(data)+"'", "dia_hora DESC", 0);
+        }
+        else{
+            objects = HibernateUtil.getTuplasDaTabela("evento", "dia_hora like '"+FormatoDataHora.sqlData(data)+ "___:__:__'", "dia_hora DESC", 0);
+        }
+        return preencherDadosEvento(objects, 0);
+    }
+    
+    public static List<Evento> selectEventoPorTemaeDia(String tema, Date diaHora){
+        //CONFERRIR STRING DE DIA_HORA!!!
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento", "tema='"+tema+"'" + " and dia_hora like='"+FormatoDataHora.sqlData(diaHora)+"'"+"___:__:__'","",0);
+        return preencherDadosEvento(objects,0);
     }
     
     public void adicionarVisitante(Pessoa pessoa){

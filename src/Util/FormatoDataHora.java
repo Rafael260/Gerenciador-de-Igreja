@@ -20,17 +20,17 @@ public class FormatoDataHora {
     
     //Ex: 2016-01-30 20:00:00
     public static String sqlDataHora(Date date){
-        return ""+(date.getYear()+1900)+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+        return ""+(date.getYear()+1900)+"-"+getCampoCompleto(date.getMonth()+1)+"-"+getCampoCompleto(date.getDate())+" "+getCampoCompleto(date.getHours())+":"+getCampoCompleto(date.getMinutes())+":"+getCampoCompleto(date.getSeconds());
     }
     
     //Ex: 2016-01-30
     public static String sqlData(Date date){
-        return ""+(date.getYear()+1900)+"-"+(date.getMonth()+1)+"-"+date.getDate();
+        return ""+(date.getYear()+1900)+"-"+getCampoCompleto(date.getMonth()+1)+"-"+getCampoCompleto(date.getDate());
     }
     
     //Ex: 20:00:00
     public static String sqlHora(Date date){
-        return ""+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+        return ""+getCampoCompleto(date.getHours())+":"+getCampoCompleto(date.getMinutes())+":"+getCampoCompleto(date.getSeconds());
     }
     
     ///////

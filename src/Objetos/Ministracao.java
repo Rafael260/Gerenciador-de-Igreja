@@ -95,7 +95,8 @@ public class Ministracao  implements java.io.Serializable {
     }
     
     public static List<Ministracao> listarTodos(){
-        List<Object[]> objects = HibernateUtil.rodarSQL("select p.id, p.nome, p.sobrenome, p.telefone, p.end_rua, p.end_numero, p.end_comp, p.end_bairro, p.end_cidade, p.end_estado, p.email, p.estado_civil, n.tema_evt, n.dia_hora_evt, n.titulo_msg, n.id_minist, e.tema AS tema_evento, e.dia_hora, e.publico_alvo, e.tipo, m.titulo, m.base_biblica, m.tema AS tema_mensagem \n" +
+        List<Object[]> objects = HibernateUtil.rodarSQL("select p.id, p.nome, p.sobrenome, p.telefone, p.end_rua, p.end_numero, p.end_comp, p.end_bairro, p.end_cidade, "
+                + "p.end_estado, p.email, p.estado_civil, n.tema_evt, n.dia_hora_evt, n.titulo_msg, n.id_minist, e.tema AS tema_evento, e.dia_hora, e.publico_alvo, e.tipo, m.titulo, m.base_biblica, m.tema AS tema_mensagem \n" +
 "from pessoa p, ministracao n, evento e, mensagem m \n" +
 "where p.id=n.id_minist and e.dia_hora=n.dia_hora_evt and e.tema=n.tema_evt and m.titulo=n.titulo_msg\n" +
 "order by e.dia_hora desc");

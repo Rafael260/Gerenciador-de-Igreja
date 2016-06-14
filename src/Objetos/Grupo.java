@@ -4,6 +4,7 @@ package Objetos;
 
 import Util.FormatoDataHora;
 import Util.HibernateUtil;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -135,6 +136,14 @@ public class Grupo  implements java.io.Serializable {
         return grupo;
     }
     
+    public static List<Grupo> preencherDadosGrupo(List<Object[]> objects, int index){
+        List<Grupo> grupos = new ArrayList();
+        for(Object[] obj: objects){
+            grupos.add(preencherDadosGrupo(obj, index));
+        }
+        return grupos;
+    }
+    
     public static void cadastrarOuAtualizarGrupo(Membro lider,Date hora, String diaSemana, String tipoGrupo, String endRua, Integer endNumero, String endComp, String endBairro, String endCidade){
         Grupo grupo = new Grupo(hora,diaSemana,lider,endRua,endNumero,endBairro,endCidade);
         HibernateUtil.persistirObjeto(grupo);
@@ -154,16 +163,18 @@ public class Grupo  implements java.io.Serializable {
     }
     
     public static Grupo selectGrupoPk(int id_lider, Date hora, String dia_semana){
-        //CONFERIR STRING DE HORA
-        return (Grupo)HibernateUtil.getTuplasDaTabela("Grupo", "id_lider="+id_lider + " and hora='"+FormatoDataHora.sqlHora(hora)+ "' and dia_semana='"+dia_semana+"'","",0).get(0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Grupo", "id_lider="+id_lider + " and hora='"+FormatoDataHora.sqlHora(hora)+ "' and dia_semana='"+dia_semana+"'","",0);
+        return preencherDadosGrupo(objects.get(0),0);
     }
     
     public static List<Grupo> listarTodos(){
-        return HibernateUtil.getTuplasDaTabela("Grupo");
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Grupo");
+        return preencherDadosGrupo(objects, 0);
     }
     
     public static List<Grupo> selectGrupoPorTipo(String tipo){
-        return HibernateUtil.getTuplasDaTabela("Grupo","tipo_grupo='"+tipo+"'","",0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Grupo","tipo_grupo='"+tipo+"'","",0);
+        return preencherDadosGrupo(objects, 0);
     }
     
     /*public static List<Grupo> selectGrupoPorDiaSemana(String diaSemana){
@@ -178,15 +189,18 @@ public class Grupo  implements java.io.Serializable {
      * @return 
      */
     public static List<Grupo> selectGrupoPorDiaHorario(Date horaInicio, Date horaFinal){
-        return HibernateUtil.getTuplasDaTabela("Grupo","hora between '"+FormatoDataHora.sqlHora(horaInicio)+"' and '"+FormatoDataHora.sqlHora(horaFinal)+"'","",0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Grupo","hora between '"+FormatoDataHora.sqlHora(horaInicio)+"' and '"+FormatoDataHora.sqlHora(horaFinal)+"'","",0);
+        return preencherDadosGrupo(objects, 0);
     }
     
     public static List<Grupo> selectGrupoPorBairro(String bairro){
-        return HibernateUtil.getTuplasDaTabela("Grupo","end_bairro='"+bairro+"'","",0);
+        List<Object[]> objects =  HibernateUtil.getTuplasDaTabela("Grupo","end_bairro='"+bairro+"'","",0);
+        return preencherDadosGrupo(objects, 0);
     }
     
     public static List<Grupo> selectGrupoPorCidade(String cidade){
-        return HibernateUtil.getTuplasDaTabela("Grupo","end_cidade='"+cidade+"'","",0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Grupo","end_cidade='"+cidade+"'","",0);
+        return preencherDadosGrupo(objects, 0);
     }
     
     public void adicionarMembro(Membro membro){
