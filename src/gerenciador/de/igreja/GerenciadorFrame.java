@@ -42,6 +42,8 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         preencherDisciplinasAtivas();
         igreja.carregarMinisterios();
         preencherMinisterios();
+        igreja.carregarMensagens();
+        preencherMensagens();
     }
     /**
      * torna todas os principais paineis invisíveis.
@@ -70,6 +72,8 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         preencherDisciplinasAtivas();
         igreja.carregarMinisterios();
         preencherMinisterios();
+        igreja.carregarMensagens();
+        preencherMensagens();
     }
     
     public void refresh(){
@@ -85,6 +89,8 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         preencherDisciplinasAtivas();
         igreja.carregarMinisterios();
         preencherMinisterios();
+        igreja.carregarMensagens();
+        preencherMensagens();
     }
 
     /**
@@ -117,7 +123,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         tabelaNoticias = new javax.swing.JTable();
         jPanelDiscAtivas = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tabelaDisciplinasAtivas = new javax.swing.JTable();
+        tabelaMensagens = new javax.swing.JTable();
         jPanelEventos = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tabelaEventos = new javax.swing.JTable();
@@ -361,8 +367,8 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
 
         jScrollPane4.setBorder(null);
 
-        tabelaDisciplinasAtivas.setBackground(new java.awt.Color(209, 214, 230));
-        tabelaDisciplinasAtivas.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaMensagens.setBackground(new java.awt.Color(209, 214, 230));
+        tabelaMensagens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null}
@@ -386,10 +392,10 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabelaDisciplinasAtivas.setGridColor(new java.awt.Color(0, 102, 102));
-        tabelaDisciplinasAtivas.setSelectionBackground(new java.awt.Color(101, 155, 106));
-        tabelaDisciplinasAtivas.setShowHorizontalLines(false);
-        jScrollPane4.setViewportView(tabelaDisciplinasAtivas);
+        tabelaMensagens.setGridColor(new java.awt.Color(0, 102, 102));
+        tabelaMensagens.setSelectionBackground(new java.awt.Color(101, 155, 106));
+        tabelaMensagens.setShowHorizontalLines(false);
+        jScrollPane4.setViewportView(tabelaMensagens);
 
         javax.swing.GroupLayout jPanelDiscAtivasLayout = new javax.swing.GroupLayout(jPanelDiscAtivas);
         jPanelDiscAtivas.setLayout(jPanelDiscAtivasLayout);
@@ -1032,6 +1038,19 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         }
     }
     
+    private void preencherMensagens(){
+        DefaultTableModel model = (DefaultTableModel) tabelaMensagens.getModel();
+        model.setNumRows(0);
+        List<Ministracao> ministracoes = Ministracao.listarTodos();
+        Object[] objs = new Object[3];
+        for (Ministracao ministracao: ministracoes){
+            objs[0] = ministracao.getMensagem().getTitulo();
+            objs[1] = ministracao.getMensagem().getBaseBiblica();
+            objs[2] = FormatoDataHora.userData(ministracao.getEvento().getId().getDiaHora());
+            model.addRow(objs);
+        }
+    }
+    
     private void preencherMinisterios(){
         DefaultTableModel model = (DefaultTableModel) ministerios.getModel();
         model.setNumRows(0);
@@ -1112,9 +1131,9 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
     private javax.swing.JTable ministerios;
     private javax.swing.JLabel nomeUsuarioAtual;
     private javax.swing.JTable tabelaAniversariantes;
-    private javax.swing.JTable tabelaDisciplinasAtivas;
     private javax.swing.JTable tabelaDisciplinasAtivas1;
     private javax.swing.JTable tabelaEventos;
+    private javax.swing.JTable tabelaMensagens;
     private javax.swing.JTable tabelaNoticias;
     // End of variables declaration//GEN-END:variables
 

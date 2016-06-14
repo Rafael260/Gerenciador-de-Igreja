@@ -2,6 +2,9 @@ package Objetos;
 // Generated 03/06/2016 10:35:37 by Hibernate Tools 4.3.1
 
 import Util.HibernateUtil;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 
@@ -59,12 +62,28 @@ public class Ministracao  implements java.io.Serializable {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
+    
+    //Talvez desnecessário
+    public static Ministracao preencherDadosMinistracao(Object[] object, int index){
+        Ministracao ministracao = new Ministracao();
+        ministracao.setEvento(Evento.selectEventoPk((String)object[index], (Date)object[index+1]));
+        ministracao.setMensagem(Mensagem.selectMensagemPk((String)object[index+2]));
+        ministracao.setPessoa(Pessoa.selectPessoaPk((Integer)object[index+3]));
+        return ministracao;
+    }
+    
+    public static List<Ministracao> preencherDadosMinistracao(List<Object[]> objects, int index){
+        List<Ministracao> ministracoes = new ArrayList();
+        for(Object[] object: objects){
+            ministracoes.add(preencherDadosMinistracao(object, index));
+        }
+        return ministracoes;
+    }
 
     //Ver necessidade de retornar objeto cadastrado no banco
-    public static Ministracao cadastrarOuAtualizarMinistracao(Evento evento,Pessoa pessoa, Mensagem mensagem){
+    public static void cadastrarOuAtualizarMinistracao(Evento evento,Pessoa pessoa, Mensagem mensagem){
         Ministracao ministracao = new Ministracao(evento,mensagem,pessoa);
         HibernateUtil.persistirObjeto(ministracao);
-        return ministracao;
     }
 
     public static void cadastrarOuAtualizarMinistracao(Ministracao ministracao){
@@ -73,6 +92,27 @@ public class Ministracao  implements java.io.Serializable {
     
     public static void deletarMinistracao(Ministracao ministracao){
         HibernateUtil.deletarObjeto(ministracao);
+    }
+    
+    public static List<Ministracao> listarTodos(){
+        List<Object[]> objects = HibernateUtil.rodarSQL("select p.id, p.nome, p.sobrenome, p.telefone, p.end_rua, p.end_numero, p.end_comp, p.end_bairro, p.end_cidade, p.end_estado, p.email, p.estado_civil, n.tema_evt, n.dia_hora_evt, n.titulo_msg, n.id_minist, e.tema AS tema_evento, e.dia_hora, e.publico_alvo, e.tipo, m.titulo, m.base_biblica, m.tema AS tema_mensagem \n" +
+"from pessoa p, ministracao n, evento e, mensagem m \n" +
+"where p.id=n.id_minist and e.dia_hora=n.dia_hora_evt and e.tema=n.tema_evt and m.titulo=n.titulo_msg\n" +
+"order by e.dia_hora desc");
+        List<Ministracao> ministracoes = new ArrayList();
+        Pessoa p;
+        Evento e;
+        Mensagem m;
+        Ministracao ministracao;
+        
+        for (Object[] object : objects) {
+            p = Pessoa.preencherDadosPessoa(object, 0);
+            e = Evento.preencherDadosEvento(object, 16);
+            m = Mensagem.preencherDadosMensagem(object, 20);
+            ministracao = new Ministracao(e, m, p);
+            ministracoes.add(ministracao);
+        }
+        return ministracoes;
     }
     
 

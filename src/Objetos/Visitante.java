@@ -25,8 +25,16 @@ public class Visitante  implements java.io.Serializable {
     public Visitante(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
+    
+    public Visitante(Pessoa pessoa, String igrejaOrig) {
+       this.pessoa = pessoa;
+       this.pessoa.setVisitante(this);
+       this.igrejaOrig = igrejaOrig;
+    }
+    
     public Visitante(Pessoa pessoa, String igrejaOrig, Set eventos) {
        this.pessoa = pessoa;
+       this.pessoa.setVisitante(this);
        this.igrejaOrig = igrejaOrig;
        this.eventos = eventos;
     }

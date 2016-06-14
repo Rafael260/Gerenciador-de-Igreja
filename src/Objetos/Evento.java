@@ -31,6 +31,13 @@ public class Evento  implements java.io.Serializable {
         this.id = id;
         this.tipo = tipo;
     }
+    
+    public Evento(String tema, Date diaHora, String publicoAlvo, String tipo) {
+       this.id = new EventoId(tema,diaHora);
+       this.publicoAlvo = publicoAlvo;
+       this.tipo = tipo;
+    }
+    
     public Evento(EventoId id, String publicoAlvo, String tipo, Set ministracaos, Set visitantes, Set noticias) {
        this.id = id;
        this.publicoAlvo = publicoAlvo;

@@ -408,7 +408,7 @@ public class CadFrameMembro extends javax.swing.JFrame {
             numero = Integer.parseInt(number);
         }
         String bairro = testeEmpty(txtEnderecoBairro.getText());
-        String complemento = testeEmpty(txtLogin.getText());
+        String complemento = testeEmpty(txtEnderecoComp.getText());
         String cidade = testeEmpty(txtCidade.getText());
         String estado = testeEmpty((String)comboEstado.getSelectedItem());
         String telefone = testeEmpty(txtTelefone.getText());
@@ -416,6 +416,8 @@ public class CadFrameMembro extends javax.swing.JFrame {
         String estCivil = ((String)comboEstadoCivil.getSelectedItem()).toLowerCase();
         Character estadoCivil = estCivil.charAt(0);
         String cpf = txtCpf.getText();
+        cpf = cpf.replace(".", "");
+        cpf = cpf.replace("-","");
         //tratar datas
         Date dataNascimento = FormatoDataHora.getData(txtDataNasc.getText());
         Date dataBatismoApres = FormatoDataHora.getData(txtDataBatismo.getText());

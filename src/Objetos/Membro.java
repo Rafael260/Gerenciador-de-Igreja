@@ -38,6 +38,7 @@ public class Membro  implements java.io.Serializable {
 
     public Membro(Pessoa pessoa, String cpf, String usuario, String senha, int permissoes) {
         this.pessoa = pessoa;
+        this.pessoa.setMembro(this);
         this.cpf = cpf;
         this.usuario = usuario;
         this.senha = senha;
