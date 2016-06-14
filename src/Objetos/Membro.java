@@ -45,9 +45,11 @@ public class Membro  implements java.io.Serializable {
         this.permissoes = permissoes;
     }
     
-    public Membro(Pessoa pessoa, String cpf, String usuario, String senha, boolean lider, boolean professor, boolean secretario, boolean admin) {
+    public Membro(Pessoa pessoa, String cpf, String usuario, String senha, Date dataNasc, Date batismoApres, boolean lider, boolean professor, boolean secretario, boolean admin) {
         this.pessoa = pessoa;
         this.cpf = cpf;
+        this.dataNasc = dataNasc;
+        this.batismoApres = batismoApres;
         this.usuario = usuario;
         this.senha = senha;
         this.setLider(lider);
@@ -344,6 +346,17 @@ public class Membro  implements java.io.Serializable {
         pessoa.setNome(nome);
         membro.setPessoa(pessoa);
         return HibernateUtil.getTuplasPorExemplo(membro, Membro.class);
+    }
+    
+    public static List<Membro> selectMembroPorEstadoCivil(String estadoCivil){
+        Character estadoC = estadoCivil.toLowerCase().charAt(0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("pessoa natural join membro", "estado_civil='"+estadoC+"'", "nome ASC, sobrenome ASC, data_nasc ASC", 0);
+        return preencherDadosMembro(objects, 0);
+    }
+    
+    public static List<Membro> selectMembroPorEstadoCivil(Character estadoC){
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("pessoa natural join membro", "estado_civil='"+estadoC+"'", "nome ASC, sobrenome ASC, data_nasc ASC", 0);
+        return preencherDadosMembro(objects, 0);
     }
     
     public static List<Membro> selectMembrosComPermissao(int permissao){

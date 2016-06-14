@@ -427,7 +427,7 @@ public class CadFrameMembro extends javax.swing.JFrame {
         String login = txtLogin.getText();
         String senha = new String(psSenha.getPassword());
         Pessoa pessoa = new Pessoa(nome,sobrenome,telefone,rua,numero,complemento,bairro,cidade,estado,email,estadoCivil,null,null,null);
-        Membro membro = new Membro(pessoa,cpf,login,senha,lider,professor,secretaria,false);
+        Membro membro = new Membro(pessoa,cpf,login,senha,dataNascimento,dataBatismoApres,lider,professor,secretaria,false);
         Membro.cadastrarOuAtualizarMembro(membro);
         JOptionPane.showMessageDialog(null, "Membro cadastrado com successo");
     }//GEN-LAST:event_btnCadastrarActionPerformed
