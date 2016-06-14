@@ -174,7 +174,7 @@ public class CadFrameNoticia extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String temaNoticia = tema.getText();
         String assuntoNoticia = assunto.getText();
-        Noticia.cadastrarOuAtualizarNoticia(temaNoticia, assuntoNoticia);
+        Noticia.cadastrarOuAtualizarNoticia(temaNoticia, assuntoNoticia,cadastrante);
         JOptionPane.showMessageDialog(null, "Notícia cadastrada com successo");
         gerenciador.refresh();
         this.dispose();

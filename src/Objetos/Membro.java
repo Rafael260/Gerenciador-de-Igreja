@@ -285,6 +285,7 @@ public class Membro  implements java.io.Serializable {
         Pessoa p = Pessoa.preencherDadosPessoa(object,index);
         Membro membro = new Membro();
         membro.setPessoa(p);
+        membro.setId((Integer)object[index]);
         membro.setCpf((String)object[index+12]);
         if (object[index+13] != null)
             membro.setDataNasc((Date)object[index+13]);

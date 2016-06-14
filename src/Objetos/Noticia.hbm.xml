@@ -11,7 +11,7 @@
       <column length="45" name="tema_evt"/>
       <column length="19" name="dia_hora_evt"/>
     </many-to-one>
-    <many-to-one class="Objetos.Membro" fetch="select" insert="false" name="cadastrante" update="false">
+    <many-to-one class="Objetos.Membro" fetch="select" name="cadastrante" update="false">
       <column name="id_cadastrante" not-null="true"/>
     </many-to-one>
     <property name="manchete" type="string">
