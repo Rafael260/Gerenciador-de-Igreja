@@ -124,6 +124,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jToolBar2 = new javax.swing.JToolBar();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
         jPanelDisciplina = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
@@ -209,17 +210,17 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(nomeUsuarioAtual))
+                        .addComponent(nomeUsuarioAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dataAtual)))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(1, 1, 1)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(nomeUsuarioAtual))
@@ -247,12 +248,10 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(23, 23, 23)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnLogout)
-                        .addGap(11, 11, 11)))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogout))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -314,9 +313,9 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
-        jPanelNoticias.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Notícias", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(109, 114, 130))); // NOI18N
+        jPanelNoticias.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Notícias", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(101, 155, 106))); // NOI18N
 
-        tabelaNoticias.setBackground(new java.awt.Color(209, 214, 230));
+        tabelaNoticias.setBackground(new java.awt.Color(201, 255, 206));
         tabelaNoticias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Os ensaios do grupo \"alguma coisa\" serão cancelados esta semana", "10/10"},
@@ -358,19 +357,18 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
         );
 
-        jPanelDiscAtivas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Disciplinas Ativas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(101, 155, 106))); // NOI18N
+        jPanelDiscAtivas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mensagens Ministradas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(109, 114, 130))); // NOI18N
 
         jScrollPane4.setBorder(null);
 
-        tabelaDisciplinasAtivas.setBackground(new java.awt.Color(201, 255, 206));
+        tabelaDisciplinasAtivas.setBackground(new java.awt.Color(209, 214, 230));
         tabelaDisciplinasAtivas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Aprender a ser Gente", "15/06/0000", "10/11/0000"},
                 {null, null, null},
                 {null, null, null}
             },
             new String [] {
-                "NOME", "INÍCIO", "TÉRMINO"
+                "ASSUNTO", "PASSAGEM", "DATA"
             }
         ) {
             Class[] types = new Class [] {
@@ -473,6 +471,17 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
             }
         });
         jToolBar2.add(jButton10);
+
+        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cEvento.png"))); // NOI18N
+        jButton15.setFocusable(false);
+        jButton15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(jButton15);
 
         javax.swing.GroupLayout jPanelInicioLayout = new javax.swing.GroupLayout(jPanelInicio);
         jPanelInicio.setLayout(jPanelInicioLayout);
@@ -603,11 +612,11 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 805, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
         );
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -619,26 +628,27 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jPanelDisciplina.setLayout(jPanelDisciplinaLayout);
         jPanelDisciplinaLayout.setHorizontalGroup(
             jPanelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDisciplinaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanelDisciplinaLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23))
             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDisciplinaLayout.createSequentialGroup()
+                .addContainerGap(96, Short.MAX_VALUE)
+                .addGroup(jPanelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDisciplinaLayout.createSequentialGroup()
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDisciplinaLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96))))
         );
         jPanelDisciplinaLayout.setVerticalGroup(
             jPanelDisciplinaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDisciplinaLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel5)
-                .addGap(41, 41, 41)
+                .addGap(64, 64, 64)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         jPanel4.add(jPanelDisciplina);
@@ -781,7 +791,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jListOpcaoMenu.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jListOpcaoMenu.setForeground(new java.awt.Color(255, 255, 255));
         jListOpcaoMenu.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Início", "Disciplinas", "Ministérios", "Secretaria" };
+            String[] strings = { "   Início   ", "   Disciplinas   ", "   Ministérios   ", "   Secretaria   " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -804,16 +814,16 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jListOpcaoMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                .addComponent(jListOpcaoMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addComponent(jListOpcaoMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                .addComponent(jListOpcaoMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                 .addGap(441, 441, 441))
         );
 
@@ -839,7 +849,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                         .addGap(2, 2, 2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -903,7 +913,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
 
     private void jListOpcaoMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListOpcaoMenuMouseClicked
         // TODO add your handling code here:
-        String opcao = (String) jListOpcaoMenu.getSelectedValue();
+        String opcao = jListOpcaoMenu.getSelectedValue().toString().replace(" ", "");
         setAllInvisible();
         if(opcao.equals("Início")){
             jPanelInicio.setVisible(true);
@@ -963,6 +973,12 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         cadvisitante.setVisible(true);
     }//GEN-LAST:event_jButton6MouseClicked
 
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+        CadFrameEvento cadframeevento = new CadFrameEvento();
+        cadframeevento.setVisible(true);
+    }//GEN-LAST:event_jButton15ActionPerformed
+
     private void preencherEventos(){
         DefaultTableModel model = (DefaultTableModel) tabelaEventos.getModel();
         model.setNumRows(0);
@@ -1003,7 +1019,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
     }
     
     private void preencherDisciplinasAtivas() {
-        DefaultTableModel model = (DefaultTableModel) tabelaDisciplinasAtivas.getModel();
+        DefaultTableModel model = (DefaultTableModel) tabelaDisciplinasAtivas1.getModel();
         model.setNumRows(0);
         //get(0) pelo fato de por padrão só existir um seminário
         List<Turma> disciplinasAtivas = igreja.getSeminarios().get(0).selectDisciplinasAtivas();
@@ -1043,6 +1059,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

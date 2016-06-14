@@ -29,8 +29,10 @@ public class TelaLogin extends javax.swing.JFrame {
         conexao = ModuloDeConexao.conector();
         if (conexao !=  null){
             lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dbok1.png")));
+            lblStatus.setText("conectado");
         }  else {
             lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dberro1.png")));
+            lblStatus.setText("desconectado");
         }
         
     }
@@ -148,7 +150,10 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
+        lblStatus.setFont(new java.awt.Font("Arial", 2, 11)); // NOI18N
+        lblStatus.setForeground(new java.awt.Color(0, 102, 102));
         lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/dberro.png")));
+        lblStatus.setText("conectado");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -158,7 +163,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
