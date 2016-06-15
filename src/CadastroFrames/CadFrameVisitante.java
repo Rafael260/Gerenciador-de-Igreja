@@ -6,6 +6,7 @@
 package CadastroFrames;
 
 import Objetos.*;
+import gerenciador.de.igreja.GerenciadorFrame;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -16,11 +17,14 @@ import javax.swing.JOptionPane;
  */
 public class CadFrameVisitante extends javax.swing.JFrame {
 
+    private GerenciadorFrame gerenciador;
+    
     /**
      * Creates new form CadFrameVisitante
      */
-    public CadFrameVisitante() {
+    public CadFrameVisitante(GerenciadorFrame gerenciador) {
         initComponents();
+        this.gerenciador = gerenciador;
     }
 
     /**
@@ -349,6 +353,7 @@ public class CadFrameVisitante extends javax.swing.JFrame {
         Pessoa pessoa = new Pessoa(nome, sobrenome, telefone, rua, numero, complemento, bairro, cidade, estado, email, estadoCivil, null,null, null);
         Visitante visitante = new Visitante(pessoa, igrejaOrigem);
         Visitante.cadastrarOuAtualizarVisitante(visitante);
+        gerenciador.refresh();
         JOptionPane.showMessageDialog(null, "Visitante cadastrado com successo");
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -360,40 +365,7 @@ public class CadFrameVisitante extends javax.swing.JFrame {
             return str;
         }
     }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadFrameVisitante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadFrameVisitante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadFrameVisitante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadFrameVisitante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadFrameVisitante().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboEstado;

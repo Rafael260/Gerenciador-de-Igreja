@@ -19,11 +19,13 @@ import javax.swing.JOptionPane;
  */
 public class CadFrameMembro extends javax.swing.JFrame {
 
+    private GerenciadorFrame gerenciador;
     /**
      * Creates new form CadFrameMembro
      */
-    public CadFrameMembro() {
+    public CadFrameMembro(GerenciadorFrame gerenciador) {
         initComponents();
+        this.gerenciador = gerenciador;
     }
 
     /**
@@ -429,9 +431,37 @@ public class CadFrameMembro extends javax.swing.JFrame {
         Pessoa pessoa = new Pessoa(nome,sobrenome,telefone,rua,numero,complemento,bairro,cidade,estado,email,estadoCivil,null,null,null);
         Membro membro = new Membro(pessoa,cpf,login,senha,dataNascimento,dataBatismoApres,lider,professor,secretaria,false);
         Membro.cadastrarOuAtualizarMembro(membro);
+        gerenciador.refresh();
         JOptionPane.showMessageDialog(null, "Membro cadastrado com successo");
+        esvaziarCampos();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    private void esvaziarCampos(){
+        txtNome.setText("");
+        txtSobrenome.setText("");
+        txtEnderecoRua.setText("");
+        txtEnderecoNumero.setText("");
+        txtEnderecoComp.setText("");
+        txtEnderecoBairro.setText("");
+        txtCidade.setText("");
+        comboEstado.setSelectedItem(null);
+        txtTelefone.setText("");
+        
+        //Confere?
+        txtCpf.setText("");
+        txtDataNasc.setText("");
+        txtDataBatismo.setText("");
+        
+        txtEmail.setText("");
+        txtLogin.setText("");
+        psSenha.setText("");
+        comboEstadoCivil.setSelectedItem(null);
+        
+        checkLider.setSelected(false);
+        checkProfessor.setSelected(false);
+        checkSecretaria.setSelected(false);
+    }
+    
     public String testeEmpty(String str){
         if (str == null || str.isEmpty()){
             return null;
@@ -440,40 +470,7 @@ public class CadFrameMembro extends javax.swing.JFrame {
             return str;
         }
     }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadFrameMembro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadFrameMembro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadFrameMembro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadFrameMembro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadFrameMembro().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;

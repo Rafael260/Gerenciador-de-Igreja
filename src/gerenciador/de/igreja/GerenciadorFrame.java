@@ -965,7 +965,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        CadFrameMembro cadmembro=new CadFrameMembro();
+        CadFrameMembro cadmembro=new CadFrameMembro(this);
         cadmembro.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -975,7 +975,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
-        CadFrameVisitante cadvisitante= new CadFrameVisitante();
+        CadFrameVisitante cadvisitante= new CadFrameVisitante(this);
         cadvisitante.setVisible(true);
     }//GEN-LAST:event_jButton6MouseClicked
 

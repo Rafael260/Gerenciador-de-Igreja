@@ -142,6 +142,11 @@ public class Noticia  implements java.io.Serializable {
         return preencherDadosNoticia(objects, 0);
     }
     
+    public static List<Noticia> selectNoticiaContemAssunto(String assunto){
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("noticia", "manchete like '%"+assunto+"%'", "id DESC", 0);
+        return preencherDadosNoticia(objects, 0);
+    }
+    
 }
 
 
