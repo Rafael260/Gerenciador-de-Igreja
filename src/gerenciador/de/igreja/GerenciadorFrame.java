@@ -128,7 +128,6 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         tabelaEventos = new javax.swing.JTable();
         jToolBar2 = new javax.swing.JToolBar();
-        jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         jPanelDisciplina = new javax.swing.JPanel();
@@ -148,15 +147,12 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         jPanelSecretaria = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jPanel11 = new javax.swing.JPanel();
-        jButton13 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jLabel17 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jListOpcaoMenu = new javax.swing.JList();
         jLabel4 = new javax.swing.JLabel();
@@ -456,17 +452,6 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jToolBar2.setFloatable(false);
         jToolBar2.setRollover(true);
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Buscar.png"))); // NOI18N
-        jButton9.setFocusable(false);
-        jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-        jToolBar2.add(jButton9);
-
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/noticia.png"))); // NOI18N
         jButton10.setFocusable(false);
         jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -716,11 +701,16 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
 
         jPanelSecretaria.setPreferredSize(new java.awt.Dimension(849, 533));
 
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastrar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 102))); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("Administração e Secretaria");
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Opções", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 102, 102))); // NOI18N
         jPanel9.setOpaque(false);
         jPanel9.setLayout(new javax.swing.BoxLayout(jPanel9, javax.swing.BoxLayout.LINE_AXIS));
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CMembro1.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CMembro.png"))); // NOI18N
         jButton5.setToolTipText("");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -740,50 +730,31 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CDisciplina.png"))); // NOI18N
         jPanel9.add(jButton7);
 
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alterar / Remover", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(51, 51, 0))); // NOI18N
-        jPanel11.setLayout(new javax.swing.BoxLayout(jPanel11, javax.swing.BoxLayout.LINE_AXIS));
-
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/RMembro1.png"))); // NOI18N
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
-        jPanel11.add(jButton13);
-
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/RVisitante.png"))); // NOI18N
-        jPanel11.add(jButton12);
-
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/RDisciplina.png"))); // NOI18N
-        jPanel11.add(jButton8);
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("Administração e Secretaria");
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Turmas.png"))); // NOI18N
+        jPanel9.add(jButton8);
 
         javax.swing.GroupLayout jPanelSecretariaLayout = new javax.swing.GroupLayout(jPanelSecretaria);
         jPanelSecretaria.setLayout(jPanelSecretariaLayout);
         jPanelSecretariaLayout.setHorizontalGroup(
             jPanelSecretariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanelSecretariaLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+            .addGroup(jPanelSecretariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelSecretariaLayout.createSequentialGroup()
+                    .addGap(117, 117, 117)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(118, Short.MAX_VALUE)))
         );
         jPanelSecretariaLayout.setVerticalGroup(
             jPanelSecretariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelSecretariaLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel17)
-                .addGap(95, 95, 95)
-                .addGroup(jPanelSecretariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(481, Short.MAX_VALUE))
+            .addGroup(jPanelSecretariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelSecretariaLayout.createSequentialGroup()
+                    .addGap(220, 220, 220)
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(294, Short.MAX_VALUE))
+                    .addContainerGap(220, Short.MAX_VALUE)))
         );
 
         jPanel4.add(jPanelSecretaria);
@@ -911,12 +882,6 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-        BuscaFrame buscaframe = new BuscaFrame();
-        buscaframe.setVisible(true);
-    }//GEN-LAST:event_jButton9ActionPerformed
-
     private void jListOpcaoMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListOpcaoMenuMouseClicked
         // TODO add your handling code here:
         String opcao = jListOpcaoMenu.getSelectedValue().toString().replace(" ", "");
@@ -963,27 +928,23 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        CadFrameMembro cadmembro=new CadFrameMembro(this);
-        cadmembro.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
-
-    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        // TODO add your handling code here:
-        CadFrameVisitante cadvisitante= new CadFrameVisitante(this);
-        cadvisitante.setVisible(true);
-    }//GEN-LAST:event_jButton6MouseClicked
-
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
         CadFrameEvento cadframeevento = new CadFrameEvento(this);
         cadframeevento.setVisible(true);
     }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        FrameMembro cadmembro=new FrameMembro();
+        cadmembro.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // TODO add your handling code here:
+        FrameVisitante cadvisitante= new FrameVisitante();
+        cadvisitante.setVisible(true);
+    }//GEN-LAST:event_jButton6MouseClicked
 
     private void preencherEventos(){
         DefaultTableModel model = (DefaultTableModel) tabelaEventos.getModel();
@@ -1075,8 +1036,6 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
@@ -1086,7 +1045,6 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel17;
@@ -1104,7 +1062,6 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
