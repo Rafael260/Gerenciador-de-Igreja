@@ -42,18 +42,29 @@ public class HibernateUtil {
         return sessionFactory;
     }
     
-    public static void persistirObjeto(Object o){
+    public static void persistirObjeto(Object o) throws Exception{
         Session s = sessionFactory.getCurrentSession();
         s.beginTransaction();
-        s.saveOrUpdate(o);
-        s.getTransaction().commit();
+        try{
+            s.saveOrUpdate(o);
+            s.getTransaction().commit();
+        }catch(Exception e){
+            s.getTransaction().rollback();
+            throw new Exception("Houve um problema no cadastro/atualização");
+        }
     }
     
-    public static void deletarObjeto(Object o){
-         Session s = sessionFactory.getCurrentSession();
+    public static void deletarObjeto(Object o) throws Exception{
+        Session s = sessionFactory.getCurrentSession();
         s.beginTransaction();
-        s.delete(o);
-        s.getTransaction().commit();
+        try{
+            
+            s.delete(o);
+            s.getTransaction().commit();
+        }catch(Exception e){
+            s.getTransaction().rollback();
+            throw new Exception("Houve um problema ao deletar");
+        }
     }
     
     /**
@@ -61,7 +72,7 @@ public class HibernateUtil {
      * @param tabela tabela para inserção da tupla
      * @param valores Parâmetros para o insert
      */
-    public static void insertInto(String tabela, List<String> valores){
+    public static void insertInto(String tabela, List<String> valores) throws Exception{
         Session s = sessionFactory.getCurrentSession();
         String parametros = "";
         
@@ -73,11 +84,16 @@ public class HibernateUtil {
         parametros = parametros.substring(0, parametros.length()-1);
         
         s.beginTransaction();
-        s.createSQLQuery("insert into "+ tabela +"values("+parametros+")");
-        s.getTransaction().commit();
+        try{
+            s.createSQLQuery("insert into "+ tabela +"values("+parametros+")");
+            s.getTransaction().commit();
+        } catch(Exception e){
+            s.getTransaction().rollback();
+            throw new Exception("Houve um problema ao inserir as informações");
+        }
     }
     
-    public static void insertInto(String tabela, List<String> colunas, List<String> valores){
+    public static void insertInto(String tabela, List<String> colunas, List<String> valores) throws Exception{
         Session s = sessionFactory.getCurrentSession();
         String parametros = "";
         String columns = "";
@@ -92,8 +108,13 @@ public class HibernateUtil {
         parametros = parametros.substring(0, parametros.length()-1);
         columns = columns.substring(0, columns.length()-1);
         s.beginTransaction();
-        s.createSQLQuery("insert into "+ tabela+"(" +columns+ ") " +"values("+parametros+")");
-        s.getTransaction().commit();
+        try{
+            s.createSQLQuery("insert into "+ tabela+"(" +columns+ ") " +"values("+parametros+")");
+            s.getTransaction().commit();
+        } catch(Exception e){
+            s.getTransaction().rollback();
+            throw new Exception("Houve um problema ao inserir as informações");
+        }
     }
     
     public static List getTuplasDaTabela(String tabela){
@@ -200,14 +221,6 @@ public class HibernateUtil {
         List objetos = criteria.list();
         s.getTransaction().commit();
         return objetos;
-    }
-    
-    public static List criarQuery(String query){
-        Session s = sessionFactory.getCurrentSession();
-        s.beginTransaction();
-        List objects = s.createQuery(query).list();
-        s.getTransaction().commit();
-        return objects;
     }
     
     public static List rodarSQL(String sql){

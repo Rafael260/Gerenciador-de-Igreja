@@ -88,16 +88,16 @@ public class Disciplina  implements java.io.Serializable {
         return preencherDadosDisciplina(objects.get(0), 0);
     }
     
-    public static void cadastrarOuAtualizarDisciplina(Seminario seminario, String codigo, String nome){
+    public static void cadastrarOuAtualizarDisciplina(Seminario seminario, String codigo, String nome) throws Exception{
         Disciplina disciplina = new Disciplina(codigo,seminario,nome);
         HibernateUtil.persistirObjeto(disciplina);
     }
     
-    public static void cadastrarOuAtualizarDisciplina(Disciplina disciplina){
+    public static void cadastrarOuAtualizarDisciplina(Disciplina disciplina) throws Exception{
         HibernateUtil.persistirObjeto(disciplina);
     }
     
-    public static void deletarDisciplina(Disciplina disciplina){
+    public static void deletarDisciplina(Disciplina disciplina) throws Exception{
         HibernateUtil.deletarObjeto(disciplina);
     }
     
@@ -106,7 +106,7 @@ public class Disciplina  implements java.io.Serializable {
         return preencherDadosDisciplina(objects, 0);
     }
    
-    public void cadastrarOuAtualizarTurma(Membro professor, Date dataInicio, Date dataFim){
+    public void cadastrarOuAtualizarTurma(Membro professor, Date dataInicio, Date dataFim) throws Exception{
        Turma.cadastrarOuAtualizarTurma(this, professor, dataInicio, dataFim);
     }
 }

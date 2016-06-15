@@ -198,14 +198,14 @@ public class Pessoa  implements java.io.Serializable {
         return pessoas;
     }
     
-    public static Pessoa cadastrarOuAtualizarPessoa(Pessoa pessoa){
+    public static Pessoa cadastrarOuAtualizarPessoa(Pessoa pessoa) throws Exception{
         HibernateUtil.persistirObjeto(pessoa);
         List<Object[]> objects =HibernateUtil.getTuplasDaTabela("pessoa","", "id desc", 1);
         Pessoa p = (Pessoa) preencherDadosPessoa(objects.get(0), 0);
         return p;
     }
     
-    public static void deletarPessoa(Pessoa pessoa){
+    public static void deletarPessoa(Pessoa pessoa) throws Exception{
         HibernateUtil.deletarObjeto(pessoa);
     }
     
@@ -266,12 +266,12 @@ public class Pessoa  implements java.io.Serializable {
         return pessoa;
     }*/
     
-    public void cadastrarMinistracao(Evento evento, Mensagem mensagem){
+    public void cadastrarMinistracao(Evento evento, Mensagem mensagem) throws Exception{
         Ministracao ministracao = new Ministracao(evento,mensagem,this);
         HibernateUtil.persistirObjeto(ministracao);
     }
 
-    public void cadastrarMinistracao(Ministracao ministracao){
+    public void cadastrarMinistracao(Ministracao ministracao) throws Exception{
         HibernateUtil.persistirObjeto(ministracao);
     }
 

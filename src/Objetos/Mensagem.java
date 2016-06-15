@@ -89,16 +89,16 @@ public class Mensagem  implements java.io.Serializable {
         return mensagens;
     }
     
-    public static void cadastrarOuAtualizarMensagem(Mensagem mensagem){
+    public static void cadastrarOuAtualizarMensagem(Mensagem mensagem) throws Exception{
         HibernateUtil.persistirObjeto(mensagem);
     }
     
-    public static void cadastrarOuAtualizarMensagem(String titulo, String baseBiblica, String tema){
+    public static void cadastrarOuAtualizarMensagem(String titulo, String baseBiblica, String tema) throws Exception{
         Mensagem mensagem = new Mensagem(titulo,baseBiblica,tema);
         HibernateUtil.persistirObjeto(mensagem);
     }
     
-    public static void deletarMensagem(Mensagem mensagem){
+    public static void deletarMensagem(Mensagem mensagem) throws Exception{
         HibernateUtil.deletarObjeto(mensagem);
     }
             

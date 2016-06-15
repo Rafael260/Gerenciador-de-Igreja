@@ -54,11 +54,11 @@ public class Assiduidade  implements java.io.Serializable {
         this.presenca = presenca;
     }
 
-    public static void cadastrarOuAtualizarAssiduidade(Assiduidade assiduidade){
+    public static void cadastrarOuAtualizarAssiduidade(Assiduidade assiduidade) throws Exception{
         HibernateUtil.persistirObjeto(assiduidade);
     }
     
-    public static void deletarAssiduidade(Assiduidade assiduidade){
+    public static void deletarAssiduidade(Assiduidade assiduidade) throws Exception{
         HibernateUtil.deletarObjeto(assiduidade);
     }
 }

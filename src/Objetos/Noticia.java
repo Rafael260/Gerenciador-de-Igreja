@@ -107,23 +107,23 @@ public class Noticia  implements java.io.Serializable {
         return noticias;
     }
     
-    public static void cadastrarOuAtualizarNoticia(Noticia noticia){
+    public static void cadastrarOuAtualizarNoticia(Noticia noticia) throws Exception{
         HibernateUtil.persistirObjeto(noticia);
     }
     
-    public static void cadastrarOuAtualizarNoticia(String manchete, String texto){
+    public static void cadastrarOuAtualizarNoticia(String manchete, String texto) throws Exception{
         Date data = FormatoDataHora.getDataHoraAtual();
         Noticia noticia = new Noticia(manchete,texto,data);
         HibernateUtil.persistirObjeto(noticia);
     }
     
-    public static void cadastrarOuAtualizarNoticia(String manchete, String texto, Membro cadastrante){
+    public static void cadastrarOuAtualizarNoticia(String manchete, String texto, Membro cadastrante) throws Exception{
         Date data = FormatoDataHora.getDataHoraAtual();
         Noticia noticia = new Noticia(manchete,texto,data,cadastrante);
         HibernateUtil.persistirObjeto(noticia);
     }
     
-    public static void deletarNoticia(Noticia noticia){
+    public static void deletarNoticia(Noticia noticia) throws Exception{
         HibernateUtil.deletarObjeto(noticia);
     }
     

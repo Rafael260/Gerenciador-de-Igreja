@@ -81,16 +81,16 @@ public class Ministracao  implements java.io.Serializable {
     }
 
     //Ver necessidade de retornar objeto cadastrado no banco
-    public static void cadastrarOuAtualizarMinistracao(Evento evento,Pessoa pessoa, Mensagem mensagem){
+    public static void cadastrarOuAtualizarMinistracao(Evento evento,Pessoa pessoa, Mensagem mensagem) throws Exception{
         Ministracao ministracao = new Ministracao(evento,mensagem,pessoa);
         HibernateUtil.persistirObjeto(ministracao);
     }
 
-    public static void cadastrarOuAtualizarMinistracao(Ministracao ministracao){
+    public static void cadastrarOuAtualizarMinistracao(Ministracao ministracao) throws Exception{
         HibernateUtil.persistirObjeto(ministracao);
     }
     
-    public static void deletarMinistracao(Ministracao ministracao){
+    public static void deletarMinistracao(Ministracao ministracao) throws Exception{
         HibernateUtil.deletarObjeto(ministracao);
     }
     

@@ -144,16 +144,16 @@ public class Grupo  implements java.io.Serializable {
         return grupos;
     }
     
-    public static void cadastrarOuAtualizarGrupo(Membro lider,Date hora, String diaSemana, String tipoGrupo, String endRua, Integer endNumero, String endComp, String endBairro, String endCidade){
+    public static void cadastrarOuAtualizarGrupo(Membro lider,Date hora, String diaSemana, String tipoGrupo, String endRua, Integer endNumero, String endComp, String endBairro, String endCidade) throws Exception{
         Grupo grupo = new Grupo(hora,diaSemana,lider,endRua,endNumero,endBairro,endCidade);
         HibernateUtil.persistirObjeto(grupo);
     }
     
-    public static void cadastrarOuAtualizarGrupo(Grupo grupo){
+    public static void cadastrarOuAtualizarGrupo(Grupo grupo) throws Exception{
         HibernateUtil.persistirObjeto(grupo);
     }
     
-    public static void deletarGrupo(Grupo grupo){
+    public static void deletarGrupo(Grupo grupo) throws Exception{
         HibernateUtil.deletarObjeto(grupo);
     }
     
@@ -203,7 +203,7 @@ public class Grupo  implements java.io.Serializable {
         return preencherDadosGrupo(objects, 0);
     }
     
-    public void adicionarMembro(Membro membro){
+    public void adicionarMembro(Membro membro) throws Exception{
         membro.setGrupo(this);
         Membro.cadastrarOuAtualizarMembro(membro);
     }

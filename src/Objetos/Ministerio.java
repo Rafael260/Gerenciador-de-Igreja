@@ -114,16 +114,16 @@ public class Ministerio  implements java.io.Serializable {
         return ministerios;
     }
     
-    public static void cadastrarOuAtualizarMinisterio(Ministerio ministerio){
+    public static void cadastrarOuAtualizarMinisterio(Ministerio ministerio) throws Exception{
         HibernateUtil.persistirObjeto(ministerio);
     }
     
-    public static void cadastrarOuAtualizarMinisterio(String nome, Membro lider, String descricao, Date hora, String diaSemana){
+    public static void cadastrarOuAtualizarMinisterio(String nome, Membro lider, String descricao, Date hora, String diaSemana) throws Exception{
         Ministerio ministerio = new Ministerio(nome,lider,descricao,hora,diaSemana);
         HibernateUtil.persistirObjeto(ministerio);
     }
     
-    public static void deletarMinisterio(Ministerio ministerio){
+    public static void deletarMinisterio(Ministerio ministerio) throws Exception{
         HibernateUtil.deletarObjeto(ministerio);
     }
     
@@ -157,7 +157,7 @@ public class Ministerio  implements java.io.Serializable {
  Verificar se usar o comando sql é a melhor solução
      * @param membro 
      */
-    public void adicionarMembro(Membro membro){
+    public void adicionarMembro(Membro membro) throws Exception{
         List<String> parametros = new ArrayList<>();
         parametros.add(""+membro.getId());
         //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples

@@ -24,6 +24,8 @@ public class CadFrameNoticia extends javax.swing.JFrame {
 
     private Membro cadastrante;
     private GerenciadorFrame gerenciador;
+    private List<Noticia> noticias;
+    
     /**
      * Creates new form CadFrameNoticia
      */
@@ -45,7 +47,6 @@ public class CadFrameNoticia extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tabelaNoticias.getModel();
         model.setNumRows(0);
         String buscaAssunto = txtBuscaAssunto.getText();
-        List<Noticia> noticias;
         if (buscaAssunto.isEmpty()){
             noticias = Noticia.listarTodos(Ordem.DECRESCENTE);
         }
@@ -60,6 +61,11 @@ public class CadFrameNoticia extends javax.swing.JFrame {
             model.addRow(objs);
         }
     }
+    
+    private void esvaziarCampos(){
+        txtAssunto.setText("");
+        txtConteudo.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,15 +79,15 @@ public class CadFrameNoticia extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanelCadastrar = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        tema = new javax.swing.JTextField();
+        txtAssunto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        assunto = new javax.swing.JTextArea();
+        txtConteudo = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanelRemover = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -98,10 +104,10 @@ public class CadFrameNoticia extends javax.swing.JFrame {
 
         jScrollPane1.setRequestFocusEnabled(false);
 
-        assunto.setColumns(20);
-        assunto.setLineWrap(true);
-        assunto.setRows(5);
-        jScrollPane1.setViewportView(assunto);
+        txtConteudo.setColumns(20);
+        txtConteudo.setLineWrap(true);
+        txtConteudo.setRows(5);
+        jScrollPane1.setViewportView(txtConteudo);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +153,7 @@ public class CadFrameNoticia extends javax.swing.JFrame {
                 .addGap(82, 82, 82)
                 .addGroup(jPanelCadastrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                    .addComponent(tema))
+                    .addComponent(txtAssunto))
                 .addGap(43, 43, 43))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCadastrarLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -167,7 +173,7 @@ public class CadFrameNoticia extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(7, 7, 7)
-                .addComponent(tema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAssunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
@@ -179,7 +185,12 @@ public class CadFrameNoticia extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Cadastrar", jPanelCadastrar);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/deletar.png"))); // NOI18N
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/deletar.png"))); // NOI18N
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -268,7 +279,7 @@ public class CadFrameNoticia extends javax.swing.JFrame {
                         .addGroup(jPanelRemoverLayout.createSequentialGroup()
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButton3))))
+                            .addComponent(btnExcluir))))
                 .addGap(37, 37, 37))
         );
         jPanelRemoverLayout.setVerticalGroup(
@@ -285,7 +296,7 @@ public class CadFrameNoticia extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelRemoverLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -321,13 +332,18 @@ public class CadFrameNoticia extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String temaNoticia = tema.getText();
-        String assuntoNoticia = assunto.getText();
-        Noticia.cadastrarOuAtualizarNoticia(temaNoticia, assuntoNoticia,cadastrante);
-        JOptionPane.showMessageDialog(null, "Notícia cadastrada com successo");
-        gerenciador.refresh();
-        preencherNoticias();
-        this.dispose();
+        String temaNoticia = txtAssunto.getText();
+        String assuntoNoticia = txtConteudo.getText();
+        try {
+            Noticia.cadastrarOuAtualizarNoticia(temaNoticia, assuntoNoticia,cadastrante);
+            JOptionPane.showMessageDialog(null, "Notícia cadastrada com successo");
+            gerenciador.refresh();
+            preencherNoticias();
+            esvaziarCampos();
+            //this.dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Houve um erro ao tentar cadastrar notícia. Por favor, verifique os dados");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -344,12 +360,28 @@ public class CadFrameNoticia extends javax.swing.JFrame {
         preencherNoticias();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        int index = tabelaNoticias.getSelectedRow();
+        if (index == -1){
+            JOptionPane.showMessageDialog(null, "Selecione uma notícia para excluir");
+            return;
+        }
+        Noticia noticiaSelecionada = noticias.get(index);
+        try{
+            Noticia.deletarNoticia(noticiaSelecionada);
+            gerenciador.refresh();
+            preencherNoticias();
+            JOptionPane.showMessageDialog(null, "Notícia excluída");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Houve um problema ao tentar excluir");
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea assunto;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
@@ -364,8 +396,9 @@ public class CadFrameNoticia extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tabelaNoticias;
-    private javax.swing.JTextField tema;
+    private javax.swing.JTextField txtAssunto;
     private javax.swing.JTextField txtBuscaAssunto;
+    private javax.swing.JTextArea txtConteudo;
     // End of variables declaration//GEN-END:variables
 
 }

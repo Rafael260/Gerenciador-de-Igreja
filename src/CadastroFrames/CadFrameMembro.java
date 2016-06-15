@@ -155,7 +155,7 @@ public class CadFrameMembro extends javax.swing.JFrame {
         });
 
         jLabel14.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel14.setText("Login:");
+        jLabel14.setText("*Login:");
 
         comboEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solteiro", "Casado(a)", "Viúvo(a)", "Divorciado" }));
 
@@ -187,7 +187,7 @@ public class CadFrameMembro extends javax.swing.JFrame {
         jLabel16.setText("Data Nasc.:");
 
         lbSenha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lbSenha.setText("Senha:");
+        lbSenha.setText("*Senha:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -430,10 +430,15 @@ public class CadFrameMembro extends javax.swing.JFrame {
         String senha = new String(psSenha.getPassword());
         Pessoa pessoa = new Pessoa(nome,sobrenome,telefone,rua,numero,complemento,bairro,cidade,estado,email,estadoCivil,null,null,null);
         Membro membro = new Membro(pessoa,cpf,login,senha,dataNascimento,dataBatismoApres,lider,professor,secretaria,false);
-        Membro.cadastrarOuAtualizarMembro(membro);
-        gerenciador.refresh();
-        JOptionPane.showMessageDialog(null, "Membro cadastrado com successo");
-        esvaziarCampos();
+        try{
+            Membro.cadastrarOuAtualizarMembro(membro);
+            gerenciador.refresh();
+            JOptionPane.showMessageDialog(null, "Membro cadastrado com successo");
+            esvaziarCampos();
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Houve um erro ao tentar cadastrar membro. Verifique os campos");
+        }
+        
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void esvaziarCampos(){
@@ -449,8 +454,8 @@ public class CadFrameMembro extends javax.swing.JFrame {
         
         //Confere?
         txtCpf.setText("");
-        txtDataNasc.setText("");
-        txtDataBatismo.setText("");
+        txtDataNasc.setText("  /  /    ");
+        txtDataBatismo.setText("  /  /    ");
         
         txtEmail.setText("");
         txtLogin.setText("");

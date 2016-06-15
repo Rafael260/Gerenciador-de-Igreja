@@ -275,12 +275,12 @@ public class Membro  implements java.io.Serializable {
         return Membro.preencherDadosMembro(objects.get(0),0);
     }
     
-    public static void cadastrarOuAtualizarMembro(Membro membro){
+    public static void cadastrarOuAtualizarMembro(Membro membro) throws Exception{
         membro.setPessoa(Pessoa.cadastrarOuAtualizarPessoa(membro.getPessoa()));
         HibernateUtil.persistirObjeto(membro);
     }
     
-    public static void deletarMembro(Membro membro){
+    public static void deletarMembro(Membro membro) throws Exception{
         HibernateUtil.deletarObjeto(membro);
     }
     
@@ -385,15 +385,6 @@ public class Membro  implements java.io.Serializable {
         int mesAtual = FormatoDataHora.getMes(dataAtual);
         List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "data_nasc like '____-"+FormatoDataHora.getCampoCompleto(mesAtual)+"-__'","data_nasc "+ordem.getSqlOrder(),0);
         return preencherDadosMembro(objects,0);
-    }
-    
-    public void adicionarMinisterio(String nome, Date hora, String diaSemana){
-        Ministerio ministerio = new Ministerio(nome,this,hora,diaSemana);
-        List<String> parametros = new ArrayList();
-        parametros.add(""+getId());
-        //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
-        parametros.add("'"+ministerio.getNome()+"'");
-        HibernateUtil.insertInto("Participa_Ministerio", parametros);
     }
 }
 

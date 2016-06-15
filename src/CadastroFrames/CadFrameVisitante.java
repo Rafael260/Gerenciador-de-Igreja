@@ -352,9 +352,13 @@ public class CadFrameVisitante extends javax.swing.JFrame {
         String igrejaOrigem = testeEmpty(txtIgrejaOrigem.getText());
         Pessoa pessoa = new Pessoa(nome, sobrenome, telefone, rua, numero, complemento, bairro, cidade, estado, email, estadoCivil, null,null, null);
         Visitante visitante = new Visitante(pessoa, igrejaOrigem);
-        Visitante.cadastrarOuAtualizarVisitante(visitante);
-        gerenciador.refresh();
-        JOptionPane.showMessageDialog(null, "Visitante cadastrado com successo");
+        try{
+            Visitante.cadastrarOuAtualizarVisitante(visitante);
+            gerenciador.refresh();
+            JOptionPane.showMessageDialog(null, "Visitante cadastrado com successo");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Erro - Verifique os campos");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public String testeEmpty(String str){

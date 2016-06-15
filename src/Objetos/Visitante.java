@@ -87,11 +87,11 @@ public class Visitante  implements java.io.Serializable {
         return visitante;
     }
     
-    public static void cadastrarOuAtualizarVisitante(Visitante visitante){
+    public static void cadastrarOuAtualizarVisitante(Visitante visitante) throws Exception{
         HibernateUtil.persistirObjeto(visitante);
     }
     
-    public static void deletarVisitante(Visitante visitante){
+    public static void deletarVisitante(Visitante visitante) throws Exception{
         HibernateUtil.deletarObjeto(visitante);
     }
     
@@ -105,7 +105,7 @@ public class Visitante  implements java.io.Serializable {
         return preencherDadosVisitante(objects,0);
     }
     
-    public void adicionarEvento(String tema, Date data,String tipo){
+    public void adicionarEvento(String tema, Date data,String tipo) throws Exception{
         Evento evento = new Evento(new EventoId(tema,data),tipo);
         List<String> parametros = new ArrayList<>();
         parametros.add(""+id);
@@ -115,7 +115,7 @@ public class Visitante  implements java.io.Serializable {
         HibernateUtil.insertInto("Visita_Evento", parametros);
     }
 
-    public void adicionarEvento(Evento evento){
+    public void adicionarEvento(Evento evento) throws Exception{
         List<String> parametros = new ArrayList<>();
         parametros.add(""+id);
         //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples

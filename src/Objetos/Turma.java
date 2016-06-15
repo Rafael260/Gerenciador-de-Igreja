@@ -96,16 +96,16 @@ public class Turma  implements java.io.Serializable {
         return turmas;
     }
     
-    public static void cadastrarOuAtualizarTurma(Disciplina disciplina, Membro professor, Date dataInicio, Date dataFim){
+    public static void cadastrarOuAtualizarTurma(Disciplina disciplina, Membro professor, Date dataInicio, Date dataFim) throws Exception{
         Turma turma = new Turma(dataInicio, disciplina, professor, dataFim);
         HibernateUtil.persistirObjeto(turma);
     }
 
-    public static void cadastrarOuAtualizarTurma(Turma turma){
+    public static void cadastrarOuAtualizarTurma(Turma turma) throws Exception{
         HibernateUtil.persistirObjeto(turma);
     }
     
-    public static void deletarTurma(Turma turma){
+    public static void deletarTurma(Turma turma) throws Exception{
         HibernateUtil.deletarObjeto(turma);
     }
     

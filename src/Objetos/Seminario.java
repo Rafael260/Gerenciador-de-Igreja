@@ -119,21 +119,6 @@ public class Seminario  implements java.io.Serializable {
         }
         return turmas;
     }
-    
-    //Ele funciona?
-    public List<Turma> selectDisciplinasAtivasEx(){
-        Turma turma = new Turma();
-        Disciplina disciplina = new Disciplina();
-        disciplina.setSeminario(this);
-        turma.setDisciplina(disciplina);
-        Date dataAtual = FormatoDataHora.getDataHoraAtual();
-        List<Criterion> criterios = new ArrayList();
-        criterios.add(Restrictions.ge("data_inicio", dataAtual));
-        criterios.add(Restrictions.le("data_fim", dataAtual));
-        return HibernateUtil.getTuplasPorExemplo(turma, Turma.class, criterios);
-    }
-
-
 }
 
 

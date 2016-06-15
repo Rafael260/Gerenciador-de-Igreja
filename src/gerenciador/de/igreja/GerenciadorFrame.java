@@ -981,7 +981,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-        CadFrameEvento cadframeevento = new CadFrameEvento();
+        CadFrameEvento cadframeevento = new CadFrameEvento(this);
         cadframeevento.setVisible(true);
     }//GEN-LAST:event_jButton15ActionPerformed
 

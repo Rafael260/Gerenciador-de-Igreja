@@ -86,24 +86,16 @@ public class Matricula  implements java.io.Serializable {
         return matricula;
     }
     
-    /*public static Matricula selectMatriculaPk(int idAluno, String codDisc, Date dataInicio){
-        Matricula matricula = new Matricula();
-        MatriculaId id = new MatriculaId(idAluno,codDisc,dataInicio);
-        matricula.setId(id);
-        List objects = HibernateUtil.getTuplasPorExemplo(matricula, Matricula.class);
-        return (Matricula) objects.get(0);
-    }*/
-    
-    public void cadastrarMatricula(Turma turma, Membro aluno){
+    public void cadastrarMatricula(Turma turma, Membro aluno) throws Exception{
         Matricula matricula = new Matricula(aluno,turma);
         HibernateUtil.persistirObjeto(matricula);
     }
 
-    public void cadastrarMatricula(Matricula matricula){
+    public void cadastrarMatricula(Matricula matricula) throws Exception{
         HibernateUtil.persistirObjeto(matricula);
     }
     
-    public static void deletarMatricula(Matricula matricula){
+    public static void deletarMatricula(Matricula matricula) throws Exception{
         HibernateUtil.deletarObjeto(matricula);
     }
     
@@ -115,12 +107,12 @@ public class Matricula  implements java.io.Serializable {
         return matricula;
     }
 
-    public void cadastrarAssiduidade(Date data, boolean presenca){
+    public void cadastrarAssiduidade(Date data, boolean presenca) throws Exception{
         Assiduidade assiduidade = new Assiduidade(data,this,presenca);
         Assiduidade.cadastrarOuAtualizarAssiduidade(assiduidade);
     }
 
-    public void cadastrarAssiduidade(Assiduidade assiduidade){
+    public void cadastrarAssiduidade(Assiduidade assiduidade) throws Exception{
         Assiduidade.cadastrarOuAtualizarAssiduidade(assiduidade);
     }
 }

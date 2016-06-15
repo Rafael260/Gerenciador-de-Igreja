@@ -6,6 +6,7 @@
 package CadastroFrames;
 import Objetos.*;
 import Util.FormatoDataHora;
+import gerenciador.de.igreja.GerenciadorFrame;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,12 +21,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CadFrameEvento extends javax.swing.JFrame {
 
+    
+    private GerenciadorFrame gerenciador;
+    private List<Evento> eventos;
+    
     /**
      * Creates new form CadFrameEvento
      */
-    public CadFrameEvento() {
+    public CadFrameEvento(GerenciadorFrame gerenciador) {
         initComponents();
         preencherEventos();
+        this.gerenciador = gerenciador;
     }
     
     public final void preencherEventos(){
@@ -50,7 +56,6 @@ public class CadFrameEvento extends javax.swing.JFrame {
         }
         DefaultTableModel model = (DefaultTableModel) tabelaEventos.getModel();
         model.setNumRows(0);
-        List<Evento> eventos;
         Evento eventoUnico;
         if (sTema){
             if (sData){
@@ -82,6 +87,13 @@ public class CadFrameEvento extends javax.swing.JFrame {
             model.addRow(objs);
         }
     }
+    
+    private void esvaziarCampos(){
+        txtData.setText("  /  /    ");
+        txtHora.setText("  :  ");
+        txtTema.setText("");
+        txtTipo.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -112,7 +124,7 @@ public class CadFrameEvento extends javax.swing.JFrame {
             txtHora = new javax.swing.JFormattedTextField(hora);  }catch(Exception e){        }
         jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         tabelaEventos = new javax.swing.JTable();
@@ -134,10 +146,10 @@ public class CadFrameEvento extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel2.setText("Tema:");
+        jLabel2.setText("*Tema:");
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel3.setText("Tipo:");
+        jLabel3.setText("*Tipo:");
 
         btnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -182,10 +194,10 @@ public class CadFrameEvento extends javax.swing.JFrame {
             txtData = new javax.swing.JFormattedTextField(data);  }catch(Exception e){        }
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel5.setText("Data:");
+        jLabel5.setText("*Data:");
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel6.setText("Horário:");
+        jLabel6.setText("*Horário:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -255,7 +267,12 @@ public class CadFrameEvento extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Cadastrar", jPanel1);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/deletar.png"))); // NOI18N
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/deletar.png"))); // NOI18N
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Fechar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -358,7 +375,7 @@ public class CadFrameEvento extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3)))))
+                                .addComponent(btnExcluir)))))
                 .addGap(52, 52, 52))
         );
         jPanel3Layout.setVerticalGroup(
@@ -378,7 +395,7 @@ public class CadFrameEvento extends javax.swing.JFrame {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46))
         );
@@ -403,17 +420,25 @@ public class CadFrameEvento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        String tema = txtTema.getText();
-        String publicoAlvo = testeEmpty(txtPublicoAlvo.getText());
-        String tipo = testeEmpty(txtTipo.getText());
-        Date dataEvento = FormatoDataHora.getData(txtData.getText());
-        String[] horario = txtHora.getText().split(":");
-        dataEvento.setHours(Integer.parseInt(horario[0]));
-        dataEvento.setMinutes(Integer.parseInt(horario[1]));
-        dataEvento.setSeconds(0);
-        Evento evento = new Evento(tema, dataEvento, publicoAlvo, tipo);
-        Evento.cadastrarOuAtualizarEvento(evento);
-        JOptionPane.showMessageDialog(null, "Evento cadastrado com successo");
+        try{    
+            String tema = txtTema.getText();
+            String publicoAlvo = testeEmpty(txtPublicoAlvo.getText());
+            String tipo = testeEmpty(txtTipo.getText());
+            Date dataEvento = FormatoDataHora.getData(txtData.getText());
+            String[] horario = txtHora.getText().split(":");
+            dataEvento.setHours(Integer.parseInt(horario[0]));
+            dataEvento.setMinutes(Integer.parseInt(horario[1]));
+            dataEvento.setSeconds(0);
+            Evento evento = new Evento(tema, dataEvento, publicoAlvo, tipo);
+            Evento.cadastrarOuAtualizarEvento(evento);
+            JOptionPane.showMessageDialog(null, "Evento cadastrado com successo");
+            gerenciador.refresh();
+            preencherEventos();
+            esvaziarCampos();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Erro - Verifique todos os campos obrigatórios");
+        }
+            
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     public String testeEmpty(String str){
@@ -449,46 +474,31 @@ public class CadFrameEvento extends javax.swing.JFrame {
         preencherEventos();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadFrameEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadFrameEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadFrameEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadFrameEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        int indexNoticia = tabelaEventos.getSelectedRow();
+        if (indexNoticia == -1){
+            JOptionPane.showMessageDialog(null, "Selecione um evento para excluir");
+            return;
         }
-        //</editor-fold>
+        
+        Evento eventoEscolhido = eventos.get(indexNoticia);
+        try{
+            Evento.deletarEvento(eventoEscolhido);
+            preencherEventos();
+            gerenciador.refresh();
+            JOptionPane.showMessageDialog(null, "Evento excluído");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Houve um problema ao tentar excluir");
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadFrameEvento().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
