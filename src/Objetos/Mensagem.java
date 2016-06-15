@@ -15,7 +15,7 @@ public class Mensagem  implements java.io.Serializable {
      private String titulo;
      private String baseBiblica;
      private String tema;
-     private Set ministracaos = new HashSet(0);
+     private Set ministracoes = new HashSet(0);
 
     public Mensagem() {
     }
@@ -35,7 +35,7 @@ public class Mensagem  implements java.io.Serializable {
        this.titulo = titulo;
        this.baseBiblica = baseBiblica;
        this.tema = tema;
-       this.ministracaos = ministracaos;
+       this.ministracoes = ministracaos;
     }
    
     public String getTitulo() {
@@ -59,12 +59,12 @@ public class Mensagem  implements java.io.Serializable {
     public void setTema(String tema) {
         this.tema = tema;
     }
-    public Set getMinistracaos() {
-        return this.ministracaos;
+    public Set getMinistracoes() {
+        return this.ministracoes;
     }
     
-    public void setMinistracaos(Set ministracaos) {
-        this.ministracaos = ministracaos;
+    public void setMinistracoes(Set ministracoes) {
+        this.ministracoes = ministracoes;
     }
     
     //////////////////////////////////////////////////////

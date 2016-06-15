@@ -663,7 +663,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 102, 102));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("Departamentos e Ministérios");
+        jLabel18.setText("Ministérios");
 
         ministerios.setBackground(new java.awt.Color(209, 214, 230));
         ministerios.setModel(new javax.swing.table.DefaultTableModel(
@@ -797,7 +797,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jListOpcaoMenu.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jListOpcaoMenu.setForeground(new java.awt.Color(255, 255, 255));
         jListOpcaoMenu.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "   Início   ", "   Disciplinas   ", "   Ministérios   ", "   Secretaria   " };
+            String[] strings = { "   Início   ", "   Disciplinas   ", "   Grupo    ", "   Ministérios   ", "   Secretaria   ", "   " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -829,7 +829,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addComponent(jListOpcaoMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                .addComponent(jListOpcaoMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(441, 441, 441))
         );
 

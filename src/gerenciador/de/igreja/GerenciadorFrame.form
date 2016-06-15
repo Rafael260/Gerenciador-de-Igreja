@@ -1001,7 +1001,7 @@
                           <Color blue="66" green="66" red="0" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="Departamentos e Minist&#xe9;rios"/>
+                        <Property name="text" type="java.lang.String" value="Minist&#xe9;rios"/>
                       </Properties>
                     </Component>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane7">
@@ -1244,7 +1244,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                      <Component id="jListOpcaoMenu" pref="105" max="32767" attributes="0"/>
+                      <Component id="jListOpcaoMenu" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="441" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1263,11 +1263,13 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                  <StringArray count="4">
+                  <StringArray count="6">
                     <StringItem index="0" value="   In&#xed;cio   "/>
                     <StringItem index="1" value="   Disciplinas   "/>
-                    <StringItem index="2" value="   Minist&#xe9;rios   "/>
-                    <StringItem index="3" value="   Secretaria   "/>
+                    <StringItem index="2" value="   Grupo    "/>
+                    <StringItem index="3" value="   Minist&#xe9;rios   "/>
+                    <StringItem index="4" value="   Secretaria   "/>
+                    <StringItem index="5" value="   "/>
                   </StringArray>
                 </Property>
                 <Property name="selectionMode" type="int" value="0"/>
