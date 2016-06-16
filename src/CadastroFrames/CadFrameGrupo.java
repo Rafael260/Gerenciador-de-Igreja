@@ -12,12 +12,12 @@ import java.util.logging.Logger;
  *
  * @author elise
  */
-public class FrameCadGrupo extends javax.swing.JFrame {
+public class CadFrameGrupo extends javax.swing.JFrame {
 
     /**
      * Creates new form FrameCadGrupo
      */
-    public FrameCadGrupo() {
+    public CadFrameGrupo() {
         initComponents();
     }
 
@@ -220,7 +220,7 @@ public class FrameCadGrupo extends javax.swing.JFrame {
             // TODO add your handling code here:
             this.dispose();
         } catch (Throwable ex) {
-            Logger.getLogger(FrameCadGrupo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadFrameGrupo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -245,21 +245,23 @@ public class FrameCadGrupo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameCadGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadFrameGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameCadGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadFrameGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameCadGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadFrameGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameCadGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadFrameGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameCadGrupo().setVisible(true);
+                new CadFrameGrupo().setVisible(true);
             }
         });
     }

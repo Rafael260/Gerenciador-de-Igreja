@@ -72,7 +72,7 @@ public class FrameDisciplinas extends javax.swing.JFrame {
         jLabel2.setText("Nome:");
 
         jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        jLabel3.setText("nome");
+        jLabel3.setText("nome_disciplina");
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setText("Início:");
