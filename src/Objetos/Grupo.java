@@ -207,6 +207,11 @@ public class Grupo  implements java.io.Serializable {
         membro.setGrupo(this);
         Membro.cadastrarOuAtualizarMembro(membro);
     }
+    
+    public void removerMembro(Membro membro) throws Exception{
+        membro.setGrupo(null);
+        Membro.cadastrarOuAtualizarMembro(membro);
+    }
 
 }
 

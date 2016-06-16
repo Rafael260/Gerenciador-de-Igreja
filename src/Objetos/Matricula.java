@@ -86,12 +86,12 @@ public class Matricula  implements java.io.Serializable {
         return matricula;
     }
     
-    public void cadastrarMatricula(Turma turma, Membro aluno) throws Exception{
+    public static void cadastrarMatricula(Turma turma, Membro aluno) throws Exception{
         Matricula matricula = new Matricula(aluno,turma);
         HibernateUtil.persistirObjeto(matricula);
     }
 
-    public void cadastrarMatricula(Matricula matricula) throws Exception{
+    public static void cadastrarMatricula(Matricula matricula) throws Exception{
         HibernateUtil.persistirObjeto(matricula);
     }
     
