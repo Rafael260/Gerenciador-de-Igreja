@@ -12,12 +12,12 @@ import java.util.logging.Logger;
  *
  * @author elise
  */
-public class FrameDisciplinas extends javax.swing.JFrame {
+public class FrameTurmas extends javax.swing.JFrame {
 
     /**
      * Creates new form FrameDisciplinas
      */
-    public FrameDisciplinas() {
+    public FrameTurmas() {
         initComponents();
     }
 
@@ -240,7 +240,7 @@ public class FrameDisciplinas extends javax.swing.JFrame {
             // TODO add your handling code here:
             this.dispose();
         } catch (Throwable ex) {
-            Logger.getLogger(FrameDisciplinas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrameTurmas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -276,21 +276,23 @@ public class FrameDisciplinas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameDisciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameTurmas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameDisciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameTurmas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameDisciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameTurmas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameDisciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrameTurmas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameDisciplinas().setVisible(true);
+                new FrameTurmas().setVisible(true);
             }
         });
     }
