@@ -701,6 +701,11 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jPanel9.add(jButton6);
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CDisciplina.png"))); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         jPanel9.add(jButton7);
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Turmas.png"))); // NOI18N
@@ -784,7 +789,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jPanelSecretaria.setLayout(jPanelSecretariaLayout);
         jPanelSecretariaLayout.setHorizontalGroup(
             jPanelSecretariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE)
             .addComponent(jSeparator1)
             .addGroup(jPanelSecretariaLayout.createSequentialGroup()
                 .addGroup(jPanelSecretariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -807,7 +812,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                 .addComponent(jLabel17)
                 .addGap(81, 81, 81)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelSecretariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1091,6 +1096,12 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        CadFrameDisciplina cadframedisciplinas = new CadFrameDisciplina();
+        cadframedisciplinas.setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void preencherEventos(){
         DefaultTableModel model = (DefaultTableModel) tabelaEventos.getModel();

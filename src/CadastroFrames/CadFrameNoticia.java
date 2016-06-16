@@ -238,7 +238,7 @@ public class CadFrameNoticia extends javax.swing.JFrame {
         txtConteudo.setRows(5);
         jScrollPane1.setViewportView(txtConteudo);
 
-        jButton1.setBackground(new java.awt.Color(204, 255, 204));
+        jButton1.setBackground(new java.awt.Color(153, 255, 204));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         jButton1.setText("Cadastrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

@@ -102,7 +102,7 @@ public class CadFrameMembro extends javax.swing.JFrame {
 
         setTitle("Cadastrar Membro");
 
-        btnCadastrar.setBackground(new java.awt.Color(204, 255, 204));
+        btnCadastrar.setBackground(new java.awt.Color(153, 255, 204));
         btnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
