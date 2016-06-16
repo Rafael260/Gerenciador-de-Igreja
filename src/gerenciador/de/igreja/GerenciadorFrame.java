@@ -637,6 +637,11 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jButton11.setBackground(new java.awt.Color(204, 255, 204));
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/visualizar.png"))); // NOI18N
         jButton11.setText("Exibir");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton14.setBackground(new java.awt.Color(204, 204, 255));
         jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
@@ -791,7 +796,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jPanelSecretaria.setLayout(jPanelSecretariaLayout);
         jPanelSecretariaLayout.setHorizontalGroup(
             jPanelSecretariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE)
+            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
             .addComponent(jSeparator1)
             .addGroup(jPanelSecretariaLayout.createSequentialGroup()
                 .addGroup(jPanelSecretariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -814,7 +819,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                 .addComponent(jLabel17)
                 .addGap(81, 81, 81)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelSecretariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -846,6 +851,11 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jButton17.setBackground(new java.awt.Color(204, 255, 204));
         jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/visualizar.png"))); // NOI18N
         jButton17.setText("Exibir");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         jButton18.setBackground(new java.awt.Color(204, 204, 255));
         jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
@@ -1074,7 +1084,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        FrameTurmas frameturmas = new FrameTurmas();
+        FrameGrupo frameturmas = new FrameGrupo();
         frameturmas.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -1083,6 +1093,16 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         FrameCadMinisterio cadministerio = new FrameCadMinisterio();
         cadministerio.setVisible(true);
     }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+        FrameGrupo framegrupos = new FrameGrupo();
+        framegrupos.setVisible(true);
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     private void preencherEventos(){
         DefaultTableModel model = (DefaultTableModel) tabelaEventos.getModel();
