@@ -49,6 +49,8 @@ public class CadFrameMinisterio extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
 
+        setTitle("Connect Church - Cadastrar Ministério");
+
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setText("Nome:");
 

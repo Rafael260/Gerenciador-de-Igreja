@@ -49,6 +49,8 @@ public class FrameTurmas extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
+        setTitle("Connect Church - Turma");
+
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N

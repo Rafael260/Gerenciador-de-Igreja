@@ -49,7 +49,7 @@ public class FrameMinisterio extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Connect Church - Ministério ");
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 

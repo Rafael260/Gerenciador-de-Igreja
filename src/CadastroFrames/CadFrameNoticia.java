@@ -98,7 +98,7 @@ public class CadFrameNoticia extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
-        setTitle("Cadastrar Notícia");
+        setTitle("Connect Church - Notícias");
 
         btnExcluir.setBackground(new java.awt.Color(255, 204, 204));
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/deletar.png"))); // NOI18N

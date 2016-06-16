@@ -49,6 +49,8 @@ public class FrameGrupo extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
 
+        setTitle("Connect Church - Grupo");
+
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N

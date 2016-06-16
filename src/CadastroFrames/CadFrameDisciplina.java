@@ -53,7 +53,7 @@ public class CadFrameDisciplina extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtTemaEvento1 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Connect Church - Disciplinas");
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -276,7 +276,7 @@ public class CadFrameDisciplina extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

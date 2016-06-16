@@ -49,7 +49,7 @@ public class CadFrameGrupo extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Connect Church - Grupos");
 
         jPanelCadastrar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 

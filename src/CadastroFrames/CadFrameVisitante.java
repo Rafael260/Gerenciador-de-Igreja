@@ -67,7 +67,7 @@ public class CadFrameVisitante extends javax.swing.JFrame {
         txtComp = new javax.swing.JTextField();
         txtRua = new javax.swing.JTextField();
 
-        setTitle("Cadastrar Visitante");
+        setTitle("Connect Church - Cadastrar Visitante");
 
         jButton1.setBackground(new java.awt.Color(153, 255, 204));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N

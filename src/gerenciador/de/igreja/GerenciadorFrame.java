@@ -164,6 +164,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Connect Church");
 
         jPanel1.setAutoscrolls(true);
         jPanel1.setDoubleBuffered(false);
