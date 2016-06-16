@@ -145,6 +145,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         lbTotalMinisterios = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel6 = new javax.swing.JLabel();
         jPanelGrupo = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
@@ -716,7 +717,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         });
         jPanel9.add(jButton8);
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Total de Membros", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Membros", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         lbTotalMembros.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         lbTotalMembros.setForeground(new java.awt.Color(0, 102, 102));
@@ -739,7 +740,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Turmas em curso", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Grupos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         lbTurmasAtivas.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         lbTurmasAtivas.setForeground(new java.awt.Color(0, 102, 102));
@@ -785,12 +786,18 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
+        jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        jLabel6.setText("Balanço Total:");
+
         javax.swing.GroupLayout jPanelSecretariaLayout = new javax.swing.GroupLayout(jPanelSecretaria);
         jPanelSecretaria.setLayout(jPanelSecretariaLayout);
         jPanelSecretariaLayout.setHorizontalGroup(
             jPanelSecretariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE)
-            .addComponent(jSeparator1)
+            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+            .addGroup(jPanelSecretariaLayout.createSequentialGroup()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1))
             .addGroup(jPanelSecretariaLayout.createSequentialGroup()
                 .addGroup(jPanelSecretariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelSecretariaLayout.createSequentialGroup()
@@ -812,8 +819,10 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                 .addComponent(jLabel17)
                 .addGap(81, 81, 81)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+                .addGroup(jPanelSecretariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelSecretariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1217,6 +1226,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JList jListOpcaoMenu;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
