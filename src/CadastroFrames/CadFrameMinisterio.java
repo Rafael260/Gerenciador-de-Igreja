@@ -12,12 +12,12 @@ import java.util.logging.Logger;
  *
  * @author elise
  */
-public class FrameCadMinisterio extends javax.swing.JFrame {
+public class CadFrameMinisterio extends javax.swing.JFrame {
 
     /**
      * Creates new form CadMinisterio
      */
-    public FrameCadMinisterio() {
+    public CadFrameMinisterio() {
         initComponents();
     }
 
@@ -213,7 +213,7 @@ public class FrameCadMinisterio extends javax.swing.JFrame {
             // TODO add your handling code here:
             this.dispose();
         } catch (Throwable ex) {
-            Logger.getLogger(FrameCadMinisterio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadFrameMinisterio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -242,14 +242,18 @@ public class FrameCadMinisterio extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameCadMinisterio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadFrameMinisterio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameCadMinisterio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadFrameMinisterio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameCadMinisterio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadFrameMinisterio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameCadMinisterio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadFrameMinisterio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -258,7 +262,7 @@ public class FrameCadMinisterio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameCadMinisterio().setVisible(true);
+                new CadFrameMinisterio().setVisible(true);
             }
         });
     }

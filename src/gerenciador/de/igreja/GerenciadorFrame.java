@@ -1083,7 +1083,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        FrameCadMinisterio cadministerio = new FrameCadMinisterio();
+        CadFrameMinisterio cadministerio = new CadFrameMinisterio();
         cadministerio.setVisible(true);
     }//GEN-LAST:event_jButton14ActionPerformed
 
@@ -1095,6 +1095,8 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
+        FrameMinisterio frameministerio = new FrameMinisterio();
+        frameministerio.setVisible(true);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
