@@ -122,7 +122,7 @@ public class CadFrameGrupo extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 102, 102));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar2.png"))); // NOI18N
-        jButton3.setText("Buscar");
+        jButton3.setText("Buscar Membro");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
