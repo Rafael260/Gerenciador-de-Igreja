@@ -190,6 +190,12 @@ public class Evento  implements java.io.Serializable {
         parametros.add("'"+this.id.getTema()+"'");
         HibernateUtil.insertInto("visita_evento", parametros);
     }
+    
+    public void removerVisitante(Visitante visitante) throws Exception{
+        HibernateUtil.rodarSQL("delete from visita_evento"
+                + "where id_visitante="+visitante.getId()+" and tema_evt='"+this.getId().getTema()+
+                "' and dia_hora_evt='"+FormatoDataHora.sqlDataHora(this.getId().getDiaHora())+"'");
+    }
 
 }
 

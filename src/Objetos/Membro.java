@@ -386,6 +386,12 @@ public class Membro  implements java.io.Serializable {
         List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "data_nasc like '____-"+FormatoDataHora.getCampoCompleto(mesAtual)+"-__'","data_nasc "+ordem.getSqlOrder(),0);
         return preencherDadosMembro(objects,0);
     }
+    
+    public static Integer getNumeroDeMembros(){
+        List objetos = HibernateUtil.rodarSQL("select count(cpf)\n" +
+"	from pessoa natural join membro");
+        return ((java.math.BigInteger)objetos.get(0)).intValue();
+    }
 }
 
 

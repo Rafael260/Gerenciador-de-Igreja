@@ -124,7 +124,15 @@ public class Turma  implements java.io.Serializable {
         return preencherDadosTurma(objects, 0);
     }
         
+    public void adicionarAluno(Membro membro) throws Exception{
+        Matricula matricula = new Matricula(membro,this);
+        Matricula.cadastrarMatricula(matricula);
+    }
     
+    public void removerAluno(Membro membro) throws Exception{
+        Matricula matricula = new Matricula(membro,this);
+        Matricula.deletarMatricula(matricula);
+    }
     
     public List<Membro> getListaDeAlunos(){
         String codigo = this.id.getCodigo();

@@ -106,9 +106,9 @@ public class Disciplina  implements java.io.Serializable {
         return preencherDadosDisciplina(objects, 0);
     }
    
-    public void cadastrarOuAtualizarTurma(Membro professor, Date dataInicio, Date dataFim) throws Exception{
-       Turma.cadastrarOuAtualizarTurma(this, professor, dataInicio, dataFim);
-    }
+//    public void cadastrarOuAtualizarTurma(Membro professor, Date dataInicio, Date dataFim) throws Exception{
+//       Turma.cadastrarOuAtualizarTurma(this, professor, dataInicio, dataFim);
+//    }
 }
 
 

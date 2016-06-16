@@ -164,6 +164,17 @@ public class Ministerio  implements java.io.Serializable {
         parametros.add("'"+getNome()+"'");
         HibernateUtil.insertInto("Participa_Ministerio", parametros);
     }
+    
+    public void removerMembro(Membro membro) throws Exception{
+        HibernateUtil.rodarSQL("delete from participa_ministerio"
+                + "where id_membro="+membro.getId()+ " and ministerio='"+nome+"'");
+    }
+    
+    public static Integer getNumeroMinisterios(){
+        List objetos = HibernateUtil.rodarSQL("select count(nome)\n" +
+"	from ministerio");
+        return ((java.math.BigInteger)objetos.get(0)).intValue();
+    }
 
 
 }
