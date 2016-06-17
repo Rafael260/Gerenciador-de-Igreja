@@ -118,13 +118,13 @@ public class Evento  implements java.io.Serializable {
     }
     
     public static Evento selectEventoPk(EventoId id){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento", "tema='"+id.getTema() + "' and dia_hora='"+FormatoDataHora.sqlDataHora(id.getDiaHora())+"'","",0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento", "tema like '%"+id.getTema() + "%' and dia_hora='"+FormatoDataHora.sqlDataHora(id.getDiaHora())+"'","",0);
         return preencherDadosEvento(objects.get(0),0);
     }
     
     public static Evento selectEventoPk(String tema, Date diaHora){
         //CONFERRIR STRING DE DIA_HORA!!!
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento", "tema='"+tema+"'" + " and dia_hora='"+diaHora+"'","",0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento", "tema like'%"+tema+"%'" + " and dia_hora='"+diaHora+"'","",0);
         return preencherDadosEvento(objects.get(0),0);
     }
        
@@ -144,12 +144,12 @@ public class Evento  implements java.io.Serializable {
     }
     
     public static List<Evento> selectEventoPorTema(String tema){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento","tema="+tema,"",0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento","tema like '%"+tema,"%'",0);
         return preencherDadosEvento(objects, 0);
     }
     
     public static List<Evento> selectEventoPorTema(String tema, Ordem ordem){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento","tema='"+tema+"'"," dia_hora DESC",0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento","tema like'%"+tema+"%'"," dia_hora DESC",0);
         return preencherDadosEvento(objects, 0);
     }
     
@@ -166,7 +166,7 @@ public class Evento  implements java.io.Serializable {
     
     public static List<Evento> selectEventoPorTemaeDia(String tema, Date diaHora){
         //CONFERRIR STRING DE DIA_HORA!!!
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento", "tema='"+tema+"'" + " and dia_hora like='"+FormatoDataHora.sqlData(diaHora)+"'"+"___:__:__'","",0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("evento", "tema like '%"+tema+"%'" + " and dia_hora like='"+FormatoDataHora.sqlData(diaHora)+"'"+"___:__:__'","",0);
         return preencherDadosEvento(objects,0);
     }
     
@@ -196,7 +196,6 @@ public class Evento  implements java.io.Serializable {
                 + "where id_visitante="+visitante.getId()+" and tema_evt='"+this.getId().getTema()+
                 "' and dia_hora_evt='"+FormatoDataHora.sqlDataHora(this.getId().getDiaHora())+"'");
     }
-
 }
 
 

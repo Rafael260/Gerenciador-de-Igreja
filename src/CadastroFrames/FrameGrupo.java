@@ -90,7 +90,7 @@ public class FrameGrupo extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "NOME", "SOBRENOME", "RUA", "CIDADE"
+                "NOME", "SOBRENOME", "BAIRRO", "CIDADE"
             }
         ));
         jScrollPane1.setViewportView(jTablePartGrupo);

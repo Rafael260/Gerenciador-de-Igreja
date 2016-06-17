@@ -161,7 +161,7 @@
                   <Table columnCount="4" rowCount="4">
                     <Column editable="true" title="NOME" type="java.lang.Object"/>
                     <Column editable="true" title="SOBRENOME" type="java.lang.Object"/>
-                    <Column editable="true" title="RUA" type="java.lang.Object"/>
+                    <Column editable="true" title="BAIRRO" type="java.lang.Object"/>
                     <Column editable="true" title="CIDADE" type="java.lang.Object"/>
                   </Table>
                 </Property>

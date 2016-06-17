@@ -158,7 +158,7 @@ public class CadFrameVisitante extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "NOME", "SOBRENOME", "RUA", "IGREJA DE ORIGEM"
+                "NOME", "SOBRENOME", "BAIRRO", "IGREJA DE ORIGEM"
             }
         ));
         jScrollPane1.setViewportView(tabelaVisitantes);

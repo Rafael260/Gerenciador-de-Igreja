@@ -1094,7 +1094,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
 
     private void btnAdicionarMinisterioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarMinisterioActionPerformed
         // TODO add your handling code here:
-        CadFrameMinisterio cadministerio = new CadFrameMinisterio();
+        CadFrameMinisterio cadministerio = new CadFrameMinisterio(this);
         cadministerio.setVisible(true);
     }//GEN-LAST:event_btnAdicionarMinisterioActionPerformed
 

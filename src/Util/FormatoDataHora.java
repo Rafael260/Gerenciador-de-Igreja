@@ -94,6 +94,15 @@ public class FormatoDataHora {
         int ano = Integer.parseInt(valores[2]);
         return new Date(ano-1900,mes-1,dia);
     }
+    public static Date getHora(String hora){
+        String[] valores = hora.split(":");
+        int h = Integer.parseInt(valores[0]);
+        int m = Integer.parseInt(valores[1]);
+        Date hour = new Date();
+        hour.setHours(h);
+        hour.setMinutes(m);
+        return hour;
+    }
     
 }
 
