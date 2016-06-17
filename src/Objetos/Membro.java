@@ -312,7 +312,7 @@ public class Membro  implements java.io.Serializable {
     }
     
     public static List<Membro> listarTodos(){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "","",0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "","nome ASC, sobrenome ASC",0);
         List<Membro> membros = preencherDadosMembro(objects,0);
         return membros;
     }
@@ -335,17 +335,14 @@ public class Membro  implements java.io.Serializable {
     
     //O método de preencherDadosMembro garante que retornará dados de pessoa
     public static List<Membro> selectMembroPorNome(String nome, String sobrenome){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "nome='"+nome+"' and sobrenome='"+sobrenome+"'","",0);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "nome like '%"+nome+"%' and sobrenome like '%"+sobrenome+"%'","nome ASC, sobrenome ASC",0);
         return preencherDadosMembro(objects,0);
     }
     
     //Testar pra ver se esse método retorna os dados de pessoa tbm.
     public static List<Membro> selectMembroPorNome(String nome){
-        Membro membro = new Membro();
-        Pessoa pessoa = new Pessoa();
-        pessoa.setNome(nome);
-        membro.setPessoa(pessoa);
-        return HibernateUtil.getTuplasPorExemplo(membro, Membro.class);
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Pessoa natural join Membro", "nome like '%"+nome+"%'","nome ASC, sobrenome ASC",0);
+        return preencherDadosMembro(objects,0);
     }
     
     public static List<Membro> selectMembroPorEstadoCivil(String estadoCivil){

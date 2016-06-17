@@ -5,7 +5,10 @@
  */
 package CadastroFrames;
 
+import Objetos.Grupo;
 import gerenciador.de.igreja.BuscaFrame;
+import gerenciador.de.igreja.GerenciadorFrame;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -16,13 +19,19 @@ import javax.swing.JOptionPane;
  */
 public class FrameGrupo extends javax.swing.JFrame {
 
+    private GerenciadorFrame gerenciador;
+    List<Grupo> grupos;
     /**
      * Creates new form FrameTurmas
      */
     public FrameGrupo() {
         initComponents();
+        grupos = Grupo.listarTodos();
     }
 
+    public final void atualizarTabela(){
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

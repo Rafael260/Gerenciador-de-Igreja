@@ -76,6 +76,7 @@ public class Visitante  implements java.io.Serializable {
         visitante.setPessoa(p);
         if (object[index+12] != null)
             visitante.setIgrejaOrig((String)object[index+12]);
+        visitante.setId((Integer)object[index]);
         return visitante;
     }
      
@@ -105,23 +106,14 @@ public class Visitante  implements java.io.Serializable {
         return preencherDadosVisitante(objects,0);
     }
     
-    public void adicionarEvento(String tema, Date data,String tipo) throws Exception{
-        Evento evento = new Evento(new EventoId(tema,data),tipo);
-        List<String> parametros = new ArrayList<>();
-        parametros.add(""+id);
-        //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
-        parametros.add("'"+evento.getId().getDiaHora()+"'");
-        parametros.add("'"+evento.getId().getTema()+"'");
-        HibernateUtil.insertInto("Visita_Evento", parametros);
+    public static List<Visitante> selectVisitantePorNome(String nome){
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("pessoa natural join visitante", "nome like '%"+nome+"%'", "nome ASC, sobrenome ASC", 0);
+        return preencherDadosVisitante(objects, 0);
     }
-
-    public void adicionarEvento(Evento evento) throws Exception{
-        List<String> parametros = new ArrayList<>();
-        parametros.add(""+id);
-        //Parâmetros do banco que se referem à Strings ou chars, precisam de aspas simples
-        parametros.add("'"+evento.getId().getDiaHora()+"'");
-        parametros.add("'"+evento.getId().getTema()+"'");
-        HibernateUtil.insertInto("Visita_Evento", parametros);
+    
+    public static List<Visitante> selectVisitantePorNome(String nome, String sobrenome){
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("pessoa natural join visitante", "nome like '%"+nome+"%' and sobrenome like '%"+sobrenome+"%'", "", 0);
+        return preencherDadosVisitante(objects, 0);
     }
 
 }

@@ -170,6 +170,11 @@ public class Ministerio  implements java.io.Serializable {
                 + "where id_membro="+membro.getId()+ " and ministerio='"+nome+"'");
     }
     
+    public List<Membro> selectMembrosParticipantes(){
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("(pessoa natural join membro) join participa_ministerio on id=id_membro", "ministerio='"+nome+"'", "nome ASC, sobrenome ASC", 0);
+        return Membro.preencherDadosMembro(objects, 0);
+    }
+    
     public static Integer getNumeroMinisterios(){
         List objetos = HibernateUtil.rodarSQL("select count(nome)\n" +
 "	from ministerio");

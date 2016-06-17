@@ -9,9 +9,11 @@ import Objetos.*;
 import Util.FormatoDataHora;
 import gerenciador.de.igreja.GerenciadorFrame;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,14 +22,29 @@ import javax.swing.JOptionPane;
 public class CadFrameMembro extends javax.swing.JFrame {
 
     private GerenciadorFrame gerenciador;
+    private List<Membro> membros;
     /**
      * Creates new form CadFrameMembro
      */
     public CadFrameMembro(GerenciadorFrame gerenciador) {
         initComponents();
         this.gerenciador = gerenciador;
+        membros = Membro.listarTodos();
+        atualizarTabela();
     }
 
+    public final void atualizarTabela(){
+        DefaultTableModel model = (DefaultTableModel) tabelaMembros.getModel();
+        model.setRowCount(0);
+        Object[] objs = new Object[3];
+        for (Membro membro: membros) {
+            objs[0] = membro.getPessoa().getNome();
+            objs[1] = membro.getPessoa().getSobrenome();
+            objs[2] = membro.getPessoa().getEndBairro();
+            model.addRow(objs);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,12 +59,12 @@ public class CadFrameMembro extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNomeBusca = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButtonBuscar = new javax.swing.JButton();
+        txtSobrenomeBusca = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaMembros = new javax.swing.JTable();
         jButtonSelecionar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -129,10 +146,15 @@ public class CadFrameMembro extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel19.setText("Sobrenome:");
 
-        jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar2.png"))); // NOI18N
-        jButtonBuscar.setText("Buscar");
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar2.png"))); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaMembros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -143,7 +165,7 @@ public class CadFrameMembro extends javax.swing.JFrame {
                 "NOME", "SOBRENOME", "RUA"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelaMembros);
 
         jButtonSelecionar.setText("Selecionar");
 
@@ -163,13 +185,13 @@ public class CadFrameMembro extends javax.swing.JFrame {
                 .addGap(72, 72, 72)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNomeBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSobrenomeBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(jButtonBuscar)
+                .addComponent(btnBuscar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -187,10 +209,10 @@ public class CadFrameMembro extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomeBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBuscar)
+                    .addComponent(txtSobrenomeBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
                     .addComponent(jLabel18))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
@@ -569,6 +591,23 @@ public class CadFrameMembro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String nome = txtNomeBusca.getText();
+        String sobrenome = txtSobrenomeBusca.getText();
+        if (!nome.isEmpty()){
+            if(!sobrenome.isEmpty()){
+                membros = Membro.selectMembroPorNome(nome, sobrenome);
+            }
+            else{
+                membros = Membro.selectMembroPorNome(nome);
+            }
+        }
+        else{
+            membros = Membro.listarTodos();
+        }
+        atualizarTabela();
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
     private void esvaziarCampos(){
         txtNome.setText("");
         txtSobrenome.setText("");
@@ -606,6 +645,7 @@ public class CadFrameMembro extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JCheckBox checkLider;
     private javax.swing.JCheckBox checkProfessor;
@@ -614,7 +654,6 @@ public class CadFrameMembro extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboEstadoCivil;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonSelecionar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -642,11 +681,9 @@ public class CadFrameMembro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lbSenha;
     private javax.swing.JPasswordField psSenha;
+    private javax.swing.JTable tabelaMembros;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtDataBatismo;
@@ -658,7 +695,9 @@ public class CadFrameMembro extends javax.swing.JFrame {
     private javax.swing.JTextField txtEnderecoRua;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNomeBusca;
     private javax.swing.JTextField txtSobrenome;
+    private javax.swing.JTextField txtSobrenomeBusca;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

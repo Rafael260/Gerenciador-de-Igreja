@@ -7,9 +7,11 @@ package CadastroFrames;
 
 import Objetos.*;
 import gerenciador.de.igreja.GerenciadorFrame;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,15 +20,45 @@ import javax.swing.JOptionPane;
 public class CadFrameVisitante extends javax.swing.JFrame {
 
     private GerenciadorFrame gerenciador;
-    
+    private List<Visitante> visitantes;
     /**
      * Creates new form CadFrameVisitante
      */
     public CadFrameVisitante(GerenciadorFrame gerenciador) {
         initComponents();
         this.gerenciador = gerenciador;
+        visitantes = Visitante.listarTodos();
+        atualizarTabela();
     }
 
+    public final void atualizarTabela(){
+        DefaultTableModel model = (DefaultTableModel) tabelaVisitantes.getModel();
+        model.setRowCount(0);
+        Object[] objs = new Object[4];
+        for (Visitante visitante : visitantes) {
+            objs[0] = visitante.getPessoa().getNome();
+            objs[1] = visitante.getPessoa().getSobrenome();
+            //ALTERAR NA TABELA!
+            objs[2] = visitante.getPessoa().getEndBairro();
+            objs[3] = visitante.getIgrejaOrig();
+            model.addRow(objs);
+        }
+    }
+    
+    public void esvaziarCampos(){
+        txtNome.setText("");
+        txtSobrenome.setText("");
+        txtRua.setText("");
+        txtNumero.setText("");
+        txtComp.setText("");
+        txtBairro.setText("");
+        txtCidade.setText("");
+        txtIgrejaOrigem.setText("");
+        txtTelefone.setText("");
+        comboEstado.setSelectedItem(null);
+        comboEstadoCivil.setSelectedItem(null);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,16 +73,17 @@ public class CadFrameVisitante extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNomeBusca = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButtonBuscar = new javax.swing.JButton();
+        txtSobrenomeBusca = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaVisitantes = new javax.swing.JTable();
         jButtonSelecionar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnCadastrar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -109,10 +142,15 @@ public class CadFrameVisitante extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel19.setText("Sobrenome:");
 
-        jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar2.png"))); // NOI18N
-        jButtonBuscar.setText("Buscar");
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar2.png"))); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaVisitantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -123,7 +161,7 @@ public class CadFrameVisitante extends javax.swing.JFrame {
                 "NOME", "SOBRENOME", "RUA", "IGREJA DE ORIGEM"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelaVisitantes);
 
         jButtonSelecionar.setText("Selecionar");
 
@@ -134,6 +172,14 @@ public class CadFrameVisitante extends javax.swing.JFrame {
             }
         });
 
+        btnExcluir.setBackground(new java.awt.Color(255, 204, 204));
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/deletar.png"))); // NOI18N
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -141,24 +187,29 @@ public class CadFrameVisitante extends javax.swing.JFrame {
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(72, 72, 72)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNomeBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtSobrenomeBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnBuscar))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton4)
+                        .addGap(14, 14, 14)
+                        .addComponent(jButtonSelecionar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonBuscar))
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jButton4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButtonSelecionar))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnExcluir)
+                        .addGap(55, 55, 55))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,28 +217,30 @@ public class CadFrameVisitante extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomeBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBuscar)
+                    .addComponent(txtSobrenomeBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
                     .addComponent(jLabel18))
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonSelecionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Visualizar", jPanel4);
 
-        jButton1.setBackground(new java.awt.Color(153, 255, 204));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrar.setBackground(new java.awt.Color(153, 255, 204));
+        btnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCadastrarActionPerformed(evt);
             }
         });
 
@@ -253,6 +306,7 @@ public class CadFrameVisitante extends javax.swing.JFrame {
         });
 
         comboEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solteiro", "Casado(a)", "Viúvo(a)", "Divorciado" }));
+        comboEstadoCivil.setSelectedItem(null);
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel10.setText("Estado:");
@@ -261,6 +315,7 @@ public class CadFrameVisitante extends javax.swing.JFrame {
         jLabel3.setText("*Sobrenome:");
 
         comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC\t ", "AL\t ", "AP\t ", "AM\t ", "BA\t ", "CE\t ", "DF\t ", "ES\t ", "GO\t ", "MA\t ", "MT\t ", "MS\t ", "MG\t ", "PA\t ", "PB\t ", "PR\t ", "PE\t ", "PI\t ", "RJ\t ", "RN\t ", "RS\t ", "RO\t ", "RR\t ", "SC\t ", "SP\t ", "SE\t ", "TO" }));
+        comboEstado.setSelectedItem(null);
 
         jLabel13.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel13.setText("Igreja de Origem:");
@@ -394,7 +449,7 @@ public class CadFrameVisitante extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnCadastrar)
                         .addGap(9, 9, 9)))
                 .addContainerGap())
         );
@@ -406,7 +461,7 @@ public class CadFrameVisitante extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnCadastrar)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22))
         );
@@ -448,8 +503,7 @@ public class CadFrameVisitante extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIgrejaOrigemActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        boolean dadosObrigatoriosOk = true;
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         String nome = txtNome.getText();
         String sobrenome = txtSobrenome.getText();
         String rua = testeEmpty(txtRua.getText());
@@ -464,8 +518,13 @@ public class CadFrameVisitante extends javax.swing.JFrame {
         String estado = testeEmpty((String)comboEstado.getSelectedItem());
         String telefone = testeEmpty(txtTelefone.getText());
         String email = testeEmpty(txtEmail.getText());
-        String estCivil = ((String)comboEstadoCivil.getSelectedItem()).toLowerCase();
-        Character estadoCivil = estCivil.charAt(0);
+        
+        Character estadoCivil = null;
+        String estCivil = null;
+        if (comboEstadoCivil.getSelectedItem() != null){
+            estCivil = ((String)comboEstadoCivil.getSelectedItem()).toLowerCase();
+            estadoCivil = estCivil.charAt(0);
+        }
         String igrejaOrigem = testeEmpty(txtIgrejaOrigem.getText());
         Pessoa pessoa = new Pessoa(nome, sobrenome, telefone, rua, numero, complemento, bairro, cidade, estado, email, estadoCivil, null,null, null);
         Visitante visitante = new Visitante(pessoa, igrejaOrigem);
@@ -473,14 +532,52 @@ public class CadFrameVisitante extends javax.swing.JFrame {
             Visitante.cadastrarOuAtualizarVisitante(visitante);
             gerenciador.refresh();
             JOptionPane.showMessageDialog(null, "Visitante cadastrado com successo");
+            btnBuscarActionPerformed(evt);
+            esvaziarCampos();
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Erro - Verifique os campos");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String nome = txtNomeBusca.getText();
+        String sobrenome = txtSobrenomeBusca.getText();
+        if (!nome.isEmpty()){
+            if (!sobrenome.isEmpty()){
+                visitantes = Visitante.selectVisitantePorNome(nome, sobrenome);
+            }
+            else{
+                visitantes = Visitante.selectVisitantePorNome(nome);
+            }
+        }
+        else{
+            visitantes = Visitante.listarTodos();
+        }
+        atualizarTabela();
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        int index = tabelaVisitantes.getSelectedRow();
+        if (index == -1){
+            JOptionPane.showMessageDialog(null, "Selecione um visitante para excluir");
+            return;
+        }
+
+        Visitante visitanteEscolhido = visitantes.get(index);
+        try{
+            Visitante.deletarVisitante(visitanteEscolhido);
+            gerenciador.refresh();
+            JOptionPane.showMessageDialog(null, "Visitante excluído");
+            //Atualiza a tabela
+            btnBuscarActionPerformed(evt);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Houve um problema ao tentar excluir");
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     public String testeEmpty(String str){
         if (str == null || str.isEmpty()){
@@ -493,12 +590,13 @@ public class CadFrameVisitante extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JComboBox<String> comboEstado;
     private javax.swing.JComboBox<String> comboEstadoCivil;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonSelecionar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -523,18 +621,18 @@ public class CadFrameVisitante extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable tabelaVisitantes;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtComp;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtIgrejaOrigem;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNomeBusca;
     private javax.swing.JTextField txtNumero;
     private javax.swing.JTextField txtRua;
     private javax.swing.JTextField txtSobrenome;
+    private javax.swing.JTextField txtSobrenomeBusca;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

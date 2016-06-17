@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import CadastroFrames.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -128,9 +129,9 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jPanelMinisterios = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        ministerios = new javax.swing.JTable();
-        jButton11 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
+        tabelaMinisterios = new javax.swing.JTable();
+        btnExibirMinisterio = new javax.swing.JButton();
+        btnAdicionarMinisterio = new javax.swing.JButton();
         jPanelSecretaria = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
@@ -141,7 +142,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         lbTotalMembros = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        lbTurmasAtivas = new javax.swing.JLabel();
+        lbGrupos = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         lbTotalMinisterios = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -613,8 +614,8 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("Ministérios");
 
-        ministerios.setBackground(new java.awt.Color(255, 204, 204));
-        ministerios.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaMinisterios.setBackground(new java.awt.Color(255, 204, 204));
+        tabelaMinisterios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Louvor", "Marcos", "seg/quar", "18:30 - 21:00"}
             },
@@ -622,23 +623,23 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                 "NOME", "LÍDER", "DIA", "HORA"
             }
         ));
-        jScrollPane7.setViewportView(ministerios);
+        jScrollPane7.setViewportView(tabelaMinisterios);
 
-        jButton11.setBackground(new java.awt.Color(204, 255, 204));
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/visualizar.png"))); // NOI18N
-        jButton11.setText("Exibir");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        btnExibirMinisterio.setBackground(new java.awt.Color(204, 255, 204));
+        btnExibirMinisterio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/visualizar.png"))); // NOI18N
+        btnExibirMinisterio.setText("Exibir");
+        btnExibirMinisterio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                btnExibirMinisterioActionPerformed(evt);
             }
         });
 
-        jButton14.setBackground(new java.awt.Color(204, 204, 255));
-        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
-        jButton14.setText("Adicionar");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        btnAdicionarMinisterio.setBackground(new java.awt.Color(204, 204, 255));
+        btnAdicionarMinisterio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        btnAdicionarMinisterio.setText("Adicionar");
+        btnAdicionarMinisterio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                btnAdicionarMinisterioActionPerformed(evt);
             }
         });
 
@@ -651,9 +652,9 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                 .addGap(100, 100, 100)
                 .addGroup(jPanelMinisteriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelMinisteriosLayout.createSequentialGroup()
-                        .addComponent(jButton14)
+                        .addComponent(btnAdicionarMinisterio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnExibirMinisterio, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -666,8 +667,8 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelMinisteriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAdicionarMinisterio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExibirMinisterio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(39, 39, 39))
         );
 
@@ -743,9 +744,9 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Grupos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        lbTurmasAtivas.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        lbTurmasAtivas.setForeground(new java.awt.Color(0, 102, 102));
-        lbTurmasAtivas.setText("2");
+        lbGrupos.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        lbGrupos.setForeground(new java.awt.Color(0, 102, 102));
+        lbGrupos.setText("2");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -753,14 +754,14 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
-                .addComponent(lbTurmasAtivas)
+                .addComponent(lbGrupos)
                 .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(lbTurmasAtivas)
+                .addComponent(lbGrupos)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1091,11 +1092,11 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         frameturmas.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+    private void btnAdicionarMinisterioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarMinisterioActionPerformed
         // TODO add your handling code here:
         CadFrameMinisterio cadministerio = new CadFrameMinisterio();
         cadministerio.setVisible(true);
-    }//GEN-LAST:event_jButton14ActionPerformed
+    }//GEN-LAST:event_btnAdicionarMinisterioActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
@@ -1103,15 +1104,19 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
         framegrupos.setVisible(true);
     }//GEN-LAST:event_jButton17ActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-        FrameMinisterio frameministerio = new FrameMinisterio();
+    private void btnExibirMinisterioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExibirMinisterioActionPerformed
+        int index = tabelaMinisterios.getSelectedRow();
+        if (index == -1){
+            JOptionPane.showMessageDialog(null, "Selecione o ministério para exibir");
+            return;
+        }
+        FrameMinisterio frameministerio = new FrameMinisterio(igreja.getMinisterios().get(index),this);
         frameministerio.setVisible(true);
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_btnExibirMinisterioActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        CadFrameDisciplina cadframedisciplinas = new CadFrameDisciplina();
+        CadFrameDisciplina cadframedisciplinas = new CadFrameDisciplina(this);
         cadframedisciplinas.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -1182,7 +1187,7 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
     }
     
     private void preencherMinisterios(){
-        DefaultTableModel model = (DefaultTableModel) ministerios.getModel();
+        DefaultTableModel model = (DefaultTableModel) tabelaMinisterios.getModel();
         model.setNumRows(0);
         Object[] objs = new Object[4];
         for (Ministerio ministerio : igreja.getMinisterios()) {
@@ -1205,11 +1210,11 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdicionarMinisterio;
+    private javax.swing.JButton btnExibirMinisterio;
     private javax.swing.JButton btnLogout;
     private javax.swing.JLabel dataAtual;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
@@ -1265,16 +1270,16 @@ public final class GerenciadorFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JLabel lbGrupos;
     private javax.swing.JLabel lbTotalMembros;
     private javax.swing.JLabel lbTotalMinisterios;
-    private javax.swing.JLabel lbTurmasAtivas;
-    private javax.swing.JTable ministerios;
     private javax.swing.JTable ministerios1;
     private javax.swing.JLabel nomeUsuarioAtual;
     private javax.swing.JTable tabelaAniversariantes;
     private javax.swing.JTable tabelaDisciplinasAtivas1;
     private javax.swing.JTable tabelaEventos;
     private javax.swing.JTable tabelaMensagens;
+    private javax.swing.JTable tabelaMinisterios;
     private javax.swing.JTable tabelaNoticias;
     // End of variables declaration//GEN-END:variables
 

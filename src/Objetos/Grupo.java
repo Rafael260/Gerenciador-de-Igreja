@@ -168,18 +168,13 @@ public class Grupo  implements java.io.Serializable {
     }
     
     public static List<Grupo> listarTodos(){
-        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Grupo");
-        return preencherDadosGrupo(objects, 0);
+        return HibernateUtil.getTuplasDaTabela("Grupo"); 
     }
     
     public static List<Grupo> selectGrupoPorTipo(String tipo){
         List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Grupo","tipo_grupo='"+tipo+"'","",0);
         return preencherDadosGrupo(objects, 0);
     }
-    
-    /*public static List<Grupo> selectGrupoPorDiaSemana(String diaSemana){
-        return HibernateUtil.getTuplasDaTabela("Grupo","dia_semana='"+diaSemana+"'","",0);
-    }*/
     
     /**
      * Seleciona os grupos que possuem horário de início entre horaInicio e horaFinal
@@ -212,7 +207,12 @@ public class Grupo  implements java.io.Serializable {
         membro.setGrupo(null);
         Membro.cadastrarOuAtualizarMembro(membro);
     }
-
+    
+    public static Integer getNumeroDeGrupos(){
+        List objetos = HibernateUtil.rodarSQL("select count(id_lider)\n" +
+"	from grupo");
+        return ((java.math.BigInteger)objetos.get(0)).intValue();
+    }
 }
 
 

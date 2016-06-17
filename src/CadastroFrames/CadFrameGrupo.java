@@ -117,6 +117,7 @@ public class CadFrameGrupo extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setText("ALTERAR CAMPOS");
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N

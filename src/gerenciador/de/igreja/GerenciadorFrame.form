@@ -910,9 +910,9 @@
                               <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="jButton14" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnAdicionarMinisterio" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButton11" min="-2" pref="95" max="-2" attributes="0"/>
+                                      <Component id="btnExibirMinisterio" min="-2" pref="95" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane7" min="-2" pref="654" max="-2" attributes="0"/>
                               </Group>
@@ -929,8 +929,8 @@
                               <Component id="jScrollPane7" min="-2" pref="337" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jButton14" max="32767" attributes="0"/>
-                                  <Component id="jButton11" max="32767" attributes="0"/>
+                                  <Component id="btnAdicionarMinisterio" max="32767" attributes="0"/>
+                                  <Component id="btnExibirMinisterio" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
@@ -957,7 +957,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="ministerios">
+                        <Component class="javax.swing.JTable" name="tabelaMinisterios">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="cc" green="cc" red="ff" type="rgb"/>
@@ -1009,7 +1009,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JButton" name="jButton11">
+                    <Component class="javax.swing.JButton" name="btnExibirMinisterio">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="cc" green="ff" red="cc" type="rgb"/>
@@ -1020,10 +1020,10 @@
                         <Property name="text" type="java.lang.String" value="Exibir"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton11ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExibirMinisterioActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton14">
+                    <Component class="javax.swing.JButton" name="btnAdicionarMinisterio">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="cc" red="cc" type="rgb"/>
@@ -1034,7 +1034,7 @@
                         <Property name="text" type="java.lang.String" value="Adicionar"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton14ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdicionarMinisterioActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -1229,7 +1229,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                                  <Component id="lbTurmasAtivas" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbGrupos" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace pref="69" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -1238,14 +1238,14 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Component id="lbTurmasAtivas" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbGrupos" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JLabel" name="lbTurmasAtivas">
+                        <Component class="javax.swing.JLabel" name="lbGrupos">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Arial Black" size="24" style="0"/>

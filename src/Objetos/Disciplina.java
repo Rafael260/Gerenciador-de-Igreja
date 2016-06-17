@@ -74,10 +74,10 @@ public class Disciplina  implements java.io.Serializable {
         return disciplina;
     }
     
-    public static List<Disciplina> preencherDadosDisciplina(List<Object[]> objects, int index){
+    public static List<Disciplina> preencherDadosDisciplina(List objects, int index){
         List<Disciplina> disciplinas = new ArrayList();
-        for(Object[] object: objects){
-            disciplinas.add(preencherDadosDisciplina(object, index));
+        for(Object object: objects){
+            disciplinas.add((Disciplina)object);
         }
         return disciplinas;
     }

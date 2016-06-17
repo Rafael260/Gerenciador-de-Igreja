@@ -5,8 +5,14 @@
  */
 package CadastroFrames;
 
+import Objetos.Disciplina;
+import Objetos.Seminario;
+import gerenciador.de.igreja.GerenciadorFrame;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,11 +20,32 @@ import java.util.logging.Logger;
  */
 public class CadFrameDisciplina extends javax.swing.JFrame {
 
+    GerenciadorFrame gerenciador;
+    List<Disciplina> disciplinas;
     /**
      * Creates new form CadFrameDisciplinas
      */
-    public CadFrameDisciplina() {
+    public CadFrameDisciplina(GerenciadorFrame gerenciador) {
         initComponents();
+        atualizarTabela();
+        this.gerenciador = gerenciador;
+    }
+    
+    private void atualizarTabela(){
+        disciplinas = Disciplina.listarTodos();
+        DefaultTableModel model = (DefaultTableModel) tabelaDisciplinas.getModel();
+        model.setRowCount(0);
+        Object[] objs = new Object[2];
+        for(Disciplina disciplina: disciplinas){
+            objs[0] = disciplina.getCodigo();
+            objs[1] = disciplina.getNome();
+            model.addRow(objs);
+        }
+    }
+    
+    public void esvaziarCampos(){
+        txtCodigoCadastro.setText("");
+        txtNomeCadastro.setText("");
     }
 
     /**
@@ -33,32 +60,32 @@ public class CadFrameDisciplina extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtTema = new javax.swing.JTextField();
+        txtCodigoCadastro = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtPublicoAlvo = new javax.swing.JTextField();
+        txtNomeCadastro = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnExcluir = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        tabelaEventos = new javax.swing.JTable();
+        tabelaDisciplinas = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        txtTemaEvento = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txtTemaEvento1 = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
 
         setTitle("Connect Church - Disciplinas");
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel2.setText("*Nome:");
+        jLabel2.setText("*Código:");
 
         btnCadastrar.setBackground(new java.awt.Color(153, 255, 204));
         btnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
@@ -98,7 +125,7 @@ public class CadFrameDisciplina extends javax.swing.JFrame {
         );
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel4.setText("Seminário:");
+        jLabel4.setText("*Nome:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -107,20 +134,20 @@ public class CadFrameDisciplina extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCadastrar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtTema))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCodigoCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(256, 256, 256))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtPublicoAlvo, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(242, 242, 242)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNomeCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(40, 40, 40))
         );
         jPanel1Layout.setVerticalGroup(
@@ -129,13 +156,13 @@ public class CadFrameDisciplina extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigoCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPublicoAlvo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(txtNomeCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -159,8 +186,8 @@ public class CadFrameDisciplina extends javax.swing.JFrame {
             }
         });
 
-        tabelaEventos.setBackground(new java.awt.Color(255, 226, 226));
-        tabelaEventos.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaDisciplinas.setBackground(new java.awt.Color(255, 226, 226));
+        tabelaDisciplinas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -185,10 +212,10 @@ public class CadFrameDisciplina extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabelaEventos.setGridColor(new java.awt.Color(0, 102, 102));
-        tabelaEventos.setSelectionBackground(new java.awt.Color(155, 126, 126));
-        tabelaEventos.setShowHorizontalLines(false);
-        jScrollPane5.setViewportView(tabelaEventos);
+        tabelaDisciplinas.setGridColor(new java.awt.Color(0, 102, 102));
+        tabelaDisciplinas.setSelectionBackground(new java.awt.Color(155, 126, 126));
+        tabelaDisciplinas.setShowHorizontalLines(false);
+        jScrollPane5.setViewportView(tabelaDisciplinas);
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -220,10 +247,10 @@ public class CadFrameDisciplina extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel8.setText("Nome:");
+        jLabel8.setText("Código:");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel9.setText("Seminário:");
+        jLabel9.setText("Nome:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -238,11 +265,11 @@ public class CadFrameDisciplina extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addComponent(jLabel8)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtTemaEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(jLabel9)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtTemaEvento1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(85, 85, 85)
                             .addComponent(btnBuscar))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -257,11 +284,11 @@ public class CadFrameDisciplina extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTemaEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
-                    .addComponent(txtTemaEvento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -288,9 +315,34 @@ public class CadFrameDisciplina extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        
+        Seminario seminario = Seminario.selectSeminarioPk("SEMIT");
+        Disciplina disciplina = new Disciplina();
+        disciplina.setSeminario(seminario);
+        String codigo = testeEmpty(txtCodigoCadastro.getText());
+        String nome = testeEmpty(txtNomeCadastro.getText());
+        disciplina.setCodigo(codigo);
+        disciplina.setNome(nome);
+        try{
+            Disciplina.cadastrarOuAtualizarDisciplina(disciplina);
+            JOptionPane.showMessageDialog(null, "Disciplina cadastrada com sucesso");
+            atualizarTabela();
+            gerenciador.refresh();
+            esvaziarCampos();
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Houve um problema ao tentar cadastrar. Verifique os campos");
+        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    public String testeEmpty(String str){
+        if (str == null || str.isEmpty()){
+            return null;
+        }
+        else{
+            return str;
+        }
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         try {
@@ -302,7 +354,20 @@ public class CadFrameDisciplina extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        
+        int index = tabelaDisciplinas.getSelectedRow();
+        if (index == -1){
+            JOptionPane.showMessageDialog(null, "Selecione uma disciplina para excluir");
+            return;
+        }
+        Disciplina disciplinaClicada = disciplinas.get(index);
+        try{
+            Disciplina.deletarDisciplina(disciplinaClicada);
+            atualizarTabela();
+            JOptionPane.showMessageDialog(null, "Disciplina excluída com sucesso");
+            gerenciador.refresh();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Houve um problema ao tentar excluir");
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -318,42 +383,6 @@ public class CadFrameDisciplina extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
     }//GEN-LAST:event_btnBuscarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadFrameDisciplina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadFrameDisciplina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadFrameDisciplina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadFrameDisciplina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadFrameDisciplina().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -373,10 +402,10 @@ public class CadFrameDisciplina extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable tabelaEventos;
-    private javax.swing.JTextField txtPublicoAlvo;
-    private javax.swing.JTextField txtTema;
-    private javax.swing.JTextField txtTemaEvento;
-    private javax.swing.JTextField txtTemaEvento1;
+    private javax.swing.JTable tabelaDisciplinas;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtCodigoCadastro;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNomeCadastro;
     // End of variables declaration//GEN-END:variables
 }

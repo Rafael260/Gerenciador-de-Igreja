@@ -109,6 +109,11 @@ public class Turma  implements java.io.Serializable {
         HibernateUtil.deletarObjeto(turma);
     }
     
+    public static List<Turma> listarTodos(){
+        List<Object[]> objects = HibernateUtil.getTuplasDaTabela("turma", "", "data_inicio ASC, cod_disc ASC", 0);
+        return preencherDadosTurma(objects, 0);
+    }
+    
     public static Turma selectTurmaPk(String codigo, Date dataInicio){
         List<Object[]> objects = HibernateUtil.getTuplasDaTabela("Turma", "cod_disc='"+codigo+"' and data_inicio='"+FormatoDataHora.sqlData(dataInicio)+"'", "", 0);
         return preencherDadosTurma(objects.get(0),0);
